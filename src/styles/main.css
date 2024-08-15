@@ -1,0 +1,107 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+body {
+  font-family: "Segoe UI", Tahoma, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+body,
+html {
+  margin: 0 auto;
+  width: 100%;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 1rem 0;
+  font-size: 2.5rem;
+}
+
+.text-primary {
+  color: #0c5d58;
+}
+
+.text-inverse {
+  color: #fff;
+}
+
+.text-dark {
+  color: #222;
+}
+
+[astro-icon].icon-light > * {
+  stroke-width: 1.2;
+}
+
+[astro-icon].icon-bold > * {
+  stroke-width: 2.4;
+}
+
+.note,
+.tip,
+.caution,
+.warning {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  margin-right: 2rem;
+  border-left: 4px solid;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+}
+
+.note {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+}
+
+.tip {
+  background-color: #dff0d8;
+  border-color: #d0e9c6;
+  color: #3c763d;
+}
+
+.caution {
+  background-color: #fcf8e3;
+  border-color: #faf2cc;
+  color: #8a6d3b;
+}
+
+.warning {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+/* Add border to screenshots explicitly marked as such in the alt tag */
+
+.article img[alt$="-screenshot"],
+.tab-content img[alt$="-screenshot"] {
+  border: 2px solid #176457;
+  padding: 4px;
+  /* max-width: 600px; prevent image size issues on small screens */
+  height: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+/* Like -screenshot but no zoom and max height for images of mobile devices*/
+
+.article img[alt$="-app-screen"],
+.tab-content img[alt$="-app-screen"] {
+  border: 2px solid #176457;
+  padding: 4px;
+  max-height: 498px;
+  width: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}

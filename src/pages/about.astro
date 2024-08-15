@@ -1,0 +1,179 @@
+---
+import Layout from "@layouts/Base.astro";
+import { Image } from "astro:assets";
+import imgGh from "@media/github-superoffice-docs.png";
+import imgShare from "@media/share-action-button.png";
+import imgEdit from "@media/edit-action-button.png";
+import imgFeedback from "@media/feedback-action-button.png";
+
+import { getLastUpdatedFromGitHub } from "@scripts/getLastUpdatedFromGitHub.js";
+const lastUpdated = await getLastUpdatedFromGitHub("src/pages/about.astro");
+
+const contributionPages = await Astro.glob("./contribute/*.md");
+
+const metadata = {
+  title: "About docs.superoffice.com",
+};
+
+export const stripFileExtension = (url: string): string => {
+  return url.replace(/\.[^/.]+$/, "");
+};
+---
+
+<Layout metadata={metadata}>
+  <main>
+    <article class="bg-teal-500 max-w-4xl mx-auto p-6 rounded-lg shadow">
+      <h1 class="text-3xl font-bold">About</h1>
+      {lastUpdated && <p class="text-sm">Last updated on {lastUpdated}</p>}
+      <div class="mb-6 px-4">
+        <p class="mt-2 mb-6">
+          Welcome to the SuperOffice Documentation hub, your one-stop resource for mastering all things related to
+          SuperOffice CRM. Whether you're a seasoned developer, a business professional, or a new user getting started,
+          our comprehensive guides and resources are designed to support you every step of the way.
+        </p>
+        <div class="flex justify-center mb-4">
+          <Image
+            src={imgGh}
+            alt="The SuperOffice Docs GitHub orgamization's start page."
+            class="rounded-lg shadow-lg"
+            width={800}
+            height={400}
+          />
+        </div>
+      </div>
+
+      <section class="mb-6 px-4">
+        <h2 class="text-2xl font-semibold">What you'll find here</h2>
+        <ul class="mt-2 list-inside list-item-styling">
+          <li>
+            <h3>Getting started guides</h3>
+            <p>
+              New to SuperOffice? Our introductory guides will help you set up and get the most out of your CRM
+              experience.
+            </p>
+          </li>
+          <li>
+            <h3>User guides</h3>
+            <p>
+              Detailed manuals that cover every aspect of SuperOffice CRM, ensuring you have the information you need at
+              your fingertips.
+            </p>
+          </li>
+          <li>
+            <h3>Mobile CRM documentation</h3>
+            <p>
+              Learn how to efficiently use our Mobile CRM app, with step-by-step guides and best practices for managing
+              customer relationships on the go.
+            </p>
+          </li>
+          <li>
+            <h3>Developer resources</h3>
+            <p>
+              Access technical documentation, API references, and tools designed to help developers integrate and extend
+              SuperOffice capabilities.
+            </p>
+          </li>
+          <li>
+            <h3>IT professional guides</h3>
+            <p>
+              Comprehensive resources for IT professionals covering on-site installation, cloud document integration
+              configuration, database mirroring, and identity management.
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-6 px-4">
+        <h2 class="text-2xl font-semibold">Interactive documentation</h2>
+        <p class="mb-6 text-lg">
+          Discover how easy it is to enhance your experience with our tools and contribute to our community:
+        </p>
+
+        <div class="flex items-center mb-6">
+          <Image src={imgShare} alt="Share button screenshot" class="mr-4 rounded-lg shadow-md" />
+          <p class="text-base">
+            <strong>Share</strong> your favorite content effortlessly! Click the
+            <strong>Share</strong> button to spread valuable insights with others who might benefit.
+          </p>
+        </div>
+
+        <div class="flex items-center mb-6">
+          <Image src={imgFeedback} alt="Feedback button screenshot" class="mr-4 rounded-lg shadow-md" />
+          <p class="text-base">
+            Provide valuable <strong>Feedback</strong> on articles to help us improve. Your suggestions are crucial in refining
+            our content and making it more useful.
+          </p>
+        </div>
+
+        <div class="flex items-center mb-6">
+          <Image src={imgEdit} alt="Edit button screenshot" class="mr-4 rounded-lg shadow-md" />
+          <p class="text-base">
+            Have a suggestion for enhancing an article? Click the <strong>Edit</strong> button to propose updates and contribute
+            directly to our content improvements.
+          </p>
+        </div>
+
+        <p class="mt-6 text-lg">
+          For those looking to dive deeper, you can <strong>clone our repository</strong> and become a part of our ongoing
+          efforts to improve <code>docs.superoffice.com</code>. Your expertise and contributions are always welcome!
+        </p>
+      </section>
+
+      <section class="mb-6 px-4">
+        <h2 class="text-2xl font-semibold mb-4">Contributing to SuperOfficeDocs</h2>
+
+        <p class="mb-4">
+          SuperOfficeDocs is our dedicated GitHub organization for managing all end-user and technical documentation
+          related to <a href="https://www.superoffice.com" target="_blank" rel="noopener noreferrer">SuperOffice</a>.
+        </p>
+
+        <p class="mb-4">
+          Our documentation is organized into several repositories, each named to reflect its content clearly. You can
+          interact with and contribute to the documentation directly. Visit our GitHub page at
+          <a href="https://github.com/SuperOfficeDocs" target="_blank" rel="noopener noreferrer"
+            >SuperOfficeDocs on GitHub</a
+          > to explore.
+        </p>
+
+        <p>
+          Interested in contributing? Learn the basic steps for contributing to the SuperOffice Docs project on GitHub
+          by following our guide on
+          <a
+            href="https://docs.superoffice.com/contribute/"
+            class="text-blue-100 hover:underline"
+            target="_blank"
+            rel="noopener noreferrer">contributing to SuperOfficeDocs</a
+          >.
+        </p>
+      </section>
+      <ul class="py-6 list-disc ml-4" aria-label="List of links to contribution pages">
+        {
+          contributionPages.map((article) => (
+            <li>
+              <a href={article.url}>{article.frontmatter.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .list-item-styling {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .list-item-styling li {
+    @apply mb-4;
+  }
+
+  .list-item-styling h3 {
+    @apply text-lg font-semibold mb-1 ml-2;
+  }
+
+  .list-item-styling p {
+    @apply text-base ml-2;
+  }
+</style>
