@@ -1,10 +1,22 @@
 ---
 import Base from "./Base.astro";
-const { frontmatter } = Astro.props;
+import PageHeader from "@components/PageHeader.astro";
+
+const { frontmatter, collection, slug } = Astro.props;
+const liveUrl = Astro.url.pathname;
+
+let filePath;
+if (collection && slug) {
+  filePath = `src/content/${collection}/${slug}`;
+} else {
+  filePath = `src/pages${liveUrl}.md`;
+}
 ---
 
-<Base metadata={frontmatter.title}>
-  <article class="w-full px-4 py-8 article">
+
+<Base metadata={ frontmatter.title }>
+  <PageHeader liveUrl={liveUrl} filePath={filePath} metadata={frontmatter} />
+  <article class="w-full px-4 py-2 article">
     <!-- For prose options see https://github.com/tailwindlabs/tailwindcss-typography -->
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">

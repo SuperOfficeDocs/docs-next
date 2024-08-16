@@ -22,5 +22,8 @@ export default defineConfig({
       "material-symbols-light": ["*"],
       "flat-color-icons": ["template", "gallery", "approval", "document", "advertising", "currency-exchange", "voice-presentation", "business-contact", "database"]
     }
-  }), mdx(), preact()]
+  }), mdx(), preact()],
+  build: {
+    format: 'preserve'
+  }
 });

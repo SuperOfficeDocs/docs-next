@@ -1,22 +1,22 @@
 ---
 import { getCollection } from "astro:content";
-import MarkdownLayout from "../../layouts/Markdown.astro";
+import MarkdownLayout from "@layouts/Markdown.astro";
 
 export async function getStaticPaths() {
   const docEntries = await getCollection("release-notes");
-  return docEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  return docEntries.map((entry) => {
+    return {
+      params: { slug: `${entry.id.slice(0, -3)}` },
+      props: { entry },
+    };
+  });
 }
 
 const { entry } = Astro.props;
 
 const { Content } = await entry.render();
-
-
 ---
 
-<MarkdownLayout frontmatter={entry.data}>
-  {Content ? <Content /> : 'Loading content...'}
+<MarkdownLayout frontmatter={entry.data} collection={entry.collection} slug={entry.id}>
+  {Content ? <Content /> : "Loading content..."}
 </MarkdownLayout>
