@@ -3,6 +3,7 @@ import { Icon } from "astro-icon/components";
 import Hamburger from "./Hamburger.astro";
 import logo from "@assets/suo-logo.svg";
 import { trimSlash } from "@scripts/utils";
+import Search from "astro-pagefind/components/Search";
 
 interface Link {
   text?: string;
@@ -30,7 +31,6 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 <header
   class:list={["top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out"]}
   {...id ? { id } : {}}>
-
   <div
     class:list={[
       "relative text-default py-3 px-3 md:px-6 mx-auto w-full",
@@ -53,7 +53,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
 
     <nav
-      class="relative text-default md:col-span-4 items-center md:mx-5 w-full md:w-auto md:justify-self-center"
+      class="relative text-default md:col-span-4 lg:col-span-3 items-center md:mx-5 w-full md:w-auto md:justify-self-center"
       aria-label="Main">
       <Hamburger />
       <div
@@ -100,6 +100,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         </ul>
       </div>
     </nav>
+    <div
+      class="relative hidden text-default lg:col-span-2 lg:flex items-center lg:mx-5 w-full lg:w-auto lg:justify-end"
+      aria-label="Search">
+      <Search id="search1" className="pagefind-ui" uiOptions={{ showImages: false }} />
+    </div>
     <div
       class:list={[
         { "ml-auto": position === "left" },

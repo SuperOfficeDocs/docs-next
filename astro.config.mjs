@@ -6,6 +6,9 @@ import { remarkDirectiveNote } from "./remark-directive-note.mjs";
 import codeImport from "remark-code-import";
 import mdx from "@astrojs/mdx";
 import preact from "@astrojs/preact";
+import robots from "astro-robots";
+import sitemap from "@astrojs/sitemap";
+import pagefind from "astro-pagefind";
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,8 +25,9 @@ export default defineConfig({
       "material-symbols-light": ["*"],
       "flat-color-icons": ["template", "gallery", "approval", "document", "advertising", "currency-exchange", "voice-presentation", "business-contact", "database"]
     }
-  }), mdx(), preact()],
+  }), mdx(), preact(), robots(), sitemap(), pagefind()],
   build: {
     format: 'preserve'
-  }
+  },
+  site: "https://docs.superoffice.com"
 });
