@@ -30,7 +30,7 @@ We use feature branches to isolate work in progress from the completed work in t
 If you haven't already, create an issue in the appropriate repo so that you can use the **issue ID** in the branch name and commit messages.
 :::
 
-## List existing branches with Git Bash
+## <a id="git-branch"></a>List existing branches with Git Bash
 
 ```sh
 git branch
@@ -40,7 +40,7 @@ To include remotes, add `-a`.
 
 To just list your remotes: `git remote -v`
 
-## Create a new local branch with Git Bash
+## <a id="git-switch"></a>Create a new local branch with Git Bash
 
 ```sh
 git switch -c "[INSERT A NEW BRANCH NAME HERE]"
@@ -64,13 +64,13 @@ Did you start making changes in main before making a branch? Don't worry - `git 
 
 Each Git client is different, so consult the help for your preferred client.
 
-## Pull requests
+## <a id="pr"></a>Pull requests
 
 * Require a pull request to merge code.
 * Code merged into the main branch should build cleanly.
 * Squash merge.
 
-## Release branches (versioning)
+## <a id="release-branch"></a>Release branches (versioning)
 
 Release branches are long-lived and not merged back into the main branch.
 

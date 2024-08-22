@@ -17,6 +17,6 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<MarkdownLayout frontmatter={entry.data} collection={entry.collection} slug={entry.id}>
+<MarkdownLayout frontmatter={entry.data} collection={entry.collection} slug={entry.id} hedings={entry.data}>
   {Content ? <Content /> : "Loading content..."}
 </MarkdownLayout>

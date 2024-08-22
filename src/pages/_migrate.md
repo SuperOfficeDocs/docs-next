@@ -10,13 +10,13 @@
 
 Regex search for
 
-```
+```html
 > \[!(NOTE|TIP|CAUTION|WARNING)\]\s*(?:\r?\n)(?:(?:> (.*))(?:\r?\n|$))+
 ```
 
 Replace with
 
-```
+```html
 :::note{.\L$1}
 $2
 :::
@@ -31,15 +31,21 @@ Need a custom run to deal with indented notes!
 
 Regex search for
 
-```
+```html
 ^# (.*)
 ```
 
 Exclude content code samples, then replace with
 
-```
+```html
 <!-- #1 -->
 ```
+
+## Headings
+
+Change self-closing anchor tags to `<a id="SLUG"></a>`
+
+(NA. Solved in issue 1285)
 
 ## Media
 

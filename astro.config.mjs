@@ -9,11 +9,17 @@ import preact from "@astrojs/preact";
 import robots from "astro-robots";
 import sitemap from "@astrojs/sitemap";
 import pagefind from "astro-pagefind";
+import { rehypeHeadingIds } from '@astrojs/markdown-remark';
+//import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSanitize from 'rehype-sanitize';
 
 // https://astro.build/config
 export default defineConfig({
   markdown: {
-    remarkPlugins: [remarkDirective, remarkDirectiveNote, codeImport]
+    remarkPlugins: [remarkDirective, remarkDirectiveNote, codeImport],
+    rehypePlugins: [rehypeHeadingIds, [rehypeAutolinkHeadings, { behavior: 'before' }]]
+    // rehypeSanitize, rehypeSlug
   },
   integrations: [tailwind({
     applyBaseStyles: false
