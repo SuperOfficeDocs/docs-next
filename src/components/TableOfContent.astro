@@ -1,14 +1,12 @@
 ---
 import ToCCard from "./ToCCard.astro";
-import type { TocItem } from "../";
-import { getTableOfContents } from "../utils/TableOfContent";
+import type { TocItem } from "../types/TableOfContentTypes";
+import { getTableOfContents } from "../utils/getTableOfContents";
 const { data, collection, liveUrl } = Astro.props;
 ---
 
 <section>
   <ul class="px-4">
-    <!-- <p>LiveUrl: {liveUrl}</p> -->
-
     {
       data.items?.map((item: TocItem) => (
         <div class="list-none">
@@ -21,14 +19,6 @@ const { data, collection, liveUrl } = Astro.props;
               )}
             />
           )}
-
-          {/* {item.href &&
-            item.href.split(".").pop() == "yml" &&
-            console.log(
-              getTableOfContents(
-                `release-notes/${item.href.split(".").slice(0, -1).join(".")}`
-              )
-            )} */}
         </div>
       ))
     }

@@ -1,6 +1,5 @@
 ---
-import favIcon from '@assets/favicon.ico';
-
+import favIcon from "@assets/favicon.ico";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import { footerData, headerData } from "../navigation";
@@ -26,7 +25,7 @@ const { metadata } = Astro.props;
     <title>{metadata.title}</title>
   </head>
   <body class="min-h-screen flex flex-col">
-    <Header {...headerData}></Header>
+    <div class="sticky top-0"><Header {...headerData} /></div>
     <main class="flex-grow">
       <!-- Content goes here -->
       <slot />
