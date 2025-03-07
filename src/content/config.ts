@@ -7,12 +7,12 @@ import { z, defineCollection } from 'astro:content';
 const releaseNotes = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
-    date: z.date().optional(),
-    description: z.string().optional(),
-    author: z.string().optional(),
-    version: z.string().optional(),
-    version_mobile: z.string().optional(),
+    // title: z.string(),
+    // date: z.date().optional(),
+    // description: z.string().optional(),
+    // author: z.string().optional(),
+    // version: z.string().optional(),
+    // version_mobile: z.string().optional(),
   }).passthrough(),
 });
 
