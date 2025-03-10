@@ -1,8 +1,8 @@
 ---
 import Base from "./Base.astro";
 import PageHeader from "@components/PageHeader.astro";
-import TableOfContent from "@components/TableOfContent.astro";
 import OnThisArticle from "@components/OnThisArticle.astro";
+import CollapsibleList from "@components/TableOfContentList";
 
 const { frontmatter, collection, slug, headings, TableOfContentData } =
   Astro.props;
@@ -23,10 +23,15 @@ if (collection && slug) {
   <article class="w-full pt-1 article">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
       <nav class="bg-lightTealGray lg:col-span-3 p-12">
-        <TableOfContent
+        <!-- <TableOfContent
           liveUrl={liveUrl}
           collection={collection}
           data={TableOfContentData}
+        /> -->
+        <CollapsibleList
+          client:only="react"
+          inputItems={TableOfContentData.items}
+          slug="release-notes"
         />
       </nav>
 
