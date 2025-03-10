@@ -4,11 +4,13 @@ import type { TocItem } from "~/types/TableOfContentTypes";
 type TableOfContentListProps = {
   inputItems: TocItem[];
   slug: string;
+  isMainTable: boolean;
 };
 
 export default function TableOfContentList({
   inputItems,
   slug,
+  isMainTable,
 }: TableOfContentListProps) {
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
 
@@ -25,21 +27,22 @@ export default function TableOfContentList({
   };
 
   return (
-    <div className="w-full max-w-md mx-auto rounded-lg">
+    <div
+      className={`w-full max-w-md mx-auto rounded-lg  ${isMainTable && "h-[400px] overflow-y-scroll"} `}
+    >
       {inputItems?.map((item, index) => (
         <div key={index}>
           <button
             onClick={() => toggleItem(index)}
-            className="w-full text-left flex items-center px-3 pb-4 text-base text-gray-600 hover:text-black"
+            className={`w-full text-left flex items-center px-3 pb-2 text-sm text-gray-600 hover:text-black  ${isMainTable && " pb-4 "}`}
           >
-            <span className="pr-2">
-              {item.href?.slice(-2) != "md" &&
-                (openIndexes.includes(index) ? "▼" : "▶")}
+            <span className="w-7">
+              {item.items && (openIndexes.includes(index) ? "▼" : "▶")}
             </span>
 
             <a
               href={generatePath(item)}
-              className={`${
+              className={` w-40 ${
                 generatePath(item) == window.location.pathname
                   ? "text-superOfficeGreen font-semibold"
                   : ""
@@ -54,6 +57,7 @@ export default function TableOfContentList({
               <TableOfContentList
                 slug={item.href ? `${slug}/${item.href.slice(0, -8)}` : slug}
                 inputItems={item.items}
+                isMainTable={false}
               />
             </div>
           )}
