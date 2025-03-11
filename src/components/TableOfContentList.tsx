@@ -13,6 +13,7 @@ export default function TableOfContentList({
   isMainTable,
 }: TableOfContentListProps) {
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
+  const [showToC, setShowToC] = useState<boolean>(false);
 
   const toggleItem = (index: number) => {
     setOpenIndexes((prev) =>
@@ -27,42 +28,62 @@ export default function TableOfContentList({
   };
 
   return (
-    <div
-      className={`w-full max-w-md mx-auto rounded-lg  ${isMainTable && "h-[400px] overflow-y-scroll"} `}
-    >
-      {inputItems?.map((item, index) => (
-        <div key={index}>
-          <button
-            onClick={() => toggleItem(index)}
-            className={`w-full text-left flex items-center px-3 pb-2 text-sm text-gray-600 hover:text-black  ${isMainTable && " pb-4 "}`}
-          >
-            <span className="w-7">
-              {item.items && (openIndexes.includes(index) ? "▼" : "▶")}
-            </span>
-
-            <a
-              href={generatePath(item)}
-              className={` w-40 ${
-                generatePath(item) == window.location.pathname
-                  ? "text-superOfficeGreen font-semibold"
-                  : ""
-              }`}
-            >
-              {item.name}
-            </a>
-          </button>
-
-          {openIndexes.includes(index) && item.items && (
-            <div className="pl-6">
-              <TableOfContentList
-                slug={item.href ? `${slug}/${item.href.slice(0, -8)}` : slug}
-                inputItems={item.items}
-                isMainTable={false}
-              />
-            </div>
-          )}
+    <div className="">
+      <div>
+        <div
+          onClick={() => {
+            setShowToC(!showToC);
+          }}
+          className={`${showToC ? "bg-sky-900 mb-8" : "bg-superOfficeGreen"}  flex h-10 rounded-md w-full ${isMainTable ? "block" : "hidden"} md:m-0 md:hidden `}
+        >
+          <p className="p-2 m-auto text-white text-sm">
+            Show / Hide Table of Content {showToC}
+          </p>
         </div>
-      ))}
+      </div>
+
+      <div
+        className={`w-full max-w-md mx-auto rounded-lg  ${isMainTable && "h-[400px] overflow-y-scroll"} 
+        md:block ${isMainTable && (showToC ? "block" : "hidden")}`}
+      >
+        {inputItems?.map((item, index) => (
+          <div key={index}>
+            <button
+              onClick={() => toggleItem(index)}
+              className={`w-full text-left flex items-center px-3 pb-2 text-sm text-gray-600 hover:text-black  ${isMainTable && "pb-4"}`}
+            >
+              <span className="w-7">
+                {item.items && (openIndexes.includes(index) ? "▼" : "▶")}
+              </span>
+
+              <a
+                href={generatePath(item)}
+                className={` w-40 ${
+                  generatePath(item) == window.location.pathname
+                    ? "text-superOfficeGreen font-semibold"
+                    : ""
+                }`}
+              >
+                {item.name}
+              </a>
+            </button>
+
+            {openIndexes.includes(index) && item.items && (
+              <div className="pl-6">
+                <TableOfContentList
+                  slug={
+                    item.topicHref
+                      ? `${slug}/${item.topicHref.slice(0, -9)}`
+                      : slug
+                  }
+                  inputItems={item.items}
+                  isMainTable={false}
+                />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
