@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { ChangeEvent } from "react";
 import type { TocItem } from "~/types/TableOfContentTypes";
 
 type TableOfContentListProps = {
@@ -14,6 +15,7 @@ export default function TableOfContentList({
 }: TableOfContentListProps) {
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
   const [showToC, setShowToC] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const toggleItem = (index: number) => {
     setOpenIndexes((prev) =>
@@ -27,49 +29,64 @@ export default function TableOfContentList({
       : `/${slug}/${item.href?.slice(0, -3)}`;
   };
 
+  const handleSearchTermChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
-    <div className="">
-      <div>
-        <div
-          onClick={() => {
-            setShowToC(!showToC);
-          }}
-          className={`${showToC ? "bg-sky-900 mb-8" : "bg-superOfficeGreen"}  flex h-10 rounded-md w-full ${isMainTable ? "block" : "hidden"} md:m-0 md:hidden `}
-        >
-          <p className="p-2 m-auto text-white text-sm">
-            Show / Hide Table of Content {showToC}
-          </p>
-        </div>
+    <div className={`w-full mx-5 ${isMainTable && "md:px-12"}`}>
+      <div
+        onClick={() => {
+          setShowToC(!showToC);
+        }}
+        className={`${showToC ? "bg-sky-900" : "bg-superOfficeGreen"} flex h-10 rounded-md w-full mb-4 md:m-0 md:hidden ${isMainTable ? "block" : "hidden"}`}
+      >
+        <p className="p-2 m-auto text-white text-sm">
+          Show / Hide Table of Content
+        </p>
       </div>
 
       <div
         className={`w-full max-w-md mx-auto rounded-lg  ${isMainTable && "h-[400px] overflow-y-scroll"} 
         md:block ${isMainTable && (showToC ? "block" : "hidden")}`}
       >
+        <div
+          className={`mb-4 w-full flex justify-center ${!isMainTable && "hidden"} `}
+        >
+          <input
+            className="rounded-md h-8 w-full mx-2 focus:outline-none px-4"
+            onChange={handleSearchTermChange}
+            value={searchTerm}
+            placeholder="Enter here to filter"
+          />
+        </div>
+
         {inputItems?.map((item, index) => (
           <div key={index}>
-            <button
-              onClick={() => toggleItem(index)}
-              className={`w-full text-left flex items-center px-3 pb-2 text-sm text-gray-600 hover:text-black  ${isMainTable && "pb-4"}`}
-            >
-              <span className="w-7">
-                {item.items && (openIndexes.includes(index) ? "▼" : "▶")}
-              </span>
-
-              <a
-                href={generatePath(item)}
-                className={` w-40 ${
-                  generatePath(item) == window.location.pathname
-                    ? "text-superOfficeGreen font-semibold"
-                    : ""
-                }`}
+            {item.name.toLowerCase().includes(searchTerm.toLowerCase()) && (
+              <button
+                onClick={() => toggleItem(index)}
+                className={`w-full text-left flex jus items-center px-3 pb-2 text-sm text-gray-600 hover:text-black  ${isMainTable && "pb-4"}`}
               >
-                {item.name}
-              </a>
-            </button>
+                <span className="w-6">
+                  {item.items && (openIndexes.includes(index) ? "▼" : "▶")}
+                </span>
+
+                <a
+                  href={generatePath(item)}
+                  className={`w-40 ${
+                    generatePath(item) == window.location.pathname
+                      ? "text-superOfficeGreen font-semibold"
+                      : ""
+                  }`}
+                >
+                  {item.name}
+                </a>
+              </button>
+            )}
 
             {openIndexes.includes(index) && item.items && (
-              <div className="pl-6">
+              <div className="">
                 <TableOfContentList
                   slug={
                     item.topicHref
