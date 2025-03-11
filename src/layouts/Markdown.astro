@@ -22,7 +22,9 @@ if (collection && slug) {
   </div>
   <article class="w-full pt-1 article">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
-      <nav class="bg-lightTealGray lg:col-span-3 p-12">
+      <nav
+        class="bg-lightTealGray md:col-span-3 pt-6 md:pt-12 w-full max-w-md mx-auto rounded-lg flex justify-center "
+      >
         <CollapsibleList
           client:only="react"
           inputItems={TableOfContentData.items}
@@ -33,7 +35,7 @@ if (collection && slug) {
 
       <!-- Markdown file contents render withitn the slot -->
       <main
-        class="lg:col-span-7 p-8 prose max-w-none prose-headings:font-normal"
+        class="md:col-span-7 p-8 prose max-w-none prose-headings:font-normal"
       >
         <slot />
       </main>
