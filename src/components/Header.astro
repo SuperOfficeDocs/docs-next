@@ -5,6 +5,8 @@ import logo from "@assets/logo.svg";
 import { trimSlash } from "@scripts/utils";
 import Search from "astro-pagefind/components/Search";
 
+const base = import.meta.env.BASE_URL;
+
 interface Link {
   text?: string;
   href?: string;
@@ -57,7 +59,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     <div
       class:list={[{ "mr-auto": position === "right" }, "flex justify-between"]}
     >
-      <a class="flex items-start" href="/">
+      <a class="flex items-start" href=`${base}`>
         <span class="pb-2">
           <img id="logo" class="svg" src={logo.src} alt={"SuperOffice"} />
         </span>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { ChangeEvent } from "react";
 import type { TocItem } from "~/types/TableOfContentTypes";
+const base = import.meta.env.BASE_URL;
 
 type TableOfContentListProps = {
   inputItems: TocItem[];
@@ -25,8 +26,8 @@ export default function TableOfContentList({
 
   const generatePath = (item: TocItem): string => {
     return item.topicHref
-      ? `/${slug}/${item.topicHref?.slice(0, -3)}`
-      : `/${slug}/${item.href?.slice(0, -3)}`;
+      ? `${base}/${slug}/${item.topicHref?.slice(0, -3)}`
+      : `${base}/${slug}/${item.href?.slice(0, -3)}`;
   };
 
   const handleSearchTermChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -60,6 +61,7 @@ export default function TableOfContentList({
             placeholder="Enter here to filter"
           />
         </div>
+
 
         {inputItems?.map((item, index) => (
           <div key={index}>
