@@ -34,7 +34,7 @@ export default function TableOfContentList({
   };
 
   return (
-    <div className={`w-full mx-5 ${isMainTable && "md:px-12"}`}>
+    <div className={`w-72 mx-5 ${isMainTable && "md:px-12"}`}>
       <div
         onClick={() => {
           setShowToC(!showToC);
@@ -47,7 +47,7 @@ export default function TableOfContentList({
       </div>
 
       <div
-        className={`w-full max-w-md mx-auto rounded-lg  ${isMainTable && "h-[400px] overflow-y-scroll"} 
+        className={`w-full max-w-md mx-auto rounded-lg  ${isMainTable && "h-[400px] overflow-y-scroll overflow-x-hidden"} 
         md:block ${isMainTable && (showToC ? "block" : "hidden")}`}
       >
         <div
