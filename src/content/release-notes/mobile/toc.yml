@@ -22,7 +22,7 @@ items:
 - name: 10.2.2
   href: 10.2.2-update.md
 - name: 10.0 - 10.1
-  topicHref: 10.1.9-update.md
+  href: 10.1.9-update.md
   items:
   - name: 10.1.9
     href: 10.1.9-update.md
