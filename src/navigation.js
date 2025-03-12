@@ -82,7 +82,7 @@ export const heroItems = {
       title: "Release Notes",
       description: "Contains the history of product and API changes.",
       icon: "material-symbols-light:release-alert-outline",
-      url: "/release-notes"
+      url: "/release-notes/index"
     },
     {
       title: "SuperOffice APIs",

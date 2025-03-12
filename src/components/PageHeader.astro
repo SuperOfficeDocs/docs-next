@@ -22,10 +22,18 @@ const { liveUrl, filePath, metadata } = Astro.props;
 const { title, description, uid } = metadata;
 ---
 
-<header aria-label={ariaLabel} class="text-default px-4 py-2 h-10 bg-gray-100 w-full hidden md:flex max-w-9xl">
+<header
+  aria-label={ariaLabel}
+  class="text-default px-4 py-2 h-10 bg-gray-100 w-full hidden md:flex max-w-9xl"
+>
   <div class="container mx-2 grid grid-cols lg:grid-cols-12 min-w-full">
-    <div class="lg:col-span-8 flex items-center justify-self-start">
-      <Breadcrumbs ariaLabel="A structured list of pages" linkTextFormat="sentence">
+    <div
+      class="lg:col-span-8 flex items-center justify-self-start text-superOfficeGreen"
+    >
+      <Breadcrumbs
+        ariaLabel="A structured list of pages"
+        linkTextFormat="sentence"
+      >
         <svg
           slot="separator"
           xmlns="http://www.w3.org/2000/svg"
@@ -38,10 +46,12 @@ const { title, description, uid } = metadata;
           stroke-linecap="round"
           stroke-linejoin="round"
           ><polyline points="9 18 15 12 9 6"></polyline>
-        </svg></Breadcrumbs
-      >
+        </svg>
+      </Breadcrumbs>
     </div>
-    <div class="lg:col-span-4 hidden lg:flex items-center justify-self-end space-x-4 mx-5">
+    <div
+      class="lg:col-span-4 hidden lg:flex items-center justify-self-end space-x-4 mx-5"
+    >
       <Share description={description} title={title} />
       <Feedback docurl={filePath} title={title} uid={uid} />
       <Edit docurl={filePath} />

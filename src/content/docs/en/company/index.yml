@@ -1,0 +1,225 @@
+### YamlMime:Category
+
+title: Company
+summary: Welcome to the company area where you can find relevant links to all things related to companies.
+brand: devdocs
+
+metadata:
+  title: Company
+  description: "Learn about and work with a real-life company or organization; a company in the UI; a contact in the database."
+  so.product: superoffice
+  so.topic: hub-page
+  so.collection: collection
+  author: Bergfrid Dias
+  so.author: digitaldiina
+  so.date: 10.23.2024
+
+# highlightedContent section (optional)
+# Maximum of 8 items
+highlightedContent:
+# typeDesc: architecture | concept | deploy       | download      | get-started        | how-to-guide | learn  | overview | quickstart | reference     | tutorial | video              | whats-new
+# itemType: architecture | explore | cloud_upload | file_download | power_settings_new | list         | school | map      | place      | library_books | dvr      | video_library      | new_releases
+  items:
+    # Card
+    - title: User guide
+      itemType: library_books
+      typeDesc: reference
+      url: learn/index.md
+    # Card
+    - title: Template variables
+      itemType: library_books
+      typeDesc: reference
+      url: ../document/templates/variables/from-company-card.md
+    # Card
+    - title: Address formats
+      itemType: library_books
+      typeDesc: reference
+      url: learn/address-formats.md
+    # Card
+    - title: Contact database table
+      itemType: library_books
+      typeDesc: reference
+      url: ../database/tables/contact.md
+
+# conceptualContent section (optional)
+conceptualContent:
+# typeDesc: architecture | concept | deploy       | download      | get-started        | how-to-guide | learn  | overview | quickstart | reference     | tutorial | video              | whats-new
+# itemType: architecture | explore | cloud_upload | file_download | power_settings_new | list         | school | map      | place      | library_books | dvr      | video_library      | new_releases
+  title: "" # < 60 chars (optional)
+  summary: ""
+  items:
+  # Card
+    - title: Learn the essentials
+      summary: ""
+      links:
+      - text: How to add a company
+        itemType: school
+        typeDesc: learn
+        url: learn/create.md
+      - text: How to search for companies
+        itemType: school
+        typeDesc: learn
+        url: ../search-options/learn/find-screen.md
+
+    # Card
+    - title: Videos
+      summary: ""
+      links:
+      - text: How to import customer contacts
+        itemType: video_library
+        typeDesc: video
+        url: https://www.youtube.com/watch?v=dVkCfpOkNl8
+      - text: How to group information
+        itemType: video_library
+        typeDesc: video
+        url: https://www.youtube.com/watch?v=a3AC64pheok
+      - text: How to filter information
+        itemType: video_library
+        typeDesc: video
+        url: https://www.youtube.com/watch?v=HYYI4ZCl4S4
+
+    # Card
+    - title: Configuration options
+      summary: ""
+      links:
+        - text: User preferences
+          itemType: library_books
+          typeDesc: reference
+          url: ../admin/user-preferences/index.md
+
+    # Card
+    - title: UI options
+      summary: ""
+      links:
+      - text: Web panels
+        itemType: map
+        typeDesc: overview
+        url: ../ui/web-panels/index.md
+      - text: SoProtocol - create company
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../ui/soprotocol/create-contact.md
+      - text: SoProtocol - get company
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../ui/soprotocol/get-contact.md
+      - text: SoProtocol - edit company
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../ui/soprotocol/edit-contact.md
+
+    # Card
+    - title: Data options
+      summary: ""
+      links:
+      - text: Custom fields
+        itemType: map
+        typeDesc: overview
+        url: ../custom-objects/overview.md
+      - text: UdcontactSmall table
+        itemType: library_books
+        typeDesc: reference
+        url: ../database/tables/udcontactsmall.md
+      - text: UdcontactLarge table
+        itemType: library_books
+        typeDesc: reference
+        url: ../database/tables/udcontactlarge.md
+
+    # Card
+    - title: Actions options
+      summary: ""
+      links:
+      - text: Overview
+        itemType: map
+        typeDesc: overview
+        url: ../automation/index.yml
+      - text: Triggers
+        itemType: explore
+        typeDesc: concept
+        url: ../automation/trigger/index.md
+      - text: Webhooks
+        itemType: library_books
+        typeDesc: reference
+        url: ../automation/webhook/reference/contact-events.md
+      - text: Zapier
+        itemType: library_books
+        typeDesc: reference
+        url: ../automation/zapier/index.md
+      - text: SCIM - sync company
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../identity-management/scim/provisioning/sync-company.md
+
+    # Card
+    - title: API options
+      summary: "Examples of how to work with companies and interests in CRMScript and NetServer."
+      links:
+      - text: CRMScript
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../automation/crmscript/howto/company/index.md
+      - text: Raw SQL
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../api/sql/howto/company/index.md
+      - text: OSQL
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../api/osql/howto/company/index.md
+      - text: Row
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../api/rows/howto/company/index.md
+      - text: Entity
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../api/entities/howto/company/index.md
+      - text: Web services, REST
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../api/web-services/howto/company/index.md
+
+    # Card
+    - title: Database options
+      summary: ""
+      links:
+      - text: Contact table
+        itemType: library_books
+        typeDesc: reference
+        url: ../database/tables/contact.md
+      - text: Person table
+        itemType: library_books
+        typeDesc: reference
+        url: ../database/tables/person.md
+      - text: Associate table
+        itemType: library_books
+        typeDesc: reference
+        url: ../database/tables/associate.md
+      - text: UserGroup table
+        itemType: library_books
+        typeDesc: reference
+        url: ../database/tables/usergroup.md
+      - text: Address table
+        itemType: library_books
+        typeDesc: reference
+        url: ../database/tables/address.md
+      - text: Country table
+        itemType: library_books
+        typeDesc: reference
+        url: ../database/tables/country.md
+      - text: Category table
+        itemType: library_books
+        typeDesc: reference
+        url: ../database/tables/category.md
+      - text: Business table
+        itemType: library_books
+        typeDesc: reference
+        url: ../database/tables/business.md
+      - text: UdcontactSmall table
+        itemType: library_books
+        typeDesc: reference
+        url: ../database/tables/udcontactsmall.md
+      - text: UdcontactLarge table
+        itemType: library_books
+        typeDesc: reference
+        url: ../database/tables/udcontactlarge.md

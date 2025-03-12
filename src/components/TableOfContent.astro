@@ -1,0 +1,26 @@
+---
+import ToCCard from "./ToCCard.astro";
+import type { TocItem } from "../types/TableOfContentTypes";
+import { getTableOfContents } from "../utils/getTableOfContents";
+const { data, collection, liveUrl } = Astro.props;
+---
+
+<section>
+  <ul class="px-4">
+    {
+      data.items?.map((item: TocItem) => (
+        <div class="list-none">
+          <ToCCard collection={collection} item={item} />
+          {item.href && item.href.split(".").pop() == "yml" && (
+            <Astro.self
+              collection={collection}
+              data={getTableOfContents(
+                `release-notes/${item.href.split(".").slice(0, -1).join(".")}`
+              )}
+            />
+          )}
+        </div>
+      ))
+    }
+  </ul>
+</section>

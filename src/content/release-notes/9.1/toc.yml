@@ -1,0 +1,18 @@
+items:
+- name: Release overview
+  href: index.md
+- name: Standard crm
+  href: standard-crm/index.md
+  items:
+  - name: 9.1 R01 update
+    href: standard-crm/9.1-R01-update.md
+- name: Service
+  href: service/index.md
+  items:
+  - name: 9.1 R01 update
+    href: service/9.1-R01-update.md
+- name: Office integrations
+  href: office-integrations/index.md
+  items:
+  - name: 9.1 R01 update
+    href: office-integrations/9.1-R01-update.md

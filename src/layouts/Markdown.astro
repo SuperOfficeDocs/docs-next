@@ -1,9 +1,11 @@
 ---
 import Base from "./Base.astro";
 import PageHeader from "@components/PageHeader.astro";
-import OnThisPage from "@components/OnThisPage.astro";
+import TableOfContent from "@components/TableOfContent.astro";
+import OnThisArticle from "@components/OnThisArticle.astro";
 
-const { frontmatter, collection, slug } = Astro.props;
+const { frontmatter, collection, slug, headings, TableOfContentData } =
+  Astro.props;
 const liveUrl = Astro.url.pathname;
 
 let filePath;
@@ -14,32 +16,31 @@ if (collection && slug) {
 }
 ---
 
-<Base metadata={frontmatter.title}>
-  <PageHeader liveUrl={liveUrl} filePath={filePath} metadata={frontmatter} />
-  <article class="w-full px-4 py-2 article">
-    <!-- For prose options see https://github.com/tailwindlabs/tailwindcss-typography -->
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-      <nav class="bg-lightTealGray lg:col-span-3 p-4">
-        <h2 class="text-lg font-semibold mb-2">Table of Contents</h2>
-        <ul class="list-disc pl-4">
-          <!-- Example TOC items -->
-          <li><a href="#section1" class="text-gray-600 hover:underline">Section 1</a></li>
-          <li><a href="#section2" class="text-gray-600 hover:underline">Section 2</a></li>
-          <li><a href="#section3" class="text-gray-600 hover:underline">Section 3</a></li>
-        </ul>
+<Base metadata={frontmatter}>
+  <div class="sticky top-[76.5px]">
+    <PageHeader liveUrl={liveUrl} filePath={filePath} metadata={frontmatter} />
+  </div>
+  <article class="w-full pt-1 article">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+      <nav class="bg-lightTealGray lg:col-span-3 p-12">
+        <TableOfContent
+          liveUrl={liveUrl}
+          collection={collection}
+          data={TableOfContentData}
+        />
       </nav>
 
-      <main class="bg-slate-50 lg:col-span-7 p-4 prose lg:prose-xl dark:prose-invert max-w-none">
-        <p>Written by {frontmatter.author}</p>
-        <p><em>{frontmatter.description}</em></p>
-        <p>Published on: {frontmatter.date.toString().slice(0, 10)}</p>
-        <h1>{frontmatter.title}</h1>
+      <!-- Markdown file contents render withitn the slot -->
+      <main
+        class="lg:col-span-7 p-8 prose max-w-none prose-headings:font-normal"
+      >
         <slot />
       </main>
 
-      <aside class="bg-red-50 md:col-span-2 p-4 hidden lg:block">
-        <OnThisPage headings={Astro.props.headings}></OnThisPage>
+      <aside
+        class="md:col-span-2 pt-12 px-6 hidden lg:block h-screen sticky top-32"
+      >
+        <OnThisArticle headings={headings} />
       </aside>
     </div>
   </article>

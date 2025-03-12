@@ -1,22 +1,51 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import type { MarkdownHeading } from "astro";
 import MarkdownLayout from "@layouts/Markdown.astro";
+
+import { getTableOfContents } from "../../utils/getTableOfContents";
+const tocData = getTableOfContents("release-notes/toc");
 
 export async function getStaticPaths() {
   const docEntries = await getCollection("release-notes");
-  return docEntries.map((entry) => {
+
+  const headings = await Promise.all(
+    docEntries.map(async (post) => {
+      const data = await post.render();
+      return data.headings;
+    })
+  );
+
+  return docEntries.map((entry, index) => {
+
+    //removing .md extention from filepath
+    const generatedSlug = entry.id.slice(0, -3);
+
     return {
-      params: { slug: `${entry.id.slice(0, -3)}` },
-      props: { entry },
+      params: { slug: `${generatedSlug}` },
+      props: { entry, headings: headings[index] },
     };
   });
 }
 
-const { entry } = Astro.props;
+type Props = {
+  entry: CollectionEntry<"release-notes">;
+  headings: MarkdownHeading[];
+};
+
+const { entry, headings } = Astro.props;
 
 const { Content } = await entry.render();
+
 ---
 
-<MarkdownLayout frontmatter={entry.data} collection={entry.collection} slug={entry.id} hedings={entry.data}>
+<MarkdownLayout
+  frontmatter={entry.data}
+  collection={entry.collection}
+  slug={entry.id}
+  headings={headings}
+  TableOfContentData={tocData}
+>
   {Content ? <Content /> : "Loading content..."}
 </MarkdownLayout>
