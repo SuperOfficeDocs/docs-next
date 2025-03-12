@@ -1,0 +1,65 @@
+---
+import Base from "./Base.astro";
+import "@styles/main.css";
+import type { CategoryContentItem } from "../types/CategoryPageTypes";
+import Files from "phosphor-astro/Files.astro";
+import CategoryLandingCard from "@components/CategoryLandingCard.astro";
+
+const { data } = Astro.props;
+
+const metadata = {
+  title: data.title,
+};
+
+type Props = {
+  data: CategoryContentItem;
+};
+---
+
+<Base metadata={metadata}>
+  <div class="relative">
+    <div
+      class="w-full text-white h-44 bg-gradient-to-r from-seaFoamGreen to-superOfficeGreen"
+    >
+      <p class="absolute text-2xl font-bold top-16 left-20">
+        {data.title}
+      </p>
+      <p class="absolute top-24 left-20">{data.summary}</p>
+    </div>
+
+    <div
+      class="p-8 mx-10 h-64 grid grid-cols-4 gap-6 justify-center items-center"
+    >
+      {
+        data.highlightedContent.items.map((item) => {
+          return (
+            <div>
+              <div class="w-[270px] h-[130px] border rounded-md border-gray-300 p-1 hover:border-black">
+                <div class="flex flex-row border h-full border-gray-300 duration-300 ease-in-out transition-shadow hover:shadow-[0_0px_8px_rgba(0,0,0,0.50)] py-4">
+                  <div class="w-12 h-full pt-4 ml-8">
+                    <Files color="#0c5d58" />
+                  </div>
+                  <div class="w-full px-3 flex flex-col justify-center">
+                    <p class="uppercase mb-4 font-medium text-sm ">
+                      {item.title}
+                    </p>
+                    <p>{item.typeDesc}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+    <div class="bg-lightTealGray p-20">
+      <div class="grid grid-cols-4 gap-5 auto-rows-max">
+        {
+          data.conceptualContent?.items.map((item, id) => {
+            return <CategoryLandingCard item={item} id={id} />;
+          })
+        }
+      </div>
+    </div>
+  </div>
+</Base>

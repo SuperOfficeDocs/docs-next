@@ -1,0 +1,37 @@
+---
+import type { conceptualContentCard } from "../types/CategoryPageTypes";
+import Files from "phosphor-astro/Files.astro";
+
+import "@styles/main.css";
+
+const { item, id } = Astro.props;
+
+interface Props {
+  item: conceptualContentCard;
+  id: number;
+}
+---
+
+<div>
+  <div
+    class={`bg-white w-[270px] p-4 duration-300 ease-in-out transition-shadow hover:shadow-[0_0px_8px_rgba(0,0,0,0.70)] min-h-full`}
+  >
+    <p class="font-bold text-lg mb-3">{item.title}</p>
+    <div class="grid grid-cols-1 gap-2 h-fit">
+      {
+        item.links.map((subitem) => {
+          return (
+            <div class="flex flex-row items-center">
+              <div class="w-6 mr-1">
+                <Files color="#0c5d58" />
+              </div>
+              <a class="w-full hover:underline" href={subitem.url}>
+                {subitem.text}
+              </a>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>
