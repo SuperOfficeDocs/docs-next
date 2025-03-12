@@ -64,6 +64,6 @@ export default defineConfig({
   build: {
     format: "preserve",
   },
-  site: 'https://docs-next.github.io',
-  base: '',
+  site: 'https://superofficedocs.github.io',
+  base: 'docs-next',
 });
