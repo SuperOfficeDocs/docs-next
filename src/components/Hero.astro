@@ -5,22 +5,33 @@ import GradientBanner from "./GradientBanner.astro";
 
 const { tagline } = Astro.props;
 const { links = [] } = heroItems;
+const base = import.meta.env.BASE_URL;
 ---
 
 <div class="relative">
-  <GradientBanner tagline={tagline}></GradientBanner>
+  <GradientBanner tagline={tagline} />
 
-  <nav class="container mx-auto px-8 py-5 relative z-10 -mt-60" aria-label="Hero">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+  <nav
+    class="container mx-auto px-8 py-5 relative z-10 -mt-60"
+    aria-label="Hero"
+  >
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+    >
       {
         links.map(({ title, description, icon, url }) => (
-          <a href={url} class="">
+          <a href={`${base}${url}`} class="">
             <div class="bg-white border rounded-sm shadow-md h-full overflow-hidden mx-auto flex flex-row align-items-start h-100 py-5 px-5">
               <div class="">
-                <Icon name={icon || "mdi:information-outline"} class="w-8 h-8 object-cover text-deepTeal" />
+                <Icon
+                  name={icon || "mdi:information-outline"}
+                  class="w-8 h-8 object-cover text-deepTeal"
+                />
               </div>
               <div class="ml-5">
-                <h2 class="text-lg font-semibold mb-3 mt-0 uppercase">{title}</h2>
+                <h2 class="text-lg font-semibold mb-3 mt-0 uppercase">
+                  {title}
+                </h2>
                 <p class="break-words">{description}</p>
               </div>
             </div>
