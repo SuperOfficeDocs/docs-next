@@ -5,6 +5,9 @@ export type CategoryContentItem = {
   metadata: CompanyContentMetadata;
   highlightedContent: highlightedContent;
   conceptualContent?: conceptualContent;
+  additionalContent?: {
+    sections: conceptualContent[];
+  };
 };
 
 export type CompanyContentMetadata = {
@@ -24,11 +27,11 @@ export type highlightedContent = {
 
 export type conceptualContent = {
   title?: string;
-  summary: string;
-  items: conceptualContentCard[];
+  summary?: string;
+  items: contentCard[];
 };
 
-export type conceptualContentCard = {
+export type contentCard = {
   title: string;
   summary: string;
   links: CardLinks[];
@@ -36,8 +39,8 @@ export type conceptualContentCard = {
 
 export type CardLinks = {
   text?: string;
-  itemType: string;
-  typeDesc: string;
+  itemType?: string;
+  typeDesc?: string;
   url: string;
   title?: string;
 };

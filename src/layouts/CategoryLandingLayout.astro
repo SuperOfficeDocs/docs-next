@@ -4,7 +4,7 @@ import "@styles/main.css";
 import type { CategoryContentItem } from "../types/CategoryPageTypes";
 import Files from "phosphor-astro/Files.astro";
 import CategoryLandingCard from "@components/CategoryLandingCard.astro";
-
+import CategoryLandingAddtionalContentCard from "@components/CategoryLandingAdditionalContentCard.astro";
 const { data } = Astro.props;
 
 const metadata = {
@@ -18,6 +18,7 @@ type Props = {
 
 <Base metadata={metadata}>
   <div class="relative">
+    <!-- Top Banner -->
     <div
       class="w-full text-white h-44 bg-gradient-to-r from-seaFoamGreen to-superOfficeGreen"
     >
@@ -27,14 +28,15 @@ type Props = {
       <p class="absolute top-24 left-20">{data.summary}</p>
     </div>
 
+    <!-- Highlighted Content -->
     <div
-      class="p-8 mx-10 h-64 grid grid-cols-4 gap-6 justify-center items-center"
+      class="px-16 py-12 h-fit grid grid-cols-4 gap-6 justify-center items-center w-full"
     >
       {
         data.highlightedContent.items.map((item) => {
           return (
             <div>
-              <div class="w-[270px] h-[130px] border rounded-md border-gray-300 p-1 hover:border-black">
+              <div class="h-[130px] border rounded-md border-gray-300 p-1 hover:border-black">
                 <a href={item.url}>
                   <div class="flex flex-row border h-full border-gray-300 duration-300 ease-in-out transition-shadow hover:shadow-[0_0px_8px_rgba(0,0,0,0.50)] py-4">
                     <div class="w-12 h-full pt-4 ml-8">
@@ -54,14 +56,40 @@ type Props = {
         })
       }
     </div>
-    <div class="bg-lightTealGray p-20">
-      <div class="grid grid-cols-4 gap-5 auto-rows-max">
-        {
-          data.conceptualContent?.items.map((item, id) => {
-            return <CategoryLandingCard item={item} id={id} />;
-          })
-        }
-      </div>
+
+    <div class="bg-lightTealGray px-20 border">
+      <!-- Conceptual Content -->
+      {
+        data.conceptualContent && (
+          <div class="grid grid-cols-4 gap-x-5 gap-y-7 auto-rows-max mt-16 mb-28 w-full">
+            {data.conceptualContent?.items.map((item, id) => {
+              return <CategoryLandingCard item={item} id={id} />;
+            })}
+          </div>
+        )
+      }
+
+      <!-- Additional Content -->
+      {
+        data.additionalContent && (
+          <div class="flex flex-col my-12 w-full">
+            {data.additionalContent.sections.map((section) => {
+              return (
+                <div class="grid grid-cols-4 gap-x-5 gap-y-7 auto-rows-max  w-full my-2">
+                  {section.items.map((item, id) => {
+                    return (
+                      <CategoryLandingAddtionalContentCard
+                        item={item}
+                        id={id}
+                      />
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        )
+      }
     </div>
   </div>
 </Base>

@@ -5,15 +5,15 @@ export function getStaticPaths() {
   return [
     { params: { category: "company" } },
     { params: { category: "contact" } },
+    { params: { category: "email" } },
+    { params: { category: "diary" } },
   ];
 }
 
 import { getCategoryPageContents } from "~/utils/getCategoryPageContents";
 
-
 const { category } = Astro.params;
 const CategoryData = getCategoryPageContents(`en/${category}`);
-
 ---
 
 <CategoryLandingLayout data={CategoryData} />
