@@ -41,11 +41,26 @@ export type contentCard = {
 
 export type CardLinks = {
   text?: string;
-  itemType?: string;
+  itemType?: IconType;
   typeDesc?: string;
   url: string;
   title?: string;
 };
+
+type IconType =
+  | "architecture"
+  | "explore"
+  | "cloud_upload"
+  | "file_download"
+  | "power_settings_new"
+  | "list"
+  | "school"
+  | "map"
+  | "place"
+  | "library_books"
+  | "dvr"
+  | "video_library"
+  | "new_releases";
 
 export type toolCard = {
   title?: string;

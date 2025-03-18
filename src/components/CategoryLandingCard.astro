@@ -1,6 +1,7 @@
 ---
 import type { contentCard } from "../types/CategoryPageTypes";
 import Files from "phosphor-astro/Files.astro";
+import IconSelection from "./IconSelection.tsx";
 
 import "@styles/main.css";
 
@@ -19,11 +20,17 @@ interface Props {
     <p class="font-bold text-lg mb-3">{item.title}</p>
     <div class="grid grid-cols-1 gap-2 h-fit">
       {
-        item.links.map((subitem) => {
+        item.links?.map((subitem) => {
           return (
             <div class="flex flex-row items-center">
               <div class="w-6 mr-1">
-                <Files color="#0c5d58" />
+                {subitem.itemType && (
+                  <IconSelection
+                    size={24}
+                    color="#0c5d58"
+                    iconType={subitem.itemType}
+                  />
+                )}
               </div>
               <a class="w-full hover:underline" href={subitem.url}>
                 {subitem.text}
