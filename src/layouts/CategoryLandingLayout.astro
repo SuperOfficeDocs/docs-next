@@ -21,6 +21,9 @@ type Props = {
 
 <Base metadata={metadata}>
   <div class="relative">
+
+
+
     <!-- Top Banner -->
     <div
       class="w-full text-white h-44 bg-gradient-to-r from-seaFoamGreen to-superOfficeGreen"
@@ -31,9 +34,11 @@ type Props = {
       <p class="absolute top-24 left-20">{data.summary}</p>
     </div>
 
+
+
     <!-- Highlighted Content -->
     <div
-      class="px-16 py-12 h-fit grid grid-cols-4 gap-6 justify-center items-center w-full"
+      class="px-16 py-12 h-fit grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-center items-center w-full"
     >
       {
         data.highlightedContent.items.map((item) => {
@@ -60,8 +65,10 @@ type Props = {
       }
     </div>
 
+
+
+    <!-- Conceptual Content -->
     <div class="bg-lightTealGray px-20 border border-transparent">
-      <!-- Conceptual Content -->
       {
         data.conceptualContent && (
           <div class="mt-16 mb-16 w-full">
@@ -73,7 +80,7 @@ type Props = {
             {data.conceptualContent.summary && (
               <p class="pb-8">{data.conceptualContent.summary}</p>
             )}
-            <div class="grid grid-cols-4 gap-x-5 gap-y-7 auto-rows-max ">
+            <div class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-7 auto-rows-max ">
               {data.conceptualContent?.items.map((item, id) => {
                 return <CategoryLandingCard item={item} id={id} />;
               })}
@@ -83,8 +90,9 @@ type Props = {
       }
     </div>
 
+
+    <!-- Tools -->
     <div class=`bg-white px-20 border border-transparent ${!data.tools && "hidden"}`>
-      <!-- Tools -->
       {
         data.tools && (
           <div class="my-10"> 
@@ -96,7 +104,7 @@ type Props = {
            {data.tools.summary && (
               <p class="pb-8">{data.tools.summary}</p>
             )}
-            <div class="flex flex-row gap-5">
+            <div class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4  gap-5">
               {data.tools.items.map( (item) => {
                 return (
                    <div class="flex flex-row border font-semibold h-20 w-full items-center pl-10 border-gray-300 duration-300 ease-in-out transition-shadow hover:shadow-[0_0px_8px_rgba(0,0,0,0.50)] py-4">
@@ -104,12 +112,12 @@ type Props = {
                    </div>)
             })}
             </div>
-
-          </div>
-          
+          </div>  
         )
       }
     </div>
+
+
 
     <!-- Additional Content -->
     <div class="bg-lightTealGray px-20 border border-transparent">
@@ -123,7 +131,7 @@ type Props = {
                   {section.summary && <p class="mb-8">{section.summary}</p>}
                 </div>
 
-                <div class="grid grid-cols-4 gap-x-5 gap-y-7 auto-rows-max  w-full mt-2 my-10">
+                <div class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4  gap-x-5 gap-y-7 auto-rows-max  w-full mt-2 my-10">
                   {section.items.map((item, id) => {
                     return (
                       <CategoryLandingAddtionalContentCard
@@ -139,5 +147,9 @@ type Props = {
         )
       }
     </div>
+
+
+
+
   </div>
 </Base>
