@@ -2,6 +2,10 @@ export const headerData = {
   links: [
     {
       text: 'Learn',
+      href: "/en/learn"
+    },
+    {
+      text: 'Areas',
       links: [
         {
           text: 'Company',
@@ -9,19 +13,31 @@ export const headerData = {
         },
         {
           text: 'Contact',
-          href: '#',
+          href: '/en/contact',
         },
         {
           text: 'Diary',
-          href: '#',
+          href: '/en/diary',
         },
         {
-          text: 'Sale',
-          href: '#',
+          text: 'Document',
+          href: '/en/document',
+        },
+        {
+          text: 'Email',
+          href: '/en/email',
+        },
+        {
+          text: 'Project',
+          href: '/en/project',
         },
         {
           text: 'Request',
-          href: '#',
+          href: '/en/request',
+        },
+        {
+          text: 'Sale',
+          href: '/en/sale',
         },
       ],
     },
@@ -37,11 +53,27 @@ export const headerData = {
       text: 'Developer Guide',
       links: [
         {
-          text: 'CRMScript',
+          text: 'Overview',
+          href: '/en/api',
+        },
+        {
+          text: 'Introduction to APIs',
           href: '#',
         },
         {
-          text: 'Database',
+          text: 'Automaton / CRMScript',
+          href: '#',
+        },
+        {
+          text: 'Configurable screens (Sales)',
+          href: '#',
+        },
+        {
+          text: 'Custom screens (Service)',
+          href: '#',
+        },
+        {
+          text: 'Database overview',
           href: '#',
         },
         {
@@ -49,13 +81,26 @@ export const headerData = {
           href: '#',
         },
         {
-          text: 'API reference',
+          text: 'Search APIs',
+          href: '#',
+        },
+        {
+          text: 'Webhooks',
+          href: '#',
+        },
+        {
+          text: 'Web Services',
           href: '#',
         },
       ],
     },
+    {
+      text: "Search",
+      href: "#"
+    }
   ],
-  actions: [{ text: 'Search', href: '#', target: '_blank' }],
+  // actions: [{ text: 'Search', href: '#', target: '_blank' }],
+
 };
 
 export const heroItems = {
