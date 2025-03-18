@@ -1,0 +1,211 @@
+### YamlMime:Category
+
+title: CRM Online
+summary: Welcome to the area where you can find relevant links to all things related to CRM Online.
+brand: devdocs
+
+metadata:
+  title: Learn SuperOffice Online
+  description: "Learn about CRM Online features, migration, configuration, and integrations."
+  so.product: dotnet
+  so.topic: hub-page
+  so.collection: collection
+  author: Bergfrid Dias
+  so.author: digitaldiina
+  so.date: 09.14.2023
+
+# highlightedContent section (optional)
+# Maximum of 8 items
+highlightedContent:
+# typeDesc: architecture | concept | deploy       | download      | get-started        | how-to-guide | learn  | overview | quickstart | reference     | tutorial | video              | whats-new
+# itemType: architecture | explore | cloud_upload | file_download | power_settings_new | list         | school | map      | place      | library_books | dvr      | video_library      | new_releases
+  items:
+    # Card
+    - title: "System requirements"
+      itemType: library_books
+      typeDesc: reference
+      url: system-requirements.md
+    # Card
+    - title: "Email and communications"
+      itemType: map
+      typeDesc: overview
+      url: ../email/index.yml
+    # Card
+    - title: "Document management"
+      itemType: map
+      typeDesc: overview
+      url: ../document/index.yml
+    # Card
+    - title: "SuperOffice mobile"
+      itemType: school
+      typeDesc: learn
+      url: ../mobile/index.yml
+    # Card
+    - title: "Video meetings"
+      itemType: school
+      typeDesc: learn
+      url: ../video-meeting/index.md
+    # Card
+    - title: "Customer Service"
+      itemType: map
+      typeDesc: overview
+      url: ../service/index.yml
+    # Card
+    - title: "Identity management"
+      itemType: map
+      typeDesc: overview
+      url: ../identity-management/index.yml
+    # Card
+    - title: "Database mirroring"
+      itemType: map
+      typeDesc: overview
+      url: ../mirroring/index.yml
+
+# conceptualContent section (optional)
+conceptualContent:
+# typeDesc: architecture | concept | deploy       | download      | get-started        | how-to-guide | learn  | overview | quickstart | reference     | tutorial | video              | whats-new
+# itemType: architecture | explore | cloud_upload | file_download | power_settings_new | list         | school | map      | place      | library_books | dvr      | video_library      | new_releases
+  title: "" # < 60 chars (optional)
+  summary: ""
+  items:
+    # Card
+    - title: Migrate to CRM online
+      summary: Take SuperOffice to the cloud
+      links:
+        - url: migrate/index.md
+          itemType: map
+          typeDesc: overview
+          text: "Migration guide"
+        - url: system-requirements.md
+          itemType: library_books
+          typeDesc: reference
+          text: System requirements for SuperOffice CRM Online
+        - url: ../email/service/migrate.md
+          itemType: explore
+          typeDesc: concept
+          text: "Migrating Service mailboxes"
+        - url: sandbox/index.md
+          itemType: explore
+          typeDesc: concept
+          text: Production sandbox
+    # Card
+    - title: Identity management
+      summary: ""
+      links:
+        - url: ../identity-management/index.yml
+          itemType: map
+          typeDesc: overview
+          text: Overview
+        - url: ../identity-management/superid/index.yml
+          itemType: map
+          typeDesc: overview
+          text: SuperID
+        - url: ../identity-management/scim/index.yml
+          itemType: map
+          typeDesc: overview
+          text: SCIM
+        - text: "Authentication"
+          itemType: map
+          typeDesc: overview
+          url: ../api/authentication/index.yml
+        - text: Reset password
+          itemType: list
+          typeDesc: how-to-guide
+          url: ../identity-management/user/reset-password.md
+    # Card
+    - title: Develop online apps
+      summary: Start developing online integrations
+      links:
+        - text: Developer portal
+          itemType: cloud_upload
+          typeDesc: deploy
+          url: ../developer-portal/index.yml
+        - text: Getting started
+          itemType: power_settings_new
+          typeDesc: get-started
+          url: ../developer-portal/getting-started/index.md
+        - text: Get access to SOD
+          itemType: list
+          typeDesc: how-to-guide
+          url: ../developer-portal/getting-started/get-access-to-sod.md
+        - text: Register an application
+          itemType: list
+          typeDesc: how-to-guide
+          url: ../developer-portal/create-app/index.md
+        - text: "Requirements"
+          itemType: library_books
+          typeDesc: reference
+          url: ../developer-portal/standard-app/requirements/index.md
+        - text: Best practices
+          itemType: library_books
+          typeDesc: reference
+          url: ../developer-portal/best-practices/index.md
+        - text: What API to use?
+          itemType: library_books
+          typeDesc: reference
+          url: ../developer-portal/getting-started/what-api-to-use.md
+        - text: Download the NuGet package
+          itemType: file_download
+          typeDesc: download
+          url: https://www.nuget.org/profiles/SuperOffice
+    # Card
+    - title: CRM Online integrations
+      summary: ""
+      links:
+        - text: Integration points
+          itemType: explore
+          typeDesc: concept
+          url: ../api/overview/index.md
+        - text: App store
+          itemType: map
+          typeDesc: overview
+          url: https://online.superoffice.com/appstore
+        - text: Database mirroring
+          itemType: map
+          typeDesc: overview
+          url: ../mirroring/index.yml
+        - text: SharePoint documents
+          itemType: explore
+          typeDesc: concept
+          url: ../document/cloud/sharepoint-documents/index.md
+        - text: Google Workspace document integration
+          itemType: explore
+          typeDesc: concept
+          url: ../document/cloud/g-suite/index.md
+
+# Card with summary style
+additionalContent:
+  # Supports up to 3 sections
+  sections: 
+    - title: "You may also be interested in" # < 60 chars (optional)
+      summary: "" # < 160 chars (optional)
+      items:
+      # Card
+      - title: Sign-in
+        links:
+        - url: ../identity-management/federated-id-and-identity-providers.md
+          text: Federated ID and identity providers
+        - url: ../identity-management/multi-factor-authentication.md
+          text: Multi-factor authentication
+        - url: ../identity-management/single-sign-on/index.md
+          text: Single sign-on
+      # Card
+      - title: Continuous release schedule
+        links:
+          - text: What's new in latest release
+            url: ../../../release-notes/index.md
+          - text: Current release schedule 
+            url: https://community.superoffice.com/en/product-releases/release-notes/
+      # Card
+      - title: Reference
+        links:
+          - url: ../document/templates/variables/from-company-card.md
+            text: Template variable reference
+          - url: cookies.md
+            text: Cookies
+      - title: Monitoring
+        links:
+          - text: Check tenant status
+            url: ../developer-portal/best-practices/tenant-status/check-status.md
+  # footer (optional)
+  footer: "Contribute to NetServer docs. Read our [contributor guide](https://www.github.com/SuperOfficeDocs/contribute)."
