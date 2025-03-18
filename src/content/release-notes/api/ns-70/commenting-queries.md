@@ -12,13 +12,13 @@ topic: reference
 
 The code says
 
-```SQL
+```sql
 Select q = S.NewSelect(”comment”);
 ```
 
 The generated SQL will start with
 
-```SQL
+```sql
 /* comment */
 ```
 

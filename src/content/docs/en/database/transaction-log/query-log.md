@@ -18,7 +18,7 @@ Let’s take a look at what was stored in the log when we create the project *Cl
 
 First, we need the project ID for the project we created:
 
-```SQL
+```sql
 SELECT project_id FROM project WHERE name='Client SDK Work'
 ```
 
@@ -26,7 +26,7 @@ Make a note of the ID.
 
 Now let us get a list of all the transactions that have happened since midnight this morning:
 
-```SQL
+```sql
 SELECT * FROM traveltransactionlog WHERE ttime > '2003.8.7'
 ```
 

@@ -36,7 +36,7 @@ It is this relationship that drives the first to fields in the follow-up, sale, 
 
 To get the list of persons under a contact:
 
-```SQL
+```sql
 SELECT * FROM person WHERE contact_id = 123 ORDER BY rank
 ```
 
@@ -72,7 +72,7 @@ The link table ([contactinterest][3]) allows a single contact to have zero or mo
 
 The [ContInt][2] table is an **MDO table**, so interests can be grouped and organized under headings. The position under a heading does not matter to the linkage to a contact.
 
-```SQL
+```sql
 SELECT * FROM contint
 ```
 
@@ -83,7 +83,7 @@ SELECT * FROM contint
 | 856 | Agresso | 133 | Agresso | 0 | 28.10.2021 13.19:23 | 94 |
 | 857 | AS400 | 134 | AS400 | 0 | 28.10.2021 13.20:22 | 94 |
 
-```SQL
+```sql
 SELECT * FROM contactinterest
 ```
 
@@ -110,7 +110,7 @@ The `contact` table has a counter field that stores the number of active interes
 
 To put together a list of the URLs and emails that belong to a contact:
 
-```SQL
+```sql
 SELECT * FROM url WHERE contact_id = 123 ORDER BY rank
 
 SELECT * FROM email WHERE contact_id = 123 ORDER BY rank

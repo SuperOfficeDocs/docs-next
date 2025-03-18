@@ -24,7 +24,7 @@ This is a more complex procedure and we do not offer any GUI for this but must b
 
 Example of insert:
 
-```SQL
+```sql
 USE [SuperOffice]
 
 GO

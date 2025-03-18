@@ -73,7 +73,7 @@ A repeating follow-up is a series events scheduled to occur at regular intervals
 
 The system generates appointment records for all the recurrence instances:
 
-```SQL
+```sql
 SELECT appointment_id, associate_id, activeDate, type, status, recurrenceRuleId 
 FROM appointment WHERE recurrenceRuleId = 1
 ```
@@ -89,7 +89,7 @@ FROM appointment WHERE recurrenceRuleId = 1
 
 Let's look at the rule:
 
-```SQL
+```sql
 SELECT * FROM recurrencerule WHERE recurrencerule_id = 1
 ```
 

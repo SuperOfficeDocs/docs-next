@@ -12,7 +12,7 @@ topic: concept
 
 The ID numbers are stored in a table called `SEQUENCE`.
 
-```SQL
+```sql
 SELECT * FROM sequence
 ```
 
