@@ -27,7 +27,7 @@ In the database, these relationships are expressed using the following set of ta
 
 This gives us the following join conditions we can use:
 
-```SQL
+```sql
 Appointment.contact_id = Contact.contact_id
 Appointment.person_id = Person.person_id
 Appointment.project_id = Project.project_id

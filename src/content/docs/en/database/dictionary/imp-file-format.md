@@ -62,7 +62,7 @@ Truncate_Table
 
 `Truncate_Table` will delete all rows in the table named **abc**. This directly translates into the SQL statement:
 
-```SQL
+```sql
 TRUNCATE TABLE 'abc';
 ```
 
@@ -82,7 +82,7 @@ truncate_field  xyz  2
 
 This translates into the following SQL statement:
 
-```SQL
+```sql
 DELETE FROM abc WHERE abc.xyz = 2;
 ```
 
@@ -99,13 +99,13 @@ truncate_field  columnName  12
 
 TRUNCATE\_BUILTIN
 
-```SQL
+```sql
 DELETE FROM TableName WHERE TableName.isBuiltIn = 1
 ```
 
 TRUNCATE\_BUILTIN\_FIELD
 
-```SQL
+```sql
 DELETE FROM TableName
 WHERE TableName.FieldName = ColumnValue AND TableName.isBuiltIn = 1
 ```

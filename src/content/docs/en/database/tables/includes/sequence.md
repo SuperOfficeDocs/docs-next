@@ -15,7 +15,7 @@ Allocate an ID for `Contact` table
 
 ([Contact][1] is table 5, + 10 = 15)
 
-```SQL
+```sql
 BEGIN TRANSACTION
 UPDATE Sequence SET next_id = next_id + 1 WHERE id = 15;
 SELECT next_id - 1 FROM Sequence WHERE id = 15;

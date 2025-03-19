@@ -18,7 +18,7 @@ Remember that in a grouped query, all return fields must either be aggregates or
 
 `IgnoreSentry` turns off Sentry, so your query is generated "untouched"
 
-```SQL
+```sql
 /* DatePartsIgnoreSentry */
 SELECT T0."do_by",
   DATEPART(day, T0."do_by") as "dbd"

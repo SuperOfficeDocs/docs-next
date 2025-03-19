@@ -14,7 +14,7 @@ envir: onsite
 
 If moving Requests and the attachment location has changed, you need to update the last row in `attachment_location` to point to the new path, for example:
 
-```SQL
+```sql
 USE [SuperOffice]
 
 GO

@@ -32,7 +32,7 @@ Below all tables in the database reference, you will find, for example, "Prefix 
 
 This field identifies the record in the `traveltransactionlog` (not the record changed). Its value is taken from [sequence][3], using sequence row 39. The standard SQL statement used to get new IDs is:
 
-```SQL
+```sql
 BEGIN TRANSACTION
 UPDATE so.sequence SET next_id = next_id + 1 WHERE id = 39
 SELECT next_id - 1 FROM so.sequence WHERE id = 39

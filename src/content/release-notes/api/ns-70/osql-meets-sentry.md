@@ -14,7 +14,7 @@ The SQL we generate may not be what you expected.
 
 The previous example code generated... what?
 
-```SQL
+```sql
 SELECT do_by, DATEPART(day, do_by) AS "dbd"
 FROM crm7.appointment
 WHERE DATEPART(year, do_by) = 2010
@@ -22,7 +22,7 @@ WHERE DATEPART(year, do_by) = 2010
 
 ...or...
 
-```SQL
+```sql
 /* DateParts */ SELECT T0."do_by",
 DATEPART(day, T0."do_by") AS "dbd",
 T0."appointment_id", T0."type",

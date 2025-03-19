@@ -20,7 +20,7 @@ The queries that change this:
 
 Open ISQL, HakonClient, or another tool like it.
 
-```SQL
+```sql
 Select * FROM addressformat WHERE name LIKE 'Ger%'
 ```
 
@@ -28,7 +28,7 @@ Select * FROM addressformat WHERE name LIKE 'Ger%'
 
 To copy street address to postal address, and the reverse is done by updating the following in table `AddressFormat`:
 
-```SQL
+```sql
 UPDATE addressformat SET address1_zip =1024 WHERE addressformat_id=9
 UPDATE addressformat SET address1_zip =2048 WHERE addressformat_id=10
 
@@ -41,7 +41,7 @@ UPDATE addressformat SET zip_zip =2050 WHERE addressformat_id=10
 
 To get it to look up the city or zip code information from the table `ziptocity`:
 
-```SQL
+```sql
 UPDATE addressformat SET address1_zip = 0 WHERE addressformat_id=9
 UPDATE addressformat SET address1_zip = 0 WHERE addressformat_id=10
 
