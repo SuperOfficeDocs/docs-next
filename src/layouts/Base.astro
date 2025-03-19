@@ -24,7 +24,7 @@ const { metadata } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{metadata.title}</title>
   </head>
-  <body class="h-screen flex flex-col overflow-hidden border border-red-500">
+  <body class="h-screen flex flex-col overflow-hidden">
     <div class="z-50"><Header {...headerData} /></div>
     <div class="min-h-screen  overflow-y-auto">
       <main class="flex-grow">
