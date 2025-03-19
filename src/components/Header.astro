@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import Hamburger from "./Hamburger.astro";
 import logo from "@assets/logo.svg";
 import { trimSlash } from "@scripts/utils";
-import Search from "astro-pagefind/components/Search";
+// import Search from "astro-pagefind/components/Search";
 
 const base = import.meta.env.BASE_URL;
 
@@ -109,7 +109,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                               "rounded md:hover:bg-gray-100 hover:text-link py-2 px-5 block whitespace-no-wrap ",
                               { "aw-link-active": href2 === currentPath },
                             ]}
-                            href={href2}
+                            href={base + href2}
                           >
                             {text2}
                           </a>
@@ -123,7 +123,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                       "hover:text-link rounded px-4 py-1 md:flex md:items-center text-right md:text-left",
                       { "aw-link-active": href === currentPath },
                     ]}
-                    href={href}
+                    href={base + href}
                   >
                     {text}
                   </a>
