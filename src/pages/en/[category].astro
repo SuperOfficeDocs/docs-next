@@ -1,0 +1,25 @@
+---
+import CategoryLandingLayout from "@layouts/CategoryLandingLayout.astro";
+
+export function getStaticPaths() {
+  return [
+    { params: { category: "company" } },
+    { params: { category: "contact" } },
+    { params: { category: "email" } },
+    { params: { category: "diary" } },
+    { params: { category: "api" } },
+    { params: { category: "database" } },
+    { params: { category: "learn" } },
+    { params: { category: "online" } },
+    { params: { category: "onsite" } },
+    { params: { category: "service" } },
+  ];
+}
+
+import { getCategoryPageContents } from "~/utils/getCategoryPageContents";
+
+const { category } = Astro.params;
+const CategoryData = getCategoryPageContents(`en/${category}`);
+---
+
+<CategoryLandingLayout data={CategoryData} />

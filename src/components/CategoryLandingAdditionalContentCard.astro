@@ -1,0 +1,36 @@
+---
+import type { contentCard } from "../types/CategoryPageTypes";
+
+import "@styles/main.css";
+
+const { item, id } = Astro.props;
+
+interface Props {
+  item: contentCard;
+  id: number;
+}
+---
+
+<div>
+  <div
+    class={`bg-white px-3 py-5 lg:m-0 duration-300 ease-in-out transition-shadow hover:shadow-[0_0px_8px_rgba(0,0,0,0.70)] min-h-full`}
+  >
+    <div class="grid grid-cols-1 gap-2 h-fit">
+      <p class="font-bold text-[17px]">{item.title}</p>
+      {
+        item.links?.map((subitem) => {
+          return (
+            <div class="flex flex-col items-center pb-1">
+              <a
+                class="w-full hover:underline text-superOfficeGreen"
+                href={subitem.url}
+              >
+                {subitem.text}
+              </a>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>
