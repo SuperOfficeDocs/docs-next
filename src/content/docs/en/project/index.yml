@@ -1,0 +1,202 @@
+### YamlMime:SubCategory
+
+title: Project
+summary: Welcome to the Project area where you can find relevant links to all things related to projects and project guides.
+
+metadata:
+  title: Project
+  description: "Project and project guides"
+  ms.topic: landing-page
+  author: Bergfrid Dias
+  so.author: digitaldiina
+  so.date: 05.31.2023
+
+# typeDesc: architecture | concept | deploy       | download      | get-started        | how-to-guide | learn  | overview | quickstart | reference     | tutorial | video              | whats-new
+# itemType: architecture | explore | cloud_upload | file_download | power_settings_new | list         | school | map      | place      | library_books | dvr      | video_library      | new_releases
+
+# PLEASE PAY ATTENTION TO INDENTATION
+
+landingContent:
+  # Card 1
+  - title: Introduction
+    linkLists:
+      - itemType: explore
+        typeDesc: concept
+        links:
+        - text: Introduction to projects
+          url: reference/index.md
+        - text: Organize files and activities in projects
+          url: learn/index.md
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: How to create a project
+          url: learn/create.md
+      - itemType: video_library
+        typeDesc: video
+        links:
+        - text: Guided tour
+          url: https://www.youtube.com/embed/zLJwNll223w
+
+  - title: Project management
+    linkLists:
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Update a project
+          url: learn/edit.md
+        - text: Delete a project
+          url: learn/delete.md
+        - text: Merge projects
+          url: learn/merge-projects.md
+        - text: Add project status (list)
+          url: admin/project-status.md
+        - text: Add project type (list)
+          url: admin/project-type.md
+      - itemType: video_library
+        typeDesc: video
+        links:
+        - text: How to link document to project
+          url: https://www.youtube.com/watch?v=TtgfQ8RO9fw
+        - text: How to add appointment to project
+          url: https://www.youtube.com/watch?v=YQr5B5IU7XY&t=1s
+      - itemType: library_books
+        typeDesc: reference
+        links:
+        - text: Template variables
+          url: ../document/templates/variables/from-project-card.md
+
+  - title: Project members
+    linkLists:
+      - itemType: explore
+        typeDesc: concept
+        links:
+        - text: Overview
+          url: learn/project-members/index.md
+        - text: Add member
+          url: learn/project-members/add.md
+        - text: Update member
+          url: learn/project-members/edit.md
+        - text: Invite to meeting
+          url: learn/project-members/invite-to-meeting.md
+        - text: Send email to members
+          url: learn/project-members/send-email-to.md
+      - itemType: video_library
+        typeDesc: video
+        links:
+        - text: How to add project member to project
+          url: https://www.youtube.com/watch?v=IaCy_2xwG6c
+
+  - title: Project guide
+    linkLists:
+      - itemType: explore
+        typeDesc: concept
+        links:
+        - text: Overview
+          url: learn/project-guides.md
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Work with project guide
+          url: learn/tutorial.md
+        - text: Create guide
+          url: admin/create-project-guide.md
+        - text: Update or deactivate guide
+          url: admin/edit-project-guide.md
+
+  - title: UI customization
+    linkLists:
+      - itemType: explore
+        typeDesc: concept
+        links:
+        - text: Screen Designer
+          url: ../ui/screen-designer/learn/index.md
+        - text: Web panels
+          url: ../ui/web-panels/index.md
+        - text: SoProtocol
+          url: ../ui/soprotocol/index.md
+        - text: Custom screens (bLogic)
+          url: ../ui/blogic/custom-screens/index.md
+        - text: Task menu items
+          url: ../admin/lists/learn/add-items-to-task-menu.md
+        - text: Extra fields
+          url: ../custom-objects/admin/create-extra-field.md
+
+  - title: Automation
+    linkLists:
+      - itemType: explore
+        typeDesc: concept
+        links:
+        - text: Overview
+          url: ../automation/index.yml
+        - text: Triggers
+          url: ../automation/trigger/index.md
+      - itemType: library_books
+        typeDesc: reference
+        links:
+        - text: Webhooks - project events
+          url: ../automation/webhook/reference/project-events.md
+        - text: Webhooks - project member events
+          url: ../automation/webhook/reference/project-member-events.md
+        - text: Zapier
+          url: ../automation/zapier/index.md
+
+  - title: CRMScript
+    linkLists:
+      - itemType: explore
+        typeDesc: concept
+        links:
+        - text: Overview
+          url: ../automation/crmscript/howto/project/index.md
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Create
+          url: ../automation/crmscript/howto/project/create.md
+        - text: Get selected
+          url: ../automation/crmscript/howto/project/get.md
+        - text: Update
+          url: ../automation/crmscript/howto/project/update.md
+        - text: Project members
+          url: ../automation/crmscript/howto/project/members.md
+        - text: Project guides
+          url: ../automation/crmscript/howto/project/guides.md
+
+  - title: API
+    linkLists:
+      - itemType: library_books
+        typeDesc: reference
+        links:
+        - text: REST
+          url: ../api/reference/restful/rest/Project/index.md
+        - text: SOAP (services88)
+          url: ../api/reference/soap/Services88/Project/index.md
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: SQL samples
+          url: ../api/sql/howto/project/index.md
+
+  - title: Database tables
+    linkLists:
+      - itemType: library_books
+        typeDesc: reference
+        links:
+        - text: Project
+          url: ../database/tables/project.md
+        - text: ProjectMember
+          url: ../database/tables/projectmember.md
+        - text: ProjStatus
+          url: ../database/tables/projstatus.md
+        - text: ProjType
+          url: ../database/tables/projtype.md
+        - text: Associate
+          url: ../database/tables/associate.md
+        - text: UserGroup
+          url: ../database/tables/usergroup.md
+        - text: Appointment
+          url: ../database/tables/appointment.md
+        - text: UdprojectSmall
+          url: ../database/tables/udprojectsmall.md
+        - text: UdprojectLarge
+          url: ../database/tables/udprojectlarge.md
