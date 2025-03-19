@@ -1,0 +1,19 @@
+---
+import type { SubCategoryContentItem } from "../types/SubCategoryPageTypes";
+import Base from "./Base.astro";
+import IconSelection from "@components/IconSelection.tsx";
+const { data } = Astro.props;
+
+const metadata = {
+  title: data.title,
+};
+
+type Props = {
+  data: SubCategoryContentItem;
+};
+---
+
+<Base metadata={metadata} >
+ <div>Test</div>
+
+</Base>

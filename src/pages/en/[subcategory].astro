@@ -1,0 +1,22 @@
+---
+import SubCategoryLandingLayout from "@layouts/SubCategoryLandingLayout.astro";
+
+export function getStaticPaths() {
+  return [
+    { params: { subcategory: "document" } },
+    { params: { subcategory: "project" } },
+    { params: { subcategory: "request" } },
+    { params: { subcategory: "sale" } },
+    { params: { subcategory: "mobile" } },
+    { params: { subcategory: "developer-portal" } },
+    { params: { subcategory: "automation" } },
+  ];
+}
+
+import { getSubCategoryPageContents } from "~/utils/getSubCategoryPageContents";
+
+const { subcategory } = Astro.params;
+const SubCategoryData = getSubCategoryPageContents(`en/${subcategory}`);
+---
+
+<SubCategoryLandingLayout data={SubCategoryData} />
