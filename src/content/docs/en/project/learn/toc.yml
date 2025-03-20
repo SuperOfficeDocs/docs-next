@@ -1,0 +1,23 @@
+items:
+- name: Overview
+  href: index.md
+- name: Create project
+  href: create.md
+- name: Add project image
+  href: add-image.md
+- name: Edit project
+  href: edit.md
+- name: Merge projects
+  href: merge-projects.md
+- name: Delete project
+  href: delete.md
+- name: Project members
+  href: project-members/toc.yml
+  topicHref: project-members/index.md
+- name: Project guides
+  href: project-guides.md
+- name: Tutorial
+  href: tutorial.md
+- name: For administrators
+  href: ../admin/toc.yml
+  topicHref: ../admin/index.md
