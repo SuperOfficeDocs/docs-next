@@ -2,7 +2,12 @@
 import type { SubCategoryContentItem } from "../types/SubCategoryPageTypes";
 import Base from "./Base.astro";
 import IconSelection from "@components/IconSelection.tsx";
-const { data } = Astro.props;
+import type { TocData } from "../types/TableOfContentTypes.tsx";
+import TableOfContentList from "@components/TableOfContentList";
+import SubCategoryCard from "@components/SubCategoryCard.astro";
+import { Cardholder } from "@phosphor-icons/react";
+
+const { data, ToCData } = Astro.props;
 
 const metadata = {
   title: data.title,
@@ -10,10 +15,43 @@ const metadata = {
 
 type Props = {
   data: SubCategoryContentItem;
+  ToCData: TocData;
 };
 ---
 
-<Base metadata={metadata} >
- <div>Test</div>
+<Base metadata={metadata}>
+  <article class="w-full pt-1 article">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+      <nav
+        class="bg-lightTealGray md:col-span-3 pt-6 md:pt-12 w-full max-w-md mx-auto rounded-lg flex justify-center"
+      >
+        <TableOfContentList
+          client:only="react"
+          inputItems={ToCData.items}
+          slug="en/"
+          isMainTable={true}
+        />
+      </nav>
 
+      <div class="w-full md:col-span-9 p-8 max-w-none">
+        <!-- Heading -->
+        <div class="mb-6">
+          <p class="text-2xl font-bold mb-1">
+            {data.title}
+          </p>
+          <p class="">{data.summary}</p>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-7 auto-rows-max"
+        >
+          {
+            data.landingContent.map((card) => {
+              return <SubCategoryCard item={card} />;
+            })
+          }
+        </div>
+      </div>
+    </div>
+  </article>
 </Base>
