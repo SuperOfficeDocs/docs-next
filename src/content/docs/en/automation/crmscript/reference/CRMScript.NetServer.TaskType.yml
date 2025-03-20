@@ -1,0 +1,153 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.TaskType
+  children:
+  - CRMScript.NetServer.TaskType.Unknown
+  - CRMScript.NetServer.TaskType.Appointment
+  - CRMScript.NetServer.TaskType.Document
+  - CRMScript.NetServer.TaskType.Email
+  - CRMScript.NetServer.TaskType.Fax
+  - CRMScript.NetServer.TaskType.Phone
+  - CRMScript.NetServer.TaskType.ToDo
+  - CRMScript.NetServer.TaskType.MailMergeDraft
+  - CRMScript.NetServer.TaskType.MailMergeFinal
+  - CRMScript.NetServer.TaskType.Report
+  - CRMScript.NetServer.TaskType.SaintAll
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: TaskType
+  syntax: 
+    content: TaskType
+  summary: "Value for field 'record_type' in table 'task'. Controls icons used in GUI"
+  name: TaskType
+  nameWithType: TaskType
+  fullName: CRMScript.NetServer.TaskType
+- uid: CRMScript.NetServer.TaskType.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TaskType.Unknown
+  syntax: 
+    content: TaskType.Unknown
+  summary: "This task is of an unknown/undecided type"
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.TaskType.Unknown
+- uid: CRMScript.NetServer.TaskType.Appointment
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TaskType.Appointment
+  syntax: 
+    content: TaskType.Appointment
+  summary: "The task is an appointment"
+  name: Appointment
+  nameWithType: Appointment
+  fullName: CRMScript.NetServer.TaskType.Appointment
+- uid: CRMScript.NetServer.TaskType.Document
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TaskType.Document
+  syntax: 
+    content: TaskType.Document
+  summary: "The task is a document"
+  name: Document
+  nameWithType: Document
+  fullName: CRMScript.NetServer.TaskType.Document
+- uid: CRMScript.NetServer.TaskType.Email
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TaskType.Email
+  syntax: 
+    content: TaskType.Email
+  summary: "The task is an email"
+  name: Email
+  nameWithType: Email
+  fullName: CRMScript.NetServer.TaskType.Email
+- uid: CRMScript.NetServer.TaskType.Fax
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TaskType.Fax
+  syntax: 
+    content: TaskType.Fax
+  summary: "The task is a fax"
+  name: Fax
+  nameWithType: Fax
+  fullName: CRMScript.NetServer.TaskType.Fax
+- uid: CRMScript.NetServer.TaskType.Phone
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TaskType.Phone
+  syntax: 
+    content: TaskType.Phone
+  summary: "The task is a phone call"
+  name: Phone
+  nameWithType: Phone
+  fullName: CRMScript.NetServer.TaskType.Phone
+- uid: CRMScript.NetServer.TaskType.ToDo
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TaskType.ToDo
+  syntax: 
+    content: TaskType.ToDo
+  summary: "The task is a To-do"
+  name: ToDo
+  nameWithType: ToDo
+  fullName: CRMScript.NetServer.TaskType.ToDo
+- uid: CRMScript.NetServer.TaskType.MailMergeDraft
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TaskType.MailMergeDraft
+  syntax: 
+    content: TaskType.MailMergeDraft
+  summary: "Mail merge draft document"
+  name: MailMergeDraft
+  nameWithType: MailMergeDraft
+  fullName: CRMScript.NetServer.TaskType.MailMergeDraft
+- uid: CRMScript.NetServer.TaskType.MailMergeFinal
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TaskType.MailMergeFinal
+  syntax: 
+    content: TaskType.MailMergeFinal
+  summary: "Merged result of mail merge"
+  name: MailMergeFinal
+  nameWithType: MailMergeFinal
+  fullName: CRMScript.NetServer.TaskType.MailMergeFinal
+- uid: CRMScript.NetServer.TaskType.Report
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TaskType.Report
+  syntax: 
+    content: TaskType.Report
+  summary: "Saved report run"
+  name: Report
+  nameWithType: Report
+  fullName: CRMScript.NetServer.TaskType.Report
+- uid: CRMScript.NetServer.TaskType.SaintAll
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TaskType.SaintAll
+  syntax: 
+    content: TaskType.SaintAll
+  summary: "All' choice for Saint, every activity is recorded under this type as well as the specific type. This is NOT an acceptable value for an individual activity"
+  name: SaintAll
+  nameWithType: SaintAll
+  fullName: CRMScript.NetServer.TaskType.SaintAll
+references:
+- uid: CRMScript.NetServer.TaskType
+  commentId: T:CRMScript.NetServer.TaskType
+  isExternal: true
+  name: TaskType
+  nameWithType: TaskType
+  fullName: CRMScript.NetServer.TaskType

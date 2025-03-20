@@ -1,0 +1,69 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.QuoteStatus
+  children:
+  - CRMScript.NetServer.QuoteStatus.Ok
+  - CRMScript.NetServer.QuoteStatus.OkWithInfo
+  - CRMScript.NetServer.QuoteStatus.Warning
+  - CRMScript.NetServer.QuoteStatus.Error
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: QuoteStatus
+  syntax: 
+    content: QuoteStatus
+  summary: "The state of a quote-alternative or line: Ok / OkWithInfo / Warn / Error"
+  name: QuoteStatus
+  nameWithType: QuoteStatus
+  fullName: CRMScript.NetServer.QuoteStatus
+- uid: CRMScript.NetServer.QuoteStatus.Ok
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteStatus.Ok
+  syntax: 
+    content: QuoteStatus.Ok
+  summary: "OK, all is good"
+  name: Ok
+  nameWithType: Ok
+  fullName: CRMScript.NetServer.QuoteStatus.Ok
+- uid: CRMScript.NetServer.QuoteStatus.OkWithInfo
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteStatus.OkWithInfo
+  syntax: 
+    content: QuoteStatus.OkWithInfo
+  summary: "All is good, but there is some additional information that the user should be made aware of."
+  name: OkWithInfo
+  nameWithType: OkWithInfo
+  fullName: CRMScript.NetServer.QuoteStatus.OkWithInfo
+- uid: CRMScript.NetServer.QuoteStatus.Warning
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteStatus.Warning
+  syntax: 
+    content: QuoteStatus.Warning
+  summary: "There is a problem that the user must be made aware of."
+  name: Warning
+  nameWithType: Warning
+  fullName: CRMScript.NetServer.QuoteStatus.Warning
+- uid: CRMScript.NetServer.QuoteStatus.Error
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteStatus.Error
+  syntax: 
+    content: QuoteStatus.Error
+  summary: "There is a problem that the system will not be able to get around. The user needs to do something. Example: The user has registered a quoteline that is discountinued and the amount the user has registered is not in stock."
+  name: Error
+  nameWithType: Error
+  fullName: CRMScript.NetServer.QuoteStatus.Error
+references:
+- uid: CRMScript.NetServer.QuoteStatus
+  commentId: T:CRMScript.NetServer.QuoteStatus
+  isExternal: true
+  name: QuoteStatus
+  nameWithType: QuoteStatus
+  fullName: CRMScript.NetServer.QuoteStatus

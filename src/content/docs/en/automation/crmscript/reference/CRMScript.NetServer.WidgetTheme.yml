@@ -1,0 +1,45 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.WidgetTheme
+  children:
+  - CRMScript.NetServer.WidgetTheme.Classic
+  - CRMScript.NetServer.WidgetTheme.Modern
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: WidgetTheme
+  syntax: 
+    content: WidgetTheme
+  summary: "Chat Topic widget_theme: classic(0) or modern(1)."
+  name: WidgetTheme
+  nameWithType: WidgetTheme
+  fullName: CRMScript.NetServer.WidgetTheme
+- uid: CRMScript.NetServer.WidgetTheme.Classic
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: WidgetTheme.Classic
+  syntax: 
+    content: WidgetTheme.Classic
+  summary: "Set widget theme to classic"
+  name: Classic
+  nameWithType: Classic
+  fullName: CRMScript.NetServer.WidgetTheme.Classic
+- uid: CRMScript.NetServer.WidgetTheme.Modern
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: WidgetTheme.Modern
+  syntax: 
+    content: WidgetTheme.Modern
+  summary: "Set widget theme to modern"
+  name: Modern
+  nameWithType: Modern
+  fullName: CRMScript.NetServer.WidgetTheme.Modern
+references:
+- uid: CRMScript.NetServer.WidgetTheme
+  commentId: T:CRMScript.NetServer.WidgetTheme
+  isExternal: true
+  name: WidgetTheme
+  nameWithType: WidgetTheme
+  fullName: CRMScript.NetServer.WidgetTheme

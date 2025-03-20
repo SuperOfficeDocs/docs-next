@@ -1,0 +1,189 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.GeneratorEncoding
+  children:
+  - CRMScript.NetServer.GeneratorEncoding.Text
+  - CRMScript.NetServer.GeneratorEncoding.Html
+  - CRMScript.NetServer.GeneratorEncoding.Xml
+  - CRMScript.NetServer.GeneratorEncoding.MsWord
+  - CRMScript.NetServer.GeneratorEncoding.MsExcel
+  - CRMScript.NetServer.GeneratorEncoding.MsPowerpoint
+  - CRMScript.NetServer.GeneratorEncoding.MsOffice2007
+  - CRMScript.NetServer.GeneratorEncoding.MsOffice2007Xml
+  - CRMScript.NetServer.GeneratorEncoding.Url
+  - CRMScript.NetServer.GeneratorEncoding.UrlUnicode
+  - CRMScript.NetServer.GeneratorEncoding.Pdf
+  - CRMScript.NetServer.GeneratorEncoding.Mime
+  - CRMScript.NetServer.GeneratorEncoding.OpenDocument
+  - CRMScript.NetServer.GeneratorEncoding.OpenDocumentXml
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: GeneratorEncoding
+  syntax: 
+    content: GeneratorEncoding
+  summary: ""
+  name: GeneratorEncoding
+  nameWithType: GeneratorEncoding
+  fullName: CRMScript.NetServer.GeneratorEncoding
+- uid: CRMScript.NetServer.GeneratorEncoding.Text
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.Text
+  syntax: 
+    content: GeneratorEncoding.Text
+  summary: "Plain text document."
+  name: Text
+  nameWithType: Text
+  fullName: CRMScript.NetServer.GeneratorEncoding.Text
+- uid: CRMScript.NetServer.GeneratorEncoding.Html
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.Html
+  syntax: 
+    content: GeneratorEncoding.Html
+  summary: "Html encoded document, it is not strictly parsed."
+  name: Html
+  nameWithType: Html
+  fullName: CRMScript.NetServer.GeneratorEncoding.Html
+- uid: CRMScript.NetServer.GeneratorEncoding.Xml
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.Xml
+  syntax: 
+    content: GeneratorEncoding.Xml
+  summary: "XML Document, it is not strictly parsed"
+  name: Xml
+  nameWithType: Xml
+  fullName: CRMScript.NetServer.GeneratorEncoding.Xml
+- uid: CRMScript.NetServer.GeneratorEncoding.MsWord
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.MsWord
+  syntax: 
+    content: GeneratorEncoding.MsWord
+  summary: "Microsoft word document."
+  name: MsWord
+  nameWithType: MsWord
+  fullName: CRMScript.NetServer.GeneratorEncoding.MsWord
+- uid: CRMScript.NetServer.GeneratorEncoding.MsExcel
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.MsExcel
+  syntax: 
+    content: GeneratorEncoding.MsExcel
+  summary: "Microsoft Excel document."
+  name: MsExcel
+  nameWithType: MsExcel
+  fullName: CRMScript.NetServer.GeneratorEncoding.MsExcel
+- uid: CRMScript.NetServer.GeneratorEncoding.MsPowerpoint
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.MsPowerpoint
+  syntax: 
+    content: GeneratorEncoding.MsPowerpoint
+  summary: "Microsoft Powerpoint document"
+  name: MsPowerpoint
+  nameWithType: MsPowerpoint
+  fullName: CRMScript.NetServer.GeneratorEncoding.MsPowerpoint
+- uid: CRMScript.NetServer.GeneratorEncoding.MsOffice2007
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.MsOffice2007
+  syntax: 
+    content: GeneratorEncoding.MsOffice2007
+  summary: "Microsoft office documents zipped (Office 2007)"
+  name: MsOffice2007
+  nameWithType: MsOffice2007
+  fullName: CRMScript.NetServer.GeneratorEncoding.MsOffice2007
+- uid: CRMScript.NetServer.GeneratorEncoding.MsOffice2007Xml
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.MsOffice2007Xml
+  syntax: 
+    content: GeneratorEncoding.MsOffice2007Xml
+  summary: "Microsoft office xml documents (content of zipped x files)"
+  name: MsOffice2007Xml
+  nameWithType: MsOffice2007Xml
+  fullName: CRMScript.NetServer.GeneratorEncoding.MsOffice2007Xml
+- uid: CRMScript.NetServer.GeneratorEncoding.Url
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.Url
+  syntax: 
+    content: GeneratorEncoding.Url
+  summary: "The tags result are url-encoded (ansi), the source itself is treated as plain text."
+  name: Url
+  nameWithType: Url
+  fullName: CRMScript.NetServer.GeneratorEncoding.Url
+- uid: CRMScript.NetServer.GeneratorEncoding.UrlUnicode
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.UrlUnicode
+  syntax: 
+    content: GeneratorEncoding.UrlUnicode
+  summary: "The tags result are url-encoded (unicode), the source itself is treated as plain text."
+  name: UrlUnicode
+  nameWithType: UrlUnicode
+  fullName: CRMScript.NetServer.GeneratorEncoding.UrlUnicode
+- uid: CRMScript.NetServer.GeneratorEncoding.Pdf
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.Pdf
+  syntax: 
+    content: GeneratorEncoding.Pdf
+  summary: "Adobe pdf format"
+  name: Pdf
+  nameWithType: Pdf
+  fullName: CRMScript.NetServer.GeneratorEncoding.Pdf
+- uid: CRMScript.NetServer.GeneratorEncoding.Mime
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.Mime
+  syntax: 
+    content: GeneratorEncoding.Mime
+  summary: "RFC822 Mime-content. Handles the actual mime part, but leaves a normal Text-generator to handle the actual content embedded within the MIME-layers."
+  name: Mime
+  nameWithType: Mime
+  fullName: CRMScript.NetServer.GeneratorEncoding.Mime
+- uid: CRMScript.NetServer.GeneratorEncoding.OpenDocument
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.OpenDocument
+  syntax: 
+    content: GeneratorEncoding.OpenDocument
+  summary: "OpenOffice/LibreOffice documents (zipped)"
+  name: OpenDocument
+  nameWithType: OpenDocument
+  fullName: CRMScript.NetServer.GeneratorEncoding.OpenDocument
+- uid: CRMScript.NetServer.GeneratorEncoding.OpenDocumentXml
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: GeneratorEncoding.OpenDocumentXml
+  syntax: 
+    content: GeneratorEncoding.OpenDocumentXml
+  summary: "OpenOffice/LibreOffice documents (contents of zipped files)"
+  name: OpenDocumentXml
+  nameWithType: OpenDocumentXml
+  fullName: CRMScript.NetServer.GeneratorEncoding.OpenDocumentXml
+references:
+- uid: CRMScript.NetServer.GeneratorEncoding
+  commentId: T:CRMScript.NetServer.GeneratorEncoding
+  isExternal: true
+  name: GeneratorEncoding
+  nameWithType: GeneratorEncoding
+  fullName: CRMScript.NetServer.GeneratorEncoding

@@ -1,0 +1,237 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.StatusScreenPanelType
+  children:
+  - CRMScript.NetServer.StatusScreenPanelType.None
+  - CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerCategory
+  - CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerTopCategory
+  - CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerUser
+  - CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerUserGroup
+  - CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerPriority
+  - CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerStatus
+  - CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerOrigin
+  - CRMScript.NetServer.StatusScreenPanelType.NumberOfCreatedRequestsPerDay
+  - CRMScript.NetServer.StatusScreenPanelType.NumberOfCreatedRequestsPerWeek
+  - CRMScript.NetServer.StatusScreenPanelType.NumberOfCreatedRequestsPerMonth
+  - CRMScript.NetServer.StatusScreenPanelType.UserResponseTimePerDay
+  - CRMScript.NetServer.StatusScreenPanelType.UserReponseTimePerWeek
+  - CRMScript.NetServer.StatusScreenPanelType.UserResponseTimePerMonth
+  - CRMScript.NetServer.StatusScreenPanelType.OwnOpenRequests
+  - CRMScript.NetServer.StatusScreenPanelType.UnassignedRequests
+  - CRMScript.NetServer.StatusScreenPanelType.Hotlist
+  - CRMScript.NetServer.StatusScreenPanelType.StatusScreen
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: StatusScreenPanelType
+  syntax: 
+    content: StatusScreenPanelType
+  summary: ""
+  name: StatusScreenPanelType
+  nameWithType: StatusScreenPanelType
+  fullName: CRMScript.NetServer.StatusScreenPanelType
+- uid: CRMScript.NetServer.StatusScreenPanelType.None
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.None
+  syntax: 
+    content: StatusScreenPanelType.None
+  summary: ""
+  name: None
+  nameWithType: None
+  fullName: CRMScript.NetServer.StatusScreenPanelType.None
+- uid: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerCategory
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.OpenRequestsPerCategory
+  syntax: 
+    content: StatusScreenPanelType.OpenRequestsPerCategory
+  summary: ""
+  name: OpenRequestsPerCategory
+  nameWithType: OpenRequestsPerCategory
+  fullName: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerCategory
+- uid: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerTopCategory
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.OpenRequestsPerTopCategory
+  syntax: 
+    content: StatusScreenPanelType.OpenRequestsPerTopCategory
+  summary: ""
+  name: OpenRequestsPerTopCategory
+  nameWithType: OpenRequestsPerTopCategory
+  fullName: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerTopCategory
+- uid: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerUser
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.OpenRequestsPerUser
+  syntax: 
+    content: StatusScreenPanelType.OpenRequestsPerUser
+  summary: ""
+  name: OpenRequestsPerUser
+  nameWithType: OpenRequestsPerUser
+  fullName: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerUser
+- uid: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerUserGroup
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.OpenRequestsPerUserGroup
+  syntax: 
+    content: StatusScreenPanelType.OpenRequestsPerUserGroup
+  summary: ""
+  name: OpenRequestsPerUserGroup
+  nameWithType: OpenRequestsPerUserGroup
+  fullName: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerUserGroup
+- uid: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerPriority
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.OpenRequestsPerPriority
+  syntax: 
+    content: StatusScreenPanelType.OpenRequestsPerPriority
+  summary: ""
+  name: OpenRequestsPerPriority
+  nameWithType: OpenRequestsPerPriority
+  fullName: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerPriority
+- uid: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerStatus
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.OpenRequestsPerStatus
+  syntax: 
+    content: StatusScreenPanelType.OpenRequestsPerStatus
+  summary: ""
+  name: OpenRequestsPerStatus
+  nameWithType: OpenRequestsPerStatus
+  fullName: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerStatus
+- uid: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerOrigin
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.OpenRequestsPerOrigin
+  syntax: 
+    content: StatusScreenPanelType.OpenRequestsPerOrigin
+  summary: ""
+  name: OpenRequestsPerOrigin
+  nameWithType: OpenRequestsPerOrigin
+  fullName: CRMScript.NetServer.StatusScreenPanelType.OpenRequestsPerOrigin
+- uid: CRMScript.NetServer.StatusScreenPanelType.NumberOfCreatedRequestsPerDay
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.NumberOfCreatedRequestsPerDay
+  syntax: 
+    content: StatusScreenPanelType.NumberOfCreatedRequestsPerDay
+  summary: ""
+  name: NumberOfCreatedRequestsPerDay
+  nameWithType: NumberOfCreatedRequestsPerDay
+  fullName: CRMScript.NetServer.StatusScreenPanelType.NumberOfCreatedRequestsPerDay
+- uid: CRMScript.NetServer.StatusScreenPanelType.NumberOfCreatedRequestsPerWeek
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.NumberOfCreatedRequestsPerWeek
+  syntax: 
+    content: StatusScreenPanelType.NumberOfCreatedRequestsPerWeek
+  summary: ""
+  name: NumberOfCreatedRequestsPerWeek
+  nameWithType: NumberOfCreatedRequestsPerWeek
+  fullName: CRMScript.NetServer.StatusScreenPanelType.NumberOfCreatedRequestsPerWeek
+- uid: CRMScript.NetServer.StatusScreenPanelType.NumberOfCreatedRequestsPerMonth
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.NumberOfCreatedRequestsPerMonth
+  syntax: 
+    content: StatusScreenPanelType.NumberOfCreatedRequestsPerMonth
+  summary: ""
+  name: NumberOfCreatedRequestsPerMonth
+  nameWithType: NumberOfCreatedRequestsPerMonth
+  fullName: CRMScript.NetServer.StatusScreenPanelType.NumberOfCreatedRequestsPerMonth
+- uid: CRMScript.NetServer.StatusScreenPanelType.UserResponseTimePerDay
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.UserResponseTimePerDay
+  syntax: 
+    content: StatusScreenPanelType.UserResponseTimePerDay
+  summary: ""
+  name: UserResponseTimePerDay
+  nameWithType: UserResponseTimePerDay
+  fullName: CRMScript.NetServer.StatusScreenPanelType.UserResponseTimePerDay
+- uid: CRMScript.NetServer.StatusScreenPanelType.UserReponseTimePerWeek
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.UserReponseTimePerWeek
+  syntax: 
+    content: StatusScreenPanelType.UserReponseTimePerWeek
+  summary: ""
+  name: UserReponseTimePerWeek
+  nameWithType: UserReponseTimePerWeek
+  fullName: CRMScript.NetServer.StatusScreenPanelType.UserReponseTimePerWeek
+- uid: CRMScript.NetServer.StatusScreenPanelType.UserResponseTimePerMonth
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.UserResponseTimePerMonth
+  syntax: 
+    content: StatusScreenPanelType.UserResponseTimePerMonth
+  summary: ""
+  name: UserResponseTimePerMonth
+  nameWithType: UserResponseTimePerMonth
+  fullName: CRMScript.NetServer.StatusScreenPanelType.UserResponseTimePerMonth
+- uid: CRMScript.NetServer.StatusScreenPanelType.OwnOpenRequests
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.OwnOpenRequests
+  syntax: 
+    content: StatusScreenPanelType.OwnOpenRequests
+  summary: ""
+  name: OwnOpenRequests
+  nameWithType: OwnOpenRequests
+  fullName: CRMScript.NetServer.StatusScreenPanelType.OwnOpenRequests
+- uid: CRMScript.NetServer.StatusScreenPanelType.UnassignedRequests
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.UnassignedRequests
+  syntax: 
+    content: StatusScreenPanelType.UnassignedRequests
+  summary: ""
+  name: UnassignedRequests
+  nameWithType: UnassignedRequests
+  fullName: CRMScript.NetServer.StatusScreenPanelType.UnassignedRequests
+- uid: CRMScript.NetServer.StatusScreenPanelType.Hotlist
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.Hotlist
+  syntax: 
+    content: StatusScreenPanelType.Hotlist
+  summary: ""
+  name: Hotlist
+  nameWithType: Hotlist
+  fullName: CRMScript.NetServer.StatusScreenPanelType.Hotlist
+- uid: CRMScript.NetServer.StatusScreenPanelType.StatusScreen
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: StatusScreenPanelType.StatusScreen
+  syntax: 
+    content: StatusScreenPanelType.StatusScreen
+  summary: ""
+  name: StatusScreen
+  nameWithType: StatusScreen
+  fullName: CRMScript.NetServer.StatusScreenPanelType.StatusScreen
+references:
+- uid: CRMScript.NetServer.StatusScreenPanelType
+  commentId: T:CRMScript.NetServer.StatusScreenPanelType
+  isExternal: true
+  name: StatusScreenPanelType
+  nameWithType: StatusScreenPanelType
+  fullName: CRMScript.NetServer.StatusScreenPanelType

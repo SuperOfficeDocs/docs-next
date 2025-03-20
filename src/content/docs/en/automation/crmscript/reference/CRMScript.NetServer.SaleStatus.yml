@@ -1,0 +1,93 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.SaleStatus
+  children:
+  - CRMScript.NetServer.SaleStatus.Unknown
+  - CRMScript.NetServer.SaleStatus.Open
+  - CRMScript.NetServer.SaleStatus.Sold
+  - CRMScript.NetServer.SaleStatus.Lost
+  - CRMScript.NetServer.SaleStatus.Stalled
+  - CRMScript.NetServer.SaleStatus.SaintAll
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: SaleStatus
+  syntax: 
+    content: SaleStatus
+  summary: "Value for the 'status' field in the sale table"
+  name: SaleStatus
+  nameWithType: SaleStatus
+  fullName: CRMScript.NetServer.SaleStatus
+- uid: CRMScript.NetServer.SaleStatus.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: SaleStatus.Unknown
+  syntax: 
+    content: SaleStatus.Unknown
+  summary: "Sale status is unknown"
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.SaleStatus.Unknown
+- uid: CRMScript.NetServer.SaleStatus.Open
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: SaleStatus.Open
+  syntax: 
+    content: SaleStatus.Open
+  summary: "Sale is open"
+  name: Open
+  nameWithType: Open
+  fullName: CRMScript.NetServer.SaleStatus.Open
+- uid: CRMScript.NetServer.SaleStatus.Sold
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: SaleStatus.Sold
+  syntax: 
+    content: SaleStatus.Sold
+  summary: "Sale has been sold (green $ in GUI)"
+  name: Sold
+  nameWithType: Sold
+  fullName: CRMScript.NetServer.SaleStatus.Sold
+- uid: CRMScript.NetServer.SaleStatus.Lost
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: SaleStatus.Lost
+  syntax: 
+    content: SaleStatus.Lost
+  summary: "Sale has been lost (red $ in GUI)"
+  name: Lost
+  nameWithType: Lost
+  fullName: CRMScript.NetServer.SaleStatus.Lost
+- uid: CRMScript.NetServer.SaleStatus.Stalled
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: SaleStatus.Stalled
+  syntax: 
+    content: SaleStatus.Stalled
+  summary: "Sale has been stalled, or 'parked', awaiting further developments"
+  name: Stalled
+  nameWithType: Stalled
+  fullName: CRMScript.NetServer.SaleStatus.Stalled
+- uid: CRMScript.NetServer.SaleStatus.SaintAll
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: SaleStatus.SaintAll
+  syntax: 
+    content: SaleStatus.SaintAll
+  summary: "All' choice for Saint. This is NOT an acceptable value for a sale, but is used by the Saint system for indexing all sales"
+  name: SaintAll
+  nameWithType: SaintAll
+  fullName: CRMScript.NetServer.SaleStatus.SaintAll
+references:
+- uid: CRMScript.NetServer.SaleStatus
+  commentId: T:CRMScript.NetServer.SaleStatus
+  isExternal: true
+  name: SaleStatus
+  nameWithType: SaleStatus
+  fullName: CRMScript.NetServer.SaleStatus

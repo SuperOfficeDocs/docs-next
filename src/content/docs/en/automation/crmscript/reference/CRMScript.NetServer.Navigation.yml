@@ -1,0 +1,897 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.Navigation
+  children:
+  - CRMScript.NetServer.Navigation.Invisible
+  - CRMScript.NetServer.Navigation.ToolboxMenu
+  - CRMScript.NetServer.Navigation.NavigatorButton
+  - CRMScript.NetServer.Navigation.ViewMenu
+  - CRMScript.NetServer.Navigation.SelectionTaskCard
+  - CRMScript.NetServer.Navigation.ContactCard
+  - CRMScript.NetServer.Navigation.ContactArchive
+  - CRMScript.NetServer.Navigation.ProjectCard
+  - CRMScript.NetServer.Navigation.ProjectArchive
+  - CRMScript.NetServer.Navigation.SaleCard
+  - CRMScript.NetServer.Navigation.PersonCard
+  - CRMScript.NetServer.Navigation.ActivityDialog
+  - CRMScript.NetServer.Navigation.DocumentDialog
+  - CRMScript.NetServer.Navigation.BrowserPanel
+  - CRMScript.NetServer.Navigation.ContSelectionTask
+  - CRMScript.NetServer.Navigation.AppntSelectionTask
+  - CRMScript.NetServer.Navigation.SaleSelectionTask
+  - CRMScript.NetServer.Navigation.DocSelectionTask
+  - CRMScript.NetServer.Navigation.ProjSelectionTask
+  - CRMScript.NetServer.Navigation.CompanyMinicard
+  - CRMScript.NetServer.Navigation.ProjectMinicard
+  - CRMScript.NetServer.Navigation.DiaryMinicard
+  - CRMScript.NetServer.Navigation.SelectionMinicard
+  - CRMScript.NetServer.Navigation.ButtonPanelTask
+  - CRMScript.NetServer.Navigation.AppointmentDialogTask
+  - CRMScript.NetServer.Navigation.SaleDialogTask
+  - CRMScript.NetServer.Navigation.DocumentDialogTask
+  - CRMScript.NetServer.Navigation.PersonDialogTask
+  - CRMScript.NetServer.Navigation.SaleMinicard
+  - CRMScript.NetServer.Navigation.SaleArchive
+  - CRMScript.NetServer.Navigation.AppntSelectionShadowTask
+  - CRMScript.NetServer.Navigation.SaleSelectionShadowTask
+  - CRMScript.NetServer.Navigation.DocSelectionShadowTask
+  - CRMScript.NetServer.Navigation.ProjSelectionShadowTask
+  - CRMScript.NetServer.Navigation.DiaryArchive
+  - CRMScript.NetServer.Navigation.SelectionContactArchive
+  - CRMScript.NetServer.Navigation.SelectionProjectArchive
+  - CRMScript.NetServer.Navigation.SelectionSaleArchive
+  - CRMScript.NetServer.Navigation.SelectionAppointmentArchive
+  - CRMScript.NetServer.Navigation.SelectionDocumentArchive
+  - CRMScript.NetServer.Navigation.ContSelectionCustomTask
+  - CRMScript.NetServer.Navigation.AppntSelectionCustomTask
+  - CRMScript.NetServer.Navigation.SaleSelectionCustomTask
+  - CRMScript.NetServer.Navigation.DocSelectionCustomTask
+  - CRMScript.NetServer.Navigation.ProjSelectionCustomTask
+  - CRMScript.NetServer.Navigation.CustomArchiveMiniCard
+  - CRMScript.NetServer.Navigation.SelectionCard
+  - CRMScript.NetServer.Navigation.ReportMinicard
+  - CRMScript.NetServer.Navigation.QuoteDialog
+  - CRMScript.NetServer.Navigation.QuoteDialogTask
+  - CRMScript.NetServer.Navigation.QuoteDialogArchive
+  - CRMScript.NetServer.Navigation.QuoteLineDialogTask
+  - CRMScript.NetServer.Navigation.QuoteLineDialog
+  - CRMScript.NetServer.Navigation.QuoteLineSelectionMainTask
+  - CRMScript.NetServer.Navigation.QuoteLineSelectionShadowTask
+  - CRMScript.NetServer.Navigation.SelectionQuoteLineArchive
+  - CRMScript.NetServer.Navigation.QuoteLineSelectionCustomTask
+  - CRMScript.NetServer.Navigation.FindSystem
+  - CRMScript.NetServer.Navigation.MailingSelectionTask
+  - CRMScript.NetServer.Navigation.ContactSelectionMailingsTask
+  - CRMScript.NetServer.Navigation.AppointmentSelectionMailingsTask
+  - CRMScript.NetServer.Navigation.SaleSelectionMailingsTask
+  - CRMScript.NetServer.Navigation.DocumentSelectionMailingsTask
+  - CRMScript.NetServer.Navigation.ProjectSelectionMailingsTask
+  - CRMScript.NetServer.Navigation.QuoteLineSelectionMailingsTask
+  - CRMScript.NetServer.Navigation.TopPanelNewMenu
+  - CRMScript.NetServer.Navigation.Dashboard
+  - CRMScript.NetServer.Navigation.PersonArchive
+  - CRMScript.NetServer.Navigation.PersonMinicard
+  - CRMScript.NetServer.Navigation.CompanyCardTask
+  - CRMScript.NetServer.Navigation.ProjectCardTask
+  - CRMScript.NetServer.Navigation.TicketCard
+  - CRMScript.NetServer.Navigation.TicketMinicard
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: Navigation
+  syntax: 
+    content: Navigation
+  summary: "Value for the navigation field in table externalapplication"
+  name: Navigation
+  nameWithType: Navigation
+  fullName: CRMScript.NetServer.Navigation
+- uid: CRMScript.NetServer.Navigation.Invisible
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.Invisible
+  syntax: 
+    content: Navigation.Invisible
+  summary: "This application has no explicit navigation in GUI"
+  name: Invisible
+  nameWithType: Invisible
+  fullName: CRMScript.NetServer.Navigation.Invisible
+- uid: CRMScript.NetServer.Navigation.ToolboxMenu
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ToolboxMenu
+  syntax: 
+    content: Navigation.ToolboxMenu
+  summary: "This application appears in the list of the Toolbox icon in the CRM5 Navigator sidebar"
+  name: ToolboxMenu
+  nameWithType: ToolboxMenu
+  fullName: CRMScript.NetServer.Navigation.ToolboxMenu
+- uid: CRMScript.NetServer.Navigation.NavigatorButton
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.NavigatorButton
+  syntax: 
+    content: Navigation.NavigatorButton
+  summary: "This application has its own navigator button (remember to set icon resource)"
+  name: NavigatorButton
+  nameWithType: NavigatorButton
+  fullName: CRMScript.NetServer.Navigation.NavigatorButton
+- uid: CRMScript.NetServer.Navigation.ViewMenu
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ViewMenu
+  syntax: 
+    content: Navigation.ViewMenu
+  summary: "This application appears in the View pulldown menu"
+  name: ViewMenu
+  nameWithType: ViewMenu
+  fullName: CRMScript.NetServer.Navigation.ViewMenu
+- uid: CRMScript.NetServer.Navigation.SelectionTaskCard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SelectionTaskCard
+  syntax: 
+    content: Navigation.SelectionTaskCard
+  summary: "(not yet implemented) This application appears as a Task in the Selection Task card"
+  name: SelectionTaskCard
+  nameWithType: SelectionTaskCard
+  fullName: CRMScript.NetServer.Navigation.SelectionTaskCard
+- uid: CRMScript.NetServer.Navigation.ContactCard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ContactCard
+  syntax: 
+    content: Navigation.ContactCard
+  summary: "This application (type IntegratedHTML or IntegratedURL) appears as a tab on the Contact card"
+  name: ContactCard
+  nameWithType: ContactCard
+  fullName: CRMScript.NetServer.Navigation.ContactCard
+- uid: CRMScript.NetServer.Navigation.ContactArchive
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ContactArchive
+  syntax: 
+    content: Navigation.ContactArchive
+  summary: "This application (type IntegratedHTML or IntegratedURL)  appears as a tab on the Contact Archive"
+  name: ContactArchive
+  nameWithType: ContactArchive
+  fullName: CRMScript.NetServer.Navigation.ContactArchive
+- uid: CRMScript.NetServer.Navigation.ProjectCard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ProjectCard
+  syntax: 
+    content: Navigation.ProjectCard
+  summary: "This application (type IntegratedHTML or IntegratedURL)  appears as a tab on the Project card"
+  name: ProjectCard
+  nameWithType: ProjectCard
+  fullName: CRMScript.NetServer.Navigation.ProjectCard
+- uid: CRMScript.NetServer.Navigation.ProjectArchive
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ProjectArchive
+  syntax: 
+    content: Navigation.ProjectArchive
+  summary: "This application (type IntegratedHTML or IntegratedURL)  appears as a tab on the Project Archive"
+  name: ProjectArchive
+  nameWithType: ProjectArchive
+  fullName: CRMScript.NetServer.Navigation.ProjectArchive
+- uid: CRMScript.NetServer.Navigation.SaleCard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SaleCard
+  syntax: 
+    content: Navigation.SaleCard
+  summary: "This application (type IntegratedHTML or IntegratedURL)  appears as a tab in the Sale dialog"
+  name: SaleCard
+  nameWithType: SaleCard
+  fullName: CRMScript.NetServer.Navigation.SaleCard
+- uid: CRMScript.NetServer.Navigation.PersonCard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.PersonCard
+  syntax: 
+    content: Navigation.PersonCard
+  summary: "This application (type IntegratedHTML or IntegratedURL)  appears as a tab in the Person Card"
+  name: PersonCard
+  nameWithType: PersonCard
+  fullName: CRMScript.NetServer.Navigation.PersonCard
+- uid: CRMScript.NetServer.Navigation.ActivityDialog
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ActivityDialog
+  syntax: 
+    content: Navigation.ActivityDialog
+  summary: "This application (type IntegratedHTML or IntegratedURL)  appears as a tab in the Appointment dialog"
+  name: ActivityDialog
+  nameWithType: ActivityDialog
+  fullName: CRMScript.NetServer.Navigation.ActivityDialog
+- uid: CRMScript.NetServer.Navigation.DocumentDialog
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.DocumentDialog
+  syntax: 
+    content: Navigation.DocumentDialog
+  summary: "This application (type IntegratedHTML or IntegratedURL)  appears as a tab in the Document dialog"
+  name: DocumentDialog
+  nameWithType: DocumentDialog
+  fullName: CRMScript.NetServer.Navigation.DocumentDialog
+- uid: CRMScript.NetServer.Navigation.BrowserPanel
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.BrowserPanel
+  syntax: 
+    content: Navigation.BrowserPanel
+  summary: "In the Browser panel"
+  name: BrowserPanel
+  nameWithType: BrowserPanel
+  fullName: CRMScript.NetServer.Navigation.BrowserPanel
+- uid: CRMScript.NetServer.Navigation.ContSelectionTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ContSelectionTask
+  syntax: 
+    content: Navigation.ContSelectionTask
+  summary: "Task button visible on the Contact Selection task panel"
+  name: ContSelectionTask
+  nameWithType: ContSelectionTask
+  fullName: CRMScript.NetServer.Navigation.ContSelectionTask
+- uid: CRMScript.NetServer.Navigation.AppntSelectionTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.AppntSelectionTask
+  syntax: 
+    content: Navigation.AppntSelectionTask
+  summary: "Task button visible on the Appointment Selection task panel"
+  name: AppntSelectionTask
+  nameWithType: AppntSelectionTask
+  fullName: CRMScript.NetServer.Navigation.AppntSelectionTask
+- uid: CRMScript.NetServer.Navigation.SaleSelectionTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SaleSelectionTask
+  syntax: 
+    content: Navigation.SaleSelectionTask
+  summary: "Task button visible on the Sale Selection task panel"
+  name: SaleSelectionTask
+  nameWithType: SaleSelectionTask
+  fullName: CRMScript.NetServer.Navigation.SaleSelectionTask
+- uid: CRMScript.NetServer.Navigation.DocSelectionTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.DocSelectionTask
+  syntax: 
+    content: Navigation.DocSelectionTask
+  summary: "Task button visible on the Document Selection task panel"
+  name: DocSelectionTask
+  nameWithType: DocSelectionTask
+  fullName: CRMScript.NetServer.Navigation.DocSelectionTask
+- uid: CRMScript.NetServer.Navigation.ProjSelectionTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ProjSelectionTask
+  syntax: 
+    content: Navigation.ProjSelectionTask
+  summary: "Task button visible on the Project Selection task panel"
+  name: ProjSelectionTask
+  nameWithType: ProjSelectionTask
+  fullName: CRMScript.NetServer.Navigation.ProjSelectionTask
+- uid: CRMScript.NetServer.Navigation.CompanyMinicard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.CompanyMinicard
+  syntax: 
+    content: Navigation.CompanyMinicard
+  summary: "In company minicard"
+  name: CompanyMinicard
+  nameWithType: CompanyMinicard
+  fullName: CRMScript.NetServer.Navigation.CompanyMinicard
+- uid: CRMScript.NetServer.Navigation.ProjectMinicard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ProjectMinicard
+  syntax: 
+    content: Navigation.ProjectMinicard
+  summary: "In project minicard"
+  name: ProjectMinicard
+  nameWithType: ProjectMinicard
+  fullName: CRMScript.NetServer.Navigation.ProjectMinicard
+- uid: CRMScript.NetServer.Navigation.DiaryMinicard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.DiaryMinicard
+  syntax: 
+    content: Navigation.DiaryMinicard
+  summary: "In diary minicard"
+  name: DiaryMinicard
+  nameWithType: DiaryMinicard
+  fullName: CRMScript.NetServer.Navigation.DiaryMinicard
+- uid: CRMScript.NetServer.Navigation.SelectionMinicard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SelectionMinicard
+  syntax: 
+    content: Navigation.SelectionMinicard
+  summary: "In selection minicard"
+  name: SelectionMinicard
+  nameWithType: SelectionMinicard
+  fullName: CRMScript.NetServer.Navigation.SelectionMinicard
+- uid: CRMScript.NetServer.Navigation.ButtonPanelTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ButtonPanelTask
+  syntax: 
+    content: Navigation.ButtonPanelTask
+  summary: "In the main ButtonBar"
+  name: ButtonPanelTask
+  nameWithType: ButtonPanelTask
+  fullName: CRMScript.NetServer.Navigation.ButtonPanelTask
+- uid: CRMScript.NetServer.Navigation.AppointmentDialogTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.AppointmentDialogTask
+  syntax: 
+    content: Navigation.AppointmentDialogTask
+  summary: "In the appointment dialog"
+  name: AppointmentDialogTask
+  nameWithType: AppointmentDialogTask
+  fullName: CRMScript.NetServer.Navigation.AppointmentDialogTask
+- uid: CRMScript.NetServer.Navigation.SaleDialogTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SaleDialogTask
+  syntax: 
+    content: Navigation.SaleDialogTask
+  summary: "In the sale dialog"
+  name: SaleDialogTask
+  nameWithType: SaleDialogTask
+  fullName: CRMScript.NetServer.Navigation.SaleDialogTask
+- uid: CRMScript.NetServer.Navigation.DocumentDialogTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.DocumentDialogTask
+  syntax: 
+    content: Navigation.DocumentDialogTask
+  summary: "In the document dialog"
+  name: DocumentDialogTask
+  nameWithType: DocumentDialogTask
+  fullName: CRMScript.NetServer.Navigation.DocumentDialogTask
+- uid: CRMScript.NetServer.Navigation.PersonDialogTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.PersonDialogTask
+  syntax: 
+    content: Navigation.PersonDialogTask
+  summary: "In the person dialog"
+  name: PersonDialogTask
+  nameWithType: PersonDialogTask
+  fullName: CRMScript.NetServer.Navigation.PersonDialogTask
+- uid: CRMScript.NetServer.Navigation.SaleMinicard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SaleMinicard
+  syntax: 
+    content: Navigation.SaleMinicard
+  summary: "In the sale minicard"
+  name: SaleMinicard
+  nameWithType: SaleMinicard
+  fullName: CRMScript.NetServer.Navigation.SaleMinicard
+- uid: CRMScript.NetServer.Navigation.SaleArchive
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SaleArchive
+  syntax: 
+    content: Navigation.SaleArchive
+  summary: "In the sale archive"
+  name: SaleArchive
+  nameWithType: SaleArchive
+  fullName: CRMScript.NetServer.Navigation.SaleArchive
+- uid: CRMScript.NetServer.Navigation.AppntSelectionShadowTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.AppntSelectionShadowTask
+  syntax: 
+    content: Navigation.AppntSelectionShadowTask
+  summary: "Task tab for appointment selection, while showing shadow sel"
+  name: AppntSelectionShadowTask
+  nameWithType: AppntSelectionShadowTask
+  fullName: CRMScript.NetServer.Navigation.AppntSelectionShadowTask
+- uid: CRMScript.NetServer.Navigation.SaleSelectionShadowTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SaleSelectionShadowTask
+  syntax: 
+    content: Navigation.SaleSelectionShadowTask
+  summary: "Task tab for sale selection, while showing shadow sel"
+  name: SaleSelectionShadowTask
+  nameWithType: SaleSelectionShadowTask
+  fullName: CRMScript.NetServer.Navigation.SaleSelectionShadowTask
+- uid: CRMScript.NetServer.Navigation.DocSelectionShadowTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.DocSelectionShadowTask
+  syntax: 
+    content: Navigation.DocSelectionShadowTask
+  summary: "Task tab for document selection, while showing shadow sel"
+  name: DocSelectionShadowTask
+  nameWithType: DocSelectionShadowTask
+  fullName: CRMScript.NetServer.Navigation.DocSelectionShadowTask
+- uid: CRMScript.NetServer.Navigation.ProjSelectionShadowTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ProjSelectionShadowTask
+  syntax: 
+    content: Navigation.ProjSelectionShadowTask
+  summary: "Task tab for project selection, while showing shadow sel"
+  name: ProjSelectionShadowTask
+  nameWithType: ProjSelectionShadowTask
+  fullName: CRMScript.NetServer.Navigation.ProjSelectionShadowTask
+- uid: CRMScript.NetServer.Navigation.DiaryArchive
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.DiaryArchive
+  syntax: 
+    content: Navigation.DiaryArchive
+  summary: "Context (popup) menu in Diary archive"
+  name: DiaryArchive
+  nameWithType: DiaryArchive
+  fullName: CRMScript.NetServer.Navigation.DiaryArchive
+- uid: CRMScript.NetServer.Navigation.SelectionContactArchive
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SelectionContactArchive
+  syntax: 
+    content: Navigation.SelectionContactArchive
+  summary: "Context (popup) menu in Contact selection"
+  name: SelectionContactArchive
+  nameWithType: SelectionContactArchive
+  fullName: CRMScript.NetServer.Navigation.SelectionContactArchive
+- uid: CRMScript.NetServer.Navigation.SelectionProjectArchive
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SelectionProjectArchive
+  syntax: 
+    content: Navigation.SelectionProjectArchive
+  summary: "Context (popup) menu in Project archive"
+  name: SelectionProjectArchive
+  nameWithType: SelectionProjectArchive
+  fullName: CRMScript.NetServer.Navigation.SelectionProjectArchive
+- uid: CRMScript.NetServer.Navigation.SelectionSaleArchive
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SelectionSaleArchive
+  syntax: 
+    content: Navigation.SelectionSaleArchive
+  summary: "Context (popup) menu in Sale archive"
+  name: SelectionSaleArchive
+  nameWithType: SelectionSaleArchive
+  fullName: CRMScript.NetServer.Navigation.SelectionSaleArchive
+- uid: CRMScript.NetServer.Navigation.SelectionAppointmentArchive
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SelectionAppointmentArchive
+  syntax: 
+    content: Navigation.SelectionAppointmentArchive
+  summary: "Context (popup) menu in Appointment archive"
+  name: SelectionAppointmentArchive
+  nameWithType: SelectionAppointmentArchive
+  fullName: CRMScript.NetServer.Navigation.SelectionAppointmentArchive
+- uid: CRMScript.NetServer.Navigation.SelectionDocumentArchive
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SelectionDocumentArchive
+  syntax: 
+    content: Navigation.SelectionDocumentArchive
+  summary: "Context (popup) menu in Document archive"
+  name: SelectionDocumentArchive
+  nameWithType: SelectionDocumentArchive
+  fullName: CRMScript.NetServer.Navigation.SelectionDocumentArchive
+- uid: CRMScript.NetServer.Navigation.ContSelectionCustomTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ContSelectionCustomTask
+  syntax: 
+    content: Navigation.ContSelectionCustomTask
+  summary: "Task card in Contact selection, when a custom archive is shown"
+  name: ContSelectionCustomTask
+  nameWithType: ContSelectionCustomTask
+  fullName: CRMScript.NetServer.Navigation.ContSelectionCustomTask
+- uid: CRMScript.NetServer.Navigation.AppntSelectionCustomTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.AppntSelectionCustomTask
+  syntax: 
+    content: Navigation.AppntSelectionCustomTask
+  summary: "Task card in Appointment selection, when a custom archive is shown"
+  name: AppntSelectionCustomTask
+  nameWithType: AppntSelectionCustomTask
+  fullName: CRMScript.NetServer.Navigation.AppntSelectionCustomTask
+- uid: CRMScript.NetServer.Navigation.SaleSelectionCustomTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SaleSelectionCustomTask
+  syntax: 
+    content: Navigation.SaleSelectionCustomTask
+  summary: "Task card in Sale selection, when a custom archive is shown"
+  name: SaleSelectionCustomTask
+  nameWithType: SaleSelectionCustomTask
+  fullName: CRMScript.NetServer.Navigation.SaleSelectionCustomTask
+- uid: CRMScript.NetServer.Navigation.DocSelectionCustomTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.DocSelectionCustomTask
+  syntax: 
+    content: Navigation.DocSelectionCustomTask
+  summary: "Task card in Document selection, when a custom archive is shown"
+  name: DocSelectionCustomTask
+  nameWithType: DocSelectionCustomTask
+  fullName: CRMScript.NetServer.Navigation.DocSelectionCustomTask
+- uid: CRMScript.NetServer.Navigation.ProjSelectionCustomTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ProjSelectionCustomTask
+  syntax: 
+    content: Navigation.ProjSelectionCustomTask
+  summary: "Task card in Project selection, when a custom archive is shown"
+  name: ProjSelectionCustomTask
+  nameWithType: ProjSelectionCustomTask
+  fullName: CRMScript.NetServer.Navigation.ProjSelectionCustomTask
+- uid: CRMScript.NetServer.Navigation.CustomArchiveMiniCard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.CustomArchiveMiniCard
+  syntax: 
+    content: Navigation.CustomArchiveMiniCard
+  summary: "?"
+  name: CustomArchiveMiniCard
+  nameWithType: CustomArchiveMiniCard
+  fullName: CRMScript.NetServer.Navigation.CustomArchiveMiniCard
+- uid: CRMScript.NetServer.Navigation.SelectionCard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SelectionCard
+  syntax: 
+    content: Navigation.SelectionCard
+  summary: "?"
+  name: SelectionCard
+  nameWithType: SelectionCard
+  fullName: CRMScript.NetServer.Navigation.SelectionCard
+- uid: CRMScript.NetServer.Navigation.ReportMinicard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ReportMinicard
+  syntax: 
+    content: Navigation.ReportMinicard
+  summary: "In the Reporter panel minicard, so far only in Web"
+  name: ReportMinicard
+  nameWithType: ReportMinicard
+  fullName: CRMScript.NetServer.Navigation.ReportMinicard
+- uid: CRMScript.NetServer.Navigation.QuoteDialog
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.QuoteDialog
+  syntax: 
+    content: Navigation.QuoteDialog
+  summary: ""
+  name: QuoteDialog
+  nameWithType: QuoteDialog
+  fullName: CRMScript.NetServer.Navigation.QuoteDialog
+- uid: CRMScript.NetServer.Navigation.QuoteDialogTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.QuoteDialogTask
+  syntax: 
+    content: Navigation.QuoteDialogTask
+  summary: ""
+  name: QuoteDialogTask
+  nameWithType: QuoteDialogTask
+  fullName: CRMScript.NetServer.Navigation.QuoteDialogTask
+- uid: CRMScript.NetServer.Navigation.QuoteDialogArchive
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.QuoteDialogArchive
+  syntax: 
+    content: Navigation.QuoteDialogArchive
+  summary: ""
+  name: QuoteDialogArchive
+  nameWithType: QuoteDialogArchive
+  fullName: CRMScript.NetServer.Navigation.QuoteDialogArchive
+- uid: CRMScript.NetServer.Navigation.QuoteLineDialogTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.QuoteLineDialogTask
+  syntax: 
+    content: Navigation.QuoteLineDialogTask
+  summary: ""
+  name: QuoteLineDialogTask
+  nameWithType: QuoteLineDialogTask
+  fullName: CRMScript.NetServer.Navigation.QuoteLineDialogTask
+- uid: CRMScript.NetServer.Navigation.QuoteLineDialog
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.QuoteLineDialog
+  syntax: 
+    content: Navigation.QuoteLineDialog
+  summary: ""
+  name: QuoteLineDialog
+  nameWithType: QuoteLineDialog
+  fullName: CRMScript.NetServer.Navigation.QuoteLineDialog
+- uid: CRMScript.NetServer.Navigation.QuoteLineSelectionMainTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.QuoteLineSelectionMainTask
+  syntax: 
+    content: Navigation.QuoteLineSelectionMainTask
+  summary: ""
+  name: QuoteLineSelectionMainTask
+  nameWithType: QuoteLineSelectionMainTask
+  fullName: CRMScript.NetServer.Navigation.QuoteLineSelectionMainTask
+- uid: CRMScript.NetServer.Navigation.QuoteLineSelectionShadowTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.QuoteLineSelectionShadowTask
+  syntax: 
+    content: Navigation.QuoteLineSelectionShadowTask
+  summary: ""
+  name: QuoteLineSelectionShadowTask
+  nameWithType: QuoteLineSelectionShadowTask
+  fullName: CRMScript.NetServer.Navigation.QuoteLineSelectionShadowTask
+- uid: CRMScript.NetServer.Navigation.SelectionQuoteLineArchive
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SelectionQuoteLineArchive
+  syntax: 
+    content: Navigation.SelectionQuoteLineArchive
+  summary: ""
+  name: SelectionQuoteLineArchive
+  nameWithType: SelectionQuoteLineArchive
+  fullName: CRMScript.NetServer.Navigation.SelectionQuoteLineArchive
+- uid: CRMScript.NetServer.Navigation.QuoteLineSelectionCustomTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.QuoteLineSelectionCustomTask
+  syntax: 
+    content: Navigation.QuoteLineSelectionCustomTask
+  summary: ""
+  name: QuoteLineSelectionCustomTask
+  nameWithType: QuoteLineSelectionCustomTask
+  fullName: CRMScript.NetServer.Navigation.QuoteLineSelectionCustomTask
+- uid: CRMScript.NetServer.Navigation.FindSystem
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.FindSystem
+  syntax: 
+    content: Navigation.FindSystem
+  summary: ""
+  name: FindSystem
+  nameWithType: FindSystem
+  fullName: CRMScript.NetServer.Navigation.FindSystem
+- uid: CRMScript.NetServer.Navigation.MailingSelectionTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.MailingSelectionTask
+  syntax: 
+    content: Navigation.MailingSelectionTask
+  summary: "Task button visible on the Mailing Selection task panel"
+  name: MailingSelectionTask
+  nameWithType: MailingSelectionTask
+  fullName: CRMScript.NetServer.Navigation.MailingSelectionTask
+- uid: CRMScript.NetServer.Navigation.ContactSelectionMailingsTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ContactSelectionMailingsTask
+  syntax: 
+    content: Navigation.ContactSelectionMailingsTask
+  summary: "Task button visible on the Mailing Selection task panel"
+  name: ContactSelectionMailingsTask
+  nameWithType: ContactSelectionMailingsTask
+  fullName: CRMScript.NetServer.Navigation.ContactSelectionMailingsTask
+- uid: CRMScript.NetServer.Navigation.AppointmentSelectionMailingsTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.AppointmentSelectionMailingsTask
+  syntax: 
+    content: Navigation.AppointmentSelectionMailingsTask
+  summary: "Task button visible on the Mailing Selection task panel"
+  name: AppointmentSelectionMailingsTask
+  nameWithType: AppointmentSelectionMailingsTask
+  fullName: CRMScript.NetServer.Navigation.AppointmentSelectionMailingsTask
+- uid: CRMScript.NetServer.Navigation.SaleSelectionMailingsTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.SaleSelectionMailingsTask
+  syntax: 
+    content: Navigation.SaleSelectionMailingsTask
+  summary: "Task button visible on the Mailing Selection task panel"
+  name: SaleSelectionMailingsTask
+  nameWithType: SaleSelectionMailingsTask
+  fullName: CRMScript.NetServer.Navigation.SaleSelectionMailingsTask
+- uid: CRMScript.NetServer.Navigation.DocumentSelectionMailingsTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.DocumentSelectionMailingsTask
+  syntax: 
+    content: Navigation.DocumentSelectionMailingsTask
+  summary: "Task button visible on the Mailing Selection task panel"
+  name: DocumentSelectionMailingsTask
+  nameWithType: DocumentSelectionMailingsTask
+  fullName: CRMScript.NetServer.Navigation.DocumentSelectionMailingsTask
+- uid: CRMScript.NetServer.Navigation.ProjectSelectionMailingsTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ProjectSelectionMailingsTask
+  syntax: 
+    content: Navigation.ProjectSelectionMailingsTask
+  summary: "Task button visible on the Mailing Selection task panel"
+  name: ProjectSelectionMailingsTask
+  nameWithType: ProjectSelectionMailingsTask
+  fullName: CRMScript.NetServer.Navigation.ProjectSelectionMailingsTask
+- uid: CRMScript.NetServer.Navigation.QuoteLineSelectionMailingsTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.QuoteLineSelectionMailingsTask
+  syntax: 
+    content: Navigation.QuoteLineSelectionMailingsTask
+  summary: "Task button visible on the Mailing Selection task panel"
+  name: QuoteLineSelectionMailingsTask
+  nameWithType: QuoteLineSelectionMailingsTask
+  fullName: CRMScript.NetServer.Navigation.QuoteLineSelectionMailingsTask
+- uid: CRMScript.NetServer.Navigation.TopPanelNewMenu
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.TopPanelNewMenu
+  syntax: 
+    content: Navigation.TopPanelNewMenu
+  summary: "Visible in top panels new menu"
+  name: TopPanelNewMenu
+  nameWithType: TopPanelNewMenu
+  fullName: CRMScript.NetServer.Navigation.TopPanelNewMenu
+- uid: CRMScript.NetServer.Navigation.Dashboard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.Dashboard
+  syntax: 
+    content: Navigation.Dashboard
+  summary: "Dashboard panel"
+  name: Dashboard
+  nameWithType: Dashboard
+  fullName: CRMScript.NetServer.Navigation.Dashboard
+- uid: CRMScript.NetServer.Navigation.PersonArchive
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.PersonArchive
+  syntax: 
+    content: Navigation.PersonArchive
+  summary: "This application (type IntegratedHTML or IntegratedURL)  appears as a tab in the Person Archive"
+  name: PersonArchive
+  nameWithType: PersonArchive
+  fullName: CRMScript.NetServer.Navigation.PersonArchive
+- uid: CRMScript.NetServer.Navigation.PersonMinicard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.PersonMinicard
+  syntax: 
+    content: Navigation.PersonMinicard
+  summary: "In the person minicard"
+  name: PersonMinicard
+  nameWithType: PersonMinicard
+  fullName: CRMScript.NetServer.Navigation.PersonMinicard
+- uid: CRMScript.NetServer.Navigation.CompanyCardTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.CompanyCardTask
+  syntax: 
+    content: Navigation.CompanyCardTask
+  summary: "In the company card, task button"
+  name: CompanyCardTask
+  nameWithType: CompanyCardTask
+  fullName: CRMScript.NetServer.Navigation.CompanyCardTask
+- uid: CRMScript.NetServer.Navigation.ProjectCardTask
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.ProjectCardTask
+  syntax: 
+    content: Navigation.ProjectCardTask
+  summary: "In the project card, task button"
+  name: ProjectCardTask
+  nameWithType: ProjectCardTask
+  fullName: CRMScript.NetServer.Navigation.ProjectCardTask
+- uid: CRMScript.NetServer.Navigation.TicketCard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.TicketCard
+  syntax: 
+    content: Navigation.TicketCard
+  summary: "This application (type IntegratedHTML or IntegratedURL) appears as a tab in the Request card"
+  name: TicketCard
+  nameWithType: TicketCard
+  fullName: CRMScript.NetServer.Navigation.TicketCard
+- uid: CRMScript.NetServer.Navigation.TicketMinicard
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Navigation.TicketMinicard
+  syntax: 
+    content: Navigation.TicketMinicard
+  summary: "In the ticket minicard"
+  name: TicketMinicard
+  nameWithType: TicketMinicard
+  fullName: CRMScript.NetServer.Navigation.TicketMinicard
+references:
+- uid: CRMScript.NetServer.Navigation
+  commentId: T:CRMScript.NetServer.Navigation
+  isExternal: true
+  name: Navigation
+  nameWithType: Navigation
+  fullName: CRMScript.NetServer.Navigation

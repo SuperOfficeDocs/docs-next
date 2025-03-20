@@ -1,0 +1,117 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.UDefFieldType
+  children:
+  - CRMScript.NetServer.UDefFieldType.Number
+  - CRMScript.NetServer.UDefFieldType.ShortText
+  - CRMScript.NetServer.UDefFieldType.LongText
+  - CRMScript.NetServer.UDefFieldType.Date
+  - CRMScript.NetServer.UDefFieldType.UnlimitedDate
+  - CRMScript.NetServer.UDefFieldType.Checkbox
+  - CRMScript.NetServer.UDefFieldType.List
+  - CRMScript.NetServer.UDefFieldType.Decimal
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: UDefFieldType
+  syntax: 
+    content: UDefFieldType
+  summary: "Field type: 1 = Number, 2 = Short text, 3 = Long text, 4 = Date, 5 = Unlimited date, 6 = Checkbox, 7 = Drop-down listbox, 8 = Decimal"
+  name: UDefFieldType
+  nameWithType: UDefFieldType
+  fullName: CRMScript.NetServer.UDefFieldType
+- uid: CRMScript.NetServer.UDefFieldType.Number
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefFieldType.Number
+  syntax: 
+    content: UDefFieldType.Number
+  summary: "Number (32-bit integer)"
+  name: Number
+  nameWithType: Number
+  fullName: CRMScript.NetServer.UDefFieldType.Number
+- uid: CRMScript.NetServer.UDefFieldType.ShortText
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefFieldType.ShortText
+  syntax: 
+    content: UDefFieldType.ShortText
+  summary: "Short text, up to 39 characters, stored in the 'small' table"
+  name: ShortText
+  nameWithType: ShortText
+  fullName: CRMScript.NetServer.UDefFieldType.ShortText
+- uid: CRMScript.NetServer.UDefFieldType.LongText
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefFieldType.LongText
+  syntax: 
+    content: UDefFieldType.LongText
+  summary: "Long text, up to 199 characters, stored in the 'large' table"
+  name: LongText
+  nameWithType: LongText
+  fullName: CRMScript.NetServer.UDefFieldType.LongText
+- uid: CRMScript.NetServer.UDefFieldType.Date
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefFieldType.Date
+  syntax: 
+    content: UDefFieldType.Date
+  summary: "Date, between 1.1.1970 and 2038, stored as seconds after 1.1.1970"
+  name: Date
+  nameWithType: Date
+  fullName: CRMScript.NetServer.UDefFieldType.Date
+- uid: CRMScript.NetServer.UDefFieldType.UnlimitedDate
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefFieldType.UnlimitedDate
+  syntax: 
+    content: UDefFieldType.UnlimitedDate
+  summary: "Unlimited date (without time), stored as an YYYYMMDD string"
+  name: UnlimitedDate
+  nameWithType: UnlimitedDate
+  fullName: CRMScript.NetServer.UDefFieldType.UnlimitedDate
+- uid: CRMScript.NetServer.UDefFieldType.Checkbox
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefFieldType.Checkbox
+  syntax: 
+    content: UDefFieldType.Checkbox
+  summary: "Checkbox, stored as an integer, 1 = checked"
+  name: Checkbox
+  nameWithType: Checkbox
+  fullName: CRMScript.NetServer.UDefFieldType.Checkbox
+- uid: CRMScript.NetServer.UDefFieldType.List
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefFieldType.List
+  syntax: 
+    content: UDefFieldType.List
+  summary: "List item reference, stored as an integer ID"
+  name: List
+  nameWithType: List
+  fullName: CRMScript.NetServer.UDefFieldType.List
+- uid: CRMScript.NetServer.UDefFieldType.Decimal
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefFieldType.Decimal
+  syntax: 
+    content: UDefFieldType.Decimal
+  summary: "Decimal / floating point, stored as a double"
+  name: Decimal
+  nameWithType: Decimal
+  fullName: CRMScript.NetServer.UDefFieldType.Decimal
+references:
+- uid: CRMScript.NetServer.UDefFieldType
+  commentId: T:CRMScript.NetServer.UDefFieldType
+  isExternal: true
+  name: UDefFieldType
+  nameWithType: UDefFieldType
+  fullName: CRMScript.NetServer.UDefFieldType

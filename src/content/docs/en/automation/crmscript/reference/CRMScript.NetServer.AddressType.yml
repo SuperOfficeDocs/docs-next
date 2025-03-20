@@ -1,0 +1,93 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.AddressType
+  children:
+  - CRMScript.NetServer.AddressType.Unknown
+  - CRMScript.NetServer.AddressType.ContactPostalAddress
+  - CRMScript.NetServer.AddressType.ContactStreetAddress
+  - CRMScript.NetServer.AddressType.PersonPrivateAddress
+  - CRMScript.NetServer.AddressType.QuoteBillingAddress
+  - CRMScript.NetServer.AddressType.QuoteShippingAddress
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: AddressType
+  syntax: 
+    content: AddressType
+  summary: "The type of Address"
+  name: AddressType
+  nameWithType: AddressType
+  fullName: CRMScript.NetServer.AddressType
+- uid: CRMScript.NetServer.AddressType.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AddressType.Unknown
+  syntax: 
+    content: AddressType.Unknown
+  summary: "Unknown - used when initializing "
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.AddressType.Unknown
+- uid: CRMScript.NetServer.AddressType.ContactPostalAddress
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AddressType.ContactPostalAddress
+  syntax: 
+    content: AddressType.ContactPostalAddress
+  summary: "The address is a contact's postal address"
+  name: ContactPostalAddress
+  nameWithType: ContactPostalAddress
+  fullName: CRMScript.NetServer.AddressType.ContactPostalAddress
+- uid: CRMScript.NetServer.AddressType.ContactStreetAddress
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AddressType.ContactStreetAddress
+  syntax: 
+    content: AddressType.ContactStreetAddress
+  summary: "The address is a contact's street address"
+  name: ContactStreetAddress
+  nameWithType: ContactStreetAddress
+  fullName: CRMScript.NetServer.AddressType.ContactStreetAddress
+- uid: CRMScript.NetServer.AddressType.PersonPrivateAddress
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AddressType.PersonPrivateAddress
+  syntax: 
+    content: AddressType.PersonPrivateAddress
+  summary: "The address is a person's private address"
+  name: PersonPrivateAddress
+  nameWithType: PersonPrivateAddress
+  fullName: CRMScript.NetServer.AddressType.PersonPrivateAddress
+- uid: CRMScript.NetServer.AddressType.QuoteBillingAddress
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AddressType.QuoteBillingAddress
+  syntax: 
+    content: AddressType.QuoteBillingAddress
+  summary: "The address is the shipping address for a quote"
+  name: QuoteBillingAddress
+  nameWithType: QuoteBillingAddress
+  fullName: CRMScript.NetServer.AddressType.QuoteBillingAddress
+- uid: CRMScript.NetServer.AddressType.QuoteShippingAddress
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AddressType.QuoteShippingAddress
+  syntax: 
+    content: AddressType.QuoteShippingAddress
+  summary: "The address is the shipping address for a quote"
+  name: QuoteShippingAddress
+  nameWithType: QuoteShippingAddress
+  fullName: CRMScript.NetServer.AddressType.QuoteShippingAddress
+references:
+- uid: CRMScript.NetServer.AddressType
+  commentId: T:CRMScript.NetServer.AddressType
+  isExternal: true
+  name: AddressType
+  nameWithType: AddressType
+  fullName: CRMScript.NetServer.AddressType

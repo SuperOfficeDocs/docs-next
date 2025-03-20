@@ -1,0 +1,57 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.TicketPriorityStatus
+  children:
+  - CRMScript.NetServer.TicketPriorityStatus.Unknown
+  - CRMScript.NetServer.TicketPriorityStatus.Normal
+  - CRMScript.NetServer.TicketPriorityStatus.Deleted
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: TicketPriorityStatus
+  syntax: 
+    content: TicketPriorityStatus
+  summary: "Status of the ticket priority"
+  name: TicketPriorityStatus
+  nameWithType: TicketPriorityStatus
+  fullName: CRMScript.NetServer.TicketPriorityStatus
+- uid: CRMScript.NetServer.TicketPriorityStatus.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketPriorityStatus.Unknown
+  syntax: 
+    content: TicketPriorityStatus.Unknown
+  summary: "The status is unknown, should normally not occure in the database"
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.TicketPriorityStatus.Unknown
+- uid: CRMScript.NetServer.TicketPriorityStatus.Normal
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketPriorityStatus.Normal
+  syntax: 
+    content: TicketPriorityStatus.Normal
+  summary: "The status is normal"
+  name: Normal
+  nameWithType: Normal
+  fullName: CRMScript.NetServer.TicketPriorityStatus.Normal
+- uid: CRMScript.NetServer.TicketPriorityStatus.Deleted
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketPriorityStatus.Deleted
+  syntax: 
+    content: TicketPriorityStatus.Deleted
+  summary: "The status is marked as deleted"
+  name: Deleted
+  nameWithType: Deleted
+  fullName: CRMScript.NetServer.TicketPriorityStatus.Deleted
+references:
+- uid: CRMScript.NetServer.TicketPriorityStatus
+  commentId: T:CRMScript.NetServer.TicketPriorityStatus
+  isExternal: true
+  name: TicketPriorityStatus
+  nameWithType: TicketPriorityStatus
+  fullName: CRMScript.NetServer.TicketPriorityStatus

@@ -1,0 +1,93 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.WidgetRequiredFields
+  children:
+  - CRMScript.NetServer.WidgetRequiredFields.None
+  - CRMScript.NetServer.WidgetRequiredFields.Email
+  - CRMScript.NetServer.WidgetRequiredFields.Name
+  - CRMScript.NetServer.WidgetRequiredFields.Company
+  - CRMScript.NetServer.WidgetRequiredFields.Phone
+  - CRMScript.NetServer.WidgetRequiredFields.Country
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: WidgetRequiredFields
+  syntax: 
+    content: WidgetRequiredFields
+  summary: "Chat Topic required fields in pre-form."
+  name: WidgetRequiredFields
+  nameWithType: WidgetRequiredFields
+  fullName: CRMScript.NetServer.WidgetRequiredFields
+- uid: CRMScript.NetServer.WidgetRequiredFields.None
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: WidgetRequiredFields.None
+  syntax: 
+    content: WidgetRequiredFields.None
+  summary: "No required fields"
+  name: None
+  nameWithType: None
+  fullName: CRMScript.NetServer.WidgetRequiredFields.None
+- uid: CRMScript.NetServer.WidgetRequiredFields.Email
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: WidgetRequiredFields.Email
+  syntax: 
+    content: WidgetRequiredFields.Email
+  summary: "Email field is required"
+  name: Email
+  nameWithType: Email
+  fullName: CRMScript.NetServer.WidgetRequiredFields.Email
+- uid: CRMScript.NetServer.WidgetRequiredFields.Name
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: WidgetRequiredFields.Name
+  syntax: 
+    content: WidgetRequiredFields.Name
+  summary: "Name field is required"
+  name: Name
+  nameWithType: Name
+  fullName: CRMScript.NetServer.WidgetRequiredFields.Name
+- uid: CRMScript.NetServer.WidgetRequiredFields.Company
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: WidgetRequiredFields.Company
+  syntax: 
+    content: WidgetRequiredFields.Company
+  summary: "Company field is required"
+  name: Company
+  nameWithType: Company
+  fullName: CRMScript.NetServer.WidgetRequiredFields.Company
+- uid: CRMScript.NetServer.WidgetRequiredFields.Phone
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: WidgetRequiredFields.Phone
+  syntax: 
+    content: WidgetRequiredFields.Phone
+  summary: "Phone field is required"
+  name: Phone
+  nameWithType: Phone
+  fullName: CRMScript.NetServer.WidgetRequiredFields.Phone
+- uid: CRMScript.NetServer.WidgetRequiredFields.Country
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: WidgetRequiredFields.Country
+  syntax: 
+    content: WidgetRequiredFields.Country
+  summary: "Country field is required"
+  name: Country
+  nameWithType: Country
+  fullName: CRMScript.NetServer.WidgetRequiredFields.Country
+references:
+- uid: CRMScript.NetServer.WidgetRequiredFields
+  commentId: T:CRMScript.NetServer.WidgetRequiredFields
+  isExternal: true
+  name: WidgetRequiredFields
+  nameWithType: WidgetRequiredFields
+  fullName: CRMScript.NetServer.WidgetRequiredFields

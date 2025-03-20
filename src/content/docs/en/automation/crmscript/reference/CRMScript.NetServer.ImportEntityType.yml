@@ -1,0 +1,69 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.ImportEntityType
+  children:
+  - CRMScript.NetServer.ImportEntityType.Unknown
+  - CRMScript.NetServer.ImportEntityType.Person
+  - CRMScript.NetServer.ImportEntityType.Contact
+  - CRMScript.NetServer.ImportEntityType.Product
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: ImportEntityType
+  syntax: 
+    content: ImportEntityType
+  summary: "Entitys type for import"
+  name: ImportEntityType
+  nameWithType: ImportEntityType
+  fullName: CRMScript.NetServer.ImportEntityType
+- uid: CRMScript.NetServer.ImportEntityType.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ImportEntityType.Unknown
+  syntax: 
+    content: ImportEntityType.Unknown
+  summary: "Unknown"
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.ImportEntityType.Unknown
+- uid: CRMScript.NetServer.ImportEntityType.Person
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ImportEntityType.Person
+  syntax: 
+    content: ImportEntityType.Person
+  summary: "Person"
+  name: Person
+  nameWithType: Person
+  fullName: CRMScript.NetServer.ImportEntityType.Person
+- uid: CRMScript.NetServer.ImportEntityType.Contact
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ImportEntityType.Contact
+  syntax: 
+    content: ImportEntityType.Contact
+  summary: "Contact"
+  name: Contact
+  nameWithType: Contact
+  fullName: CRMScript.NetServer.ImportEntityType.Contact
+- uid: CRMScript.NetServer.ImportEntityType.Product
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ImportEntityType.Product
+  syntax: 
+    content: ImportEntityType.Product
+  summary: "Product"
+  name: Product
+  nameWithType: Product
+  fullName: CRMScript.NetServer.ImportEntityType.Product
+references:
+- uid: CRMScript.NetServer.ImportEntityType
+  commentId: T:CRMScript.NetServer.ImportEntityType
+  isExternal: true
+  name: ImportEntityType
+  nameWithType: ImportEntityType
+  fullName: CRMScript.NetServer.ImportEntityType

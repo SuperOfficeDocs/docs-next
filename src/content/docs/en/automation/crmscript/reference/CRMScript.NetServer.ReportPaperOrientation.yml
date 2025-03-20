@@ -1,0 +1,57 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.ReportPaperOrientation
+  children:
+  - CRMScript.NetServer.ReportPaperOrientation.None
+  - CRMScript.NetServer.ReportPaperOrientation.Portrait
+  - CRMScript.NetServer.ReportPaperOrientation.Landscape
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: ReportPaperOrientation
+  syntax: 
+    content: ReportPaperOrientation
+  summary: "Describes the orientation of the paper when printing a report. The report layout must be 'Label'"
+  name: ReportPaperOrientation
+  nameWithType: ReportPaperOrientation
+  fullName: CRMScript.NetServer.ReportPaperOrientation
+- uid: CRMScript.NetServer.ReportPaperOrientation.None
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ReportPaperOrientation.None
+  syntax: 
+    content: ReportPaperOrientation.None
+  summary: ""
+  name: None
+  nameWithType: None
+  fullName: CRMScript.NetServer.ReportPaperOrientation.None
+- uid: CRMScript.NetServer.ReportPaperOrientation.Portrait
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ReportPaperOrientation.Portrait
+  syntax: 
+    content: ReportPaperOrientation.Portrait
+  summary: "The taller orientation"
+  name: Portrait
+  nameWithType: Portrait
+  fullName: CRMScript.NetServer.ReportPaperOrientation.Portrait
+- uid: CRMScript.NetServer.ReportPaperOrientation.Landscape
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ReportPaperOrientation.Landscape
+  syntax: 
+    content: ReportPaperOrientation.Landscape
+  summary: "The wider orientation"
+  name: Landscape
+  nameWithType: Landscape
+  fullName: CRMScript.NetServer.ReportPaperOrientation.Landscape
+references:
+- uid: CRMScript.NetServer.ReportPaperOrientation
+  commentId: T:CRMScript.NetServer.ReportPaperOrientation
+  isExternal: true
+  name: ReportPaperOrientation
+  nameWithType: ReportPaperOrientation
+  fullName: CRMScript.NetServer.ReportPaperOrientation

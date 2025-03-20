@@ -1,0 +1,115 @@
+items:
+- name: Developer portal
+  href: index.yml
+  items:
+  - name: Introduction to Developer Portal
+    href: about.md
+  - name: Dashboard and widgets
+    href: widgets/index.md
+  - name: Getting started
+    href: getting-started/index.md
+    items:
+    - name: Developer registration (account)
+      href: getting-started/get-access-to-sod.md
+    - name: App environments
+      href: getting-started/app-envir.md
+    - name: User contexts
+      href: getting-started/user-contexts.md
+    - name: What API to use?
+      href: getting-started/what-api-to-use.md
+  - name: Create a new app
+    href: create-app/toc.yml
+    topicHref: create-app/index.md
+  - name: Custom app
+    href: custom-app/index.md
+    items:
+    - name: Checklist
+      href: custom-app/checklist.md
+    - name: Validate app
+      href: custom-app/validate.md
+    - name: First-time activation
+      href: custom-app/activate.md
+  - name: Standard app
+    href: standard-app/toc.yml
+    topicHref: standard-app/index.md
+  - name: Best practices
+    href: best-practices/index.md
+    items:
+    - name: Tenant status
+      href: best-practices/tenant-status/index.md
+      items: 
+      - name: Using the API
+        href: best-practices/tenant-status/check-status.md
+      - name: Using the webhook
+        href: best-practices/tenant-status/get-notifications.md
+    - name: Error reporting emails
+      href: best-practices/error-emails.md
+    - name: System Messages
+      href: best-practices/system-messages.md
+  - name: Partners and users
+    href: partner/update-profile.md
+    items:
+    - name: Update profile
+      href: partner/update-profile.md
+    - name: Update partner settings
+      href: partner/update-partner-settings.md
+    - name: Update technical contacts
+      href: partner/manage-technical-contacts.md
+    - name: Partner settings (reference)
+      href: partner/partner-settings.md
+    - name: Add user
+      href: partner/add-user.md
+    - name: Update user
+      href: partner/edit-user.md
+    - name: Remove user
+      href: partner/remove-user.md
+    - name: User settings (reference)
+      href: partner/user-settings.md
+    - name: Manage permissions
+      href: partner/manage-permissions.md
+  - name: Provisioning
+    href: provisioning/index.md
+    items:
+    - name: What is consent?
+      href: provisioning/consent.md
+    - name: Get consent
+      href: provisioning/get-consent.md
+    - name: Revoke application
+      href: provisioning/revoke.md
+    - name: Update text for consent dialog
+      href: provisioning/update-consent-text.md
+  - name: Tenant management
+    href: tenants/index.md
+    items:
+    - name: Insights
+      href: tenants/info.md
+    - name: Authorization
+      href: tenants/authorization.md
+    - name: New tenant or production sandbox
+      href: tenants/get.md
+  - name: Analytics
+    href: analytics/metered-services.md
+    items:
+    - name: Inspect event log
+      href: analytics/logs.md
+    - name: View API call statistics
+      href: analytics/metered-services.md
+    - name: View exceptions
+      href: analytics/failures.md
+    - name: Check application API performance
+      href: analytics/metrics-performance.md
+  - name: FAQ
+    href: faq/index.md
+    items:
+    - name: Format text
+      href: faq/format-text.md
+    - name: Update contact person
+      href: faq/update-contact-person.md
+    - name: Update your application
+      href: faq/update-app.md
+    - name: Turn off mirroring for app
+      href: faq/turn-off-mirroring.md
+    - name: Run website on IIS localhost
+      href: faq/run-website-on-iis-localhost.md
+    - name: Unable to approve app
+      href: faq/unable-to-approve-app.md

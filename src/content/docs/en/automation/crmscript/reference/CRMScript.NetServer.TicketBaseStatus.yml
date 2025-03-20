@@ -1,0 +1,189 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.TicketBaseStatus
+  children:
+  - CRMScript.NetServer.TicketBaseStatus.Unknown
+  - CRMScript.NetServer.TicketBaseStatus.Active
+  - CRMScript.NetServer.TicketBaseStatus.Closed
+  - CRMScript.NetServer.TicketBaseStatus.Postponed
+  - CRMScript.NetServer.TicketBaseStatus.Deleted
+  - CRMScript.NetServer.TicketBaseStatus.Merged
+  - CRMScript.NetServer.TicketBaseStatus.PostponedSpecific
+  - CRMScript.NetServer.TicketBaseStatus.Postponed1Hour
+  - CRMScript.NetServer.TicketBaseStatus.Postponed2Hours
+  - CRMScript.NetServer.TicketBaseStatus.Postponed3Hours
+  - CRMScript.NetServer.TicketBaseStatus.Postponed4Hours
+  - CRMScript.NetServer.TicketBaseStatus.PostponedDay
+  - CRMScript.NetServer.TicketBaseStatus.PostponedWeek
+  - CRMScript.NetServer.TicketBaseStatus.PostponedMonth
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: TicketBaseStatus
+  syntax: 
+    content: TicketBaseStatus
+  summary: "Status of a ticket/request"
+  name: TicketBaseStatus
+  nameWithType: TicketBaseStatus
+  fullName: CRMScript.NetServer.TicketBaseStatus
+- uid: CRMScript.NetServer.TicketBaseStatus.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.Unknown
+  syntax: 
+    content: TicketBaseStatus.Unknown
+  summary: "Unknown / uninitialized"
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.TicketBaseStatus.Unknown
+- uid: CRMScript.NetServer.TicketBaseStatus.Active
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.Active
+  syntax: 
+    content: TicketBaseStatus.Active
+  summary: "Request is currently active"
+  name: Active
+  nameWithType: Active
+  fullName: CRMScript.NetServer.TicketBaseStatus.Active
+- uid: CRMScript.NetServer.TicketBaseStatus.Closed
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.Closed
+  syntax: 
+    content: TicketBaseStatus.Closed
+  summary: "Request has been closed"
+  name: Closed
+  nameWithType: Closed
+  fullName: CRMScript.NetServer.TicketBaseStatus.Closed
+- uid: CRMScript.NetServer.TicketBaseStatus.Postponed
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.Postponed
+  syntax: 
+    content: TicketBaseStatus.Postponed
+  summary: "Request has been postponed"
+  name: Postponed
+  nameWithType: Postponed
+  fullName: CRMScript.NetServer.TicketBaseStatus.Postponed
+- uid: CRMScript.NetServer.TicketBaseStatus.Deleted
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.Deleted
+  syntax: 
+    content: TicketBaseStatus.Deleted
+  summary: "Request has been deleted"
+  name: Deleted
+  nameWithType: Deleted
+  fullName: CRMScript.NetServer.TicketBaseStatus.Deleted
+- uid: CRMScript.NetServer.TicketBaseStatus.Merged
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.Merged
+  syntax: 
+    content: TicketBaseStatus.Merged
+  summary: "Request has been merged with another request"
+  name: Merged
+  nameWithType: Merged
+  fullName: CRMScript.NetServer.TicketBaseStatus.Merged
+- uid: CRMScript.NetServer.TicketBaseStatus.PostponedSpecific
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.PostponedSpecific
+  syntax: 
+    content: TicketBaseStatus.PostponedSpecific
+  summary: "Should only be used for UI, when saved to DB it will be converted to Postponed"
+  name: PostponedSpecific
+  nameWithType: PostponedSpecific
+  fullName: CRMScript.NetServer.TicketBaseStatus.PostponedSpecific
+- uid: CRMScript.NetServer.TicketBaseStatus.Postponed1Hour
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.Postponed1Hour
+  syntax: 
+    content: TicketBaseStatus.Postponed1Hour
+  summary: "Should only be used for UI, when saved to DB it will be converted to Postponed"
+  name: Postponed1Hour
+  nameWithType: Postponed1Hour
+  fullName: CRMScript.NetServer.TicketBaseStatus.Postponed1Hour
+- uid: CRMScript.NetServer.TicketBaseStatus.Postponed2Hours
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.Postponed2Hours
+  syntax: 
+    content: TicketBaseStatus.Postponed2Hours
+  summary: "Should only be used for UI, when saved to DB it will be converted to Postponed"
+  name: Postponed2Hours
+  nameWithType: Postponed2Hours
+  fullName: CRMScript.NetServer.TicketBaseStatus.Postponed2Hours
+- uid: CRMScript.NetServer.TicketBaseStatus.Postponed3Hours
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.Postponed3Hours
+  syntax: 
+    content: TicketBaseStatus.Postponed3Hours
+  summary: "Should only be used for UI, when saved to DB it will be converted to Postponed"
+  name: Postponed3Hours
+  nameWithType: Postponed3Hours
+  fullName: CRMScript.NetServer.TicketBaseStatus.Postponed3Hours
+- uid: CRMScript.NetServer.TicketBaseStatus.Postponed4Hours
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.Postponed4Hours
+  syntax: 
+    content: TicketBaseStatus.Postponed4Hours
+  summary: "Should only be used for UI, when saved to DB it will be converted to Postponed"
+  name: Postponed4Hours
+  nameWithType: Postponed4Hours
+  fullName: CRMScript.NetServer.TicketBaseStatus.Postponed4Hours
+- uid: CRMScript.NetServer.TicketBaseStatus.PostponedDay
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.PostponedDay
+  syntax: 
+    content: TicketBaseStatus.PostponedDay
+  summary: "Should only be used for UI, when saved to DB it will be converted to Postponed"
+  name: PostponedDay
+  nameWithType: PostponedDay
+  fullName: CRMScript.NetServer.TicketBaseStatus.PostponedDay
+- uid: CRMScript.NetServer.TicketBaseStatus.PostponedWeek
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.PostponedWeek
+  syntax: 
+    content: TicketBaseStatus.PostponedWeek
+  summary: "Should only be used for UI, when saved to DB it will be converted to Postponed"
+  name: PostponedWeek
+  nameWithType: PostponedWeek
+  fullName: CRMScript.NetServer.TicketBaseStatus.PostponedWeek
+- uid: CRMScript.NetServer.TicketBaseStatus.PostponedMonth
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketBaseStatus.PostponedMonth
+  syntax: 
+    content: TicketBaseStatus.PostponedMonth
+  summary: "Should only be used for UI, when saved to DB it will be converted to Postponed"
+  name: PostponedMonth
+  nameWithType: PostponedMonth
+  fullName: CRMScript.NetServer.TicketBaseStatus.PostponedMonth
+references:
+- uid: CRMScript.NetServer.TicketBaseStatus
+  commentId: T:CRMScript.NetServer.TicketBaseStatus
+  isExternal: true
+  name: TicketBaseStatus
+  nameWithType: TicketBaseStatus
+  fullName: CRMScript.NetServer.TicketBaseStatus
