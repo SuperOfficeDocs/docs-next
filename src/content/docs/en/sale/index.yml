@@ -1,0 +1,243 @@
+### YamlMime:SubCategory
+
+title: Sale and quote
+summary: Welcome to the Sale and Quote area where you can find relevant links to all things related to sales, sales guide, sales intelligence (SAINT), quotes, and products.
+
+metadata:
+  title: Sale and quote
+  description: Sale, sales guide, sales intelligence (SAINT), quote, and product.
+  ms.topic: landing-page
+  author: Bergfrid Dias
+  so.author: digitaldiina
+  so.date: 06.09.2023
+
+# typeDesc: architecture | concept | deploy       | download      | get-started        | how-to-guide | learn  | overview | quickstart | reference     | tutorial | video              | whats-new
+# itemType: architecture | explore | cloud_upload | file_download | power_settings_new | list         | school | map      | place      | library_books | dvr      | video_library      | new_releases
+
+# PLEASE PAY ATTENTION TO INDENTATION
+
+landingContent:
+  # Card 1
+  - title: Introduction
+    linkLists:
+      - itemType: explore
+        typeDesc: concept
+        links:
+        - text: Introduction to sales
+          url: learn/index.md
+        - text: Stakeholders
+          url: learn/stakeholders/index.md
+        - text: Pipeline management
+          url: learn/sales-targets/index.md
+        - text: Forecast and selections
+          url: learn/forecasting.md
+      - itemType: video_library
+        typeDesc: video
+        links:
+        - text: Sales guide product demo
+          url: https://www.youtube.com/watch?v=rOjUHDgYPGk
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: How to register a lead
+          url: learn/create.md
+        - text: Set up sales targets
+          url: learn/sales-targets/create.md
+        - text: Add sale type (list)
+          url: admin/sale-type.md
+        - text: Add sale stage (list)
+          url: admin/sale-stage.md 
+        - text: Add currency (list)
+          url: ../admin/lists/learn/adding-items-to-currency-list.md
+      - itemType: library_books
+        typeDesc: reference
+        links:
+        - text: Template variables
+          url: ../document/templates/variables/for-sales.md
+
+  - title: Sales guide (workflow)
+    linkLists:
+      - itemType: explore
+        typeDesc: concept
+        links:
+        - text: The sales guide
+          url: learn/sales-guide/index.md
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Create
+          url: admin/create-sales-guide.md
+      - itemType: video_library
+        typeDesc: video
+        links:
+        - text: Sales guide product demo
+          url: https://www.youtube.com/watch?v=rOjUHDgYPGk
+        - text: How to visualize sales process
+          url: https://www.youtube.com/watch?v=KB3WWZjXlYc
+
+  - title: Quote
+    linkLists:
+      - itemType: explore
+        typeDesc: concept
+        links:
+        - text: Overview
+          url: ../quote/index.md
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Create quotes
+          url: ../quote/learn/create.md
+        - text: Add alternative
+          url: ../quote/learn/add-alternative.md
+        - text: Add product
+          url: ../quote/learn/add-product.md
+        - text: Place an order
+          url: ../quote/learn/create-order.md
+        - text: Add ERP connection (Quote Connector)
+          url: ../quote/learn/admin/erp-connection-add.md
+        - text: Add price list
+          url: ../quote/learn/admin/product/add-price-list.md
+        - text: Add product to price list
+          url: ../quote/learn/admin/product/add-product-to-price-list.md
+        - text: Configure products
+          url: ../quote/learn/admin/product/configure.md
+      - itemType: video_library
+        typeDesc: video
+        links:
+        - text: Track sales quotes
+          url: https://www.youtube.com/watch?v=lzJ6AsAhyE4
+
+  - title: SAINT
+    linkLists:
+      - itemType: explore
+        typeDesc: concept
+        links:
+        - text: What is SAINT and what can it do
+          url: saint/learn/index.md
+        - text: Counters and values
+          url: ../saint/learn/index.md
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Set up SAINT
+          url: ../saint/admin/index.md
+        - text: Add status monitor
+          url: ../saint/admin/create-status.md
+        - text: Add sale amount class (list)
+          url: ../admin/lists/learn/sale-amount-class.md
+      - itemType: library_books
+        typeDesc: reference
+        links:
+        - text: The View statuses dialog
+          url: ../saint/learn/status-dialog.md
+
+  - title: UI customization
+    linkLists:
+      - itemType: explore
+        typeDesc: concept
+        links:
+        - text: Screen Designer
+          url: ../ui/screen-designer/learn/index.md
+        - text: Web panels
+          url: ../ui/web-panels/index.md
+        - text: SoProtocol
+          url: ../ui/soprotocol/index.md
+        - text: Custom screens (bLogic)
+          url: ../ui/blogic/custom-screens/index.md
+        - text: Task menu items
+          url: ../admin/lists/learn/add-items-to-task-menu.md
+        - text: Extra fields
+          url: ../custom-objects/admin/create-extra-field.md
+
+  - title: Automation
+    linkLists:
+      - itemType: explore
+        typeDesc: concept
+        links:
+        - text: Overview
+          url: ../automation/index.yml
+        - text: Triggers
+          url: ../automation/trigger/index.md
+      - itemType: library_books
+        typeDesc: reference
+        links:
+        - text: Webhooks - sale events
+          url: ../automation/webhook/reference/sale-events.md
+        - text: Webhooks - sale stakeholder events
+          url: ../automation/webhook/reference/sale-stakeholder-events.md
+        - text: Webhooks - quote events
+          url: ../automation/webhook/reference/quote-events.md
+        - text: Zapier
+          url: ../automation/zapier/index.md
+
+  - title: CRMScript
+    linkLists:
+      - itemType: explore
+        typeDesc: concept
+        links:
+        - text: Overview
+          url: ../automation/crmscript/howto/sale/index.md
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Create sale
+          url: ../automation/crmscript/howto/sale/create.md
+        - text: Get
+          url: ../automation/crmscript/howto/sale/get.md
+        - text: Update
+          url: ../automation/crmscript/howto/sale/update.md
+        - text: Stakeholders
+          url: ../automation/crmscript/howto/sale/stakeholders.md
+        - text: Guides
+          url: ../automation/crmscript/howto/sale/guides.md
+        - text: Currency
+          url: ../automation/crmscript/howto/sale/currency.md
+        - text: Lost or sold
+          url: ../automation/crmscript/howto/sale/lost-or-sold.md
+        - text: Samples
+          url: ../automation/crmscript/howto/sale/samples.md
+        - text: Create quote
+          url: ../automation/crmscript/howto/quote/create.md
+
+  - title: API
+    linkLists:
+      - itemType: library_books
+        typeDesc: reference
+        links:
+        - text: REST
+          url: ../api/reference/restful/rest/Sale/index.md
+        - text: SOAP (services88)
+          url: ../api/reference/soap/Services88/Sale/index.md
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Link sale to follow-up (web services)
+          url: ../api/web-services/howto/sale/index.md
+
+  - title: Database tables
+    linkLists:
+      - itemType: library_books
+        typeDesc: reference
+        links:
+        - text: Sale
+          url: ../database/tables/sale.md
+        - text: Saletype
+          url: ../database/tables/saletype.md
+        - text: Salestakeholder
+          url: ../database/tables/salestakeholder.md
+        - text: Reason
+          url: ../database/tables/reason.md
+        - text: Currency
+          url: ../database/tables/currency.md
+        - text: Quote
+          url: ../database/tables/quote.md
+        - text: Quote
+          url: ../database/tables/quotealternative.md
+        - text: Quote
+          url: ../database/tables/quoteline.md
+        - text: UdsaleSmall
+          url: ../database/tables/udsalesmall.md
+        - text: UdsaleLarge
+          url: ../database/tables/udsalelarge.md
+
+  # Add another card here, and so on

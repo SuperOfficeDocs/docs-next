@@ -1,0 +1,48 @@
+items:
+- name: Overview
+  href: index.md
+- name: Document library
+  href: ../library/learn/index.md
+- name: Work with documents
+  topicHref: create.md
+  items:
+  - name: Create new document
+    href: create.md
+  - name: Check in/out document
+    href: lock.md
+  - name: Edit or delete document
+    href: edit.md
+  - name: Send document as email
+    href: send-as-email.md
+
+- name: Document templates
+  topicHref: ../templates/learn/index.md
+  items:
+  - name: Overview
+    href: ../templates/learn/index.md
+  - name: Document types
+    href: ../templates/learn/document-types.md
+  - name: Template variables
+    href: ../templates/learn/template-variables.md
+    items:
+    - name: Reference
+      href: ../templates/variables/toc.yml
+      topicHref: ../templates/variables/index.md
+    - name: Troubleshooting
+      href: ../templates/learn/troubleshooting.md
+  - name: Merge fields (quote templates)
+    href: ../templates/learn/quote-templates.md
+    items:
+    - name: Reference
+      href: ../templates/merge-fields/toc.yml
+      topicHref: ../templates/merge-fields/index.md
+    - name: Tutorial
+      href: ../templates/admin/tutorial.md
+  - name: Create document template
+    href: ../templates/learn/create.md
+  - name: Link template
+    href: ../templates/admin/link-template.md
+  - name: Update template
+    href: ../templates/admin/update-template.md
+  - name: Document templates in multiple languages
+    href: ../../onsite/win-client/learn/using-document-templates-for-multiple-languages.md
