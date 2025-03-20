@@ -2,26 +2,42 @@ export const headerData = {
   links: [
     {
       text: 'Learn',
+      href: "/en/learn"
+    },
+    {
+      text: 'Areas',
       links: [
         {
           text: 'Company',
-          href: '#',
+          href: '/en/company',
         },
         {
           text: 'Contact',
-          href: '#',
+          href: '/en/contact',
         },
         {
           text: 'Diary',
-          href: '#',
+          href: '/en/diary',
         },
         {
-          text: 'Sale',
-          href: '#',
+          text: 'Document',
+          href: '/en/document',
+        },
+        {
+          text: 'Email',
+          href: '/en/email',
+        },
+        {
+          text: 'Project',
+          href: '/en/project',
         },
         {
           text: 'Request',
-          href: '#',
+          href: '/en/request',
+        },
+        {
+          text: 'Sale',
+          href: '/en/sale',
         },
       ],
     },
@@ -37,11 +53,27 @@ export const headerData = {
       text: 'Developer Guide',
       links: [
         {
-          text: 'CRMScript',
+          text: 'Overview',
+          href: '/en/api',
+        },
+        {
+          text: 'Introduction to APIs',
           href: '#',
         },
         {
-          text: 'Database',
+          text: 'Automaton / CRMScript',
+          href: '#',
+        },
+        {
+          text: 'Configurable screens (Sales)',
+          href: '#',
+        },
+        {
+          text: 'Custom screens (Service)',
+          href: '#',
+        },
+        {
+          text: 'Database overview',
           href: '#',
         },
         {
@@ -49,13 +81,26 @@ export const headerData = {
           href: '#',
         },
         {
-          text: 'API reference',
+          text: 'Search APIs',
+          href: '#',
+        },
+        {
+          text: 'Webhooks',
+          href: '#',
+        },
+        {
+          text: 'Web Services',
           href: '#',
         },
       ],
     },
+    {
+      text: "Search",
+      href: "#"
+    }
   ],
-  actions: [{ text: 'Search', href: '#', target: '_blank' }],
+  // actions: [{ text: 'Search', href: '#', target: '_blank' }],
+
 };
 
 export const heroItems = {
@@ -64,19 +109,19 @@ export const heroItems = {
       title: "Learn",
       description: "Product knowledge-base to learn concepts, features and solve issues.",
       icon: "mdi:learn-outline",
-      url: "#"
+      url: "/en/learn"
     },
     {
       title: "CRM Online",
       description: "Learn all about SuperOffice CRM offering for the cloud.",
       icon: "fluent:phone-laptop-32-regular",
-      url: "#"
+      url: "/en/online"
     },
     {
       title: "CRM Onsite",
       description: "Learn how to install SuperOffice in your on premise organization.",
       icon: "mdi:business",
-      url: "#"
+      url: "/en/onsite"
     },
     {
       title: "Release Notes",
@@ -88,7 +133,7 @@ export const heroItems = {
       title: "SuperOffice APIs",
       description: "Introduction to all extensibility and integration points.",
       icon: "material-symbols-light:api",
-      url: "#"
+      url: "/en/api"
     },
     {
       title: "Developer Portal",
@@ -100,7 +145,7 @@ export const heroItems = {
       title: "Customer Service",
       description: "Learn all about SuperOffice Service.",
       icon: "material-symbols-light:support-agent-outline",
-      url: "#"
+      url: "/en/service"
     },
     {
       title: "Email and communication",
@@ -116,12 +161,12 @@ export const areasOfInterest = {
     { "text": "Admin", "href": "#" },
     { "text": "Artificial Intelligence", "href": "#" },
     { "text": "Automation", "href": "#" },
-    { "text": "Company", "href": "#" },
-    { "text": "Contact", "href": "#" },
+    { "text": "Company", "href": "/en/company" },
+    { "text": "Contact", "href": "/en/contact" },
     { "text": "CRMScript", "href": "#" },
     { "text": "Customer Service", "href": "#" },
     { "text": "Database Mirroring", "href": "#" },
-    { "text": "Diary", "href": "#" },
+    { "text": "Diary", "href": "/en/diary" },
     { "text": "Document", "href": "#" },
     { "text": "Globalization", "href": "#" },
     { "text": "Mobile", "href": "#" },

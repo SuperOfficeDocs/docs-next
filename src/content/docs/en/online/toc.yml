@@ -1,0 +1,38 @@
+items:
+- name: SuperOffice CRM Online
+  href: index.yml
+  items:
+  - name: Introduction
+    href: overview.md
+  - name: System requirements
+    href: system-requirements.md
+  - name: Cookies
+    href: cookies.md
+  - name: Security
+    href: security.md
+  - name: Migrate to Online
+    href: migrate/index.md
+    items:
+      - name: Documents migration
+        href: migrate/documents-migration.md      
+  - name: Troubleshooting migrations
+    href: migrate/troubleshooting.md
+  - name: Integrate with Online
+    href: integrate/index.md
+  - name: Production sandbox
+    href: sandbox/index.md
+    items:
+    - name: Sandbox registration form
+      href: sandbox/order-sandbox.md
+    - name: Replace production sandbox
+      href: sandbox/replace.md
+    - name: Clone to production sandbox
+      href: sandbox/clone-to.md
+  - name: Version history
+    href: version-history.md      
+- name: Identity Management
+  href: ../identity-management/toc.yml
+  topicHref: ../identity-management/index.yml
+- name: Mirroring
+  href: ../mirroring/toc.yml
+  topicHref: ../mirroring/index.yml

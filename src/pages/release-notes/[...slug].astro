@@ -7,6 +7,8 @@ import MarkdownLayout from "@layouts/Markdown.astro";
 import { getTableOfContents } from "../../utils/getTableOfContents";
 const tocData = getTableOfContents("release-notes/toc");
 
+
+//generating static paths from release-notes collection
 export async function getStaticPaths() {
   const docEntries = await getCollection("release-notes");
 
