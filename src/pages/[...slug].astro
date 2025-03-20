@@ -23,7 +23,7 @@ export async function getStaticPaths() {
     const generatedSlug = entry.id.slice(0, -3);
     const getCollectionFromSlug = entry.id.split("/")[1];
     const tocData = getTableOfContents(
-      `docs/en/${getCollectionFromSlug ? getCollectionFromSlug : "company"}`,
+      `docs/en/${getCollectionFromSlug}`,
       "/toc"
     );
 

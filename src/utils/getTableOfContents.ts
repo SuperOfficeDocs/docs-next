@@ -9,7 +9,7 @@ function isYamlFile(filePath: string): boolean {
 
 function loadYamlFile(filePath: string): TocData | null {
   if (!fs.existsSync(filePath)) {
-    console.warn(`Warning: ToC file not found: ${filePath}`);
+    // console.warn(`Warning: ToC file not found: ${filePath}`);
     return null;
   }
   const file = fs.readFileSync(filePath, "utf8");
@@ -19,9 +19,17 @@ function loadYamlFile(filePath: string): TocData | null {
 export function getTableOfContents(
   collection: string,
   pathName: string
-): TocData {
+): TocData | null {
+
   
+
   const filePath = path.join("src/content/", `${collection + pathName}.yml`);
+
+  //Check if yml exists
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+
   const YAMLData = loadYamlFile(filePath);
 
   if (!YAMLData) {
@@ -40,8 +48,6 @@ export function getTableOfContents(
       }
     }
   }
-
-  
 
   if (YAMLData.items) {
     recursivelyLoadSubItems(YAMLData.items);
