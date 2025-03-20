@@ -16,8 +16,12 @@ function loadYamlFile(filePath: string): TocData | null {
   return YAML.parse(file) as TocData;
 }
 
-export function getTableOfContents(pathName: string): TocData {
-  const filePath = path.join("src/content/", `${pathName}.yml`);
+export function getTableOfContents(
+  collection: string,
+  pathName: string
+): TocData {
+  
+  const filePath = path.join("src/content/", `${collection + pathName}.yml`);
   const YAMLData = loadYamlFile(filePath);
 
   if (!YAMLData) {
@@ -27,18 +31,17 @@ export function getTableOfContents(pathName: string): TocData {
   function recursivelyLoadSubItems(items: any[]): void {
     for (const item of items) {
       if (item.href && isYamlFile(item.href)) {
-        const subFilePath = path.join("src/content/release-notes/", item.href);
+        const subFilePath = path.join(`src/content/${collection}/`, item.href);
         const subData = loadYamlFile(subFilePath);
         if (subData && subData.items) {
           item.items = subData.items;
           recursivelyLoadSubItems(item.items);
         }
       }
-      // if (item.items) {
-      //   recursivelyLoadSubItems(item.items);
-      // }
     }
   }
+
+  
 
   if (YAMLData.items) {
     recursivelyLoadSubItems(YAMLData.items);
