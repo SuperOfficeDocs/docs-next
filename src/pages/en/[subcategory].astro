@@ -1,5 +1,6 @@
 ---
 import SubCategoryLandingLayout from "@layouts/SubCategoryLandingLayout.astro";
+import { getTableOfContents } from "~/utils/getTableOfContents";
 
 export function getStaticPaths() {
   return [
@@ -17,6 +18,7 @@ import { getSubCategoryPageContents } from "~/utils/getSubCategoryPageContents";
 
 const { subcategory } = Astro.params;
 const SubCategoryData = getSubCategoryPageContents(`en/${subcategory}`);
+const ToCData = getTableOfContents(`docs/en/${subcategory}`, "/toc");
 ---
 
-<SubCategoryLandingLayout data={SubCategoryData} />
+<SubCategoryLandingLayout data={SubCategoryData} ToCData={ToCData} />
