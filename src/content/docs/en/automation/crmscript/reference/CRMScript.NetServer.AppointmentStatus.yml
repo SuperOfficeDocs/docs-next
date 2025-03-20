@@ -1,0 +1,189 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.AppointmentStatus
+  children:
+  - CRMScript.NetServer.AppointmentStatus.UnknownOrPostIt
+  - CRMScript.NetServer.AppointmentStatus.NotStarted
+  - CRMScript.NetServer.AppointmentStatus.Started
+  - CRMScript.NetServer.AppointmentStatus.Completed
+  - CRMScript.NetServer.AppointmentStatus.Hidden
+  - CRMScript.NetServer.AppointmentStatus.Booking
+  - CRMScript.NetServer.AppointmentStatus.BookingMoved
+  - CRMScript.NetServer.AppointmentStatus.BookingSeen
+  - CRMScript.NetServer.AppointmentStatus.BookingMovedSeen
+  - CRMScript.NetServer.AppointmentStatus.BookingDeclined
+  - CRMScript.NetServer.AppointmentStatus.BookingDeleted
+  - CRMScript.NetServer.AppointmentStatus.Assignment
+  - CRMScript.NetServer.AppointmentStatus.AssignmentSeen
+  - CRMScript.NetServer.AppointmentStatus.AssignmentDeclined
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: AppointmentStatus
+  syntax: 
+    content: AppointmentStatus
+  summary: "Value for field 'status' in table 'appointment'."
+  name: AppointmentStatus
+  nameWithType: AppointmentStatus
+  fullName: CRMScript.NetServer.AppointmentStatus
+- uid: CRMScript.NetServer.AppointmentStatus.UnknownOrPostIt
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.UnknownOrPostIt
+  syntax: 
+    content: AppointmentStatus.UnknownOrPostIt
+  summary: "Appointment is not initialized or it is a Post-IT for users diary, used together with ApointmentType.Note only"
+  name: UnknownOrPostIt
+  nameWithType: UnknownOrPostIt
+  fullName: CRMScript.NetServer.AppointmentStatus.UnknownOrPostIt
+- uid: CRMScript.NetServer.AppointmentStatus.NotStarted
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.NotStarted
+  syntax: 
+    content: AppointmentStatus.NotStarted
+  summary: "Appointment has not been started"
+  name: NotStarted
+  nameWithType: NotStarted
+  fullName: CRMScript.NetServer.AppointmentStatus.NotStarted
+- uid: CRMScript.NetServer.AppointmentStatus.Started
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.Started
+  syntax: 
+    content: AppointmentStatus.Started
+  summary: "Appointment has been started, but not completed"
+  name: Started
+  nameWithType: Started
+  fullName: CRMScript.NetServer.AppointmentStatus.Started
+- uid: CRMScript.NetServer.AppointmentStatus.Completed
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.Completed
+  syntax: 
+    content: AppointmentStatus.Completed
+  summary: "Appointment is completed"
+  name: Completed
+  nameWithType: Completed
+  fullName: CRMScript.NetServer.AppointmentStatus.Completed
+- uid: CRMScript.NetServer.AppointmentStatus.Hidden
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.Hidden
+  syntax: 
+    content: AppointmentStatus.Hidden
+  summary: "Appointment is hidden"
+  name: Hidden
+  nameWithType: Hidden
+  fullName: CRMScript.NetServer.AppointmentStatus.Hidden
+- uid: CRMScript.NetServer.AppointmentStatus.Booking
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.Booking
+  syntax: 
+    content: AppointmentStatus.Booking
+  summary: "Appointment is a booking invitation (initial status for a booking)"
+  name: Booking
+  nameWithType: Booking
+  fullName: CRMScript.NetServer.AppointmentStatus.Booking
+- uid: CRMScript.NetServer.AppointmentStatus.BookingMoved
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.BookingMoved
+  syntax: 
+    content: AppointmentStatus.BookingMoved
+  summary: "Appointment is a booking that has been moved since it was seen by the invitee"
+  name: BookingMoved
+  nameWithType: BookingMoved
+  fullName: CRMScript.NetServer.AppointmentStatus.BookingMoved
+- uid: CRMScript.NetServer.AppointmentStatus.BookingSeen
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.BookingSeen
+  syntax: 
+    content: AppointmentStatus.BookingSeen
+  summary: "Appointment is a booking and has been seen, but neither accepted nor rejected"
+  name: BookingSeen
+  nameWithType: BookingSeen
+  fullName: CRMScript.NetServer.AppointmentStatus.BookingSeen
+- uid: CRMScript.NetServer.AppointmentStatus.BookingMovedSeen
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.BookingMovedSeen
+  syntax: 
+    content: AppointmentStatus.BookingMovedSeen
+  summary: "Appointment is a booking that has been moved. The movement has been seen but neither accepted nor rejected"
+  name: BookingMovedSeen
+  nameWithType: BookingMovedSeen
+  fullName: CRMScript.NetServer.AppointmentStatus.BookingMovedSeen
+- uid: CRMScript.NetServer.AppointmentStatus.BookingDeclined
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.BookingDeclined
+  syntax: 
+    content: AppointmentStatus.BookingDeclined
+  summary: "Appointment is a booking that has been seen and declined"
+  name: BookingDeclined
+  nameWithType: BookingDeclined
+  fullName: CRMScript.NetServer.AppointmentStatus.BookingDeclined
+- uid: CRMScript.NetServer.AppointmentStatus.BookingDeleted
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.BookingDeleted
+  syntax: 
+    content: AppointmentStatus.BookingDeleted
+  summary: "Status of 'child' appointment whose 'mother' has been deleted (the meeting is cancelled)"
+  name: BookingDeleted
+  nameWithType: BookingDeleted
+  fullName: CRMScript.NetServer.AppointmentStatus.BookingDeleted
+- uid: CRMScript.NetServer.AppointmentStatus.Assignment
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.Assignment
+  syntax: 
+    content: AppointmentStatus.Assignment
+  summary: "You are assigned this appointment (initial status, like Booking(5) )"
+  name: Assignment
+  nameWithType: Assignment
+  fullName: CRMScript.NetServer.AppointmentStatus.Assignment
+- uid: CRMScript.NetServer.AppointmentStatus.AssignmentSeen
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.AssignmentSeen
+  syntax: 
+    content: AppointmentStatus.AssignmentSeen
+  summary: "You have seen the assignment, but not yet declined or accepted it"
+  name: AssignmentSeen
+  nameWithType: AssignmentSeen
+  fullName: CRMScript.NetServer.AppointmentStatus.AssignmentSeen
+- uid: CRMScript.NetServer.AppointmentStatus.AssignmentDeclined
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentStatus.AssignmentDeclined
+  syntax: 
+    content: AppointmentStatus.AssignmentDeclined
+  summary: "You have declined the appointment assigned to you"
+  name: AssignmentDeclined
+  nameWithType: AssignmentDeclined
+  fullName: CRMScript.NetServer.AppointmentStatus.AssignmentDeclined
+references:
+- uid: CRMScript.NetServer.AppointmentStatus
+  commentId: T:CRMScript.NetServer.AppointmentStatus
+  isExternal: true
+  name: AppointmentStatus
+  nameWithType: AppointmentStatus
+  fullName: CRMScript.NetServer.AppointmentStatus

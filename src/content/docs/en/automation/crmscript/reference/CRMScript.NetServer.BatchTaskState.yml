@@ -1,0 +1,117 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.BatchTaskState
+  children:
+  - CRMScript.NetServer.BatchTaskState.Unknown
+  - CRMScript.NetServer.BatchTaskState.New
+  - CRMScript.NetServer.BatchTaskState.Aquired
+  - CRMScript.NetServer.BatchTaskState.Started
+  - CRMScript.NetServer.BatchTaskState.Succeeded
+  - CRMScript.NetServer.BatchTaskState.Failed
+  - CRMScript.NetServer.BatchTaskState.SucceededManualCleanup
+  - CRMScript.NetServer.BatchTaskState.All
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: BatchTaskState
+  syntax: 
+    content: BatchTaskState
+  summary: ""
+  name: BatchTaskState
+  nameWithType: BatchTaskState
+  fullName: CRMScript.NetServer.BatchTaskState
+- uid: CRMScript.NetServer.BatchTaskState.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: BatchTaskState.Unknown
+  syntax: 
+    content: BatchTaskState.Unknown
+  summary: "Unknown state of the task."
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.BatchTaskState.Unknown
+- uid: CRMScript.NetServer.BatchTaskState.New
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: BatchTaskState.New
+  syntax: 
+    content: BatchTaskState.New
+  summary: "The task is new, but not assigned or run by any party."
+  name: New
+  nameWithType: New
+  fullName: CRMScript.NetServer.BatchTaskState.New
+- uid: CRMScript.NetServer.BatchTaskState.Aquired
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: BatchTaskState.Aquired
+  syntax: 
+    content: BatchTaskState.Aquired
+  summary: "The task has been aquired by an instance that wants to execute the task, but has not been started."
+  name: Aquired
+  nameWithType: Aquired
+  fullName: CRMScript.NetServer.BatchTaskState.Aquired
+- uid: CRMScript.NetServer.BatchTaskState.Started
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: BatchTaskState.Started
+  syntax: 
+    content: BatchTaskState.Started
+  summary: "The task is executing."
+  name: Started
+  nameWithType: Started
+  fullName: CRMScript.NetServer.BatchTaskState.Started
+- uid: CRMScript.NetServer.BatchTaskState.Succeeded
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: BatchTaskState.Succeeded
+  syntax: 
+    content: BatchTaskState.Succeeded
+  summary: "Executing the task has completed successfully."
+  name: Succeeded
+  nameWithType: Succeeded
+  fullName: CRMScript.NetServer.BatchTaskState.Succeeded
+- uid: CRMScript.NetServer.BatchTaskState.Failed
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: BatchTaskState.Failed
+  syntax: 
+    content: BatchTaskState.Failed
+  summary: "Executing the task has halted and the task failed.   "
+  name: Failed
+  nameWithType: Failed
+  fullName: CRMScript.NetServer.BatchTaskState.Failed
+- uid: CRMScript.NetServer.BatchTaskState.SucceededManualCleanup
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: BatchTaskState.SucceededManualCleanup
+  syntax: 
+    content: BatchTaskState.SucceededManualCleanup
+  summary: "Executing the task has completed successfully, and related data will be cleaned up by the responsible code."
+  name: SucceededManualCleanup
+  nameWithType: SucceededManualCleanup
+  fullName: CRMScript.NetServer.BatchTaskState.SucceededManualCleanup
+- uid: CRMScript.NetServer.BatchTaskState.All
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: BatchTaskState.All
+  syntax: 
+    content: BatchTaskState.All
+  summary: "Special type. "
+  name: All
+  nameWithType: All
+  fullName: CRMScript.NetServer.BatchTaskState.All
+references:
+- uid: CRMScript.NetServer.BatchTaskState
+  commentId: T:CRMScript.NetServer.BatchTaskState
+  isExternal: true
+  name: BatchTaskState
+  nameWithType: BatchTaskState
+  fullName: CRMScript.NetServer.BatchTaskState

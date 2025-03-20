@@ -1,0 +1,93 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.EMailPriority
+  children:
+  - CRMScript.NetServer.EMailPriority.NoPriority
+  - CRMScript.NetServer.EMailPriority.Highest
+  - CRMScript.NetServer.EMailPriority.High
+  - CRMScript.NetServer.EMailPriority.Normal
+  - CRMScript.NetServer.EMailPriority.Low
+  - CRMScript.NetServer.EMailPriority.Lowest
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: EMailPriority
+  syntax: 
+    content: EMailPriority
+  summary: ""
+  name: EMailPriority
+  nameWithType: EMailPriority
+  fullName: CRMScript.NetServer.EMailPriority
+- uid: CRMScript.NetServer.EMailPriority.NoPriority
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: EMailPriority.NoPriority
+  syntax: 
+    content: EMailPriority.NoPriority
+  summary: ""
+  name: NoPriority
+  nameWithType: NoPriority
+  fullName: CRMScript.NetServer.EMailPriority.NoPriority
+- uid: CRMScript.NetServer.EMailPriority.Highest
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: EMailPriority.Highest
+  syntax: 
+    content: EMailPriority.Highest
+  summary: ""
+  name: Highest
+  nameWithType: Highest
+  fullName: CRMScript.NetServer.EMailPriority.Highest
+- uid: CRMScript.NetServer.EMailPriority.High
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: EMailPriority.High
+  syntax: 
+    content: EMailPriority.High
+  summary: ""
+  name: High
+  nameWithType: High
+  fullName: CRMScript.NetServer.EMailPriority.High
+- uid: CRMScript.NetServer.EMailPriority.Normal
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: EMailPriority.Normal
+  syntax: 
+    content: EMailPriority.Normal
+  summary: ""
+  name: Normal
+  nameWithType: Normal
+  fullName: CRMScript.NetServer.EMailPriority.Normal
+- uid: CRMScript.NetServer.EMailPriority.Low
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: EMailPriority.Low
+  syntax: 
+    content: EMailPriority.Low
+  summary: ""
+  name: Low
+  nameWithType: Low
+  fullName: CRMScript.NetServer.EMailPriority.Low
+- uid: CRMScript.NetServer.EMailPriority.Lowest
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: EMailPriority.Lowest
+  syntax: 
+    content: EMailPriority.Lowest
+  summary: ""
+  name: Lowest
+  nameWithType: Lowest
+  fullName: CRMScript.NetServer.EMailPriority.Lowest
+references:
+- uid: CRMScript.NetServer.EMailPriority
+  commentId: T:CRMScript.NetServer.EMailPriority
+  isExternal: true
+  name: EMailPriority
+  nameWithType: EMailPriority
+  fullName: CRMScript.NetServer.EMailPriority

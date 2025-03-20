@@ -1,0 +1,69 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.RelationTarget
+  children:
+  - CRMScript.NetServer.RelationTarget.None
+  - CRMScript.NetServer.RelationTarget.Contact
+  - CRMScript.NetServer.RelationTarget.Person
+  - CRMScript.NetServer.RelationTarget.Both
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: RelationTarget
+  syntax: 
+    content: RelationTarget
+  summary: "Target type of relation. (Contact, person or both)"
+  name: RelationTarget
+  nameWithType: RelationTarget
+  fullName: CRMScript.NetServer.RelationTarget
+- uid: CRMScript.NetServer.RelationTarget.None
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: RelationTarget.None
+  syntax: 
+    content: RelationTarget.None
+  summary: "None"
+  name: None
+  nameWithType: None
+  fullName: CRMScript.NetServer.RelationTarget.None
+- uid: CRMScript.NetServer.RelationTarget.Contact
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: RelationTarget.Contact
+  syntax: 
+    content: RelationTarget.Contact
+  summary: "Contact"
+  name: Contact
+  nameWithType: Contact
+  fullName: CRMScript.NetServer.RelationTarget.Contact
+- uid: CRMScript.NetServer.RelationTarget.Person
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: RelationTarget.Person
+  syntax: 
+    content: RelationTarget.Person
+  summary: "Person"
+  name: Person
+  nameWithType: Person
+  fullName: CRMScript.NetServer.RelationTarget.Person
+- uid: CRMScript.NetServer.RelationTarget.Both
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: RelationTarget.Both
+  syntax: 
+    content: RelationTarget.Both
+  summary: "Both"
+  name: Both
+  nameWithType: Both
+  fullName: CRMScript.NetServer.RelationTarget.Both
+references:
+- uid: CRMScript.NetServer.RelationTarget
+  commentId: T:CRMScript.NetServer.RelationTarget
+  isExternal: true
+  name: RelationTarget
+  nameWithType: RelationTarget
+  fullName: CRMScript.NetServer.RelationTarget

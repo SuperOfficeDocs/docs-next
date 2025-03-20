@@ -1,0 +1,129 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.UDefType
+  children:
+  - CRMScript.NetServer.UDefType.Invalid
+  - CRMScript.NetServer.UDefType.Contact
+  - CRMScript.NetServer.UDefType.Person
+  - CRMScript.NetServer.UDefType.Project
+  - CRMScript.NetServer.UDefType.Sale
+  - CRMScript.NetServer.UDefType.Temp
+  - CRMScript.NetServer.UDefType.Appointment
+  - CRMScript.NetServer.UDefType.Document
+  - CRMScript.NetServer.UDefType.None
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: UDefType
+  syntax: 
+    content: UDefType
+  summary: "Same as the EUDefType enum in the C++ client, this is the DATABASE value used for udef definitions"
+  name: UDefType
+  nameWithType: UDefType
+  fullName: CRMScript.NetServer.UDefType
+- uid: CRMScript.NetServer.UDefType.Invalid
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefType.Invalid
+  syntax: 
+    content: UDefType.Invalid
+  summary: "Invalid"
+  name: Invalid
+  nameWithType: Invalid
+  fullName: CRMScript.NetServer.UDefType.Invalid
+- uid: CRMScript.NetServer.UDefType.Contact
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefType.Contact
+  syntax: 
+    content: UDefType.Contact
+  summary: "Owner is the contact table"
+  name: Contact
+  nameWithType: Contact
+  fullName: CRMScript.NetServer.UDefType.Contact
+- uid: CRMScript.NetServer.UDefType.Person
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefType.Person
+  syntax: 
+    content: UDefType.Person
+  summary: "Owner is the Person table"
+  name: Person
+  nameWithType: Person
+  fullName: CRMScript.NetServer.UDefType.Person
+- uid: CRMScript.NetServer.UDefType.Project
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefType.Project
+  syntax: 
+    content: UDefType.Project
+  summary: "Owner is the project table"
+  name: Project
+  nameWithType: Project
+  fullName: CRMScript.NetServer.UDefType.Project
+- uid: CRMScript.NetServer.UDefType.Sale
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefType.Sale
+  syntax: 
+    content: UDefType.Sale
+  summary: "Owner is the sale table"
+  name: Sale
+  nameWithType: Sale
+  fullName: CRMScript.NetServer.UDefType.Sale
+- uid: CRMScript.NetServer.UDefType.Temp
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefType.Temp
+  syntax: 
+    content: UDefType.Temp
+  summary: "This is the temporary udef table pair, used during reorganizations"
+  name: Temp
+  nameWithType: Temp
+  fullName: CRMScript.NetServer.UDefType.Temp
+- uid: CRMScript.NetServer.UDefType.Appointment
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefType.Appointment
+  syntax: 
+    content: UDefType.Appointment
+  summary: "Owner is the appointment table"
+  name: Appointment
+  nameWithType: Appointment
+  fullName: CRMScript.NetServer.UDefType.Appointment
+- uid: CRMScript.NetServer.UDefType.Document
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefType.Document
+  syntax: 
+    content: UDefType.Document
+  summary: "Owner is the document table"
+  name: Document
+  nameWithType: Document
+  fullName: CRMScript.NetServer.UDefType.Document
+- uid: CRMScript.NetServer.UDefType.None
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: UDefType.None
+  syntax: 
+    content: UDefType.None
+  summary: "Owner is undefined, you should not see this value in a real database"
+  name: None
+  nameWithType: None
+  fullName: CRMScript.NetServer.UDefType.None
+references:
+- uid: CRMScript.NetServer.UDefType
+  commentId: T:CRMScript.NetServer.UDefType
+  isExternal: true
+  name: UDefType
+  nameWithType: UDefType
+  fullName: CRMScript.NetServer.UDefType

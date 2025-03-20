@@ -1,0 +1,81 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.NotificationMessageType
+  children:
+  - CRMScript.NetServer.NotificationMessageType.Message
+  - CRMScript.NetServer.NotificationMessageType.ImportantMessage
+  - CRMScript.NetServer.NotificationMessageType.RemoteAction
+  - CRMScript.NetServer.NotificationMessageType.YesNoQuestion
+  - CRMScript.NetServer.NotificationMessageType.ShowWebPage
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: NotificationMessageType
+  syntax: 
+    content: NotificationMessageType
+  summary: "Defines what type of content the notification contains"
+  name: NotificationMessageType
+  nameWithType: NotificationMessageType
+  fullName: CRMScript.NetServer.NotificationMessageType
+- uid: CRMScript.NetServer.NotificationMessageType.Message
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: NotificationMessageType.Message
+  syntax: 
+    content: NotificationMessageType.Message
+  summary: "A plain message"
+  name: Message
+  nameWithType: Message
+  fullName: CRMScript.NetServer.NotificationMessageType.Message
+- uid: CRMScript.NetServer.NotificationMessageType.ImportantMessage
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: NotificationMessageType.ImportantMessage
+  syntax: 
+    content: NotificationMessageType.ImportantMessage
+  summary: "A message with high priority"
+  name: ImportantMessage
+  nameWithType: ImportantMessage
+  fullName: CRMScript.NetServer.NotificationMessageType.ImportantMessage
+- uid: CRMScript.NetServer.NotificationMessageType.RemoteAction
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: NotificationMessageType.RemoteAction
+  syntax: 
+    content: NotificationMessageType.RemoteAction
+  summary: "Trigger an action"
+  name: RemoteAction
+  nameWithType: RemoteAction
+  fullName: CRMScript.NetServer.NotificationMessageType.RemoteAction
+- uid: CRMScript.NetServer.NotificationMessageType.YesNoQuestion
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: NotificationMessageType.YesNoQuestion
+  syntax: 
+    content: NotificationMessageType.YesNoQuestion
+  summary: "Ask user a yes or no question"
+  name: YesNoQuestion
+  nameWithType: YesNoQuestion
+  fullName: CRMScript.NetServer.NotificationMessageType.YesNoQuestion
+- uid: CRMScript.NetServer.NotificationMessageType.ShowWebPage
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: NotificationMessageType.ShowWebPage
+  syntax: 
+    content: NotificationMessageType.ShowWebPage
+  summary: "Show a web page"
+  name: ShowWebPage
+  nameWithType: ShowWebPage
+  fullName: CRMScript.NetServer.NotificationMessageType.ShowWebPage
+references:
+- uid: CRMScript.NetServer.NotificationMessageType
+  commentId: T:CRMScript.NetServer.NotificationMessageType
+  isExternal: true
+  name: NotificationMessageType
+  nameWithType: NotificationMessageType
+  fullName: CRMScript.NetServer.NotificationMessageType

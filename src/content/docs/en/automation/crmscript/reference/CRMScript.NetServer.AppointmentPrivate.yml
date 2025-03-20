@@ -1,0 +1,57 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.AppointmentPrivate
+  children:
+  - CRMScript.NetServer.AppointmentPrivate.Public
+  - CRMScript.NetServer.AppointmentPrivate.PrivateUser
+  - CRMScript.NetServer.AppointmentPrivate.PrivateGroup
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: AppointmentPrivate
+  syntax: 
+    content: AppointmentPrivate
+  summary: "Value for field 'private' in table 'appointment'."
+  name: AppointmentPrivate
+  nameWithType: AppointmentPrivate
+  fullName: CRMScript.NetServer.AppointmentPrivate
+- uid: CRMScript.NetServer.AppointmentPrivate.Public
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentPrivate.Public
+  syntax: 
+    content: AppointmentPrivate.Public
+  summary: "This appointment can be read by anyone"
+  name: Public
+  nameWithType: Public
+  fullName: CRMScript.NetServer.AppointmentPrivate.Public
+- uid: CRMScript.NetServer.AppointmentPrivate.PrivateUser
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentPrivate.PrivateUser
+  syntax: 
+    content: AppointmentPrivate.PrivateUser
+  summary: "This appointment can only be read/seen by the owner"
+  name: PrivateUser
+  nameWithType: PrivateUser
+  fullName: CRMScript.NetServer.AppointmentPrivate.PrivateUser
+- uid: CRMScript.NetServer.AppointmentPrivate.PrivateGroup
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AppointmentPrivate.PrivateGroup
+  syntax: 
+    content: AppointmentPrivate.PrivateGroup
+  summary: "This appointment can only be read by members of the owners group"
+  name: PrivateGroup
+  nameWithType: PrivateGroup
+  fullName: CRMScript.NetServer.AppointmentPrivate.PrivateGroup
+references:
+- uid: CRMScript.NetServer.AppointmentPrivate
+  commentId: T:CRMScript.NetServer.AppointmentPrivate
+  isExternal: true
+  name: AppointmentPrivate
+  nameWithType: AppointmentPrivate
+  fullName: CRMScript.NetServer.AppointmentPrivate

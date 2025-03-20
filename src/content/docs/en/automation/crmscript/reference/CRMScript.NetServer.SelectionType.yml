@@ -1,0 +1,57 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.SelectionType
+  children:
+  - CRMScript.NetServer.SelectionType.Static
+  - CRMScript.NetServer.SelectionType.Dynamic
+  - CRMScript.NetServer.SelectionType.Combined
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: SelectionType
+  syntax: 
+    content: SelectionType
+  summary: "Selection type - static/dynamic/combined. Works together with targetTable to define what kind of Selection this is."
+  name: SelectionType
+  nameWithType: SelectionType
+  fullName: CRMScript.NetServer.SelectionType
+- uid: CRMScript.NetServer.SelectionType.Static
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: SelectionType.Static
+  syntax: 
+    content: SelectionType.Static
+  summary: "Static selection"
+  name: Static
+  nameWithType: Static
+  fullName: CRMScript.NetServer.SelectionType.Static
+- uid: CRMScript.NetServer.SelectionType.Dynamic
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: SelectionType.Dynamic
+  syntax: 
+    content: SelectionType.Dynamic
+  summary: "Dynamic selection"
+  name: Dynamic
+  nameWithType: Dynamic
+  fullName: CRMScript.NetServer.SelectionType.Dynamic
+- uid: CRMScript.NetServer.SelectionType.Combined
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: SelectionType.Combined
+  syntax: 
+    content: SelectionType.Combined
+  summary: "Combined selection"
+  name: Combined
+  nameWithType: Combined
+  fullName: CRMScript.NetServer.SelectionType.Combined
+references:
+- uid: CRMScript.NetServer.SelectionType
+  commentId: T:CRMScript.NetServer.SelectionType
+  isExternal: true
+  name: SelectionType
+  nameWithType: SelectionType
+  fullName: CRMScript.NetServer.SelectionType

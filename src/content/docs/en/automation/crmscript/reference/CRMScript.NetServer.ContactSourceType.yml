@@ -1,0 +1,81 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.ContactSourceType
+  children:
+  - CRMScript.NetServer.ContactSourceType.Unknown
+  - CRMScript.NetServer.ContactSourceType.History
+  - CRMScript.NetServer.ContactSourceType.Diary
+  - CRMScript.NetServer.ContactSourceType.Favorites
+  - CRMScript.NetServer.ContactSourceType.All
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: ContactSourceType
+  syntax: 
+    content: ContactSourceType
+  summary: "Describes what source the contacts should be retrieved from."
+  name: ContactSourceType
+  nameWithType: ContactSourceType
+  fullName: CRMScript.NetServer.ContactSourceType
+- uid: CRMScript.NetServer.ContactSourceType.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ContactSourceType.Unknown
+  syntax: 
+    content: ContactSourceType.Unknown
+  summary: "Unknown/undecided type"
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.ContactSourceType.Unknown
+- uid: CRMScript.NetServer.ContactSourceType.History
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ContactSourceType.History
+  syntax: 
+    content: ContactSourceType.History
+  summary: "Contact is retrieved from the history list"
+  name: History
+  nameWithType: History
+  fullName: CRMScript.NetServer.ContactSourceType.History
+- uid: CRMScript.NetServer.ContactSourceType.Diary
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ContactSourceType.Diary
+  syntax: 
+    content: ContactSourceType.Diary
+  summary: "Contact is retrieved from the diary"
+  name: Diary
+  nameWithType: Diary
+  fullName: CRMScript.NetServer.ContactSourceType.Diary
+- uid: CRMScript.NetServer.ContactSourceType.Favorites
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ContactSourceType.Favorites
+  syntax: 
+    content: ContactSourceType.Favorites
+  summary: "Contact is retrieved from the favorites list"
+  name: Favorites
+  nameWithType: Favorites
+  fullName: CRMScript.NetServer.ContactSourceType.Favorites
+- uid: CRMScript.NetServer.ContactSourceType.All
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ContactSourceType.All
+  syntax: 
+    content: ContactSourceType.All
+  summary: "Enumeration generated from the wsdl doesn't handle the [Flags] attribute (bit enumeration)"
+  name: All
+  nameWithType: All
+  fullName: CRMScript.NetServer.ContactSourceType.All
+references:
+- uid: CRMScript.NetServer.ContactSourceType
+  commentId: T:CRMScript.NetServer.ContactSourceType
+  isExternal: true
+  name: ContactSourceType
+  nameWithType: ContactSourceType
+  fullName: CRMScript.NetServer.ContactSourceType

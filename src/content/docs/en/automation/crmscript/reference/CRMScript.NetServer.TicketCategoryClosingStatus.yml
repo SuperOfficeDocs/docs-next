@@ -1,0 +1,69 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.TicketCategoryClosingStatus
+  children:
+  - CRMScript.NetServer.TicketCategoryClosingStatus.UserDefined
+  - CRMScript.NetServer.TicketCategoryClosingStatus.Active
+  - CRMScript.NetServer.TicketCategoryClosingStatus.Closed
+  - CRMScript.NetServer.TicketCategoryClosingStatus.Postponed
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: TicketCategoryClosingStatus
+  syntax: 
+    content: TicketCategoryClosingStatus
+  summary: "Default status for requests. Note that this is a preference which should be respected if making UI. It is not enforced by the APIs"
+  name: TicketCategoryClosingStatus
+  nameWithType: TicketCategoryClosingStatus
+  fullName: CRMScript.NetServer.TicketCategoryClosingStatus
+- uid: CRMScript.NetServer.TicketCategoryClosingStatus.UserDefined
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketCategoryClosingStatus.UserDefined
+  syntax: 
+    content: TicketCategoryClosingStatus.UserDefined
+  summary: "The ticket status should respect the user defined behaviour"
+  name: UserDefined
+  nameWithType: UserDefined
+  fullName: CRMScript.NetServer.TicketCategoryClosingStatus.UserDefined
+- uid: CRMScript.NetServer.TicketCategoryClosingStatus.Active
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketCategoryClosingStatus.Active
+  syntax: 
+    content: TicketCategoryClosingStatus.Active
+  summary: "Indicates that the ticket status should be active as default"
+  name: Active
+  nameWithType: Active
+  fullName: CRMScript.NetServer.TicketCategoryClosingStatus.Active
+- uid: CRMScript.NetServer.TicketCategoryClosingStatus.Closed
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketCategoryClosingStatus.Closed
+  syntax: 
+    content: TicketCategoryClosingStatus.Closed
+  summary: "Indicates that the ticket status should be closed as default"
+  name: Closed
+  nameWithType: Closed
+  fullName: CRMScript.NetServer.TicketCategoryClosingStatus.Closed
+- uid: CRMScript.NetServer.TicketCategoryClosingStatus.Postponed
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: TicketCategoryClosingStatus.Postponed
+  syntax: 
+    content: TicketCategoryClosingStatus.Postponed
+  summary: "Indicates that the ticket status should be postponed as default"
+  name: Postponed
+  nameWithType: Postponed
+  fullName: CRMScript.NetServer.TicketCategoryClosingStatus.Postponed
+references:
+- uid: CRMScript.NetServer.TicketCategoryClosingStatus
+  commentId: T:CRMScript.NetServer.TicketCategoryClosingStatus
+  isExternal: true
+  name: TicketCategoryClosingStatus
+  nameWithType: TicketCategoryClosingStatus
+  fullName: CRMScript.NetServer.TicketCategoryClosingStatus

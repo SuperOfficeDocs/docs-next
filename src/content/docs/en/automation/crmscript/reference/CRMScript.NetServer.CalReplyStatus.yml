@@ -1,0 +1,69 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.CalReplyStatus
+  children:
+  - CRMScript.NetServer.CalReplyStatus.Unknown
+  - CRMScript.NetServer.CalReplyStatus.Accepted
+  - CRMScript.NetServer.CalReplyStatus.Declined
+  - CRMScript.NetServer.CalReplyStatus.Tentative
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: CalReplyStatus
+  syntax: 
+    content: CalReplyStatus
+  summary: "iCal reply status"
+  name: CalReplyStatus
+  nameWithType: CalReplyStatus
+  fullName: CRMScript.NetServer.CalReplyStatus
+- uid: CRMScript.NetServer.CalReplyStatus.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: CalReplyStatus.Unknown
+  syntax: 
+    content: CalReplyStatus.Unknown
+  summary: "Status is not known"
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.CalReplyStatus.Unknown
+- uid: CRMScript.NetServer.CalReplyStatus.Accepted
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: CalReplyStatus.Accepted
+  syntax: 
+    content: CalReplyStatus.Accepted
+  summary: "The sender accepted the meeting."
+  name: Accepted
+  nameWithType: Accepted
+  fullName: CRMScript.NetServer.CalReplyStatus.Accepted
+- uid: CRMScript.NetServer.CalReplyStatus.Declined
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: CalReplyStatus.Declined
+  syntax: 
+    content: CalReplyStatus.Declined
+  summary: "The sender declined the meeting."
+  name: Declined
+  nameWithType: Declined
+  fullName: CRMScript.NetServer.CalReplyStatus.Declined
+- uid: CRMScript.NetServer.CalReplyStatus.Tentative
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: CalReplyStatus.Tentative
+  syntax: 
+    content: CalReplyStatus.Tentative
+  summary: "The sender tentatively accepted the meeting."
+  name: Tentative
+  nameWithType: Tentative
+  fullName: CRMScript.NetServer.CalReplyStatus.Tentative
+references:
+- uid: CRMScript.NetServer.CalReplyStatus
+  commentId: T:CRMScript.NetServer.CalReplyStatus
+  isExternal: true
+  name: CalReplyStatus
+  nameWithType: CalReplyStatus
+  fullName: CRMScript.NetServer.CalReplyStatus

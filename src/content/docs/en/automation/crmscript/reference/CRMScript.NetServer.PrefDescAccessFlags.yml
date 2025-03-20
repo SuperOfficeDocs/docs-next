@@ -1,0 +1,81 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.PrefDescAccessFlags
+  children:
+  - CRMScript.NetServer.PrefDescAccessFlags.Unknown
+  - CRMScript.NetServer.PrefDescAccessFlags.WizardMode
+  - CRMScript.NetServer.PrefDescAccessFlags.Level0
+  - CRMScript.NetServer.PrefDescAccessFlags.adminGUI
+  - CRMScript.NetServer.PrefDescAccessFlags.CRMGUI
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: PrefDescAccessFlags
+  syntax: 
+    content: PrefDescAccessFlags
+  summary: "Value for field 'accessflags' in table 'prefdesc'."
+  name: PrefDescAccessFlags
+  nameWithType: PrefDescAccessFlags
+  fullName: CRMScript.NetServer.PrefDescAccessFlags
+- uid: CRMScript.NetServer.PrefDescAccessFlags.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: PrefDescAccessFlags.Unknown
+  syntax: 
+    content: PrefDescAccessFlags.Unknown
+  summary: "Unknown - used when initializing"
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.PrefDescAccessFlags.Unknown
+- uid: CRMScript.NetServer.PrefDescAccessFlags.WizardMode
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: PrefDescAccessFlags.WizardMode
+  syntax: 
+    content: PrefDescAccessFlags.WizardMode
+  summary: "Wizard mode is password-protected and only accessible to SuperOffice personnel."
+  name: WizardMode
+  nameWithType: WizardMode
+  fullName: CRMScript.NetServer.PrefDescAccessFlags.WizardMode
+- uid: CRMScript.NetServer.PrefDescAccessFlags.Level0
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: PrefDescAccessFlags.Level0
+  syntax: 
+    content: PrefDescAccessFlags.Level0
+  summary: "Preference settable only by CRM5 superuser"
+  name: Level0
+  nameWithType: Level0
+  fullName: CRMScript.NetServer.PrefDescAccessFlags.Level0
+- uid: CRMScript.NetServer.PrefDescAccessFlags.adminGUI
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: PrefDescAccessFlags.adminGUI
+  syntax: 
+    content: PrefDescAccessFlags.adminGUI
+  summary: "Show preference in SOADMIN GUI"
+  name: adminGUI
+  nameWithType: adminGUI
+  fullName: CRMScript.NetServer.PrefDescAccessFlags.adminGUI
+- uid: CRMScript.NetServer.PrefDescAccessFlags.CRMGUI
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: PrefDescAccessFlags.CRMGUI
+  syntax: 
+    content: PrefDescAccessFlags.CRMGUI
+  summary: "Show preference in CRM5 GUI"
+  name: CRMGUI
+  nameWithType: CRMGUI
+  fullName: CRMScript.NetServer.PrefDescAccessFlags.CRMGUI
+references:
+- uid: CRMScript.NetServer.PrefDescAccessFlags
+  commentId: T:CRMScript.NetServer.PrefDescAccessFlags
+  isExternal: true
+  name: PrefDescAccessFlags
+  nameWithType: PrefDescAccessFlags
+  fullName: CRMScript.NetServer.PrefDescAccessFlags

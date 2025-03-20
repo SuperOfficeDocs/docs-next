@@ -1,0 +1,57 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.FormsRecaptchaMode
+  children:
+  - CRMScript.NetServer.FormsRecaptchaMode.NotAvailable
+  - CRMScript.NetServer.FormsRecaptchaMode.GlobalKeysExist
+  - CRMScript.NetServer.FormsRecaptchaMode.KeysNeeded
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: FormsRecaptchaMode
+  syntax: 
+    content: FormsRecaptchaMode
+  summary: "Forms recaptcha mode"
+  name: FormsRecaptchaMode
+  nameWithType: FormsRecaptchaMode
+  fullName: CRMScript.NetServer.FormsRecaptchaMode
+- uid: CRMScript.NetServer.FormsRecaptchaMode.NotAvailable
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: FormsRecaptchaMode.NotAvailable
+  syntax: 
+    content: FormsRecaptchaMode.NotAvailable
+  summary: "Recpatcha is turned off"
+  name: NotAvailable
+  nameWithType: NotAvailable
+  fullName: CRMScript.NetServer.FormsRecaptchaMode.NotAvailable
+- uid: CRMScript.NetServer.FormsRecaptchaMode.GlobalKeysExist
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: FormsRecaptchaMode.GlobalKeysExist
+  syntax: 
+    content: FormsRecaptchaMode.GlobalKeysExist
+  summary: "Global recaptcha keys are configured"
+  name: GlobalKeysExist
+  nameWithType: GlobalKeysExist
+  fullName: CRMScript.NetServer.FormsRecaptchaMode.GlobalKeysExist
+- uid: CRMScript.NetServer.FormsRecaptchaMode.KeysNeeded
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: FormsRecaptchaMode.KeysNeeded
+  syntax: 
+    content: FormsRecaptchaMode.KeysNeeded
+  summary: "Recaptcha keys need to be supplied"
+  name: KeysNeeded
+  nameWithType: KeysNeeded
+  fullName: CRMScript.NetServer.FormsRecaptchaMode.KeysNeeded
+references:
+- uid: CRMScript.NetServer.FormsRecaptchaMode
+  commentId: T:CRMScript.NetServer.FormsRecaptchaMode
+  isExternal: true
+  name: FormsRecaptchaMode
+  nameWithType: FormsRecaptchaMode
+  fullName: CRMScript.NetServer.FormsRecaptchaMode

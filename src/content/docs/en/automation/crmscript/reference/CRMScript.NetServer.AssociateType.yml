@@ -1,0 +1,129 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.AssociateType
+  children:
+  - CRMScript.NetServer.AssociateType.NoPersonBit
+  - CRMScript.NetServer.AssociateType.AnonymousBit
+  - CRMScript.NetServer.AssociateType.NoCalenderBit
+  - CRMScript.NetServer.AssociateType.NoSentryBit
+  - CRMScript.NetServer.AssociateType.Employee
+  - CRMScript.NetServer.AssociateType.Resource
+  - CRMScript.NetServer.AssociateType.ExternalPerson
+  - CRMScript.NetServer.AssociateType.System
+  - CRMScript.NetServer.AssociateType.Anonymous
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: AssociateType
+  syntax: 
+    content: AssociateType
+  summary: "Field Type in table associate"
+  name: AssociateType
+  nameWithType: AssociateType
+  fullName: CRMScript.NetServer.AssociateType
+- uid: CRMScript.NetServer.AssociateType.NoPersonBit
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AssociateType.NoPersonBit
+  syntax: 
+    content: AssociateType.NoPersonBit
+  summary: "Associates with this bit is not associated with any person. Disregard the PersonId for associates with this bit set"
+  name: NoPersonBit
+  nameWithType: NoPersonBit
+  fullName: CRMScript.NetServer.AssociateType.NoPersonBit
+- uid: CRMScript.NetServer.AssociateType.AnonymousBit
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AssociateType.AnonymousBit
+  syntax: 
+    content: AssociateType.AnonymousBit
+  summary: "Associates of this type is not authenticated for SuperOffice"
+  name: AnonymousBit
+  nameWithType: AnonymousBit
+  fullName: CRMScript.NetServer.AssociateType.AnonymousBit
+- uid: CRMScript.NetServer.AssociateType.NoCalenderBit
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AssociateType.NoCalenderBit
+  syntax: 
+    content: AssociateType.NoCalenderBit
+  summary: "Associates with this bit do not have a calendar"
+  name: NoCalenderBit
+  nameWithType: NoCalenderBit
+  fullName: CRMScript.NetServer.AssociateType.NoCalenderBit
+- uid: CRMScript.NetServer.AssociateType.NoSentryBit
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AssociateType.NoSentryBit
+  syntax: 
+    content: AssociateType.NoSentryBit
+  summary: "Associates with this bit has full access rights, and the Sentry mechanism is bypassed"
+  name: NoSentryBit
+  nameWithType: NoSentryBit
+  fullName: CRMScript.NetServer.AssociateType.NoSentryBit
+- uid: CRMScript.NetServer.AssociateType.Employee
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AssociateType.Employee
+  syntax: 
+    content: AssociateType.Employee
+  summary: "User / Employee"
+  name: Employee
+  nameWithType: Employee
+  fullName: CRMScript.NetServer.AssociateType.Employee
+- uid: CRMScript.NetServer.AssociateType.Resource
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AssociateType.Resource
+  syntax: 
+    content: AssociateType.Resource
+  summary: "Resource like meeting room and projector"
+  name: Resource
+  nameWithType: Resource
+  fullName: CRMScript.NetServer.AssociateType.Resource
+- uid: CRMScript.NetServer.AssociateType.ExternalPerson
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AssociateType.ExternalPerson
+  syntax: 
+    content: AssociateType.ExternalPerson
+  summary: "Person not working for the company taking part in Collaborative CRM (eCRM)"
+  name: ExternalPerson
+  nameWithType: ExternalPerson
+  fullName: CRMScript.NetServer.AssociateType.ExternalPerson
+- uid: CRMScript.NetServer.AssociateType.System
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AssociateType.System
+  syntax: 
+    content: AssociateType.System
+  summary: "Application with full access rights (EAI)"
+  name: System
+  nameWithType: System
+  fullName: CRMScript.NetServer.AssociateType.System
+- uid: CRMScript.NetServer.AssociateType.Anonymous
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: AssociateType.Anonymous
+  syntax: 
+    content: AssociateType.Anonymous
+  summary: "Unknown party accessing the system (e.g. prospecting, eCRM)"
+  name: Anonymous
+  nameWithType: Anonymous
+  fullName: CRMScript.NetServer.AssociateType.Anonymous
+references:
+- uid: CRMScript.NetServer.AssociateType
+  commentId: T:CRMScript.NetServer.AssociateType
+  isExternal: true
+  name: AssociateType
+  nameWithType: AssociateType
+  fullName: CRMScript.NetServer.AssociateType
