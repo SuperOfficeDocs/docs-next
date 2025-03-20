@@ -1,0 +1,69 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.WebhookState
+  children:
+  - CRMScript.NetServer.WebhookState.Unknown
+  - CRMScript.NetServer.WebhookState.Active
+  - CRMScript.NetServer.WebhookState.Stopped
+  - CRMScript.NetServer.WebhookState.TooManyErrors
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: WebhookState
+  syntax: 
+    content: WebhookState
+  summary: "Webhook status: active, stopped, or tooManyErrors"
+  name: WebhookState
+  nameWithType: WebhookState
+  fullName: CRMScript.NetServer.WebhookState
+- uid: CRMScript.NetServer.WebhookState.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: WebhookState.Unknown
+  syntax: 
+    content: WebhookState.Unknown
+  summary: "0: Unknown state"
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.WebhookState.Unknown
+- uid: CRMScript.NetServer.WebhookState.Active
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: WebhookState.Active
+  syntax: 
+    content: WebhookState.Active
+  summary: "1: Active - webhook is posting events to receiver"
+  name: Active
+  nameWithType: Active
+  fullName: CRMScript.NetServer.WebhookState.Active
+- uid: CRMScript.NetServer.WebhookState.Stopped
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: WebhookState.Stopped
+  syntax: 
+    content: WebhookState.Stopped
+  summary: "2: Stopped - webhook has been turned off. Not posting events to receiver."
+  name: Stopped
+  nameWithType: Stopped
+  fullName: CRMScript.NetServer.WebhookState.Stopped
+- uid: CRMScript.NetServer.WebhookState.TooManyErrors
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: WebhookState.TooManyErrors
+  syntax: 
+    content: WebhookState.TooManyErrors
+  summary: "3: Too many errors received - webhook has been turned off automatically."
+  name: TooManyErrors
+  nameWithType: TooManyErrors
+  fullName: CRMScript.NetServer.WebhookState.TooManyErrors
+references:
+- uid: CRMScript.NetServer.WebhookState
+  commentId: T:CRMScript.NetServer.WebhookState
+  isExternal: true
+  name: WebhookState
+  nameWithType: WebhookState
+  fullName: CRMScript.NetServer.WebhookState

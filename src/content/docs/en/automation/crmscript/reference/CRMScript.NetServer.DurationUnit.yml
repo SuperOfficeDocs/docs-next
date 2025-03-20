@@ -1,0 +1,177 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.DurationUnit
+  children:
+  - CRMScript.NetServer.DurationUnit.Unknown
+  - CRMScript.NetServer.DurationUnit.Second
+  - CRMScript.NetServer.DurationUnit.Minute
+  - CRMScript.NetServer.DurationUnit.Hour
+  - CRMScript.NetServer.DurationUnit.Day
+  - CRMScript.NetServer.DurationUnit.Week
+  - CRMScript.NetServer.DurationUnit.Month
+  - CRMScript.NetServer.DurationUnit.Quarter
+  - CRMScript.NetServer.DurationUnit.HalfYear
+  - CRMScript.NetServer.DurationUnit.Year
+  - CRMScript.NetServer.DurationUnit.Decade
+  - CRMScript.NetServer.DurationUnit.Century
+  - CRMScript.NetServer.DurationUnit.Millenium
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: DurationUnit
+  syntax: 
+    content: DurationUnit
+  summary: "Units of duration - from seconds to centuries"
+  name: DurationUnit
+  nameWithType: DurationUnit
+  fullName: CRMScript.NetServer.DurationUnit
+- uid: CRMScript.NetServer.DurationUnit.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: DurationUnit.Unknown
+  syntax: 
+    content: DurationUnit.Unknown
+  summary: "Duration is unknown"
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.DurationUnit.Unknown
+- uid: CRMScript.NetServer.DurationUnit.Second
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: DurationUnit.Second
+  syntax: 
+    content: DurationUnit.Second
+  summary: "Duration is in Seconds"
+  name: Second
+  nameWithType: Second
+  fullName: CRMScript.NetServer.DurationUnit.Second
+- uid: CRMScript.NetServer.DurationUnit.Minute
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: DurationUnit.Minute
+  syntax: 
+    content: DurationUnit.Minute
+  summary: "Duration is in Minutes"
+  name: Minute
+  nameWithType: Minute
+  fullName: CRMScript.NetServer.DurationUnit.Minute
+- uid: CRMScript.NetServer.DurationUnit.Hour
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: DurationUnit.Hour
+  syntax: 
+    content: DurationUnit.Hour
+  summary: "Duration is in Hours"
+  name: Hour
+  nameWithType: Hour
+  fullName: CRMScript.NetServer.DurationUnit.Hour
+- uid: CRMScript.NetServer.DurationUnit.Day
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: DurationUnit.Day
+  syntax: 
+    content: DurationUnit.Day
+  summary: "Duration is in Days"
+  name: Day
+  nameWithType: Day
+  fullName: CRMScript.NetServer.DurationUnit.Day
+- uid: CRMScript.NetServer.DurationUnit.Week
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: DurationUnit.Week
+  syntax: 
+    content: DurationUnit.Week
+  summary: "Duration is in Weeks"
+  name: Week
+  nameWithType: Week
+  fullName: CRMScript.NetServer.DurationUnit.Week
+- uid: CRMScript.NetServer.DurationUnit.Month
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: DurationUnit.Month
+  syntax: 
+    content: DurationUnit.Month
+  summary: "Duration is in Months"
+  name: Month
+  nameWithType: Month
+  fullName: CRMScript.NetServer.DurationUnit.Month
+- uid: CRMScript.NetServer.DurationUnit.Quarter
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: DurationUnit.Quarter
+  syntax: 
+    content: DurationUnit.Quarter
+  summary: "Duration is in Quarters"
+  name: Quarter
+  nameWithType: Quarter
+  fullName: CRMScript.NetServer.DurationUnit.Quarter
+- uid: CRMScript.NetServer.DurationUnit.HalfYear
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: DurationUnit.HalfYear
+  syntax: 
+    content: DurationUnit.HalfYear
+  summary: "Duration is in HalfYears"
+  name: HalfYear
+  nameWithType: HalfYear
+  fullName: CRMScript.NetServer.DurationUnit.HalfYear
+- uid: CRMScript.NetServer.DurationUnit.Year
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: DurationUnit.Year
+  syntax: 
+    content: DurationUnit.Year
+  summary: "Duration is in Years"
+  name: Year
+  nameWithType: Year
+  fullName: CRMScript.NetServer.DurationUnit.Year
+- uid: CRMScript.NetServer.DurationUnit.Decade
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: DurationUnit.Decade
+  syntax: 
+    content: DurationUnit.Decade
+  summary: "Duration is in Decades"
+  name: Decade
+  nameWithType: Decade
+  fullName: CRMScript.NetServer.DurationUnit.Decade
+- uid: CRMScript.NetServer.DurationUnit.Century
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: DurationUnit.Century
+  syntax: 
+    content: DurationUnit.Century
+  summary: "Duration is in Centurys"
+  name: Century
+  nameWithType: Century
+  fullName: CRMScript.NetServer.DurationUnit.Century
+- uid: CRMScript.NetServer.DurationUnit.Millenium
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: DurationUnit.Millenium
+  syntax: 
+    content: DurationUnit.Millenium
+  summary: "Duration is in Milleniums"
+  name: Millenium
+  nameWithType: Millenium
+  fullName: CRMScript.NetServer.DurationUnit.Millenium
+references:
+- uid: CRMScript.NetServer.DurationUnit
+  commentId: T:CRMScript.NetServer.DurationUnit
+  isExternal: true
+  name: DurationUnit
+  nameWithType: DurationUnit
+  fullName: CRMScript.NetServer.DurationUnit

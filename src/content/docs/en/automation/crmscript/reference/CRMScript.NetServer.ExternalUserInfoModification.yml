@@ -1,0 +1,93 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.ExternalUserInfoModification
+  children:
+  - CRMScript.NetServer.ExternalUserInfoModification.Unknown
+  - CRMScript.NetServer.ExternalUserInfoModification.UserName
+  - CRMScript.NetServer.ExternalUserInfoModification.Password
+  - CRMScript.NetServer.ExternalUserInfoModification.Role
+  - CRMScript.NetServer.ExternalUserInfoModification.Active
+  - CRMScript.NetServer.ExternalUserInfoModification.All
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: ExternalUserInfoModification
+  syntax: 
+    content: ExternalUserInfoModification
+  summary: "Describes what part of the external user should be changed."
+  name: ExternalUserInfoModification
+  nameWithType: ExternalUserInfoModification
+  fullName: CRMScript.NetServer.ExternalUserInfoModification
+- uid: CRMScript.NetServer.ExternalUserInfoModification.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ExternalUserInfoModification.Unknown
+  syntax: 
+    content: ExternalUserInfoModification.Unknown
+  summary: "Unknown - used when initializing"
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.ExternalUserInfoModification.Unknown
+- uid: CRMScript.NetServer.ExternalUserInfoModification.UserName
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ExternalUserInfoModification.UserName
+  syntax: 
+    content: ExternalUserInfoModification.UserName
+  summary: "Change the UserName"
+  name: UserName
+  nameWithType: UserName
+  fullName: CRMScript.NetServer.ExternalUserInfoModification.UserName
+- uid: CRMScript.NetServer.ExternalUserInfoModification.Password
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ExternalUserInfoModification.Password
+  syntax: 
+    content: ExternalUserInfoModification.Password
+  summary: "Change the Password"
+  name: Password
+  nameWithType: Password
+  fullName: CRMScript.NetServer.ExternalUserInfoModification.Password
+- uid: CRMScript.NetServer.ExternalUserInfoModification.Role
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ExternalUserInfoModification.Role
+  syntax: 
+    content: ExternalUserInfoModification.Role
+  summary: "Change role id."
+  name: Role
+  nameWithType: Role
+  fullName: CRMScript.NetServer.ExternalUserInfoModification.Role
+- uid: CRMScript.NetServer.ExternalUserInfoModification.Active
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ExternalUserInfoModification.Active
+  syntax: 
+    content: ExternalUserInfoModification.Active
+  summary: "Change isActive"
+  name: Active
+  nameWithType: Active
+  fullName: CRMScript.NetServer.ExternalUserInfoModification.Active
+- uid: CRMScript.NetServer.ExternalUserInfoModification.All
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ExternalUserInfoModification.All
+  syntax: 
+    content: ExternalUserInfoModification.All
+  summary: "Enumeration generated from the wsdl doesn't handle the [Flags] attribute (bit enumeration)"
+  name: All
+  nameWithType: All
+  fullName: CRMScript.NetServer.ExternalUserInfoModification.All
+references:
+- uid: CRMScript.NetServer.ExternalUserInfoModification
+  commentId: T:CRMScript.NetServer.ExternalUserInfoModification
+  isExternal: true
+  name: ExternalUserInfoModification
+  nameWithType: ExternalUserInfoModification
+  fullName: CRMScript.NetServer.ExternalUserInfoModification

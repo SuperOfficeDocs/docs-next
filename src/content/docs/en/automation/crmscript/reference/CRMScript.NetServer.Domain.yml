@@ -1,0 +1,141 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.Domain
+  children:
+  - CRMScript.NetServer.Domain.Unknown
+  - CRMScript.NetServer.Domain.ExtraTables
+  - CRMScript.NetServer.Domain.ScreenDefinitions
+  - CRMScript.NetServer.Domain.Scripts
+  - CRMScript.NetServer.Domain.Selections
+  - CRMScript.NetServer.Domain.ExternalDocuments
+  - CRMScript.NetServer.Domain.UserGroups
+  - CRMScript.NetServer.Domain.ExternalDocumentRelatedToSpmMessage
+  - CRMScript.NetServer.Domain.Dashboards
+  - CRMScript.NetServer.Domain.EmailFlows
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: Domain
+  syntax: 
+    content: Domain
+  summary: "Hierarchy domain"
+  name: Domain
+  nameWithType: Domain
+  fullName: CRMScript.NetServer.Domain
+- uid: CRMScript.NetServer.Domain.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Domain.Unknown
+  syntax: 
+    content: Domain.Unknown
+  summary: "Unknown folders"
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.Domain.Unknown
+- uid: CRMScript.NetServer.Domain.ExtraTables
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Domain.ExtraTables
+  syntax: 
+    content: Domain.ExtraTables
+  summary: "ExtraTable folders"
+  name: ExtraTables
+  nameWithType: ExtraTables
+  fullName: CRMScript.NetServer.Domain.ExtraTables
+- uid: CRMScript.NetServer.Domain.ScreenDefinitions
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Domain.ScreenDefinitions
+  syntax: 
+    content: Domain.ScreenDefinitions
+  summary: "ScreenDefinition folders"
+  name: ScreenDefinitions
+  nameWithType: ScreenDefinitions
+  fullName: CRMScript.NetServer.Domain.ScreenDefinitions
+- uid: CRMScript.NetServer.Domain.Scripts
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Domain.Scripts
+  syntax: 
+    content: Domain.Scripts
+  summary: "Script folders"
+  name: Scripts
+  nameWithType: Scripts
+  fullName: CRMScript.NetServer.Domain.Scripts
+- uid: CRMScript.NetServer.Domain.Selections
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Domain.Selections
+  syntax: 
+    content: Domain.Selections
+  summary: "Selection folders"
+  name: Selections
+  nameWithType: Selections
+  fullName: CRMScript.NetServer.Domain.Selections
+- uid: CRMScript.NetServer.Domain.ExternalDocuments
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Domain.ExternalDocuments
+  syntax: 
+    content: Domain.ExternalDocuments
+  summary: "ExternalDocument folders"
+  name: ExternalDocuments
+  nameWithType: ExternalDocuments
+  fullName: CRMScript.NetServer.Domain.ExternalDocuments
+- uid: CRMScript.NetServer.Domain.UserGroups
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Domain.UserGroups
+  syntax: 
+    content: Domain.UserGroups
+  summary: "UserGroup folders"
+  name: UserGroups
+  nameWithType: UserGroups
+  fullName: CRMScript.NetServer.Domain.UserGroups
+- uid: CRMScript.NetServer.Domain.ExternalDocumentRelatedToSpmMessage
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Domain.ExternalDocumentRelatedToSpmMessage
+  syntax: 
+    content: Domain.ExternalDocumentRelatedToSpmMessage
+  summary: "ExternalDocuments related to spam messages folders"
+  name: ExternalDocumentRelatedToSpmMessage
+  nameWithType: ExternalDocumentRelatedToSpmMessage
+  fullName: CRMScript.NetServer.Domain.ExternalDocumentRelatedToSpmMessage
+- uid: CRMScript.NetServer.Domain.Dashboards
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Domain.Dashboards
+  syntax: 
+    content: Domain.Dashboards
+  summary: "Dashboard folders"
+  name: Dashboards
+  nameWithType: Dashboards
+  fullName: CRMScript.NetServer.Domain.Dashboards
+- uid: CRMScript.NetServer.Domain.EmailFlows
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: Domain.EmailFlows
+  syntax: 
+    content: Domain.EmailFlows
+  summary: "EmailFlow folders"
+  name: EmailFlows
+  nameWithType: EmailFlows
+  fullName: CRMScript.NetServer.Domain.EmailFlows
+references:
+- uid: CRMScript.NetServer.Domain
+  commentId: T:CRMScript.NetServer.Domain
+  isExternal: true
+  name: Domain
+  nameWithType: Domain
+  fullName: CRMScript.NetServer.Domain

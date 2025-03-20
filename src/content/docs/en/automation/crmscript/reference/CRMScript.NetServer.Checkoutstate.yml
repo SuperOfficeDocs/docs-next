@@ -1,0 +1,69 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.CheckoutState
+  children:
+  - CRMScript.NetServer.CheckoutState.NotCheckedOut
+  - CRMScript.NetServer.CheckoutState.CheckedOutOwn
+  - CRMScript.NetServer.CheckoutState.CheckedOutOther
+  - CRMScript.NetServer.CheckoutState.LockingNotSupported
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: CheckoutState
+  syntax: 
+    content: CheckoutState
+  summary: "Enum listing the possible checkout states of a document, as seen from outside the document plugin"
+  name: CheckoutState
+  nameWithType: CheckoutState
+  fullName: CRMScript.NetServer.CheckoutState
+- uid: CRMScript.NetServer.CheckoutState.NotCheckedOut
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: CheckoutState.NotCheckedOut
+  syntax: 
+    content: CheckoutState.NotCheckedOut
+  summary: "Document is not checked out"
+  name: NotCheckedOut
+  nameWithType: NotCheckedOut
+  fullName: CRMScript.NetServer.CheckoutState.NotCheckedOut
+- uid: CRMScript.NetServer.CheckoutState.CheckedOutOwn
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: CheckoutState.CheckedOutOwn
+  syntax: 
+    content: CheckoutState.CheckedOutOwn
+  summary: "Document is checked out, to the user making the query"
+  name: CheckedOutOwn
+  nameWithType: CheckedOutOwn
+  fullName: CRMScript.NetServer.CheckoutState.CheckedOutOwn
+- uid: CRMScript.NetServer.CheckoutState.CheckedOutOther
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: CheckoutState.CheckedOutOther
+  syntax: 
+    content: CheckoutState.CheckedOutOther
+  summary: "Document is checked out, to a user different from the one making the query"
+  name: CheckedOutOther
+  nameWithType: CheckedOutOther
+  fullName: CRMScript.NetServer.CheckoutState.CheckedOutOther
+- uid: CRMScript.NetServer.CheckoutState.LockingNotSupported
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: CheckoutState.LockingNotSupported
+  syntax: 
+    content: CheckoutState.LockingNotSupported
+  summary: "Locking is not supported or selected for this document. The document is always 'writeable' in the sense of not being protected by any locks. The document may still be read-only due to Sentry constraints."
+  name: LockingNotSupported
+  nameWithType: LockingNotSupported
+  fullName: CRMScript.NetServer.CheckoutState.LockingNotSupported
+references:
+- uid: CRMScript.NetServer.CheckoutState
+  commentId: T:CRMScript.NetServer.CheckoutState
+  isExternal: true
+  name: CheckoutState
+  nameWithType: CheckoutState
+  fullName: CRMScript.NetServer.CheckoutState

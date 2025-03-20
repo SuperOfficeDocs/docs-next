@@ -1,0 +1,165 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.QuoteVersionButtonAction
+  children:
+  - CRMScript.NetServer.QuoteVersionButtonAction.None
+  - CRMScript.NetServer.QuoteVersionButtonAction.ValidateVersion
+  - CRMScript.NetServer.QuoteVersionButtonAction.Edit
+  - CRMScript.NetServer.QuoteVersionButtonAction.Send
+  - CRMScript.NetServer.QuoteVersionButtonAction.Approve
+  - CRMScript.NetServer.QuoteVersionButtonAction.Reject
+  - CRMScript.NetServer.QuoteVersionButtonAction.ValidateVersionAndSendIfPossible
+  - CRMScript.NetServer.QuoteVersionButtonAction.ValidateVersionAndPlaceOrderIfPossible
+  - CRMScript.NetServer.QuoteVersionButtonAction.CloneVersion
+  - CRMScript.NetServer.QuoteVersionButtonAction.SendConfirmation
+  - CRMScript.NetServer.QuoteVersionButtonAction.GetOrderState
+  - CRMScript.NetServer.QuoteVersionButtonAction.UpdatePrices
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: QuoteVersionButtonAction
+  syntax: 
+    content: QuoteVersionButtonAction
+  summary: "Possible actions for QuoteVersionButton states."
+  name: QuoteVersionButtonAction
+  nameWithType: QuoteVersionButtonAction
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction
+- uid: CRMScript.NetServer.QuoteVersionButtonAction.None
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteVersionButtonAction.None
+  syntax: 
+    content: QuoteVersionButtonAction.None
+  summary: "No action"
+  name: None
+  nameWithType: None
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction.None
+- uid: CRMScript.NetServer.QuoteVersionButtonAction.ValidateVersion
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteVersionButtonAction.ValidateVersion
+  syntax: 
+    content: QuoteVersionButtonAction.ValidateVersion
+  summary: "Validate the quote version."
+  name: ValidateVersion
+  nameWithType: ValidateVersion
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction.ValidateVersion
+- uid: CRMScript.NetServer.QuoteVersionButtonAction.Edit
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteVersionButtonAction.Edit
+  syntax: 
+    content: QuoteVersionButtonAction.Edit
+  summary: "Edit the quote version."
+  name: Edit
+  nameWithType: Edit
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction.Edit
+- uid: CRMScript.NetServer.QuoteVersionButtonAction.Send
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteVersionButtonAction.Send
+  syntax: 
+    content: QuoteVersionButtonAction.Send
+  summary: "Send the quote version."
+  name: Send
+  nameWithType: Send
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction.Send
+- uid: CRMScript.NetServer.QuoteVersionButtonAction.Approve
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteVersionButtonAction.Approve
+  syntax: 
+    content: QuoteVersionButtonAction.Approve
+  summary: "Approve the quote version."
+  name: Approve
+  nameWithType: Approve
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction.Approve
+- uid: CRMScript.NetServer.QuoteVersionButtonAction.Reject
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteVersionButtonAction.Reject
+  syntax: 
+    content: QuoteVersionButtonAction.Reject
+  summary: "Reject the quote version."
+  name: Reject
+  nameWithType: Reject
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction.Reject
+- uid: CRMScript.NetServer.QuoteVersionButtonAction.ValidateVersionAndSendIfPossible
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteVersionButtonAction.ValidateVersionAndSendIfPossible
+  syntax: 
+    content: QuoteVersionButtonAction.ValidateVersionAndSendIfPossible
+  summary: "Validate the quote version and send if possible."
+  name: ValidateVersionAndSendIfPossible
+  nameWithType: ValidateVersionAndSendIfPossible
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction.ValidateVersionAndSendIfPossible
+- uid: CRMScript.NetServer.QuoteVersionButtonAction.ValidateVersionAndPlaceOrderIfPossible
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteVersionButtonAction.ValidateVersionAndPlaceOrderIfPossible
+  syntax: 
+    content: QuoteVersionButtonAction.ValidateVersionAndPlaceOrderIfPossible
+  summary: "Validate the quote version and place the order if possible."
+  name: ValidateVersionAndPlaceOrderIfPossible
+  nameWithType: ValidateVersionAndPlaceOrderIfPossible
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction.ValidateVersionAndPlaceOrderIfPossible
+- uid: CRMScript.NetServer.QuoteVersionButtonAction.CloneVersion
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteVersionButtonAction.CloneVersion
+  syntax: 
+    content: QuoteVersionButtonAction.CloneVersion
+  summary: "Make a copy of the quote version."
+  name: CloneVersion
+  nameWithType: CloneVersion
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction.CloneVersion
+- uid: CRMScript.NetServer.QuoteVersionButtonAction.SendConfirmation
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteVersionButtonAction.SendConfirmation
+  syntax: 
+    content: QuoteVersionButtonAction.SendConfirmation
+  summary: "Send confirmation."
+  name: SendConfirmation
+  nameWithType: SendConfirmation
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction.SendConfirmation
+- uid: CRMScript.NetServer.QuoteVersionButtonAction.GetOrderState
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteVersionButtonAction.GetOrderState
+  syntax: 
+    content: QuoteVersionButtonAction.GetOrderState
+  summary: "Fetch updated values from the ERP system and show the results in the dialog."
+  name: GetOrderState
+  nameWithType: GetOrderState
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction.GetOrderState
+- uid: CRMScript.NetServer.QuoteVersionButtonAction.UpdatePrices
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: QuoteVersionButtonAction.UpdatePrices
+  syntax: 
+    content: QuoteVersionButtonAction.UpdatePrices
+  summary: "Ask the quote connector to update the prices for the entire version."
+  name: UpdatePrices
+  nameWithType: UpdatePrices
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction.UpdatePrices
+references:
+- uid: CRMScript.NetServer.QuoteVersionButtonAction
+  commentId: T:CRMScript.NetServer.QuoteVersionButtonAction
+  isExternal: true
+  name: QuoteVersionButtonAction
+  nameWithType: QuoteVersionButtonAction
+  fullName: CRMScript.NetServer.QuoteVersionButtonAction

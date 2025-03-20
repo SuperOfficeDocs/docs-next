@@ -1,0 +1,105 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.ShowState
+  children:
+  - CRMScript.NetServer.ShowState.Minimized
+  - CRMScript.NetServer.ShowState.Maximized
+  - CRMScript.NetServer.ShowState.Default
+  - CRMScript.NetServer.ShowState.ToolBar
+  - CRMScript.NetServer.ShowState.AddressBar
+  - CRMScript.NetServer.ShowState.StatusBar
+  - CRMScript.NetServer.ShowState.MenuBar
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: ShowState
+  syntax: 
+    content: ShowState
+  summary: "Value for the showState field in table externalapplication"
+  name: ShowState
+  nameWithType: ShowState
+  fullName: CRMScript.NetServer.ShowState
+- uid: CRMScript.NetServer.ShowState.Minimized
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ShowState.Minimized
+  syntax: 
+    content: ShowState.Minimized
+  summary: "Start application in minimized state"
+  name: Minimized
+  nameWithType: Minimized
+  fullName: CRMScript.NetServer.ShowState.Minimized
+- uid: CRMScript.NetServer.ShowState.Maximized
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ShowState.Maximized
+  syntax: 
+    content: ShowState.Maximized
+  summary: "Start application in maximized state"
+  name: Maximized
+  nameWithType: Maximized
+  fullName: CRMScript.NetServer.ShowState.Maximized
+- uid: CRMScript.NetServer.ShowState.Default
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ShowState.Default
+  syntax: 
+    content: ShowState.Default
+  summary: "Start application with default window size and position"
+  name: Default
+  nameWithType: Default
+  fullName: CRMScript.NetServer.ShowState.Default
+- uid: CRMScript.NetServer.ShowState.ToolBar
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ShowState.ToolBar
+  syntax: 
+    content: ShowState.ToolBar
+  summary: "Show the Browser toolbar"
+  name: ToolBar
+  nameWithType: ToolBar
+  fullName: CRMScript.NetServer.ShowState.ToolBar
+- uid: CRMScript.NetServer.ShowState.AddressBar
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ShowState.AddressBar
+  syntax: 
+    content: ShowState.AddressBar
+  summary: "Show the Browser addressbar (where the user can type URL's and stuff)"
+  name: AddressBar
+  nameWithType: AddressBar
+  fullName: CRMScript.NetServer.ShowState.AddressBar
+- uid: CRMScript.NetServer.ShowState.StatusBar
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ShowState.StatusBar
+  syntax: 
+    content: ShowState.StatusBar
+  summary: "Show the Browser statusbar"
+  name: StatusBar
+  nameWithType: StatusBar
+  fullName: CRMScript.NetServer.ShowState.StatusBar
+- uid: CRMScript.NetServer.ShowState.MenuBar
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: ShowState.MenuBar
+  syntax: 
+    content: ShowState.MenuBar
+  summary: "Show the Browser Menu bar (currently not implemented)"
+  name: MenuBar
+  nameWithType: MenuBar
+  fullName: CRMScript.NetServer.ShowState.MenuBar
+references:
+- uid: CRMScript.NetServer.ShowState
+  commentId: T:CRMScript.NetServer.ShowState
+  isExternal: true
+  name: ShowState
+  nameWithType: ShowState
+  fullName: CRMScript.NetServer.ShowState

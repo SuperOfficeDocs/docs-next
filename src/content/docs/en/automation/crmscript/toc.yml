@@ -1,0 +1,347 @@
+items:
+- name: Introduction
+  topicHref: overview/index.md
+  expanded: true
+  items:
+  - name: What is CRMSCript?
+    href: overview/index.md
+  - name: What can I do with CRMScript?
+    href: overview/crmscript-usage.md
+  - name: How do I create and run CRMScripts?
+    href: overview/envir-and-tools.md
+  - name: Getting started
+    href: overview/getting-started.md
+- name: Fundamentals
+  topicHref: fundamentals/index.md
+  items:
+  - name: Introduction
+    href: fundamentals/index.md
+  - name: Code structure
+    href: fundamentals/syntax.md
+  - name: Reserved words
+    href: fundamentals/reserved.md
+  - name: Variables
+    href: fundamentals/variables.md
+  - name: Operators
+    href: fundamentals/operators.md
+  - name: Intro to data types
+    href: fundamentals/datatypes-intro.md
+  - name: Functions
+    href: fundamentals/functions.md
+  - name: Structs
+    href: fundamentals/structs.md
+  - name: Arrays
+    href: fundamentals/arrays.md
+  - name: Control
+    topicHref: fundamentals/conditions.md
+    items:
+    - name: Conditions
+      href: fundamentals/conditions.md
+    - name: Try catch
+      href: fundamentals/try-catch.md
+  - name: Loops
+    topicHref: fundamentals/for-loops.md
+    items:
+    - name: For loops
+      href: fundamentals/for-loops.md
+    - name: Foreach loops
+      href: fundamentals/foreach-loops.md
+    - name: While loops
+      href: fundamentals/while-loops.md
+    - name: Break and continue
+      href: fundamentals/loop-control.md
+  - name: Write output
+    href: fundamentals/output.md
+- name: Code quality
+  topicHref: code-quality/index.md
+  items:
+  - name: Introduction
+    href: code-quality/index.md
+  - name: Coding conventions
+    href: code-quality/coding-conventions.md
+  - name: Best practices
+    href: code-quality/best-practices.md
+  - name: Intellisense
+    href: code-quality/intellisense.md
+- name: Security
+  href: security/index.md
+- name: Data types
+  topicHref: datatypes/index.md
+  items:
+  - name: Introduction
+    href: datatypes/index.md
+  - name: Bool type
+    href: datatypes/bool-type.md
+  - name: Integer type
+    href: datatypes/integer-type.md
+  - name: Float type
+    href: datatypes/float-type.md
+  - name: Map type
+    href: datatypes/map-type.md
+  - name: String type
+    href: datatypes/string-type.md
+  - name: Date type
+    href: datatypes/date-type.md
+  - name: Time type
+    href: datatypes/time-type.md
+  - name: DateTime type
+    href: datatypes/datetime-type.md
+  - name: Generic type
+    href: datatypes/generic-type.md
+  - name: EventData type
+    href: datatypes/eventdata-type.md
+- name: Debugging
+  href: debugging/index.md
+  items:
+  - name: Built in debugger
+    href: debugging/built-in-debugger.md
+  - name: Log messages
+    href: debugging/log-messages.md
+  - name: Print debug
+    href: debugging/print-debug.md
+  - name: Development mode
+    href: debugging/development-mode.md
+  - name: Using trace
+    href: debugging/using-trace.md
+  - name: Helper functions for logging
+    href: debugging/helper-functions-for-logging.md
+  - name: Troubleshooting
+    href: debugging/troubleshooting.md
+- name: Working with ...
+  items:
+  - name: NetServer
+    topicHref: netserver/ns-agents-and-carriers.md
+    items:
+    - name: NetServer agents and carriers
+      href: netserver/ns-agents-and-carriers.md
+    - name: NS classes
+      href: netserver/ns-classes.md
+    - name: CRMScript ArchiveAgent
+      href: netserver/crmscript-archiveagent.md
+  - name: Parser
+    href: parser.md
+  - name: SearchEngine
+    topicHref: searchengine/index.md
+    items:
+    - name: Introduction
+      href: searchengine/index.md
+    - name: Database basics
+      href: searchengine/db-basics.md
+    - name: Dot-syntax
+      href: searchengine/dot-syntax.md
+    - name: Building a query
+      href: searchengine/se-select.md
+    - name: Running a query
+      href: searchengine/se-run.md
+    - name: Exploring search results
+      href: searchengine/se-results.md
+    - name: Insert, update, and delete
+      href: searchengine/se-insert-update-delete.md
+    - name: Using the SearchEngine class (blog post)
+      href: searchengine/using-the-searchengine-class-blog-post.md
+  - name: Addresses
+    href: howto/address/index.md
+    items:
+    - name: Get NSLocalizedAddress
+      href: howto/address/get-address.md
+    - name: Set NSLocalizedAddress
+      href: howto/address/set-address.md
+  - name: Company
+    href: howto/company/index.md
+    items:
+    - name: Create and update company
+      href: howto/company/create-company.md
+    - name: Get company info
+      href: howto/company/get-company.md
+    - name: Get activities
+      href: howto/company/get-activities.md
+  - name: Contact (customer, person, user)
+    href: howto/contact/index.md
+    items:
+    - name: Create and update customers
+      href: howto/contact/create-customer.md
+    - name: Get customer info
+      href: howto/contact/get-customer.md
+    - name: Look up customers
+      href: howto/contact/find-customer.md
+    - name: Get interests
+      href: howto/contact/get-interests.md
+    - name: Create user
+      href: howto/contact/create-user.md
+    - name: Get user
+      href: howto/contact/get-user.md
+  - name: Custom objects
+    topicHref: howto/custom-objects/udef.md
+    items:
+    - name: User-defined fields
+      href: howto/custom-objects/udef.md
+    - name: Extra fields
+      href: howto/custom-objects/extra-field.md
+    - name: Sort values
+      href: howto/custom-objects/sort-extra-field-values.md
+    - name: Extra tables
+      href: howto/custom-objects/extra-table.md
+  - name: Diary and follow-ups
+    href: howto/diary/index.md
+    items:
+    - name: Get appointments
+      href: howto/diary/get-appointment.md
+    - name: Create appointment
+      href: howto/diary/create-appointment.md
+    - name: Update and delete appointments
+      href: howto/diary/update-appointment.md
+    - name: Register incoming phone call
+      href: howto/diary/register-incoming-call.md
+    - name: Plan outgoing phone call
+      href: howto/diary/plan-outgoing-call.md
+    - name: Working with todo lists
+      href: howto/diary/task.md
+    - name: View recurrence info
+      href: howto/diary/get-recurrence-info.md
+    - name: Get follow-ups in a series
+      href: howto/diary/get-appointments-in-series.md
+    - name: Create repeating follow-ups
+      href: howto/diary/create-recurring-appointment.md
+    - name: Update repeating follow-ups
+      href: howto/diary/update-recurrence.md
+    - name: Stop repeating follow-ups
+      href: howto/diary/stop-recurrence.md
+    - name: Create invitation
+      href: howto/diary/create-invitation.md
+    - name: Book a resource
+      href: howto/diary/book-resource.md
+    - name: Track responses
+      href: howto/diary/track-responses.md
+    - name: Accept invitation
+      href: howto/diary/accept-invitation.md
+  - name: Documents
+    topicHref: howto/document/index.md
+    items:
+    - name: Document properties
+      href: howto/document/properties.md
+    - name: Document files
+      href: howto/document/file.md
+    - name: Document templates
+      href: howto/document/templates.md
+  - name: Interests
+    topicHref: howto/interests/index.md
+    items:
+    - name: Introduction
+      href: howto/interests/index.md
+    - name: Get or set company interests
+      href: howto/interests/company-interests.md
+    - name: Get or set contact fields
+      href: howto/interests/contact-interests.md
+  - name: Marketing
+    topicHref: howto/marketing/forms.md
+    items:
+    - name: Forms
+      href: howto/marketing/forms.md
+  - name: Projects
+    href: howto/project/index.md
+    items:
+    - name: Create
+      href: howto/project/create.md
+    - name: Get selected projects
+      href: howto/project/get.md
+    - name: Update
+      href: howto/project/update.md
+    - name: Project members
+      href: howto/project/members.md
+    - name: Project guide
+      href: howto/project/guides.md
+    - name: Samples
+      href: howto/project/samples.md
+  - name: Quote
+    href: howto/quote/index.md
+    items:
+    - name: Create quote
+      href: howto/quote/create.md
+    - name: Add alternatives
+      href: howto/quote/add-alternative.md
+    - name: Add quote lines
+      href: howto/quote/add-quote-line.md
+    - name: Get quote info
+      href: howto/quote/get.md
+    - name: Update quote
+      href: howto/quote/update.md
+    - name: Products
+      href: howto/quote/products.md
+    - name: Price lists
+      href: howto/quote/price-list.md
+    - name: Quote document
+      href: howto/quote/quote-document.md
+    - name: Place order
+      href: howto/quote/place-order.md
+    - name: Samples
+      href: howto/quote/samples.md
+  - name: Request
+    href: howto/request/index.md
+    items:
+    - name: Create ticket
+      href: howto/request/create.md
+    - name: Add or update message
+      href: howto/request/add-message.md
+    - name: Get ticket info
+      href: howto/request/get-ticket-info.md
+    - name: Get message info
+      href: howto/request/get-message-info.md
+    - name: Accept
+      href: howto/request/accept.md
+    - name: Reply
+      href: howto/request/reply.md
+    - name: Delegate
+      href: howto/request/delegate.md
+    - name: Escalate
+      href: howto/request/escalate.md
+    - name: Split and merge
+      href: howto/request/split-merge.md
+    - name: Request logs
+      href: howto/request/request-logs.md
+    - name: Samples
+      href: howto/request/samples.md
+    - name: Work with reply templates
+      href: howto/request/reply-templates.md
+  - name: Sale
+    href: howto/sale/index.md
+    items:
+      - name: Create
+        href: howto/sale/create.md
+      - name: Get
+        href: howto/sale/get.md
+      - name: Update
+        href: howto/sale/update.md
+      - name: Stakeholders
+        href: howto/sale/stakeholders.md
+      - name: Guides
+        href: howto/sale/guides.md
+      - name: Currency
+        href: howto/sale/currency.md
+      - name: Lost or sold
+        href: howto/sale/lost-or-sold.md
+      - name: Samples
+        href: howto/sale/samples.md
+- name: Tutorials
+  href: tutorials/index.md
+  items:
+  - name: Random requests
+    href: tutorials/creating-lots-of-random-requests.md
+  - name: Script-based selections
+    href: tutorials/script-based-selections.md
+  - name: Udef agent
+    href: tutorials/udef-agent.md
+  - name: Build custom rest API methods
+    href: tutorials/build-custom-rest-api-methods.md
+  - name: StatLib for reporting
+    href: tutorials/using-crmscript-statlib-for-reporting.md
+  - name: Waiting for customer reminder
+    href: tutorials/waiting-for-customer-status-with-reminders.md
+  - name: Using dialogs in triggers
+    href: tutorials/using-dialogs-in-triggers.md
+  - name: Creating a trigger for the outbox
+    href: tutorials/crmscript-trigger-outbox.md
+  - name: Task menu - Mark request as spam
+    href: tutorials/closing-request-tabs-in-triggers.md
+- name: Reference
+  href: reference/toc.yml
+  topicHref: reference/index.md

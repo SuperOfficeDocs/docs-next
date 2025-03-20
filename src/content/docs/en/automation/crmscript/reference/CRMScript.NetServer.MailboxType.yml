@@ -1,0 +1,141 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.MailboxType
+  children:
+  - CRMScript.NetServer.MailboxType.Unknown
+  - CRMScript.NetServer.MailboxType.Pop
+  - CRMScript.NetServer.MailboxType.Imap
+  - CRMScript.NetServer.MailboxType.Mapi
+  - CRMScript.NetServer.MailboxType.Facebook
+  - CRMScript.NetServer.MailboxType.Pops
+  - CRMScript.NetServer.MailboxType.Imaps
+  - CRMScript.NetServer.MailboxType.SmsPlugin
+  - CRMScript.NetServer.MailboxType.Mailgun
+  - CRMScript.NetServer.MailboxType.ImapOAuth
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: MailboxType
+  syntax: 
+    content: MailboxType
+  summary: "Service mailbox type"
+  name: MailboxType
+  nameWithType: MailboxType
+  fullName: CRMScript.NetServer.MailboxType
+- uid: CRMScript.NetServer.MailboxType.Unknown
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: MailboxType.Unknown
+  syntax: 
+    content: MailboxType.Unknown
+  summary: "Unknown"
+  name: Unknown
+  nameWithType: Unknown
+  fullName: CRMScript.NetServer.MailboxType.Unknown
+- uid: CRMScript.NetServer.MailboxType.Pop
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: MailboxType.Pop
+  syntax: 
+    content: MailboxType.Pop
+  summary: "Pop"
+  name: Pop
+  nameWithType: Pop
+  fullName: CRMScript.NetServer.MailboxType.Pop
+- uid: CRMScript.NetServer.MailboxType.Imap
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: MailboxType.Imap
+  syntax: 
+    content: MailboxType.Imap
+  summary: "Imap - without OAuth support. Use ImapOAuth instead if OAuth is needed"
+  name: Imap
+  nameWithType: Imap
+  fullName: CRMScript.NetServer.MailboxType.Imap
+- uid: CRMScript.NetServer.MailboxType.Mapi
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: MailboxType.Mapi
+  syntax: 
+    content: MailboxType.Mapi
+  summary: "Mapi - Obsolete"
+  name: Mapi
+  nameWithType: Mapi
+  fullName: CRMScript.NetServer.MailboxType.Mapi
+- uid: CRMScript.NetServer.MailboxType.Facebook
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: MailboxType.Facebook
+  syntax: 
+    content: MailboxType.Facebook
+  summary: "TypeFacebook"
+  name: Facebook
+  nameWithType: Facebook
+  fullName: CRMScript.NetServer.MailboxType.Facebook
+- uid: CRMScript.NetServer.MailboxType.Pops
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: MailboxType.Pops
+  syntax: 
+    content: MailboxType.Pops
+  summary: "Pop SSL"
+  name: Pops
+  nameWithType: Pops
+  fullName: CRMScript.NetServer.MailboxType.Pops
+- uid: CRMScript.NetServer.MailboxType.Imaps
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: MailboxType.Imaps
+  syntax: 
+    content: MailboxType.Imaps
+  summary: "Imap SSL"
+  name: Imaps
+  nameWithType: Imaps
+  fullName: CRMScript.NetServer.MailboxType.Imaps
+- uid: CRMScript.NetServer.MailboxType.SmsPlugin
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: MailboxType.SmsPlugin
+  syntax: 
+    content: MailboxType.SmsPlugin
+  summary: "Incoming SMS, using a plugin"
+  name: SmsPlugin
+  nameWithType: SmsPlugin
+  fullName: CRMScript.NetServer.MailboxType.SmsPlugin
+- uid: CRMScript.NetServer.MailboxType.Mailgun
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: MailboxType.Mailgun
+  syntax: 
+    content: MailboxType.Mailgun
+  summary: "Used by mailboxes set up as a Mailgun route"
+  name: Mailgun
+  nameWithType: Mailgun
+  fullName: CRMScript.NetServer.MailboxType.Mailgun
+- uid: CRMScript.NetServer.MailboxType.ImapOAuth
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: MailboxType.ImapOAuth
+  syntax: 
+    content: MailboxType.ImapOAuth
+  summary: "This is a Imap mailbox using OAuth authentication"
+  name: ImapOAuth
+  nameWithType: ImapOAuth
+  fullName: CRMScript.NetServer.MailboxType.ImapOAuth
+references:
+- uid: CRMScript.NetServer.MailboxType
+  commentId: T:CRMScript.NetServer.MailboxType
+  isExternal: true
+  name: MailboxType
+  nameWithType: MailboxType
+  fullName: CRMScript.NetServer.MailboxType

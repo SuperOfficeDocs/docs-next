@@ -1,0 +1,45 @@
+### YamlMime:ManagedReference
+items:
+- uid: CRMScript.NetServer.FormType
+  children:
+  - CRMScript.NetServer.FormType.Normal
+  - CRMScript.NetServer.FormType.Template
+  langs:
+  - crmscript
+  type: Enum
+  so.intellisense: FormType
+  syntax: 
+    content: FormType
+  summary: "What kind of form is this"
+  name: FormType
+  nameWithType: FormType
+  fullName: CRMScript.NetServer.FormType
+- uid: CRMScript.NetServer.FormType.Normal
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: FormType.Normal
+  syntax: 
+    content: FormType.Normal
+  summary: "A form instance"
+  name: Normal
+  nameWithType: Normal
+  fullName: CRMScript.NetServer.FormType.Normal
+- uid: CRMScript.NetServer.FormType.Template
+  langs:
+  - crmscript
+  type: Field
+  so.intellisense: FormType.Template
+  syntax: 
+    content: FormType.Template
+  summary: "A form template"
+  name: Template
+  nameWithType: Template
+  fullName: CRMScript.NetServer.FormType.Template
+references:
+- uid: CRMScript.NetServer.FormType
+  commentId: T:CRMScript.NetServer.FormType
+  isExternal: true
+  name: FormType
+  nameWithType: FormType
+  fullName: CRMScript.NetServer.FormType

@@ -1,0 +1,45 @@
+items:
+- name: Overview
+  href: index.md
+- name: Register the app
+  href: index.md
+  items:
+  - name: Web app
+    href: web-app.md
+  - name: Native app
+    href: native-app.md
+  - name: Server-to-server app
+    href: server-to-server-app.md
+  - name: Mirroring app
+    href: mirror-app.md
+  - name: ERP sync and quote app
+    href: sync-app.md
+  - name: Blank config, DIY
+    href: empty-app.md
+- name: Versioning
+  href: versioning.md
+- name: Configuration
+  href: config/index.md
+  items:
+  - name: What is my client ID?
+    href: config/find-clientid.md
+  - name: Create new client secret
+    href: config/get-client-secret.md
+  - name: Add and update redirect URLs
+    href: config/cors-and-redirection-urls.md
+  - name: Create new certificate
+    href: config/new-certificate.md
+  - name: Redirects
+    href: config/redirects.md
+  - name: Update endpoints
+    href: config/update-endpoints.md
+  - name: Update configuration
+    href: config/update-app-config.md
+  - name: Reference
+    href: config/app-config.md
+- name: Request to publish
+  href: request-to-publish.md
+- name: Message center
+  href: message-center.md
+- name: Helper for private applications
+  href: helper-application.md
