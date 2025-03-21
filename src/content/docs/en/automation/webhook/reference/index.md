@@ -1,7 +1,6 @@
 ---
 title: Reference
 uid: webhook_reference
-uid: webhooks_ref
 description: SuperOffice Webhooks reference
 author:
 date: 04.06.2018
