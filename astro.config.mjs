@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, sharpImageService } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import remarkDirective from "remark-directive";
@@ -61,6 +61,9 @@ export default defineConfig({
     pagefind(),
     react(),
   ],
+  image: {
+    service: sharpImageService({ limitInputPixels: false }),
+  },
   build: {
     format: "preserve",
   },

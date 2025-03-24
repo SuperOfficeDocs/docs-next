@@ -9,15 +9,27 @@ function isYamlFile(filePath: string): boolean {
 
 function loadYamlFile(filePath: string): TocData | null {
   if (!fs.existsSync(filePath)) {
-    console.warn(`Warning: ToC file not found: ${filePath}`);
+    // console.warn(`Warning: ToC file not found: ${filePath}`);
     return null;
   }
   const file = fs.readFileSync(filePath, "utf8");
   return YAML.parse(file) as TocData;
 }
 
-export function getTableOfContents(pathName: string): TocData {
-  const filePath = path.join("src/content/", `${pathName}.yml`);
+export function getTableOfContents(
+  collection: string,
+  pathName: string
+): TocData | null {
+
+  
+
+  const filePath = path.join("src/content/", `${collection + pathName}.yml`);
+
+  //Check if yml exists
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+
   const YAMLData = loadYamlFile(filePath);
 
   if (!YAMLData) {
@@ -27,16 +39,13 @@ export function getTableOfContents(pathName: string): TocData {
   function recursivelyLoadSubItems(items: any[]): void {
     for (const item of items) {
       if (item.href && isYamlFile(item.href)) {
-        const subFilePath = path.join("src/content/release-notes/", item.href);
+        const subFilePath = path.join(`src/content/${collection}/`, item.href);
         const subData = loadYamlFile(subFilePath);
         if (subData && subData.items) {
           item.items = subData.items;
           recursivelyLoadSubItems(item.items);
         }
       }
-      // if (item.items) {
-      //   recursivelyLoadSubItems(item.items);
-      // }
     }
   }
 

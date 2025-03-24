@@ -29,6 +29,7 @@ items:
     topicHref: 9.1/index.md
   - name: "8.5"
     href: 8.5/toc.yml
+    topicHref: 8.5/index.md
   - name: Database legacy
     href: database/index.md
     items:

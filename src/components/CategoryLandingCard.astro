@@ -1,15 +1,15 @@
 ---
 import type { contentCard } from "../types/CategoryPageTypes";
-import Files from "phosphor-astro/Files.astro";
 import IconSelection from "./IconSelection.tsx";
 
 import "@styles/main.css";
 
-const { item, id } = Astro.props;
+const { item, pageTitle } = Astro.props;
 
 interface Props {
   item: contentCard;
   id: number;
+  pageTitle: string | undefined;
 }
 ---
 
@@ -32,7 +32,7 @@ interface Props {
                   />
                 )}
               </div>
-              <a class="w-full hover:underline" href={subitem.url}>
+              <a class="w-full hover:underline" href={subitem.url.slice(-3) == ".md" ? `${pageTitle}/${subitem.url.slice(0, -3)}` : subitem.url}>
                 {subitem.text}
               </a>
             </div>

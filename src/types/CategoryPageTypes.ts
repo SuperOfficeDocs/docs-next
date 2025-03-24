@@ -42,7 +42,7 @@ export type contentCard = {
 export type CardLinks = {
   text?: string;
   itemType?: IconType;
-  typeDesc?: string;
+  typeDesc?: typeDesc;
   url: string;
   title?: string;
 };
@@ -61,6 +61,22 @@ type IconType =
   | "dvr"
   | "video_library"
   | "new_releases";
+
+  type typeDesc =
+  | "architecture"
+  | "concept"
+  | "deploy"
+  | "download"
+  | "get-started"
+  | "how-to-guide"
+  | "learn"
+  | "overview"
+  | "quickstart"
+  | "reference"
+  | "tutorial"
+  | "video"
+  | "whats-new";
+
 
 export type toolCard = {
   title?: string;

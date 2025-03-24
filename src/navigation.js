@@ -139,7 +139,7 @@ export const heroItems = {
       title: "Developer Portal",
       description: "Learn how to create online applications.",
       icon: "material-symbols-light:developer-mode-tv-outline",
-      url: "#"
+      url: "en/developer-portal"
     },
     {
       title: "Customer Service",
@@ -151,7 +151,7 @@ export const heroItems = {
       title: "Email and communication",
       description: "Great customer relations start with great communication.",
       icon: "mdi:email-outline",
-      url: "#"
+      url: "/en/email"
     }
   ],
 };

@@ -27,7 +27,7 @@ if (collection && slug) {
       >
         <TableOfContentList
           client:only="react"
-          inputItems={TableOfContentData.items}
+          inputItems={TableOfContentData?.items}
           slug="release-notes"
           isMainTable={true}
         />
@@ -41,7 +41,7 @@ if (collection && slug) {
       </main>
 
       <aside
-        class="md:col-span-2 pt-12 px-6 hidden lg:block h-screen sticky top-32"
+        class="md:col-span-2 pt-12 px-6 hidden lg:block h-screen sticky"
       >
         <OnThisArticle headings={headings} />
       </aside>
