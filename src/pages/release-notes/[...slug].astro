@@ -1,12 +1,11 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownHeading } from "astro";
 import MarkdownLayout from "@layouts/Markdown.astro";
 
 import { getTableOfContents } from "../../utils/getTableOfContents";
-const tocData = getTableOfContents("release-notes","/toc");
-
+const tocData = getTableOfContents("release-notes", "/toc");
 
 //generating static paths from release-notes collection
 export async function getStaticPaths() {
@@ -14,15 +13,15 @@ export async function getStaticPaths() {
 
   const headings = await Promise.all(
     docEntries.map(async (post) => {
-      const data = await post.render();
+      const data = await render(post);
       return data.headings;
     })
   );
 
   return docEntries.map((entry, index) => {
 
-    //removing .md extention from filepath
-    const generatedSlug = entry.id.slice(0, -3);
+    //removing .md extention AND "src/content/release-notes" from filepath
+    const generatedSlug = entry.filePath?.replace("src/content/release-notes", "").replace(".md","");
 
     return {
       params: { slug: `${generatedSlug}` },
@@ -38,8 +37,7 @@ type Props = {
 
 const { entry, headings } = Astro.props;
 
-const { Content } = await entry.render();
-
+const { Content } = await render(entry);
 ---
 
 <MarkdownLayout

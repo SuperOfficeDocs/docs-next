@@ -20,10 +20,10 @@ if (collection && slug) {
   <div class="sticky top-0">
     <PageHeader liveUrl={liveUrl} filePath={filePath} metadata={frontmatter} />
   </div>
-  <article class="w-full pt-1 article">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+  <article class="w-full pt-1 article grid grid-cols-12">
+    <div class="grid grid-cols-1 md:col-span-10 lg:grid-cols-10 gap-0">
       <nav
-        class="bg-lightTealGray md:col-span-3 pt-6 md:pt-12 w-full max-w-md mx-auto rounded-lg flex justify-center "
+        class="bg-lightTealGray md:col-span-3 pt-6 md:pt-12 w-full max-w-md mx-auto rounded-lg flex justify-center"
       >
         <TableOfContentList
           client:only="react"
@@ -39,12 +39,10 @@ if (collection && slug) {
       >
         <slot />
       </main>
-
-      <aside
-        class="md:col-span-2 pt-12 px-6 hidden lg:block h-screen sticky"
-      >
-        <OnThisArticle headings={headings} />
-      </aside>
+    </div>
+    <div class="md:col-span-2 pt-12 px-6 hidden lg:block h-screen sticky top-12">
+      <OnThisArticle headings={headings} />
     </div>
   </article>
+  
 </Base>
