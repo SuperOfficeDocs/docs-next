@@ -7,7 +7,7 @@ import { getTableOfContents } from "../../utils/getTableOfContents";
 
 //generating static paths from en collection
 export async function getStaticPaths() {
-  const docEntries = await getCollection("en");
+  const docEntries = await getCollection("de");
 
   const headings = await Promise.all(
     docEntries.map(async (post) => {
@@ -16,11 +16,14 @@ export async function getStaticPaths() {
     })
   );
 
+
+
   return docEntries.map((entry, index) => {
 
     //removing .md extention AND "src/content/en" from filepath
-    const generatedSlug = entry.filePath?.replace("src/content/docs/en", "").replace(".md","");
-    const tocData = getTableOfContents(`docs/en`, "/toc");
+    const generatedSlug = entry.filePath?.replace("src/content/docs/de", "").replace(".md","");
+    // console.log(generatedSlug)
+    const tocData = getTableOfContents(`docs/de`, "/toc");
     return {
       params: { slug: `${generatedSlug}` },
       props: { entry, headings: headings[index], toc:tocData },

@@ -21,12 +21,14 @@ const enDocs = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/docs/en" }),
   schema: z
     .object({
-      // title: z.string(),
-      // date: z.date().optional(),
-      // description: z.string().optional(),
-      // author: z.string().optional(),
-      // version: z.string().optional(),
-      // version_mobile: z.string().optional(),
+    })
+    .passthrough(),
+});
+
+const deDocs = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/docs/de" }),
+  schema: z
+    .object({
     })
     .passthrough(),
 });
@@ -36,4 +38,5 @@ const enDocs = defineCollection({
 export const collections = {
   "release-notes": releaseNotes,
   "en": enDocs,
+  "de": deDocs,
 };
