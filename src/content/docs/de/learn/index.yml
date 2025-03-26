@@ -1,0 +1,310 @@
+### YamlMime:Category
+
+title: Willkommen
+summary: Bereit, die Leistungsfähigkeit von SuperOffice CRM zu entdecken und mehr zu lernen? Beginnen Sie von Anfang an und lassen Sie uns Sie auf eine spannende CRM-Reise mit Anleitungen mitnehmen oder springen Sie einfach direkt zu einem bestimmten Thema im Menü.
+brand: devdocs
+language: de
+
+metadata:
+  title: Willkommen bei Learn | SuperOfficeDocs
+  description: "Bereit, die Leistungsfähigkeit von SuperOffice CRM zu entdecken und mehr zu lernen? Beginnen Sie von Anfang an und lassen Sie uns Sie auf eine spannende CRM-Reise mit Anleitungen mitnehmen oder springen Sie einfach direkt zu einem bestimmten Thema im Menü."
+  so.product: superoffice
+  so.topic: hub-page
+  so.collection: collection
+  author: Bergfrid Dias
+  so.author: digitaldiina
+  so.date: 07.20.2023
+
+# highlightedContent section (optional)
+# Maximum of 8 items
+highlightedContent:
+# typeDesc: architecture | concept | deploy       | download      | get-started        | how-to-guide | learn  | overview | quickstart | reference     | tutorial | video              | whats-new
+# itemType: architecture | explore | cloud_upload | file_download | power_settings_new | list         | school | map      | place      | library_books | dvr      | video_library      | new_releases
+  items:
+    # Card
+    - title: Kalender
+      itemType: /media/common/nav-diary-h32.png
+      isImage: "true"
+      url: ../diary/learn/index.md
+    # Card
+    - title: Dashboard
+      itemType: /media/common/nav-dashboard-h32.png
+      isImage: "true"
+      url: ../dashboard/learn/index.md
+    # Card
+    - title: Dokument
+      itemType: /media/common/document-h32.png
+      isImage: "true"
+      url: ../document/learn/index.md
+    # Card
+    - title: Anfragen
+      itemType: /media/common/nav-cs-h32.png
+      isImage: "true"
+      url: ../request/learn/index.md
+    # Card
+    - title: Projekt
+      itemType: /media/common/nav-project-h32.png
+      isImage: "true"
+      url: ../project/learn/index.md
+    # Card
+    - title: Verkauf
+      itemType: /media/common/nav-sale-h32.png
+      isImage: "true"
+      url: ../sale/learn/index.md
+    # Card
+    - title: Marketing
+      itemType: /media/common/nav-marketing-h32.png
+      isImage: "true"
+      url: ../marketing/learn/index.md
+    # Card
+    - title: Mobile CRM
+      itemType: /media/common/phone-h32.png
+      isImage: "true"
+      url: ../../en/mobile/superoffice-mobile/index.md
+
+# conceptualContent section (optional)
+conceptualContent:
+# typeDesc: architecture | concept | deploy       | download      | get-started        | how-to-guide | learn  | overview | quickstart | reference     | tutorial | video              | whats-new
+# itemType: architecture | explore | cloud_upload | file_download | power_settings_new | list         | school | map      | place      | library_books | dvr      | video_library      | new_releases
+  title: "" # < 60 chars (optional)
+  summary: ""
+  items:
+  # Card
+    - title: Erste Schritte
+      summary: ""
+      links:
+      - text: Einführung
+        itemType: school
+        typeDesc: learn
+        url: getting-started/login.md
+      - text: Lernen Sie die Grundlagen
+        itemType: school
+        typeDesc: learn
+        url: basics/index.md
+      - text: Demo
+        itemType: video_library
+        typeDesc: video
+        url: https://www.youtube.com/embed/10VQCTgxODc
+      - text: Anmeldung
+        itemType: list
+        typeDesc: how-to-guide
+        url: getting-started/login.md
+      - text: Einstellungen
+        itemType: list
+        typeDesc: how-to-guide
+        url: getting-started/preferences.md
+      - text: E-Mails und Dokumente verbinden
+        itemType: list
+        typeDesc: how-to-guide
+        url: getting-started/connect-email-doc/index.md
+      - text: E-Mail-Signatur bearbeiten
+        itemType: list
+        typeDesc: how-to-guide
+        url: getting-started/edit-email-signature.md
+      - text: Die Layout-Elemente
+        itemType: library_books
+        typeDesc: reference
+        url: getting-started/main-screen/index.md
+
+    # Card
+    - title: Neueste Updates
+      summary: ""
+      links:
+      - text: Versionshinweise
+        itemType: new_releases
+        typeDesc: whats-new
+        url: ../../../release-notes/index.md
+      - text: Neues Anfragen-Management
+        itemType: explore
+        typeDesc: concept
+        url: ../request/learn/index.md
+      - text: Konfigurierbare Bildschirme - Archive
+        itemType: explore
+        typeDesc: concept
+        url: ../ui/screen-designer/learn/working-with-archives.md
+
+    # Card
+    - title: Suchoptionen
+      summary: ""
+      links:
+      - text: Einführung
+        itemType: school
+        typeDesc: learn
+        url: ../search-options/learn/index.md
+      - text: Selektion
+        itemType: explore
+        typeDesc: concept
+        url: ../search-options/selection/learn/index.md
+      - text: Volltextsuche
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../search-options/learn/freetext-search.md
+      - text: Suche aus dem Navigator
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../search-options/learn/in-navigator.md
+      - text: Suche in Dialogfelder
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../search-options/learn/in-dialogs.md
+      - text: Ansicht Suchen
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../search-options/learn/find-screen.md
+      - text: Suchkriterien
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../search-options/learn/search-criteria.md
+      - text: Selektion erstellen
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../search-options/selection/learn/create/index.md
+
+    # Card
+    - title: Firma und Person
+      summary: ""
+      links:
+      - text: Einführung
+        itemType: school
+        typeDesc: learn
+        url: ../contact/learn/index.md
+      - text: Neue Firma erstellen
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../company/learn/create.md
+      - text: Neue Person erstellen
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../contact/learn/create.md
+      - text: E-Mail an eine Person senden
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../contact/learn/send-email.md
+      - text: Bereichsregisterkarten auf Firma
+        itemType: library_books
+        typeDesc: reference
+        url: ../company/learn/index.md
+      - text: Bereichsregisterkarten auf Person
+        itemType: library_books
+        typeDesc: reference
+        url: ../contact/learn/index.md
+
+    # Card
+    - title: E-Mail und Kalender
+      summary: ""
+      links:
+      - text: Einführung - E-Mail
+        itemType: school
+        typeDesc: learn
+        url: ../email/learn/index.md
+      - text: Einführung - Kalender
+        itemType: school
+        typeDesc: learn
+        url: ../diary/learn/index.md
+      - text: Standard-E-Mail-Client in SuperOffice ändern
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../email/learn/change-default-mail-client.md
+      - text: E-Mail verfassen
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../email/learn/compose.md
+      - text: Termin erstellen
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../diary/learn/create-follow-up.md
+      - text: Videokonferenzen
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../diary/learn/video-meetings.md
+      - text: In der Ansicht Kalender navigieren
+        itemType: library_books
+        typeDesc: reference
+        url: ../diary/learn/index.md
+
+    # Card
+    - title: Dokument
+      summary: ""
+      links:
+      - text: Einführung
+        itemType: school
+        typeDesc: learn
+        url: ../document/learn/index.md
+      - text: Neues Dokument erstellen
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../document/learn/create.md
+      - text: Vorlagenvariablen
+        itemType: library_books
+        typeDesc: reference
+        url: ../document/templates/variables/index.md
+
+    # Card
+    - title: Anfragen
+      summary: ""
+      links:
+      - text: Einführung
+        itemType: school
+        typeDesc: learn
+        url: ../request/learn/index.md
+      - text: Anfrage erstellen
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../request/learn/create.md
+      - text: Anfrage übernehmen
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../request/learn/accept.md
+      - text: Antwort an Kunde
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../request/learn/reply.md
+      - text: Mit Antwortvorlagen arbeiten
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../request/reply-templates/learn/create.md
+      - text: Anfrageansicht
+        itemType: library_books
+        typeDesc: reference
+        url: ../request/learn/screen/index.md
+
+    # Card
+    - title: Verkauf und Dashboard
+      summary: ""
+      links:
+      - text: Einführung
+        itemType: school
+        typeDesc: learn
+        url: ../sale/learn/index.md
+      - text: Prognose
+        itemType: explore
+        typeDesc: concept
+        url: ../sale/learn/forecasting.md
+      - text: Vertriebsziele
+        itemType: explore
+        typeDesc: concept
+        url: ../sale/learn/sales-targets/index.md
+      - text: Dashboard
+        itemType: explore
+        typeDesc: concept
+        url: ../dashboard/learn/index.md
+      - text: Verkauf erstellen
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../sale/learn/create.md
+      - text: Beteiligte hinzufügen
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../sale/learn/stakeholders/create.md
+      - text: Verkaufsleitfaden
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../sale/learn/sales-guides.md
+      - text: Neues Dashboard erstellen
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../dashboard/learn/create.md
+      - text: Mit Kacheln arbeiten
+        itemType: list
+        typeDesc: how-to-guide
+        url: ../dashboard/learn/working-with-tiles.md
