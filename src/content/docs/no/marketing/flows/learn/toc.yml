@@ -1,0 +1,21 @@
+items:
+- name: Oversikt
+  href: index.md
+- name: Opprette en ny flyt
+  href: create.md
+- name: Oppdater flyt
+  href: update.md
+- name: Del flyt
+  href: split.md
+- name: Definer flythandlinger
+  href: define-flow-actions.md
+- name: Legg til innhold
+  href: content.md
+- name: Trinninnstillinger
+  href: step-settings.md
+- name: Kjør, pause og avslutt flyt
+  href: run-pause-end.md
+- name: Deltakere
+  href: participants.md
+- name: Analyser resultatene
+  href: view-statistics.md

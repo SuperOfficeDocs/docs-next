@@ -1,0 +1,7 @@
+items:
+  - name: Oversikt
+    href: index.md
+  - name: Legge til deltakere i oppfølging
+    href: add-attendee.md
+  - name: Godta eller avslå invitasjon
+    href: accept-decline.md

@@ -1,0 +1,32 @@
+items: 
+- name: Oversikt
+  href: index.md
+- name: Fanen Mer
+  href: more-tab.md
+- name: Brukerdefinerte felt
+  topicHref: udef.md
+  items:
+  - name: Oversikt
+    href: udef.md
+  - name: Legge til felt
+    href: ../admin/add-udef.md
+  - name: Redigere felt
+    href: ../admin/edit-udef.md
+  - name: Tilpasse brukergrensesnitt
+    href: ../admin/edit-udef-layout.md
+- name: Ekstratabeller
+  topicHref: extra-table.md
+  items:
+  - name: Oversikt
+    href: extra-table.md
+  - name: Legge til ekstratabell
+    href: ../admin/create-extra-table.md
+- name: Ekstrafelt
+  topicHref: extra-field.md
+  items:
+  - name: Oversikt
+    href: extra-field.md
+  - name: Legge til ekstrafelt
+    href: ../admin/create-extra-field.md
+  - name: Vis ekstrafelt i fanen Detaljer
+    href: ../admin/show-extra-field-on-request-details.md

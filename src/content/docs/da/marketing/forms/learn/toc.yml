@@ -1,0 +1,23 @@
+items:
+- name: Oversigt
+  href: index.md
+- name: Opret ny formular
+  href: create.md
+- name: Indstillinger for felt
+  href: field-options.md
+- name: Formularhandlinger
+  href: define-form-actions.md
+- name: Formularskabeloner
+  href: form-templates.md
+- name: Udgiv formularer
+  href: publish.md
+- name: Forudfyldte felter
+  href: form-prefilled.md
+- name: Vis statistik
+  href: view-statistics.md
+- name: Behandl formularerindsendelser
+  href: process-submissions.md
+- name: Vejledning - Kontakt mig
+  href: tutorial-contact-me.md
+- name: Vejledning - Tilmelding til nyhedsbrev
+  href: tutorial-sign-up.md

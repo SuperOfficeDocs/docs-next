@@ -1,0 +1,33 @@
+items:
+  - name: Oversigt
+    href: index.md
+  - name: Underretninger
+    href: notifications.md
+  - name: Foretrukne
+    href: fav.md
+  - name: Historikliste
+    href: history.md
+  - name: Links
+    href: links.md
+  - name: Sådan tager du noter
+    href: notes.md
+  - name: Udskrivning af poster
+    href: print.md
+  - name: Dublerede kontroller
+    href: duplicates.md
+  - name: Slet og gendan
+    href: deleting-elements.md
+  - name: Masseredigering
+    href: bulk-update.md
+  - name: Arbejde med detaljekort
+    href: ../section-tabs/toc.yml
+    topicHref: ../section-tabs/index.md
+  - name: Aktiviteter
+    href: activity.md
+  - name: Firma- og personrelationer
+    href: relations.md
+  - name: Sprog og oversættelse
+    href: ../../globalization-and-localization/learn/toc.yml
+    topicHref: ../../globalization-and-localization/learn/change-language.md
+  - name: Eksterne programmer og URL-adresser
+    href: external-applications-and-url-addresses.md

@@ -1,0 +1,23 @@
+items:
+- name: Oversikt
+  href: index.md
+- name: Opprette prosjekt
+  href: create.md
+- name: Legge til prosjektbilde
+  href: add-image.md
+- name: Redigere prosjekt
+  href: edit.md
+- name: Slå sammen prosjekter
+  href: merge-projects.md
+- name: Slette prosjekt
+  href: delete.md
+- name: Prosjektdeltakere
+  href: project-members/toc.yml
+  topicHref: project-members/index.md
+- name: Prosjektguide
+  href: project-guides.md
+- name: Tutorial
+  href: tutorial.md
+- name: For administratorer
+  href: ../admin/toc.yml
+  topicHref: ../admin/index.md

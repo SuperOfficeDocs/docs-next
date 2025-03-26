@@ -1,0 +1,102 @@
+### YamlMime:SubCategory
+
+title: Tilpasning
+summary: "Få mere at vide om forskellige tilpasninger af alle dine lister, muligheder for at tilføje felter og layout til de forskellige hovedkort i skærmdesigneren, opsætning af makroer og script og al anden finjustering af dit system"
+language: da
+
+metadata:
+  title: Tilpasning
+  description: "Få mere at vide om, hvordan du kan tilpasse SuperOffice."
+  so.product: customisation
+  so.topic: landing-page
+  author: Help and Learn
+  so.author: Christine H.
+  so.date: 02.17.2025
+
+# typeDesc: architecture | concept | deploy       | download      | get-started        | how-to-guide | learn  | overview | quickstart | reference     | tutorial | video              | whats-new
+# itemType: architecture | explore | cloud_upload | file_download | power_settings_new | list         | school | map      | place      | library_books | dvr      | video_library      | new_releases
+
+landingContent:
+
+  # Card
+  - title: "Lister, præferencer, muligheder og indstillinger"
+    linkLists:
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Lister
+          url: ../admin/lists/learn/index.md
+        - text: Præferencer
+          url: ../admin/preferences/learn/index.md
+        - text: Muligheder
+          url: ../admin/options/learn/index.md
+      - itemType: library_books
+        typeDesc: reference
+        links:
+        - text: Globale præferencer
+          url: ../admin/preferences/learn/global-preferences/system.md
+
+  # Card
+  - title: Brugerdefinerede objekter
+    linkLists:
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Brugerdefinerede felter
+          url: ../custom-objects/learn/udef.md
+        - text: Ekstra felter
+          url: ../custom-objects/admin/create-extra-field.md
+        - text: Ekstra tabeller
+          url: ../custom-objects/admin/create-extra-table.md
+      
+  # Card
+  - title: Brugergrænseflade
+    linkLists:
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Skærmdesigner
+          url: ../ui/screen-designer/learn/index.md
+        - text: Ekstra menuer
+          url: ../ui/blogic/learn/extra-menus/index.md
+        - text: Webpaneler
+          url: ../ui/web-panels/learn/index.md
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Profil i service
+          url: ../ui/blogic/learn/profiles/index.md
+
+  # Card
+  - title: Makroer og CRMScript
+    linkLists:
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Makroer og scripts
+          url: ../automation/crmscript/learn/macro-script.md
+        - text: Opret en makro
+          url: ../automation/crmscript/learn/create-macro.md
+        - text: Opret et script
+          url: ../automation/crmscript/learn/create-script.md
+        - text: Fejlfindingssessioner
+          url: ../automation/crmscript/learn/debug.md
+        - text: Opret en planlagt opgave
+          url: ../automation/crmscript/learn/schedule-task.md
+        - text: Sporing
+          url: ../automation/crmscript/learn/tracing.md
+        - text: Udløsere
+          url: ../automation/crmscript/learn/trigger.md
+
+  # Card
+  - title: Kundecenter
+    linkLists:
+      - itemType: list
+        typeDesc: how-to-guide
+        links:
+        - text: Konfiguration af kundecenter
+          url: ../customer-center/learn/config.md
+        - text: Kundecenter-kildefiler
+          url: ../customer-center/learn/edit.md
+        - text: Send adgangskoder til personer
+          url: ../customer-center/learn/send-credentials.md

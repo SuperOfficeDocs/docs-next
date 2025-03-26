@@ -1,0 +1,29 @@
+items:
+- name: Oversikt
+  href: index.md
+- name: Registrer sale
+  href: create.md
+- name: Rediger eller slett salg
+  href: update.md
+- name: Salgsguideer
+  href: sales-guides.md
+- name: Tutorial
+  href: tutorial.md
+- name: Interessenter
+  href: stakeholders/index.md
+  items:
+  - name: Legg til interessenter
+    href: stakeholders/create.md
+  - name: Rediger eller fjern interessenter
+    href: stakeholders/edit.md
+- name: Prognoser
+  href: forecasting.md
+- name: Salgsmål
+  href: sales-targets/toc.yml
+  topicHref: sales-targets/index.md
+- name: Tilbud
+  href: ../../quote/learn/toc.yml
+  topicHref: ../../quote/learn/index.md
+- name: For administratorer
+  href: ../admin/toc.yml
+  topicHref: ../admin/index.md

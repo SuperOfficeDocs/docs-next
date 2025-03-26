@@ -1,0 +1,24 @@
+items:
+- name: Oversigt
+  href: index.md
+- name: Opret ny udsendelse
+  topicHref: create/index.md
+  items:
+  - name: Oversigt
+    href: create/index.md
+  - name: Ny udsendelse - e-mail
+    href: create/tutorial-email-mailing.yml
+  - name: Ny udsendelse - SMS
+    href: create/tutorial-sms-mailing.yml
+  - name: Ny udsendelse - Dokument
+    href: create/tutorial-document-mailing.yml
+  - name: Ny udsendelse - formularsvar
+    href: create/tutorial-form-mailing.yml
+  - name: Send test-e-mail
+    href: create/send-test-email.md
+- name: Vis statistik
+  href: view-statistics.md
+- name: Udsend e-mail igen
+  href: resend.md
+- name: Indstillinger for udsendelser
+  href: ../admin/define-settings-for-mailings.md

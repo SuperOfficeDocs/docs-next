@@ -1,0 +1,36 @@
+items:
+- name: Oversikt
+  href: index.md
+
+- name: Opprette mappe
+  href: create-folder.md
+- name: Meldingsmaler
+  href: message-templates.md
+- name: Legg til bilder
+  href: add-images.md
+- name: Beste praksis
+  href: best-practices.md
+
+- name: Utsendelser
+  href: ../mailing/learn/toc.yml
+  topicHref: ../mailing/learn/index.md
+
+- name: Dra og slipp editor
+  href: ../editor/learn/toc.yml
+  topicHref: ../editor/learn/index.md
+
+- name: Mottakere (målliste)
+  href: ../recipients/learn/toc.yml
+  topicHref: ../recipients/learn/index.md
+
+- name: Sporede lenker
+  href: ../tracked-links/learn/toc.yml
+  topicHref: ../tracked-links/learn/index.md
+
+- name: Skjemaer
+  href: ../forms/learn/toc.yml
+  topicHref: ../forms/learn/index.md
+
+- name: Flyter
+  href: ../flows/learn/toc.yml
+  topicHref: ../flows/learn/index.md

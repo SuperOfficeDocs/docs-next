@@ -1,0 +1,48 @@
+items:
+- name: Oversikt
+  href: index.md
+- name: Dokumentbibliotek
+  href: ../library/learn/index.md
+- name: Arbeide med dokument
+  topicHref: create.md
+  items:
+  - name: Opprett nytt dokument
+    href: create.md
+  - name: Sjekke inn/ut dokument
+    href: lock.md
+  - name: Redigere eller slette dokument
+    href: edit.md
+  - name: Sende dokument som e-post
+    href: send-as-email.md
+
+- name: Dokumentmaler
+  topicHref: ../templates/learn/index.md
+  items:
+  - name: Oversikt
+    href: ../templates/learn/index.md
+  - name: Dokumenttyper
+    href: ../templates/learn/document-types.md
+  - name: Malvariabler
+    href: ../templates/learn/template-variables.md
+    items:
+    - name: Referanse
+      href: ../templates/variables/toc.yml
+      topicHref: ../templates/variables/index.md
+    - name: Feilsøking
+      href: ../templates/learn/troubleshooting.md
+  - name: Flettefelt (tilbudsmaler)
+    href: ../templates/learn/quote-templates.md
+    items:
+    - name: Referanse
+      href: ../templates/merge-fields/toc.yml
+      topicHref: ../templates/merge-fields/index.md
+    - name: Tutorial
+      href: ../templates/admin/tutorial.md
+  - name: Opprette dokumentmal
+    href: ../templates/learn/create.md
+  - name: Legg til mal
+    href: ../templates/admin/link-template.md
+  - name: Redigere mal
+    href: ../templates/admin/update-template.md
+  - name: Dokumentmaler på flere språk
+    href: ../../onsite/win-client/learn/using-document-templates-for-multiple-languages.md
