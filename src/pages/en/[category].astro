@@ -1,6 +1,9 @@
 ---
 import CategoryLandingLayout from "@layouts/CategoryLandingLayout.astro";
 
+import { getCategoryPageContents } from "~/utils/getCategoryPageContents";
+
+
 export function getStaticPaths() {
   return [
     { params: { category: "company" } },
@@ -16,10 +19,9 @@ export function getStaticPaths() {
   ];
 }
 
-import { getCategoryPageContents } from "~/utils/getCategoryPageContents";
 
 const { category } = Astro.params;
 const CategoryData = getCategoryPageContents(`en/${category}`);
 ---
 
-<CategoryLandingLayout data={CategoryData} />
+<CategoryLandingLayout data={CategoryData} category={category} />
