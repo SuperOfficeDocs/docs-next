@@ -7,20 +7,14 @@ import { glob } from "astro/loaders";
 
 const releaseNotes = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/release-notes" }),
-  schema: z.object({
-    // title: z.string(),
-    // date: z.date().optional(),
-    // description: z.string().optional(),
-    // author: z.string().optional(),
-    // version: z.string().optional(),
-    // version_mobile: z.string().optional(),
-  }),
+  schema: z.object({}),
 });
 
 const enDocs = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/docs/en" }),
   schema: z
     .object({
+      uid: z.string().optional(),
     })
     .passthrough(),
 });
@@ -29,6 +23,7 @@ const deDocs = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/docs/de" }),
   schema: z
     .object({
+      uid: z.string().optional(),
     })
     .passthrough(),
 });
@@ -37,6 +32,6 @@ const deDocs = defineCollection({
 //    This key should match your collection directory name in "src/content"
 export const collections = {
   "release-notes": releaseNotes,
-  "en": enDocs,
-  "de": deDocs,
+  en: enDocs,
+  de: deDocs,
 };

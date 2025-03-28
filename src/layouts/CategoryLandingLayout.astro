@@ -5,24 +5,30 @@ import type { CategoryContentItem } from "../types/CategoryPageTypes";
 import CategoryLandingCard from "@components/CategoryLandingCard.astro";
 import CategoryLandingAddtionalContentCard from "@components/CategoryLandingAdditionalContentCard.astro";
 import IconSelection from "@components/IconSelection.tsx";
+import PageHeader from "@components/PageHeader.astro";
+
 const currentPath = Astro.url.pathname;
 
 
-const { data } = Astro.props;
+const { data, category } = Astro.props;
 
 const metadata = {
   title: data.title,
+  description: "Learn",
+  uid: "help"
 };
 
 type Props = {
   data: CategoryContentItem;
+  category: string;
 };
 ---
 
 <Base metadata={metadata}>
   <div class="relative">
 
-
+    {category == "learn" && <PageHeader filePath={currentPath}
+    metadata={metadata} isLearn={true}/> }
 
     <!-- Top Banner -->
     <div

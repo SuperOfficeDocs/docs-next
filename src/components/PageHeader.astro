@@ -3,32 +3,35 @@ import { Breadcrumbs } from "astro-breadcrumbs";
 import Feedback from "./Feedback.astro";
 import Edit from "./EditPage.astro";
 import Share from "./Share.astro";
+import LanguageSelect from "./LanguageSelect.tsx";
+const currentLocale = Astro.currentLocale;
+const liveUrl = Astro.url.pathname;
 
 import "astro-breadcrumbs/breadcrumbs.css";
-
 const ariaLabel = "Breadcrumb navigation and social links";
 
 export interface Props {
-  liveUrl: string;
   filePath: string;
   metadata: {
     title: string;
     description?: string;
     uid: string;
   };
+  isLearn: boolean;
 }
 
-const { liveUrl, filePath, metadata } = Astro.props;
+const { filePath, metadata, isLearn } = Astro.props;
 const { title, description, uid } = metadata;
+const isHelp = uid?.split("-")[0] == "help";
 ---
 
 <header
   aria-label={ariaLabel}
-  class="text-default px-4 py-2 h-10 bg-gray-100 w-full hidden md:flex max-w-9xl"
+  class="text-default px-4 h-10 bg-gray-100 w-full hidden md:flex max-w-9xl"
 >
   <div class="container mx-2 grid grid-cols lg:grid-cols-12 min-w-full">
     <div
-      class="lg:col-span-8 flex items-center justify-self-start text-superOfficeGreen"
+      class="lg:col-span-8 py-2 flex items-center justify-self-start text-superOfficeGreen"
     >
       <Breadcrumbs
         ariaLabel="A structured list of pages"
@@ -50,11 +53,22 @@ const { title, description, uid } = metadata;
       </Breadcrumbs>
     </div>
     <div
-      class="lg:col-span-4 hidden lg:flex items-center justify-self-end space-x-4 mx-5"
+      class="lg:col-span-4 hidden lg:flex items-center justify-self-end space-x-4 mr-12"
     >
-      <Share description={description} title={title} />
+      {
+        isHelp && currentLocale && (
+          <LanguageSelect
+            client:only="react"
+            currentLocale={currentLocale}
+            url={liveUrl}
+          />
+        )
+      }
+      {
+        !isLearn && (<Share description={description} title={title} />
       <Feedback docurl={filePath} title={title} uid={uid} />
-      <Edit docurl={filePath} />
+      <Edit docurl={filePath} />)
+      }
     </div>
   </div>
 </header>
