@@ -21,17 +21,17 @@ export async function getStaticPaths() {
     //removing .md extention AND "src/content/en" from filepath
     const generatedSlug = entry.filePath?.replace("src/content/docs/en", "").replace(".md","");
     const category = generatedSlug?.split("/")[1];
-    const isHelp =  entry.data.uid?.split("-")[0] == "help"
-    const tocData = getTableOfContents(`docs/en/${isHelp ? "learn" : category}`, "/toc");
+    const isLearn =  entry.data.uid?.split("-")[0] == "help"
+    const tocData = getTableOfContents(`docs/en/${isLearn ? "learn" : category}`, "/toc");
 
     return {
       params: { slug: `${generatedSlug}` },
-      props: { entry, headings: headings[index], tocData},
+      props: { entry, headings: headings[index], tocData, isLearn},
     };
   });
 }
 
-const { entry, headings, tocData } = Astro.props;
+const { entry, headings, tocData, isLearn } = Astro.props;
 
 const { Content } = await render(entry);
 ---
@@ -42,6 +42,7 @@ const { Content } = await render(entry);
   slug={entry.id}
   headings={headings}
   TableOfContentData={tocData}
+  isLearn={isLearn}
 >
   {Content ? <Content /> : "Loading content..."}
 </MarkdownLayout>

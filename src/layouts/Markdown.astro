@@ -4,7 +4,7 @@ import PageHeader from "@components/PageHeader.astro";
 import OnThisArticle from "@components/OnThisArticle.astro";
 import TableOfContentList from "@components/TableOfContentList.tsx";
 
-const { frontmatter, collection, slug, headings, TableOfContentData } =
+const { frontmatter, collection, slug, headings, TableOfContentData, isLearn } =
   Astro.props;
 const liveUrl = Astro.url.pathname;
 
@@ -14,6 +14,15 @@ if (collection && slug) {
 } else {
   filePath = `src/pages${liveUrl}.md`;
 }
+
+var generatedSlug;
+if(collection == "release-notes"){
+  generatedSlug = collection;
+}
+else{
+  generatedSlug = `${collection}/${isLearn ? "learn" : slug.split("/")[0]}`
+}
+
 ---
 
 <Base metadata={frontmatter}>
@@ -28,7 +37,7 @@ if (collection && slug) {
         <TableOfContentList
           client:only="react"
           inputItems={TableOfContentData?.items}
-          slug="release-notes"
+          slug={generatedSlug}
           isMainTable={true}
         />
       </nav>

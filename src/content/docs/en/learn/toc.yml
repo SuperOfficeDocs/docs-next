@@ -1,6 +1,7 @@
 items:
   - name: Overview
     href: index.yml
+    topicHref: ../learn
   - name: Introduction
     href: intro.md
   - name: Get started
