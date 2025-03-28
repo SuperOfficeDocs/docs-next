@@ -16,8 +16,8 @@ export default function LanguageSelect({
     ["Deutch", "de", "Sprachen"],
     ["Dutch", "nl", "Talen"],
     ["English", "en", "Languages"],
-    ["Norsk", "no", "Sprachen"],
-    ["Svenska", "sv", "Sprachen"],
+    ["Norsk", "no", "Språk"],
+    ["Svenska", "sv", "Språk"],
   ];
 
   React.useEffect( () => {
