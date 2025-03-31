@@ -64,9 +64,20 @@ export default defineConfig({
   image: {
     service: sharpImageService({ limitInputPixels: false }),
   },
+  i18n: {
+    locales: ["da", "de", "en", "nl", "no","sv"],
+    defaultLocale: "en",
+    routing: {
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: false
+    },
+    fallback: {
+      de: "en"
+    },
+  },
   build: {
     format: "preserve",
   },
-  site: 'https://superofficedocs.github.io',
-  base: '/docs-next'
+  site: "https://superofficedocs.github.io",
+  base: "/docs-next",
 });

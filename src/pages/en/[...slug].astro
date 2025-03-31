@@ -1,0 +1,47 @@
+---
+import { getCollection, render } from "astro:content";
+import MarkdownLayout from "@layouts/Markdown.astro";
+
+import { getTableOfContents } from "../../utils/getTableOfContents";
+
+
+//generating static paths from en collection
+export async function getStaticPaths() {
+  const docEntries = await getCollection("en");
+
+  const headings = await Promise.all(
+    docEntries.map(async (post) => {
+      const data = await render(post);
+      return data.headings;
+    })
+  );
+
+  return docEntries.map((entry, index) => {
+
+    //removing .md extention AND "src/content/en" from filepath
+    const generatedSlug = entry.filePath?.replace("src/content/docs/en", "").replace(".md","");
+    const category = generatedSlug?.split("/")[1];
+    const isHelp =  entry.data.uid?.split("-")[0] == "help"
+    const tocData = getTableOfContents(`docs/en/${isHelp ? "learn" : category}`, "/toc");
+
+    return {
+      params: { slug: `${generatedSlug}` },
+      props: { entry, headings: headings[index], tocData},
+    };
+  });
+}
+
+const { entry, headings, tocData } = Astro.props;
+
+const { Content } = await render(entry);
+---
+
+<MarkdownLayout
+  frontmatter={entry.data}
+  collection={entry.collection}
+  slug={entry.id}
+  headings={headings}
+  TableOfContentData={tocData}
+>
+  {Content ? <Content /> : "Loading content..."}
+</MarkdownLayout>

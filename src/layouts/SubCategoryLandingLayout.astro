@@ -7,6 +7,7 @@ import SubCategoryCard from "@components/SubCategoryCard.astro";
 import { Breadcrumbs } from "astro-breadcrumbs";
 import "astro-breadcrumbs/breadcrumbs.css";
 const { data, ToCData } = Astro.props;
+const currentPath = Astro.url.pathname;
 
 const metadata = {
   title: data.title,
@@ -59,7 +60,6 @@ type Props = {
       </nav>
 
       <div class="w-full md:col-span-9 p-8 max-w-none">
-        <!-- Heading -->
         <div class="mb-6">
           <p class="text-2xl font-bold mb-1">
             {data.title}
@@ -72,7 +72,12 @@ type Props = {
         >
           {
             data.landingContent.map((card) => {
-              return <SubCategoryCard item={card} />;
+              return (
+                <SubCategoryCard
+                  subCategory={currentPath.split("/").pop()}
+                  item={card}
+                />
+              );
             })
           }
         </div>
