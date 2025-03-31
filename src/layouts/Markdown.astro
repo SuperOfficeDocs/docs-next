@@ -15,14 +15,14 @@ if (collection && slug) {
   filePath = `src/pages${liveUrl}.md`;
 }
 
-var generatedSlug;
-if(collection == "release-notes"){
-  generatedSlug = collection;
-}
-else{
-  generatedSlug = `${collection}/${isLearn ? "learn" : slug.split("/")[0]}`
-}
+var TOCPath = collection;
 
+// Appends specific category of the page for langauge content collections (For every collection except for release-notes collection)
+if (collection != "release-notes") {
+  TOCPath = TOCPath.concat(
+    `/${isLearn ? "learn" : slug.split("/")[0]}`
+  );
+}
 ---
 
 <Base metadata={frontmatter}>
@@ -37,7 +37,7 @@ else{
         <TableOfContentList
           client:only="react"
           inputItems={TableOfContentData?.items}
-          slug={generatedSlug}
+          slug={TOCPath}
           isMainTable={true}
         />
       </nav>
