@@ -4,7 +4,7 @@ import PageHeader from "@components/PageHeader.astro";
 import OnThisArticle from "@components/OnThisArticle.astro";
 import TableOfContentList from "@components/TableOfContentList.tsx";
 
-const { frontmatter, collection, slug, headings, TableOfContentData } =
+const { frontmatter, collection, slug, headings, TableOfContentData, isLearn } =
   Astro.props;
 const liveUrl = Astro.url.pathname;
 
@@ -13,6 +13,15 @@ if (collection && slug) {
   filePath = `src/content/${collection}/${slug}`;
 } else {
   filePath = `src/pages${liveUrl}.md`;
+}
+
+var TOCPath = collection;
+
+// Appends specific category of the page for langauge content collections (For every collection except for release-notes collection)
+if (collection != "release-notes") {
+  TOCPath = TOCPath.concat(
+    `/${isLearn ? "learn" : slug.split("/")[0]}`
+  );
 }
 ---
 
@@ -28,7 +37,7 @@ if (collection && slug) {
         <TableOfContentList
           client:only="react"
           inputItems={TableOfContentData?.items}
-          slug="release-notes"
+          slug={TOCPath}
           isMainTable={true}
         />
       </nav>

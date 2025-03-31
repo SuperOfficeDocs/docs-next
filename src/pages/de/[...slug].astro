@@ -5,7 +5,7 @@ import MarkdownLayout from "@layouts/Markdown.astro";
 import { getTableOfContents } from "../../utils/getTableOfContents";
 
 
-//generating static paths from en collection
+//generating static paths from de collection
 export async function getStaticPaths() {
   const docEntries = await getCollection("de");
 
@@ -21,17 +21,17 @@ export async function getStaticPaths() {
     //removing .md extention AND "src/content/de" from filepath
     const generatedSlug = entry.filePath?.replace("src/content/docs/de", "").replace(".md","");
     const category = generatedSlug?.split("/")[1];
-    const isHelp =  entry.data.uid?.split("-")[0] == "help"
-    const tocData = getTableOfContents(`docs/de/${isHelp ? "learn" : category}`, "/toc");
+    const isLearn =  entry.data.uid?.startsWith("help")
+    const tocData = getTableOfContents(`docs/de/${isLearn ? "learn" : category}`, "/toc");
 
     return {
       params: { slug: `${generatedSlug}` },
-      props: { entry, headings: headings[index], tocData},
+      props: { entry, headings: headings[index], tocData, isLearn},
     };
   });
 }
 
-const { entry, headings, tocData } = Astro.props;
+const { entry, headings, tocData, isLearn } = Astro.props;
 
 const { Content } = await render(entry);
 ---
@@ -42,6 +42,7 @@ const { Content } = await render(entry);
   slug={entry.id}
   headings={headings}
   TableOfContentData={tocData}
+  isLearn={isLearn}
 >
   {Content ? <Content /> : "Loading content..."}
 </MarkdownLayout>
