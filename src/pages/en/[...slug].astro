@@ -21,7 +21,7 @@ export async function getStaticPaths() {
     //removing .md extention AND "src/content/en" from filepath
     const generatedSlug = entry.filePath?.replace("src/content/docs/en", "").replace(".md","");
     const category = generatedSlug?.split("/")[1];
-    const isLearn =  entry.data.uid?.split("-")[0] == "help"
+    const isLearn =  entry.data.uid?.startsWith("help");
     const tocData = getTableOfContents(`docs/en/${isLearn ? "learn" : category}`, "/toc");
 
     return {
