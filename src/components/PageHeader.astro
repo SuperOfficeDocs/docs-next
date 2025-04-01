@@ -34,8 +34,7 @@ const isHelp = uid?.split("-")[0] == "help";
       class="lg:col-span-8 py-2 flex items-center justify-self-start text-superOfficeGreen"
     >
       <Breadcrumbs
-        ariaLabel="A structured list of pages"
-        linkTextFormat="sentence"
+        customizeListElements={[{ index: 1, remove: true }]}
       >
         <svg
           slot="separator"
@@ -44,11 +43,11 @@ const isHelp = uid?.split("-")[0] == "help";
           height="24"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="currentColor"
-          stroke-width="2"
+          stroke="#808080"
+          stroke-width="1"
           stroke-linecap="round"
           stroke-linejoin="round"
-          ><polyline points="9 18 15 12 9 6"></polyline>
+          ><polyline points="8 24 16 4"></polyline>
         </svg>
       </Breadcrumbs>
     </div>
