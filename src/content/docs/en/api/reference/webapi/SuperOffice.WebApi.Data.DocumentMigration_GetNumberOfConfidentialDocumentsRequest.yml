@@ -1,0 +1,85 @@
+### YamlMime:ManagedReference
+items:
+- uid: SuperOffice.WebApi.Data.DocumentMigration_GetNumberOfConfidentialDocumentsRequest
+  commentId: T:SuperOffice.WebApi.Data.DocumentMigration_GetNumberOfConfidentialDocumentsRequest
+  id: DocumentMigration_GetNumberOfConfidentialDocumentsRequest
+  parent: SuperOffice.WebApi.Data
+  children:
+  - SuperOffice.WebApi.Data.DocumentMigration_GetNumberOfConfidentialDocumentsRequest.#ctor
+  langs:
+  - csharp
+  - vb
+  name: DocumentMigration_GetNumberOfConfidentialDocumentsRequest
+  nameWithType: DocumentMigration_GetNumberOfConfidentialDocumentsRequest
+  fullName: SuperOffice.WebApi.Data.DocumentMigration_GetNumberOfConfidentialDocumentsRequest
+  type: Class
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: 'public class DocumentMigration_GetNumberOfConfidentialDocumentsRequest : Object'
+    content.vb: >-
+      Public Class DocumentMigration_GetNumberOfConfidentialDocumentsRequest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SuperOffice.WebApi.Data.DocumentMigration_GetNumberOfConfidentialDocumentsRequest.#ctor
+  commentId: M:SuperOffice.WebApi.Data.DocumentMigration_GetNumberOfConfidentialDocumentsRequest.#ctor
+  id: '#ctor'
+  parent: SuperOffice.WebApi.Data.DocumentMigration_GetNumberOfConfidentialDocumentsRequest
+  langs:
+  - csharp
+  - vb
+  name: DocumentMigration_GetNumberOfConfidentialDocumentsRequest()
+  nameWithType: DocumentMigration_GetNumberOfConfidentialDocumentsRequest.DocumentMigration_GetNumberOfConfidentialDocumentsRequest()
+  fullName: SuperOffice.WebApi.Data.DocumentMigration_GetNumberOfConfidentialDocumentsRequest.DocumentMigration_GetNumberOfConfidentialDocumentsRequest()
+  type: Constructor
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public DocumentMigration_GetNumberOfConfidentialDocumentsRequest()
+    content.vb: Public Sub New
+  overload: SuperOffice.WebApi.Data.DocumentMigration_GetNumberOfConfidentialDocumentsRequest.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: SuperOffice.WebApi.Data
+  commentId: N:SuperOffice.WebApi.Data
+  isExternal: true
+  name: SuperOffice.WebApi.Data
+  nameWithType: SuperOffice.WebApi.Data
+  fullName: SuperOffice.WebApi.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SuperOffice.WebApi.Data.DocumentMigration_GetNumberOfConfidentialDocumentsRequest.#ctor*
+  commentId: Overload:SuperOffice.WebApi.Data.DocumentMigration_GetNumberOfConfidentialDocumentsRequest.#ctor
+  isExternal: true
+  name: DocumentMigration_GetNumberOfConfidentialDocumentsRequest
+  nameWithType: DocumentMigration_GetNumberOfConfidentialDocumentsRequest.DocumentMigration_GetNumberOfConfidentialDocumentsRequest
+  fullName: SuperOffice.WebApi.Data.DocumentMigration_GetNumberOfConfidentialDocumentsRequest.DocumentMigration_GetNumberOfConfidentialDocumentsRequest

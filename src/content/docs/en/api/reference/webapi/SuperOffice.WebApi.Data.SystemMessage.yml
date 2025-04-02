@@ -1,0 +1,549 @@
+### YamlMime:ManagedReference
+items:
+- uid: SuperOffice.WebApi.Data.SystemMessage
+  commentId: T:SuperOffice.WebApi.Data.SystemMessage
+  id: SystemMessage
+  parent: SuperOffice.WebApi.Data
+  children:
+  - SuperOffice.WebApi.Data.SystemMessage.#ctor
+  - SuperOffice.WebApi.Data.SystemMessage.AssociateId
+  - SuperOffice.WebApi.Data.SystemMessage.Expire
+  - SuperOffice.WebApi.Data.SystemMessage.MarkdownMessage
+  - SuperOffice.WebApi.Data.SystemMessage.MessageId
+  - SuperOffice.WebApi.Data.SystemMessage.OnlineappId
+  - SuperOffice.WebApi.Data.SystemMessage.SystemMessageId
+  - SuperOffice.WebApi.Data.SystemMessage.Type
+  - SuperOffice.WebApi.Data.SystemMessage.Type_String
+  langs:
+  - csharp
+  - vb
+  name: SystemMessage
+  nameWithType: SystemMessage
+  fullName: SuperOffice.WebApi.Data.SystemMessage
+  type: Class
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nCarrier object for SystemMessage.\nSystem Message to be displayed to a user    \n"
+  syntax:
+    content: 'public class SystemMessage : Carrier'
+    content.vb: >-
+      Public Class SystemMessage
+          Inherits Carrier
+  seealso:
+  - linkId: SuperOffice.WebApi.Agents.DiagnosticsAgent
+    commentId: T:SuperOffice.WebApi.Agents.DiagnosticsAgent
+  inheritance:
+  - System.Object
+  - SuperOffice.WebApi.Data.Carrier
+  inheritedMembers:
+  - SuperOffice.WebApi.Data.Carrier.TableRight
+  - SuperOffice.WebApi.Data.Carrier.FieldProperties
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SuperOffice.WebApi.Data.SystemMessage.#ctor
+  commentId: M:SuperOffice.WebApi.Data.SystemMessage.#ctor
+  id: '#ctor'
+  parent: SuperOffice.WebApi.Data.SystemMessage
+  langs:
+  - csharp
+  - vb
+  name: SystemMessage()
+  nameWithType: SystemMessage.SystemMessage()
+  fullName: SuperOffice.WebApi.Data.SystemMessage.SystemMessage()
+  type: Constructor
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nDefault constructor - defaults any enum props to 0. \n"
+  syntax:
+    content: public SystemMessage()
+    content.vb: Public Sub New
+  overload: SuperOffice.WebApi.Data.SystemMessage.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.SystemMessage.MessageId
+  commentId: P:SuperOffice.WebApi.Data.SystemMessage.MessageId
+  id: MessageId
+  parent: SuperOffice.WebApi.Data.SystemMessage
+  langs:
+  - csharp
+  - vb
+  name: MessageId
+  nameWithType: SystemMessage.MessageId
+  fullName: SuperOffice.WebApi.Data.SystemMessage.MessageId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nPrimary key\n"
+  syntax:
+    content: public virtual int MessageId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property MessageId As Integer
+  overload: SuperOffice.WebApi.Data.SystemMessage.MessageId*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: SuperOffice.WebApi.Data.SystemMessage.AssociateId
+  commentId: P:SuperOffice.WebApi.Data.SystemMessage.AssociateId
+  id: AssociateId
+  parent: SuperOffice.WebApi.Data.SystemMessage
+  langs:
+  - csharp
+  - vb
+  name: AssociateId
+  nameWithType: SystemMessage.AssociateId
+  fullName: SuperOffice.WebApi.Data.SystemMessage.AssociateId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nThe associate that is the target of this message\n"
+  syntax:
+    content: public virtual int AssociateId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property AssociateId As Integer
+  overload: SuperOffice.WebApi.Data.SystemMessage.AssociateId*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: SuperOffice.WebApi.Data.SystemMessage.OnlineappId
+  commentId: P:SuperOffice.WebApi.Data.SystemMessage.OnlineappId
+  id: OnlineappId
+  parent: SuperOffice.WebApi.Data.SystemMessage
+  langs:
+  - csharp
+  - vb
+  name: OnlineappId
+  nameWithType: SystemMessage.OnlineappId
+  fullName: SuperOffice.WebApi.Data.SystemMessage.OnlineappId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nThe online app that owns this message\n"
+  syntax:
+    content: public virtual int OnlineappId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property OnlineappId As Integer
+  overload: SuperOffice.WebApi.Data.SystemMessage.OnlineappId*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: SuperOffice.WebApi.Data.SystemMessage.SystemMessageId
+  commentId: P:SuperOffice.WebApi.Data.SystemMessage.SystemMessageId
+  id: SystemMessageId
+  parent: SuperOffice.WebApi.Data.SystemMessage
+  langs:
+  - csharp
+  - vb
+  name: SystemMessageId
+  nameWithType: SystemMessage.SystemMessageId
+  fullName: SuperOffice.WebApi.Data.SystemMessage.SystemMessageId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nMessage identifier, used for message update or removal\n"
+  syntax:
+    content: public virtual string SystemMessageId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Overridable Property SystemMessageId As String
+  overload: SuperOffice.WebApi.Data.SystemMessage.SystemMessageId*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: SuperOffice.WebApi.Data.SystemMessage.MarkdownMessage
+  commentId: P:SuperOffice.WebApi.Data.SystemMessage.MarkdownMessage
+  id: MarkdownMessage
+  parent: SuperOffice.WebApi.Data.SystemMessage
+  langs:
+  - csharp
+  - vb
+  name: MarkdownMessage
+  nameWithType: SystemMessage.MarkdownMessage
+  fullName: SuperOffice.WebApi.Data.SystemMessage.MarkdownMessage
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nMarkdown message to be displayed to user\n"
+  syntax:
+    content: public virtual string MarkdownMessage { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Overridable Property MarkdownMessage As String
+  overload: SuperOffice.WebApi.Data.SystemMessage.MarkdownMessage*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: SuperOffice.WebApi.Data.SystemMessage.Expire
+  commentId: P:SuperOffice.WebApi.Data.SystemMessage.Expire
+  id: Expire
+  parent: SuperOffice.WebApi.Data.SystemMessage
+  langs:
+  - csharp
+  - vb
+  name: Expire
+  nameWithType: SystemMessage.Expire
+  fullName: SuperOffice.WebApi.Data.SystemMessage.Expire
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nThe date and time the message expires\n"
+  syntax:
+    content: public virtual DateTime Expire { get; set; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: Public Overridable Property Expire As DateTime
+  overload: SuperOffice.WebApi.Data.SystemMessage.Expire*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: SuperOffice.WebApi.Data.SystemMessage.Type_String
+  commentId: P:SuperOffice.WebApi.Data.SystemMessage.Type_String
+  id: Type_String
+  parent: SuperOffice.WebApi.Data.SystemMessage
+  langs:
+  - csharp
+  - vb
+  name: Type_String
+  nameWithType: SystemMessage.Type_String
+  fullName: SuperOffice.WebApi.Data.SystemMessage.Type_String
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nType of message, example: info, warning, error\nRaw string enum value.\n"
+  syntax:
+    content: public string Type_String { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Type_String As String
+  overload: SuperOffice.WebApi.Data.SystemMessage.Type_String*
+  seealso:
+  - linkId: SuperOffice.WebApi.Data.SystemMessage.Type
+    commentId: P:SuperOffice.WebApi.Data.SystemMessage.Type
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.SystemMessage.Type
+  commentId: P:SuperOffice.WebApi.Data.SystemMessage.Type
+  id: Type
+  parent: SuperOffice.WebApi.Data.SystemMessage
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: SystemMessage.Type
+  fullName: SuperOffice.WebApi.Data.SystemMessage.Type
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nType of message, example: info, warning, error\nNULL if unknown enum value.\n"
+  syntax:
+    content: public Nullable<SystemMessageType> Type { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{SuperOffice.WebApi.Data.SystemMessageType}
+    content.vb: Public Property Type As Nullable(Of SystemMessageType)
+  overload: SuperOffice.WebApi.Data.SystemMessage.Type*
+  seealso:
+  - linkId: SuperOffice.WebApi.Data.SystemMessage.Type_String
+    commentId: P:SuperOffice.WebApi.Data.SystemMessage.Type_String
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: SuperOffice.WebApi.Data
+  commentId: N:SuperOffice.WebApi.Data
+  isExternal: true
+  name: SuperOffice.WebApi.Data
+  nameWithType: SuperOffice.WebApi.Data
+  fullName: SuperOffice.WebApi.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: SuperOffice.WebApi.Data.Carrier
+  commentId: T:SuperOffice.WebApi.Data.Carrier
+  parent: SuperOffice.WebApi.Data
+  isExternal: true
+  name: Carrier
+  nameWithType: Carrier
+  fullName: SuperOffice.WebApi.Data.Carrier
+- uid: SuperOffice.WebApi.Data.Carrier.TableRight
+  commentId: P:SuperOffice.WebApi.Data.Carrier.TableRight
+  parent: SuperOffice.WebApi.Data.Carrier
+  isExternal: true
+  name: TableRight
+  nameWithType: Carrier.TableRight
+  fullName: SuperOffice.WebApi.Data.Carrier.TableRight
+- uid: SuperOffice.WebApi.Data.Carrier.FieldProperties
+  commentId: P:SuperOffice.WebApi.Data.Carrier.FieldProperties
+  parent: SuperOffice.WebApi.Data.Carrier
+  isExternal: true
+  name: FieldProperties
+  nameWithType: Carrier.FieldProperties
+  fullName: SuperOffice.WebApi.Data.Carrier.FieldProperties
+- uid: SuperOffice.WebApi.Agents.DiagnosticsAgent
+  commentId: T:SuperOffice.WebApi.Agents.DiagnosticsAgent
+  isExternal: true
+  name: DiagnosticsAgent
+  nameWithType: DiagnosticsAgent
+  fullName: SuperOffice.WebApi.Agents.DiagnosticsAgent
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SuperOffice.WebApi.Data.SystemMessage.#ctor*
+  commentId: Overload:SuperOffice.WebApi.Data.SystemMessage.#ctor
+  isExternal: true
+  name: SystemMessage
+  nameWithType: SystemMessage.SystemMessage
+  fullName: SuperOffice.WebApi.Data.SystemMessage.SystemMessage
+- uid: SuperOffice.WebApi.Data.SystemMessage.MessageId*
+  commentId: Overload:SuperOffice.WebApi.Data.SystemMessage.MessageId
+  isExternal: true
+  name: MessageId
+  nameWithType: SystemMessage.MessageId
+  fullName: SuperOffice.WebApi.Data.SystemMessage.MessageId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SuperOffice.WebApi.Data.SystemMessage.AssociateId*
+  commentId: Overload:SuperOffice.WebApi.Data.SystemMessage.AssociateId
+  isExternal: true
+  name: AssociateId
+  nameWithType: SystemMessage.AssociateId
+  fullName: SuperOffice.WebApi.Data.SystemMessage.AssociateId
+- uid: SuperOffice.WebApi.Data.SystemMessage.OnlineappId*
+  commentId: Overload:SuperOffice.WebApi.Data.SystemMessage.OnlineappId
+  isExternal: true
+  name: OnlineappId
+  nameWithType: SystemMessage.OnlineappId
+  fullName: SuperOffice.WebApi.Data.SystemMessage.OnlineappId
+- uid: SuperOffice.WebApi.Data.SystemMessage.SystemMessageId*
+  commentId: Overload:SuperOffice.WebApi.Data.SystemMessage.SystemMessageId
+  isExternal: true
+  name: SystemMessageId
+  nameWithType: SystemMessage.SystemMessageId
+  fullName: SuperOffice.WebApi.Data.SystemMessage.SystemMessageId
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: SuperOffice.WebApi.Data.SystemMessage.MarkdownMessage*
+  commentId: Overload:SuperOffice.WebApi.Data.SystemMessage.MarkdownMessage
+  isExternal: true
+  name: MarkdownMessage
+  nameWithType: SystemMessage.MarkdownMessage
+  fullName: SuperOffice.WebApi.Data.SystemMessage.MarkdownMessage
+- uid: SuperOffice.WebApi.Data.SystemMessage.Expire*
+  commentId: Overload:SuperOffice.WebApi.Data.SystemMessage.Expire
+  isExternal: true
+  name: Expire
+  nameWithType: SystemMessage.Expire
+  fullName: SuperOffice.WebApi.Data.SystemMessage.Expire
+- uid: System.DateTime
+  isExternal: true
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+- uid: SuperOffice.WebApi.Data.SystemMessage.Type_String*
+  commentId: Overload:SuperOffice.WebApi.Data.SystemMessage.Type_String
+  isExternal: true
+  name: Type_String
+  nameWithType: SystemMessage.Type_String
+  fullName: SuperOffice.WebApi.Data.SystemMessage.Type_String
+- uid: SuperOffice.WebApi.Data.SystemMessage.Type
+  commentId: P:SuperOffice.WebApi.Data.SystemMessage.Type
+  isExternal: true
+- uid: SuperOffice.WebApi.Data.SystemMessage.Type*
+  commentId: Overload:SuperOffice.WebApi.Data.SystemMessage.Type
+  isExternal: true
+  name: Type
+  nameWithType: SystemMessage.Type
+  fullName: SuperOffice.WebApi.Data.SystemMessage.Type
+- uid: SuperOffice.WebApi.Data.SystemMessage.Type_String
+  commentId: P:SuperOffice.WebApi.Data.SystemMessage.Type_String
+  isExternal: true
+- uid: System.Nullable{SuperOffice.WebApi.Data.SystemMessageType}
+  commentId: '!:System.Nullable{SuperOffice.WebApi.Data.SystemMessageType}'
+  definition: System.Nullable`1
+  name: Nullable<SystemMessageType>
+  nameWithType: Nullable<SystemMessageType>
+  fullName: System.Nullable<SuperOffice.WebApi.Data.SystemMessageType>
+  nameWithType.vb: Nullable(Of SystemMessageType)
+  fullName.vb: System.Nullable(Of SuperOffice.WebApi.Data.SystemMessageType)
+  name.vb: Nullable(Of SystemMessageType)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: SuperOffice.WebApi.Data.SystemMessageType
+    name: SystemMessageType
+    nameWithType: SystemMessageType
+    fullName: SuperOffice.WebApi.Data.SystemMessageType
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: SuperOffice.WebApi.Data.SystemMessageType
+    name: SystemMessageType
+    nameWithType: SystemMessageType
+    fullName: SuperOffice.WebApi.Data.SystemMessageType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  isExternal: true
+  name: Nullable<>
+  nameWithType: Nullable<>
+  fullName: System.Nullable<>
+  nameWithType.vb: Nullable(Of )
+  fullName.vb: System.Nullable(Of )
+  name.vb: Nullable(Of )
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )

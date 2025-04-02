@@ -1,0 +1,210 @@
+### YamlMime:ManagedReference
+items:
+- uid: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest
+  commentId: T:SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest
+  id: Diagnostics_RemoveSystemMessageForAssociateRequest
+  parent: SuperOffice.WebApi.Data
+  children:
+  - SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.#ctor
+  - SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.AssociateId
+  - SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.OnlineappId
+  - SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.SystemMessageId
+  langs:
+  - csharp
+  - vb
+  name: Diagnostics_RemoveSystemMessageForAssociateRequest
+  nameWithType: Diagnostics_RemoveSystemMessageForAssociateRequest
+  fullName: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest
+  type: Class
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: 'public class Diagnostics_RemoveSystemMessageForAssociateRequest : Object'
+    content.vb: >-
+      Public Class Diagnostics_RemoveSystemMessageForAssociateRequest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.#ctor
+  commentId: M:SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.#ctor
+  id: '#ctor'
+  parent: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest
+  langs:
+  - csharp
+  - vb
+  name: Diagnostics_RemoveSystemMessageForAssociateRequest()
+  nameWithType: Diagnostics_RemoveSystemMessageForAssociateRequest.Diagnostics_RemoveSystemMessageForAssociateRequest()
+  fullName: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.Diagnostics_RemoveSystemMessageForAssociateRequest()
+  type: Constructor
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public Diagnostics_RemoveSystemMessageForAssociateRequest()
+    content.vb: Public Sub New
+  overload: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.OnlineappId
+  commentId: P:SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.OnlineappId
+  id: OnlineappId
+  parent: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest
+  langs:
+  - csharp
+  - vb
+  name: OnlineappId
+  nameWithType: Diagnostics_RemoveSystemMessageForAssociateRequest.OnlineappId
+  fullName: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.OnlineappId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public int OnlineappId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property OnlineappId As Integer
+  overload: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.OnlineappId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.SystemMessageId
+  commentId: P:SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.SystemMessageId
+  id: SystemMessageId
+  parent: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest
+  langs:
+  - csharp
+  - vb
+  name: SystemMessageId
+  nameWithType: Diagnostics_RemoveSystemMessageForAssociateRequest.SystemMessageId
+  fullName: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.SystemMessageId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public string SystemMessageId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property SystemMessageId As String
+  overload: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.SystemMessageId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.AssociateId
+  commentId: P:SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.AssociateId
+  id: AssociateId
+  parent: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest
+  langs:
+  - csharp
+  - vb
+  name: AssociateId
+  nameWithType: Diagnostics_RemoveSystemMessageForAssociateRequest.AssociateId
+  fullName: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.AssociateId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public int AssociateId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property AssociateId As Integer
+  overload: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.AssociateId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: SuperOffice.WebApi.Data
+  commentId: N:SuperOffice.WebApi.Data
+  isExternal: true
+  name: SuperOffice.WebApi.Data
+  nameWithType: SuperOffice.WebApi.Data
+  fullName: SuperOffice.WebApi.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.#ctor*
+  commentId: Overload:SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.#ctor
+  isExternal: true
+  name: Diagnostics_RemoveSystemMessageForAssociateRequest
+  nameWithType: Diagnostics_RemoveSystemMessageForAssociateRequest.Diagnostics_RemoveSystemMessageForAssociateRequest
+  fullName: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.Diagnostics_RemoveSystemMessageForAssociateRequest
+- uid: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.OnlineappId*
+  commentId: Overload:SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.OnlineappId
+  isExternal: true
+  name: OnlineappId
+  nameWithType: Diagnostics_RemoveSystemMessageForAssociateRequest.OnlineappId
+  fullName: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.OnlineappId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.SystemMessageId*
+  commentId: Overload:SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.SystemMessageId
+  isExternal: true
+  name: SystemMessageId
+  nameWithType: Diagnostics_RemoveSystemMessageForAssociateRequest.SystemMessageId
+  fullName: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.SystemMessageId
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.AssociateId*
+  commentId: Overload:SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.AssociateId
+  isExternal: true
+  name: AssociateId
+  nameWithType: Diagnostics_RemoveSystemMessageForAssociateRequest.AssociateId
+  fullName: SuperOffice.WebApi.Data.Diagnostics_RemoveSystemMessageForAssociateRequest.AssociateId

@@ -1,0 +1,210 @@
+### YamlMime:ManagedReference
+items:
+- uid: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+  commentId: T:SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+  id: EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+  parent: SuperOffice.WebApi.Data
+  children:
+  - SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.#ctor
+  - SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.AttachmentId
+  - SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.DocumentId
+  - SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EmailItemId
+  langs:
+  - csharp
+  - vb
+  name: EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+  nameWithType: EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+  fullName: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+  type: Class
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: 'public class EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest : Object'
+    content.vb: >-
+      Public Class EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.#ctor
+  commentId: M:SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.#ctor
+  id: '#ctor'
+  parent: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+  langs:
+  - csharp
+  - vb
+  name: EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest()
+  nameWithType: EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest()
+  fullName: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest()
+  type: Constructor
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest()
+    content.vb: Public Sub New
+  overload: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.DocumentId
+  commentId: P:SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.DocumentId
+  id: DocumentId
+  parent: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+  langs:
+  - csharp
+  - vb
+  name: DocumentId
+  nameWithType: EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.DocumentId
+  fullName: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.DocumentId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public int DocumentId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property DocumentId As Integer
+  overload: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.DocumentId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EmailItemId
+  commentId: P:SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EmailItemId
+  id: EmailItemId
+  parent: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+  langs:
+  - csharp
+  - vb
+  name: EmailItemId
+  nameWithType: EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EmailItemId
+  fullName: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EmailItemId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public int EmailItemId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property EmailItemId As Integer
+  overload: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EmailItemId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.AttachmentId
+  commentId: P:SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.AttachmentId
+  id: AttachmentId
+  parent: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+  langs:
+  - csharp
+  - vb
+  name: AttachmentId
+  nameWithType: EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.AttachmentId
+  fullName: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.AttachmentId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public string AttachmentId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AttachmentId As String
+  overload: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.AttachmentId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: SuperOffice.WebApi.Data
+  commentId: N:SuperOffice.WebApi.Data
+  isExternal: true
+  name: SuperOffice.WebApi.Data
+  nameWithType: SuperOffice.WebApi.Data
+  fullName: SuperOffice.WebApi.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.#ctor*
+  commentId: Overload:SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.#ctor
+  isExternal: true
+  name: EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+  nameWithType: EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+  fullName: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest
+- uid: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.DocumentId*
+  commentId: Overload:SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.DocumentId
+  isExternal: true
+  name: DocumentId
+  nameWithType: EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.DocumentId
+  fullName: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.DocumentId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EmailItemId*
+  commentId: Overload:SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EmailItemId
+  isExternal: true
+  name: EmailItemId
+  nameWithType: EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EmailItemId
+  fullName: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.EmailItemId
+- uid: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.AttachmentId*
+  commentId: Overload:SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.AttachmentId
+  isExternal: true
+  name: AttachmentId
+  nameWithType: EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.AttachmentId
+  fullName: SuperOffice.WebApi.Data.EMail_CreateNewPhysicalDocumentFromEmailAttachmentRequest.AttachmentId
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

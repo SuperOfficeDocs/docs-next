@@ -1,0 +1,129 @@
+### YamlMime:ManagedReference
+items:
+- uid: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest
+  commentId: T:SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest
+  id: AI_ClearChatbotTurnsRequest
+  parent: SuperOffice.WebApi.Data
+  children:
+  - SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.#ctor
+  - SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.ChatId
+  langs:
+  - csharp
+  - vb
+  name: AI_ClearChatbotTurnsRequest
+  nameWithType: AI_ClearChatbotTurnsRequest
+  fullName: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest
+  type: Class
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: 'public class AI_ClearChatbotTurnsRequest : Object'
+    content.vb: >-
+      Public Class AI_ClearChatbotTurnsRequest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.#ctor
+  commentId: M:SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.#ctor
+  id: '#ctor'
+  parent: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest
+  langs:
+  - csharp
+  - vb
+  name: AI_ClearChatbotTurnsRequest()
+  nameWithType: AI_ClearChatbotTurnsRequest.AI_ClearChatbotTurnsRequest()
+  fullName: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.AI_ClearChatbotTurnsRequest()
+  type: Constructor
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public AI_ClearChatbotTurnsRequest()
+    content.vb: Public Sub New
+  overload: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.ChatId
+  commentId: P:SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.ChatId
+  id: ChatId
+  parent: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest
+  langs:
+  - csharp
+  - vb
+  name: ChatId
+  nameWithType: AI_ClearChatbotTurnsRequest.ChatId
+  fullName: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.ChatId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public string ChatId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ChatId As String
+  overload: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.ChatId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: SuperOffice.WebApi.Data
+  commentId: N:SuperOffice.WebApi.Data
+  isExternal: true
+  name: SuperOffice.WebApi.Data
+  nameWithType: SuperOffice.WebApi.Data
+  fullName: SuperOffice.WebApi.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.#ctor*
+  commentId: Overload:SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.#ctor
+  isExternal: true
+  name: AI_ClearChatbotTurnsRequest
+  nameWithType: AI_ClearChatbotTurnsRequest.AI_ClearChatbotTurnsRequest
+  fullName: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.AI_ClearChatbotTurnsRequest
+- uid: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.ChatId*
+  commentId: Overload:SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.ChatId
+  isExternal: true
+  name: ChatId
+  nameWithType: AI_ClearChatbotTurnsRequest.ChatId
+  fullName: SuperOffice.WebApi.Data.AI_ClearChatbotTurnsRequest.ChatId
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

@@ -1,0 +1,173 @@
+### YamlMime:ManagedReference
+items:
+- uid: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest
+  commentId: T:SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest
+  id: AI_CreateTextForAppointmentRequest
+  parent: SuperOffice.WebApi.Data
+  children:
+  - SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.#ctor
+  - SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.Appointment
+  - SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.IsoLangCode
+  langs:
+  - csharp
+  - vb
+  name: AI_CreateTextForAppointmentRequest
+  nameWithType: AI_CreateTextForAppointmentRequest
+  fullName: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest
+  type: Class
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: 'public class AI_CreateTextForAppointmentRequest : Object'
+    content.vb: >-
+      Public Class AI_CreateTextForAppointmentRequest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.#ctor
+  commentId: M:SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.#ctor
+  id: '#ctor'
+  parent: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest
+  langs:
+  - csharp
+  - vb
+  name: AI_CreateTextForAppointmentRequest()
+  nameWithType: AI_CreateTextForAppointmentRequest.AI_CreateTextForAppointmentRequest()
+  fullName: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.AI_CreateTextForAppointmentRequest()
+  type: Constructor
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public AI_CreateTextForAppointmentRequest()
+    content.vb: Public Sub New
+  overload: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.Appointment
+  commentId: P:SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.Appointment
+  id: Appointment
+  parent: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest
+  langs:
+  - csharp
+  - vb
+  name: Appointment
+  nameWithType: AI_CreateTextForAppointmentRequest.Appointment
+  fullName: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.Appointment
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public AppointmentEntity Appointment { get; set; }
+    parameters: []
+    return:
+      type: SuperOffice.WebApi.Data.AppointmentEntity
+    content.vb: Public Property Appointment As AppointmentEntity
+  overload: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.Appointment*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.IsoLangCode
+  commentId: P:SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.IsoLangCode
+  id: IsoLangCode
+  parent: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest
+  langs:
+  - csharp
+  - vb
+  name: IsoLangCode
+  nameWithType: AI_CreateTextForAppointmentRequest.IsoLangCode
+  fullName: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.IsoLangCode
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public string IsoLangCode { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property IsoLangCode As String
+  overload: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.IsoLangCode*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: SuperOffice.WebApi.Data
+  commentId: N:SuperOffice.WebApi.Data
+  isExternal: true
+  name: SuperOffice.WebApi.Data
+  nameWithType: SuperOffice.WebApi.Data
+  fullName: SuperOffice.WebApi.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.#ctor*
+  commentId: Overload:SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.#ctor
+  isExternal: true
+  name: AI_CreateTextForAppointmentRequest
+  nameWithType: AI_CreateTextForAppointmentRequest.AI_CreateTextForAppointmentRequest
+  fullName: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.AI_CreateTextForAppointmentRequest
+- uid: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.Appointment*
+  commentId: Overload:SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.Appointment
+  isExternal: true
+  name: Appointment
+  nameWithType: AI_CreateTextForAppointmentRequest.Appointment
+  fullName: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.Appointment
+- uid: SuperOffice.WebApi.Data.AppointmentEntity
+  commentId: T:SuperOffice.WebApi.Data.AppointmentEntity
+  parent: SuperOffice.WebApi.Data
+  isExternal: true
+  name: AppointmentEntity
+  nameWithType: AppointmentEntity
+  fullName: SuperOffice.WebApi.Data.AppointmentEntity
+- uid: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.IsoLangCode*
+  commentId: Overload:SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.IsoLangCode
+  isExternal: true
+  name: IsoLangCode
+  nameWithType: AI_CreateTextForAppointmentRequest.IsoLangCode
+  fullName: SuperOffice.WebApi.Data.AI_CreateTextForAppointmentRequest.IsoLangCode
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

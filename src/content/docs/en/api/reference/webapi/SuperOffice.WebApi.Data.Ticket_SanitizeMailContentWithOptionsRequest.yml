@@ -1,0 +1,173 @@
+### YamlMime:ManagedReference
+items:
+- uid: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest
+  commentId: T:SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest
+  id: Ticket_SanitizeMailContentWithOptionsRequest
+  parent: SuperOffice.WebApi.Data
+  children:
+  - SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.#ctor
+  - SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Content
+  - SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Options
+  langs:
+  - csharp
+  - vb
+  name: Ticket_SanitizeMailContentWithOptionsRequest
+  nameWithType: Ticket_SanitizeMailContentWithOptionsRequest
+  fullName: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest
+  type: Class
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: 'public class Ticket_SanitizeMailContentWithOptionsRequest : Object'
+    content.vb: >-
+      Public Class Ticket_SanitizeMailContentWithOptionsRequest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.#ctor
+  commentId: M:SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.#ctor
+  id: '#ctor'
+  parent: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest
+  langs:
+  - csharp
+  - vb
+  name: Ticket_SanitizeMailContentWithOptionsRequest()
+  nameWithType: Ticket_SanitizeMailContentWithOptionsRequest.Ticket_SanitizeMailContentWithOptionsRequest()
+  fullName: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Ticket_SanitizeMailContentWithOptionsRequest()
+  type: Constructor
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public Ticket_SanitizeMailContentWithOptionsRequest()
+    content.vb: Public Sub New
+  overload: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Content
+  commentId: P:SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Content
+  id: Content
+  parent: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest
+  langs:
+  - csharp
+  - vb
+  name: Content
+  nameWithType: Ticket_SanitizeMailContentWithOptionsRequest.Content
+  fullName: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Content
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public string Content { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Content As String
+  overload: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Content*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Options
+  commentId: P:SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Options
+  id: Options
+  parent: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest
+  langs:
+  - csharp
+  - vb
+  name: Options
+  nameWithType: Ticket_SanitizeMailContentWithOptionsRequest.Options
+  fullName: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Options
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public HtmlSanitizerOptions Options { get; set; }
+    parameters: []
+    return:
+      type: SuperOffice.WebApi.Data.HtmlSanitizerOptions
+    content.vb: Public Property Options As HtmlSanitizerOptions
+  overload: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Options*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: SuperOffice.WebApi.Data
+  commentId: N:SuperOffice.WebApi.Data
+  isExternal: true
+  name: SuperOffice.WebApi.Data
+  nameWithType: SuperOffice.WebApi.Data
+  fullName: SuperOffice.WebApi.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.#ctor*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.#ctor
+  isExternal: true
+  name: Ticket_SanitizeMailContentWithOptionsRequest
+  nameWithType: Ticket_SanitizeMailContentWithOptionsRequest.Ticket_SanitizeMailContentWithOptionsRequest
+  fullName: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Ticket_SanitizeMailContentWithOptionsRequest
+- uid: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Content*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Content
+  isExternal: true
+  name: Content
+  nameWithType: Ticket_SanitizeMailContentWithOptionsRequest.Content
+  fullName: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Content
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Options*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Options
+  isExternal: true
+  name: Options
+  nameWithType: Ticket_SanitizeMailContentWithOptionsRequest.Options
+  fullName: SuperOffice.WebApi.Data.Ticket_SanitizeMailContentWithOptionsRequest.Options
+- uid: SuperOffice.WebApi.Data.HtmlSanitizerOptions
+  commentId: T:SuperOffice.WebApi.Data.HtmlSanitizerOptions
+  parent: SuperOffice.WebApi.Data
+  isExternal: true
+  name: HtmlSanitizerOptions
+  nameWithType: HtmlSanitizerOptions
+  fullName: SuperOffice.WebApi.Data.HtmlSanitizerOptions

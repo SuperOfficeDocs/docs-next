@@ -1,0 +1,129 @@
+### YamlMime:ManagedReference
+items:
+- uid: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest
+  commentId: T:SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest
+  id: Ticket_CreateDefaultForTicketTypeRequest
+  parent: SuperOffice.WebApi.Data
+  children:
+  - SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.#ctor
+  - SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.TicketTypeId
+  langs:
+  - csharp
+  - vb
+  name: Ticket_CreateDefaultForTicketTypeRequest
+  nameWithType: Ticket_CreateDefaultForTicketTypeRequest
+  fullName: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest
+  type: Class
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: 'public class Ticket_CreateDefaultForTicketTypeRequest : Object'
+    content.vb: >-
+      Public Class Ticket_CreateDefaultForTicketTypeRequest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.#ctor
+  commentId: M:SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.#ctor
+  id: '#ctor'
+  parent: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest
+  langs:
+  - csharp
+  - vb
+  name: Ticket_CreateDefaultForTicketTypeRequest()
+  nameWithType: Ticket_CreateDefaultForTicketTypeRequest.Ticket_CreateDefaultForTicketTypeRequest()
+  fullName: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.Ticket_CreateDefaultForTicketTypeRequest()
+  type: Constructor
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public Ticket_CreateDefaultForTicketTypeRequest()
+    content.vb: Public Sub New
+  overload: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.TicketTypeId
+  commentId: P:SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.TicketTypeId
+  id: TicketTypeId
+  parent: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest
+  langs:
+  - csharp
+  - vb
+  name: TicketTypeId
+  nameWithType: Ticket_CreateDefaultForTicketTypeRequest.TicketTypeId
+  fullName: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.TicketTypeId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public int TicketTypeId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property TicketTypeId As Integer
+  overload: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.TicketTypeId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: SuperOffice.WebApi.Data
+  commentId: N:SuperOffice.WebApi.Data
+  isExternal: true
+  name: SuperOffice.WebApi.Data
+  nameWithType: SuperOffice.WebApi.Data
+  fullName: SuperOffice.WebApi.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.#ctor*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.#ctor
+  isExternal: true
+  name: Ticket_CreateDefaultForTicketTypeRequest
+  nameWithType: Ticket_CreateDefaultForTicketTypeRequest.Ticket_CreateDefaultForTicketTypeRequest
+  fullName: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.Ticket_CreateDefaultForTicketTypeRequest
+- uid: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.TicketTypeId*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.TicketTypeId
+  isExternal: true
+  name: TicketTypeId
+  nameWithType: Ticket_CreateDefaultForTicketTypeRequest.TicketTypeId
+  fullName: SuperOffice.WebApi.Data.Ticket_CreateDefaultForTicketTypeRequest.TicketTypeId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32

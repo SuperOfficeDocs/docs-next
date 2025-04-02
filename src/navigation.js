@@ -43,11 +43,11 @@ export const headerData = {
     },
     {
       text: 'CRM Online',
-      href: '#',
+      href: '/en/online',
     },
     {
       text: 'CRM Onsite',
-      href: '#',
+      href: '/en/onsite',
     },
     {
       text: 'Developer Guide',
@@ -58,39 +58,39 @@ export const headerData = {
         },
         {
           text: 'Introduction to APIs',
-          href: '#',
+          href: '/en/api/overview/index',
         },
         {
           text: 'Automaton / CRMScript',
-          href: '#',
+          href: '/en/automation',
         },
         {
           text: 'Configurable screens (Sales)',
-          href: '#',
+          href: '/en/ui/screen-designer/learn/index',
         },
         {
           text: 'Custom screens (Service)',
-          href: '#',
+          href: '/en/ui/blogic/custom-screens/index',
         },
         {
           text: 'Database overview',
-          href: '#',
+          href: '/en/database/getting-started/index',
         },
         {
           text: 'Developer Portal',
-          href: '#',
+          href: '/en/developer-portal',
         },
         {
           text: 'Search APIs',
-          href: '#',
+          href: '/en/api/netserver/search/index',
         },
         {
           text: 'Webhooks',
-          href: '#',
+          href: '/en/automation/webhook/index',
         },
         {
           text: 'Web Services',
-          href: '#',
+          href: '/en/api/netserver/web-services/index',
         },
       ],
     },
@@ -158,24 +158,24 @@ export const heroItems = {
 
 export const areasOfInterest = {
   "links": [
-    { "text": "Admin", "href": "#" },
-    { "text": "Artificial Intelligence", "href": "#" },
-    { "text": "Automation", "href": "#" },
+    { "text": "Admin", "href": "/en/admin/overview" },
+    { "text": "Artificial Intelligence", "href": "/en/ai" },
+    { "text": "Automation", "href": "/en/automation" },
     { "text": "Company", "href": "/en/company" },
     { "text": "Contact", "href": "/en/contact" },
-    { "text": "CRMScript", "href": "#" },
-    { "text": "Customer Service", "href": "#" },
-    { "text": "Database Mirroring", "href": "#" },
+    { "text": "CRMScript", "href": "/en/automation/crmscript" },
+    { "text": "Customer Service", "href": "/en/service" },
+    { "text": "Database Mirroring", "href": "/en/online/mirroring/overview" },
     { "text": "Diary", "href": "/en/diary" },
-    { "text": "Document", "href": "#" },
-    { "text": "Globalization", "href": "#" },
-    { "text": "Mobile", "href": "#" },
-    { "text": "Project", "href": "#" },
-    { "text": "Request Management", "href": "#" },
-    { "text": "Sale", "href": "#" },
-    { "text": "Security", "href": "#" },
-    { "text": "Video Meetings", "href": "#" },
-    { "text": "WebTools", "href": "#" }
+    { "text": "Document", "href": "/en/document" },
+    { "text": "Globalization", "href": "/en/globalization-and-localization" },
+    { "text": "Mobile", "href": "/en/mobile" },
+    { "text": "Project", "href": "/en/project" },
+    { "text": "Request Management", "href": "/en/request" },
+    { "text": "Sale", "href": "/en/sale" },
+    { "text": "Security", "href": "/en/security" },
+    { "text": "Video Meetings", "href": "/en/diary/video-meeting" },
+    { "text": "WebTools", "href": "/en/document/webtools/index" }
   ]
 };
 
