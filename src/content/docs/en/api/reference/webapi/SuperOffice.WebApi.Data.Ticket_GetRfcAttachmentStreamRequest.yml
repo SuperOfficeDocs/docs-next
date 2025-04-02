@@ -1,0 +1,166 @@
+### YamlMime:ManagedReference
+items:
+- uid: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest
+  commentId: T:SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest
+  id: Ticket_GetRfcAttachmentStreamRequest
+  parent: SuperOffice.WebApi.Data
+  children:
+  - SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.#ctor
+  - SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.AttachmentId
+  - SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.Position
+  langs:
+  - csharp
+  - vb
+  name: Ticket_GetRfcAttachmentStreamRequest
+  nameWithType: Ticket_GetRfcAttachmentStreamRequest
+  fullName: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest
+  type: Class
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: 'public class Ticket_GetRfcAttachmentStreamRequest : Object'
+    content.vb: >-
+      Public Class Ticket_GetRfcAttachmentStreamRequest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.#ctor
+  commentId: M:SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.#ctor
+  id: '#ctor'
+  parent: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest
+  langs:
+  - csharp
+  - vb
+  name: Ticket_GetRfcAttachmentStreamRequest()
+  nameWithType: Ticket_GetRfcAttachmentStreamRequest.Ticket_GetRfcAttachmentStreamRequest()
+  fullName: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.Ticket_GetRfcAttachmentStreamRequest()
+  type: Constructor
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public Ticket_GetRfcAttachmentStreamRequest()
+    content.vb: Public Sub New
+  overload: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.AttachmentId
+  commentId: P:SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.AttachmentId
+  id: AttachmentId
+  parent: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest
+  langs:
+  - csharp
+  - vb
+  name: AttachmentId
+  nameWithType: Ticket_GetRfcAttachmentStreamRequest.AttachmentId
+  fullName: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.AttachmentId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public int AttachmentId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property AttachmentId As Integer
+  overload: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.AttachmentId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.Position
+  commentId: P:SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.Position
+  id: Position
+  parent: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: Ticket_GetRfcAttachmentStreamRequest.Position
+  fullName: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.Position
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public int Position { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Position As Integer
+  overload: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.Position*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: SuperOffice.WebApi.Data
+  commentId: N:SuperOffice.WebApi.Data
+  isExternal: true
+  name: SuperOffice.WebApi.Data
+  nameWithType: SuperOffice.WebApi.Data
+  fullName: SuperOffice.WebApi.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.#ctor*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.#ctor
+  isExternal: true
+  name: Ticket_GetRfcAttachmentStreamRequest
+  nameWithType: Ticket_GetRfcAttachmentStreamRequest.Ticket_GetRfcAttachmentStreamRequest
+  fullName: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.Ticket_GetRfcAttachmentStreamRequest
+- uid: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.AttachmentId*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.AttachmentId
+  isExternal: true
+  name: AttachmentId
+  nameWithType: Ticket_GetRfcAttachmentStreamRequest.AttachmentId
+  fullName: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.AttachmentId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.Position*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.Position
+  isExternal: true
+  name: Position
+  nameWithType: Ticket_GetRfcAttachmentStreamRequest.Position
+  fullName: SuperOffice.WebApi.Data.Ticket_GetRfcAttachmentStreamRequest.Position

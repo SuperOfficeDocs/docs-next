@@ -1,0 +1,296 @@
+### YamlMime:ManagedReference
+items:
+- uid: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest
+  commentId: T:SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest
+  id: Person_CreateTemporaryKeyWithPayloadRequest
+  parent: SuperOffice.WebApi.Data
+  children:
+  - SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.#ctor
+  - SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Domain
+  - SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Expires
+  - SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Payload
+  - SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.PersonId
+  - SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.TargetId
+  langs:
+  - csharp
+  - vb
+  name: Person_CreateTemporaryKeyWithPayloadRequest
+  nameWithType: Person_CreateTemporaryKeyWithPayloadRequest
+  fullName: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest
+  type: Class
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: 'public class Person_CreateTemporaryKeyWithPayloadRequest : Object'
+    content.vb: >-
+      Public Class Person_CreateTemporaryKeyWithPayloadRequest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.#ctor
+  commentId: M:SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.#ctor
+  id: '#ctor'
+  parent: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest
+  langs:
+  - csharp
+  - vb
+  name: Person_CreateTemporaryKeyWithPayloadRequest()
+  nameWithType: Person_CreateTemporaryKeyWithPayloadRequest.Person_CreateTemporaryKeyWithPayloadRequest()
+  fullName: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Person_CreateTemporaryKeyWithPayloadRequest()
+  type: Constructor
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public Person_CreateTemporaryKeyWithPayloadRequest()
+    content.vb: Public Sub New
+  overload: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Domain
+  commentId: P:SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Domain
+  id: Domain
+  parent: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest
+  langs:
+  - csharp
+  - vb
+  name: Domain
+  nameWithType: Person_CreateTemporaryKeyWithPayloadRequest.Domain
+  fullName: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Domain
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public TemporaryKeyDomain Domain { get; set; }
+    parameters: []
+    return:
+      type: SuperOffice.WebApi.Data.TemporaryKeyDomain
+    content.vb: Public Property Domain As TemporaryKeyDomain
+  overload: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Domain*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.TargetId
+  commentId: P:SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.TargetId
+  id: TargetId
+  parent: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest
+  langs:
+  - csharp
+  - vb
+  name: TargetId
+  nameWithType: Person_CreateTemporaryKeyWithPayloadRequest.TargetId
+  fullName: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.TargetId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public int TargetId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property TargetId As Integer
+  overload: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.TargetId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.PersonId
+  commentId: P:SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.PersonId
+  id: PersonId
+  parent: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest
+  langs:
+  - csharp
+  - vb
+  name: PersonId
+  nameWithType: Person_CreateTemporaryKeyWithPayloadRequest.PersonId
+  fullName: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.PersonId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public int PersonId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property PersonId As Integer
+  overload: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.PersonId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Expires
+  commentId: P:SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Expires
+  id: Expires
+  parent: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest
+  langs:
+  - csharp
+  - vb
+  name: Expires
+  nameWithType: Person_CreateTemporaryKeyWithPayloadRequest.Expires
+  fullName: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Expires
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public DateTime Expires { get; set; }
+    parameters: []
+    return:
+      type: System.DateTime
+    content.vb: Public Property Expires As DateTime
+  overload: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Expires*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Payload
+  commentId: P:SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Payload
+  id: Payload
+  parent: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest
+  langs:
+  - csharp
+  - vb
+  name: Payload
+  nameWithType: Person_CreateTemporaryKeyWithPayloadRequest.Payload
+  fullName: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Payload
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public string Payload { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Payload As String
+  overload: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Payload*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: SuperOffice.WebApi.Data
+  commentId: N:SuperOffice.WebApi.Data
+  isExternal: true
+  name: SuperOffice.WebApi.Data
+  nameWithType: SuperOffice.WebApi.Data
+  fullName: SuperOffice.WebApi.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.#ctor*
+  commentId: Overload:SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.#ctor
+  isExternal: true
+  name: Person_CreateTemporaryKeyWithPayloadRequest
+  nameWithType: Person_CreateTemporaryKeyWithPayloadRequest.Person_CreateTemporaryKeyWithPayloadRequest
+  fullName: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Person_CreateTemporaryKeyWithPayloadRequest
+- uid: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Domain*
+  commentId: Overload:SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Domain
+  isExternal: true
+  name: Domain
+  nameWithType: Person_CreateTemporaryKeyWithPayloadRequest.Domain
+  fullName: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Domain
+- uid: SuperOffice.WebApi.Data.TemporaryKeyDomain
+  commentId: T:SuperOffice.WebApi.Data.TemporaryKeyDomain
+  parent: SuperOffice.WebApi.Data
+  isExternal: true
+  name: TemporaryKeyDomain
+  nameWithType: TemporaryKeyDomain
+  fullName: SuperOffice.WebApi.Data.TemporaryKeyDomain
+- uid: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.TargetId*
+  commentId: Overload:SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.TargetId
+  isExternal: true
+  name: TargetId
+  nameWithType: Person_CreateTemporaryKeyWithPayloadRequest.TargetId
+  fullName: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.TargetId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.PersonId*
+  commentId: Overload:SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.PersonId
+  isExternal: true
+  name: PersonId
+  nameWithType: Person_CreateTemporaryKeyWithPayloadRequest.PersonId
+  fullName: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.PersonId
+- uid: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Expires*
+  commentId: Overload:SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Expires
+  isExternal: true
+  name: Expires
+  nameWithType: Person_CreateTemporaryKeyWithPayloadRequest.Expires
+  fullName: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Expires
+- uid: System.DateTime
+  isExternal: true
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+- uid: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Payload*
+  commentId: Overload:SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Payload
+  isExternal: true
+  name: Payload
+  nameWithType: Person_CreateTemporaryKeyWithPayloadRequest.Payload
+  fullName: SuperOffice.WebApi.Data.Person_CreateTemporaryKeyWithPayloadRequest.Payload
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

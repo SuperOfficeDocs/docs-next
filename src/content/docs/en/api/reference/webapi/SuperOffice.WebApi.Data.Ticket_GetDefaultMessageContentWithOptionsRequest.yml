@@ -1,0 +1,291 @@
+### YamlMime:ManagedReference
+items:
+- uid: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest
+  commentId: T:SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest
+  id: Ticket_GetDefaultMessageContentWithOptionsRequest
+  parent: SuperOffice.WebApi.Data
+  children:
+  - SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.#ctor
+  - SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.ExcludeSignature
+  - SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.MessageActionType
+  - SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketId
+  - SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketMessageId
+  - SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketTypeId
+  langs:
+  - csharp
+  - vb
+  name: Ticket_GetDefaultMessageContentWithOptionsRequest
+  nameWithType: Ticket_GetDefaultMessageContentWithOptionsRequest
+  fullName: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest
+  type: Class
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: 'public class Ticket_GetDefaultMessageContentWithOptionsRequest : Object'
+    content.vb: >-
+      Public Class Ticket_GetDefaultMessageContentWithOptionsRequest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.#ctor
+  commentId: M:SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.#ctor
+  id: '#ctor'
+  parent: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest
+  langs:
+  - csharp
+  - vb
+  name: Ticket_GetDefaultMessageContentWithOptionsRequest()
+  nameWithType: Ticket_GetDefaultMessageContentWithOptionsRequest.Ticket_GetDefaultMessageContentWithOptionsRequest()
+  fullName: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.Ticket_GetDefaultMessageContentWithOptionsRequest()
+  type: Constructor
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public Ticket_GetDefaultMessageContentWithOptionsRequest()
+    content.vb: Public Sub New
+  overload: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketId
+  commentId: P:SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketId
+  id: TicketId
+  parent: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest
+  langs:
+  - csharp
+  - vb
+  name: TicketId
+  nameWithType: Ticket_GetDefaultMessageContentWithOptionsRequest.TicketId
+  fullName: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public int TicketId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property TicketId As Integer
+  overload: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.MessageActionType
+  commentId: P:SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.MessageActionType
+  id: MessageActionType
+  parent: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest
+  langs:
+  - csharp
+  - vb
+  name: MessageActionType
+  nameWithType: Ticket_GetDefaultMessageContentWithOptionsRequest.MessageActionType
+  fullName: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.MessageActionType
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public MessageActionType MessageActionType { get; set; }
+    parameters: []
+    return:
+      type: SuperOffice.WebApi.Data.MessageActionType
+    content.vb: Public Property MessageActionType As MessageActionType
+  overload: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.MessageActionType*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketMessageId
+  commentId: P:SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketMessageId
+  id: TicketMessageId
+  parent: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest
+  langs:
+  - csharp
+  - vb
+  name: TicketMessageId
+  nameWithType: Ticket_GetDefaultMessageContentWithOptionsRequest.TicketMessageId
+  fullName: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketMessageId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public int TicketMessageId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property TicketMessageId As Integer
+  overload: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketMessageId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketTypeId
+  commentId: P:SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketTypeId
+  id: TicketTypeId
+  parent: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest
+  langs:
+  - csharp
+  - vb
+  name: TicketTypeId
+  nameWithType: Ticket_GetDefaultMessageContentWithOptionsRequest.TicketTypeId
+  fullName: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketTypeId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public int TicketTypeId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property TicketTypeId As Integer
+  overload: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketTypeId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.ExcludeSignature
+  commentId: P:SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.ExcludeSignature
+  id: ExcludeSignature
+  parent: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest
+  langs:
+  - csharp
+  - vb
+  name: ExcludeSignature
+  nameWithType: Ticket_GetDefaultMessageContentWithOptionsRequest.ExcludeSignature
+  fullName: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.ExcludeSignature
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public bool ExcludeSignature { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ExcludeSignature As Boolean
+  overload: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.ExcludeSignature*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: SuperOffice.WebApi.Data
+  commentId: N:SuperOffice.WebApi.Data
+  isExternal: true
+  name: SuperOffice.WebApi.Data
+  nameWithType: SuperOffice.WebApi.Data
+  fullName: SuperOffice.WebApi.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.#ctor*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.#ctor
+  isExternal: true
+  name: Ticket_GetDefaultMessageContentWithOptionsRequest
+  nameWithType: Ticket_GetDefaultMessageContentWithOptionsRequest.Ticket_GetDefaultMessageContentWithOptionsRequest
+  fullName: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.Ticket_GetDefaultMessageContentWithOptionsRequest
+- uid: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketId*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketId
+  isExternal: true
+  name: TicketId
+  nameWithType: Ticket_GetDefaultMessageContentWithOptionsRequest.TicketId
+  fullName: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.MessageActionType*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.MessageActionType
+  isExternal: true
+  name: MessageActionType
+  nameWithType: Ticket_GetDefaultMessageContentWithOptionsRequest.MessageActionType
+  fullName: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.MessageActionType
+- uid: SuperOffice.WebApi.Data.MessageActionType
+  commentId: T:SuperOffice.WebApi.Data.MessageActionType
+  parent: SuperOffice.WebApi.Data
+  isExternal: true
+  name: MessageActionType
+  nameWithType: MessageActionType
+  fullName: SuperOffice.WebApi.Data.MessageActionType
+- uid: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketMessageId*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketMessageId
+  isExternal: true
+  name: TicketMessageId
+  nameWithType: Ticket_GetDefaultMessageContentWithOptionsRequest.TicketMessageId
+  fullName: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketMessageId
+- uid: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketTypeId*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketTypeId
+  isExternal: true
+  name: TicketTypeId
+  nameWithType: Ticket_GetDefaultMessageContentWithOptionsRequest.TicketTypeId
+  fullName: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.TicketTypeId
+- uid: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.ExcludeSignature*
+  commentId: Overload:SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.ExcludeSignature
+  isExternal: true
+  name: ExcludeSignature
+  nameWithType: Ticket_GetDefaultMessageContentWithOptionsRequest.ExcludeSignature
+  fullName: SuperOffice.WebApi.Data.Ticket_GetDefaultMessageContentWithOptionsRequest.ExcludeSignature
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

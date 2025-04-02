@@ -1,0 +1,361 @@
+### YamlMime:ManagedReference
+items:
+- uid: SuperOffice.WebApi.Data.CRMScriptSourceMap
+  commentId: T:SuperOffice.WebApi.Data.CRMScriptSourceMap
+  id: CRMScriptSourceMap
+  parent: SuperOffice.WebApi.Data
+  children:
+  - SuperOffice.WebApi.Data.CRMScriptSourceMap.#ctor
+  - SuperOffice.WebApi.Data.CRMScriptSourceMap.Delta
+  - SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludedFrom
+  - SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludeId
+  - SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberFrom
+  - SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberTo
+  langs:
+  - csharp
+  - vb
+  name: CRMScriptSourceMap
+  nameWithType: CRMScriptSourceMap
+  fullName: SuperOffice.WebApi.Data.CRMScriptSourceMap
+  type: Class
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nCarrier object for CRMScriptSourceMap.\nObject for returning source-map info when validating or executing a CRMScript    \n"
+  syntax:
+    content: 'public class CRMScriptSourceMap : Carrier'
+    content.vb: >-
+      Public Class CRMScriptSourceMap
+          Inherits Carrier
+  seealso:
+  - linkId: SuperOffice.WebApi.Agents.CRMScriptAgent
+    commentId: T:SuperOffice.WebApi.Agents.CRMScriptAgent
+  inheritance:
+  - System.Object
+  - SuperOffice.WebApi.Data.Carrier
+  inheritedMembers:
+  - SuperOffice.WebApi.Data.Carrier.TableRight
+  - SuperOffice.WebApi.Data.Carrier.FieldProperties
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SuperOffice.WebApi.Data.CRMScriptSourceMap.#ctor
+  commentId: M:SuperOffice.WebApi.Data.CRMScriptSourceMap.#ctor
+  id: '#ctor'
+  parent: SuperOffice.WebApi.Data.CRMScriptSourceMap
+  langs:
+  - csharp
+  - vb
+  name: CRMScriptSourceMap()
+  nameWithType: CRMScriptSourceMap.CRMScriptSourceMap()
+  fullName: SuperOffice.WebApi.Data.CRMScriptSourceMap.CRMScriptSourceMap()
+  type: Constructor
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nDefault constructor - defaults any enum props to 0. \n"
+  syntax:
+    content: public CRMScriptSourceMap()
+    content.vb: Public Sub New
+  overload: SuperOffice.WebApi.Data.CRMScriptSourceMap.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberFrom
+  commentId: P:SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberFrom
+  id: LineNumberFrom
+  parent: SuperOffice.WebApi.Data.CRMScriptSourceMap
+  langs:
+  - csharp
+  - vb
+  name: LineNumberFrom
+  nameWithType: CRMScriptSourceMap.LineNumberFrom
+  fullName: SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberFrom
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nThe 1-based start line (inclusive) of this entry\n"
+  syntax:
+    content: public virtual int LineNumberFrom { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property LineNumberFrom As Integer
+  overload: SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberFrom*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberTo
+  commentId: P:SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberTo
+  id: LineNumberTo
+  parent: SuperOffice.WebApi.Data.CRMScriptSourceMap
+  langs:
+  - csharp
+  - vb
+  name: LineNumberTo
+  nameWithType: CRMScriptSourceMap.LineNumberTo
+  fullName: SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberTo
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nThe 1-based end line (inclusive) of this entry\n"
+  syntax:
+    content: public virtual int LineNumberTo { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property LineNumberTo As Integer
+  overload: SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberTo*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: SuperOffice.WebApi.Data.CRMScriptSourceMap.Delta
+  commentId: P:SuperOffice.WebApi.Data.CRMScriptSourceMap.Delta
+  id: Delta
+  parent: SuperOffice.WebApi.Data.CRMScriptSourceMap
+  langs:
+  - csharp
+  - vb
+  name: Delta
+  nameWithType: CRMScriptSourceMap.Delta
+  fullName: SuperOffice.WebApi.Data.CRMScriptSourceMap.Delta
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nThe delta between global line number and a line number inside this range\n"
+  syntax:
+    content: public virtual int Delta { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Overridable Property Delta As Integer
+  overload: SuperOffice.WebApi.Data.CRMScriptSourceMap.Delta*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludeId
+  commentId: P:SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludeId
+  id: IncludeId
+  parent: SuperOffice.WebApi.Data.CRMScriptSourceMap
+  langs:
+  - csharp
+  - vb
+  name: IncludeId
+  nameWithType: CRMScriptSourceMap.IncludeId
+  fullName: SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludeId
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nThe includeId for this entry\n"
+  syntax:
+    content: public virtual string IncludeId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Overridable Property IncludeId As String
+  overload: SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludeId*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludedFrom
+  commentId: P:SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludedFrom
+  id: IncludedFrom
+  parent: SuperOffice.WebApi.Data.CRMScriptSourceMap
+  langs:
+  - csharp
+  - vb
+  name: IncludedFrom
+  nameWithType: CRMScriptSourceMap.IncludedFrom
+  fullName: SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludedFrom
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  summary: "\nThe list of IncludeId:linenum that leads to this source\n"
+  syntax:
+    content: public virtual string[] IncludedFrom { get; set; }
+    parameters: []
+    return:
+      type: System.String[]
+    content.vb: Public Overridable Property IncludedFrom As String()
+  overload: SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludedFrom*
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Overridable
+references:
+- uid: SuperOffice.WebApi.Data
+  commentId: N:SuperOffice.WebApi.Data
+  isExternal: true
+  name: SuperOffice.WebApi.Data
+  nameWithType: SuperOffice.WebApi.Data
+  fullName: SuperOffice.WebApi.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: SuperOffice.WebApi.Data.Carrier
+  commentId: T:SuperOffice.WebApi.Data.Carrier
+  parent: SuperOffice.WebApi.Data
+  isExternal: true
+  name: Carrier
+  nameWithType: Carrier
+  fullName: SuperOffice.WebApi.Data.Carrier
+- uid: SuperOffice.WebApi.Data.Carrier.TableRight
+  commentId: P:SuperOffice.WebApi.Data.Carrier.TableRight
+  parent: SuperOffice.WebApi.Data.Carrier
+  isExternal: true
+  name: TableRight
+  nameWithType: Carrier.TableRight
+  fullName: SuperOffice.WebApi.Data.Carrier.TableRight
+- uid: SuperOffice.WebApi.Data.Carrier.FieldProperties
+  commentId: P:SuperOffice.WebApi.Data.Carrier.FieldProperties
+  parent: SuperOffice.WebApi.Data.Carrier
+  isExternal: true
+  name: FieldProperties
+  nameWithType: Carrier.FieldProperties
+  fullName: SuperOffice.WebApi.Data.Carrier.FieldProperties
+- uid: SuperOffice.WebApi.Agents.CRMScriptAgent
+  commentId: T:SuperOffice.WebApi.Agents.CRMScriptAgent
+  isExternal: true
+  name: CRMScriptAgent
+  nameWithType: CRMScriptAgent
+  fullName: SuperOffice.WebApi.Agents.CRMScriptAgent
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SuperOffice.WebApi.Data.CRMScriptSourceMap.#ctor*
+  commentId: Overload:SuperOffice.WebApi.Data.CRMScriptSourceMap.#ctor
+  isExternal: true
+  name: CRMScriptSourceMap
+  nameWithType: CRMScriptSourceMap.CRMScriptSourceMap
+  fullName: SuperOffice.WebApi.Data.CRMScriptSourceMap.CRMScriptSourceMap
+- uid: SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberFrom*
+  commentId: Overload:SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberFrom
+  isExternal: true
+  name: LineNumberFrom
+  nameWithType: CRMScriptSourceMap.LineNumberFrom
+  fullName: SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberFrom
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberTo*
+  commentId: Overload:SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberTo
+  isExternal: true
+  name: LineNumberTo
+  nameWithType: CRMScriptSourceMap.LineNumberTo
+  fullName: SuperOffice.WebApi.Data.CRMScriptSourceMap.LineNumberTo
+- uid: SuperOffice.WebApi.Data.CRMScriptSourceMap.Delta*
+  commentId: Overload:SuperOffice.WebApi.Data.CRMScriptSourceMap.Delta
+  isExternal: true
+  name: Delta
+  nameWithType: CRMScriptSourceMap.Delta
+  fullName: SuperOffice.WebApi.Data.CRMScriptSourceMap.Delta
+- uid: SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludeId*
+  commentId: Overload:SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludeId
+  isExternal: true
+  name: IncludeId
+  nameWithType: CRMScriptSourceMap.IncludeId
+  fullName: SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludeId
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludedFrom*
+  commentId: Overload:SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludedFrom
+  isExternal: true
+  name: IncludedFrom
+  nameWithType: CRMScriptSourceMap.IncludedFrom
+  fullName: SuperOffice.WebApi.Data.CRMScriptSourceMap.IncludedFrom
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

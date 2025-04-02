@@ -1,0 +1,129 @@
+### YamlMime:ManagedReference
+items:
+- uid: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest
+  commentId: T:SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest
+  id: CRMScript_SaveCRMScriptEntityWithoutCompileRequest
+  parent: SuperOffice.WebApi.Data
+  children:
+  - SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.#ctor
+  - SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CrmScriptEntity
+  langs:
+  - csharp
+  - vb
+  name: CRMScript_SaveCRMScriptEntityWithoutCompileRequest
+  nameWithType: CRMScript_SaveCRMScriptEntityWithoutCompileRequest
+  fullName: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest
+  type: Class
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: 'public class CRMScript_SaveCRMScriptEntityWithoutCompileRequest : Object'
+    content.vb: >-
+      Public Class CRMScript_SaveCRMScriptEntityWithoutCompileRequest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.#ctor
+  commentId: M:SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.#ctor
+  id: '#ctor'
+  parent: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest
+  langs:
+  - csharp
+  - vb
+  name: CRMScript_SaveCRMScriptEntityWithoutCompileRequest()
+  nameWithType: CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CRMScript_SaveCRMScriptEntityWithoutCompileRequest()
+  fullName: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CRMScript_SaveCRMScriptEntityWithoutCompileRequest()
+  type: Constructor
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public CRMScript_SaveCRMScriptEntityWithoutCompileRequest()
+    content.vb: Public Sub New
+  overload: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CrmScriptEntity
+  commentId: P:SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CrmScriptEntity
+  id: CrmScriptEntity
+  parent: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest
+  langs:
+  - csharp
+  - vb
+  name: CrmScriptEntity
+  nameWithType: CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CrmScriptEntity
+  fullName: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CrmScriptEntity
+  type: Property
+  source:
+    path: SuperOffice.WebApi
+    isExternal: true
+  assemblies:
+  - SuperOffice.WebApi
+  namespace: SuperOffice.WebApi.Data
+  syntax:
+    content: public CRMScriptEntity CrmScriptEntity { get; set; }
+    parameters: []
+    return:
+      type: SuperOffice.WebApi.Data.CRMScriptEntity
+    content.vb: Public Property CrmScriptEntity As CRMScriptEntity
+  overload: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CrmScriptEntity*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: SuperOffice.WebApi.Data
+  commentId: N:SuperOffice.WebApi.Data
+  isExternal: true
+  name: SuperOffice.WebApi.Data
+  nameWithType: SuperOffice.WebApi.Data
+  fullName: SuperOffice.WebApi.Data
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.#ctor*
+  commentId: Overload:SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.#ctor
+  isExternal: true
+  name: CRMScript_SaveCRMScriptEntityWithoutCompileRequest
+  nameWithType: CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CRMScript_SaveCRMScriptEntityWithoutCompileRequest
+  fullName: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CRMScript_SaveCRMScriptEntityWithoutCompileRequest
+- uid: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CrmScriptEntity*
+  commentId: Overload:SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CrmScriptEntity
+  isExternal: true
+  name: CrmScriptEntity
+  nameWithType: CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CrmScriptEntity
+  fullName: SuperOffice.WebApi.Data.CRMScript_SaveCRMScriptEntityWithoutCompileRequest.CrmScriptEntity
+- uid: SuperOffice.WebApi.Data.CRMScriptEntity
+  commentId: T:SuperOffice.WebApi.Data.CRMScriptEntity
+  parent: SuperOffice.WebApi.Data
+  isExternal: true
+  name: CRMScriptEntity
+  nameWithType: CRMScriptEntity
+  fullName: SuperOffice.WebApi.Data.CRMScriptEntity
