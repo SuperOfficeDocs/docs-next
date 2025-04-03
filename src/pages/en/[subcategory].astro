@@ -14,7 +14,7 @@ export function getStaticPaths() {
   ];
 }
 
-import { getSubCategoryPageContents } from "~/utils/getSubCategoryPageContents";
+import { getSubCategoryPageContents } from "~/utils/getCategoryPageContents";
 
 const { subcategory } = Astro.params;
 const SubCategoryData = getSubCategoryPageContents(`en/${subcategory}`);
