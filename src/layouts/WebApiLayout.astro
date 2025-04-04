@@ -1,0 +1,135 @@
+---
+import type { ManagedReferenceType, Item } from "../types/WebAPITypes";
+import { getEntry } from "astro:content";
+import WebAPIItem from "@components/WebAPIItem.astro"
+
+const { data } = Astro.props;
+
+type Props = {
+  data: ManagedReferenceType;
+};
+const base = import.meta.env.BASE_URL;
+const baseUrl = base + "/en/api/reference/webapi/"
+
+interface indexDictionaryProps {
+  Class: number[];
+  Constructor: number[];
+  Method : number[];
+  Propertie: number[];
+  Implement : number[];
+  Field: number[];
+  Namespace: number[];
+}
+
+const indexDictionary : indexDictionaryProps = {
+  Class: [],
+  Constructor: [],
+  Method : [],
+  Propertie : [],
+  Implement: [],
+  Field: [],
+  Namespace: [],
+}
+
+const pagetitle = data.items[0].type + " " + data.items[0].id
+
+data.items.forEach( (item , index) => {
+  // console.log("Item",item.type,index)
+  const key = item.type as keyof indexDictionaryProps;
+
+  if (!indexDictionary[key]) {
+    indexDictionary[key] = []; 
+  }
+
+  indexDictionary[key].push(index);
+})
+
+// console.log(indexDictionary)
+
+---
+
+<div class="">
+  <h1>{pagetitle}</h1>
+
+  {
+    data.items[0].type == "Namespace" && (
+    data.items[0].children?.map(async (item : string) => {
+      const formattedItem = item.replaceAll(".", "").toLowerCase();
+      const childrenItemEntry = await getEntry("webapi", formattedItem);
+        return (
+            <a class="font-bold text-orange-700 text-lg no-underline hover:underline" href={`${childrenItemEntry?.data.items[0].uid}`}>{childrenItemEntry?.data.items[0].id}</a>
+            <p class="ml-4" set:html = {childrenItemEntry?.data.items[0].summary}></p>        
+          )
+    }))
+  }
+
+  {
+    data.items[0].type == "Class" && (
+      <div>
+
+        <p class="mt-0 pt-0" set:html = {data.items[0].summary}></p>
+
+        {/* Inheritance */}
+        {data.items[0].inheritance &&
+          <div>
+            <p class="font-medium text-sm border-b-[1px] pb-1 border-gray-300">Inheritance</p>
+            <p class="text-orange-500">{data.items[0].inheritance.map( (inheritClass :string) => {
+                return inheritClass.split(".").pop()
+            })}</p>
+            <p>{data.items[0].id}</p>
+            <p class="text-orange-500">{data.items[0].derivedClasses &&  data.items[0].derivedClasses.map( (inheritClass :string) => {
+                return inheritClass.split(".").pop()
+            })}</p>
+          </div>
+        }
+            
+        {/* Implements */}
+        <p class="font-medium text-sm">Implements</p>
+        <p class="text-orange-500">{data.items[0].implements?.map( (implementItem :string) => {
+            return implementItem.split(".").pop()
+        })}</p>
+
+        <p class="text-xs"><span class="font-bold mr-1">Namespace:</span><a href={baseUrl+data.items[0].namespace} class="text-orange-600"> {data.items[0].namespace}</a></p>
+        <p class="text-xs"><span class="font-bold mr-1">Assembly:</span><span class="font-semibold">{data.items[0].assemblies}.dll</span></p>
+
+        <p class="font-medium text-sm">Syntax</p>
+        <pre><code>{data.items[0].syntax?.content}</code></pre>
+        
+
+        {/* Remarks */}
+        {data.items[0].remarks && ( <div>
+            <p class="font-bold text-sm">Remarks</p>
+            <p> <pre class="not-prose text-base text-inherit font-sans">{data.items[0].remarks}</pre></p>
+          </div>)}
+        
+        {/* Examples */}
+        {data.items[0].example && ( <div>
+            <p class="font-bold text-sm">Examples</p>
+            <p set:html = {data.items[0].example}></p>
+          </div>)}
+        
+
+        {indexDictionary.Constructor && ( 
+          <p class="text-2xl">Constructors</p>
+          <div>
+            {indexDictionary.Constructor.map( (indexNo) => {
+              return <WebAPIItem item={data.items[indexNo]} />
+            })}
+          </div>
+         )}
+
+        {indexDictionary.Method && (
+          <div>
+            <p class="text-2xl font-bold">Methods</p>
+            {indexDictionary.Method.map( (indexNo) => {
+              return <WebAPIItem item={data.items[indexNo]} />
+            })}
+          </div>)}
+        
+
+            
+      </div>
+    )
+  }
+
+</div>

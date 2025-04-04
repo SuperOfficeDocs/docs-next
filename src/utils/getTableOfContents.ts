@@ -13,25 +13,22 @@ function loadYamlFile(filePath: string): TocData | null {
     return null;
   }
   const file = fs.readFileSync(filePath, "utf8");
+
   return YAML.parse(file) as TocData;
 }
 
 export function getTableOfContents(
   collection: string,
-  pathName: string
+  pathName: string,
+  isWebApiTOC: boolean
 ): TocData | null {
-
-  
-
   const filePath = path.join("src/content/", `${collection + pathName}.yml`);
 
   //Check if yml exists
   if (!fs.existsSync(filePath)) {
     return null;
   }
-
   const YAMLData = loadYamlFile(filePath);
-
   if (!YAMLData) {
     throw new Error(`Failed to load ToC file: ${filePath}`);
   }
@@ -49,7 +46,7 @@ export function getTableOfContents(
     }
   }
 
-  if (YAMLData.items) {
+  if (YAMLData.items && !isWebApiTOC) {
     recursivelyLoadSubItems(YAMLData.items);
   }
 

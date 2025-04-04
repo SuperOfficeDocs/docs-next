@@ -1,0 +1,46 @@
+---
+import type { Item } from "../types/WebAPITypes";
+
+export interface Props {
+  item: Item;
+}
+
+const { item } = Astro.props;
+---
+<div>
+    <p class="font-bold text-lg">{item.name}</p>
+    <p class="text-base">{item.summary}</p>
+    <p class="text-sm font-semibold text-gray-400">Declaration</p>
+    <p><pre>{item.syntax?.content}</pre></p>
+    <p class="text-sm font-semibold text-gray-400">Parameters</p>
+    <table class="[&_*]:pl-3 text-black">
+        <tr class="font-bold border [&_*]:border [&_*]:border-gray-300 border-b-2 border-gray-300">
+            <td>Type</td>
+            <td>Name</td>
+            <td>Description</td>
+        </tr>
+        {item.syntax?.parameters?.map( (row, index)=>{
+            return <tr class={`[&_*]:border [&_*]:border-gray-300 ${index % 2 == 0 && "bg-stone-100"}`}>
+                <td class="text-orange-600">{row.type.split(".").pop()}</td>
+                <td class="italic">{row.id}</td>
+                <td>{row.description}</td>
+            </tr>
+        })}
+    </table>
+        {
+            item.syntax?.return && (
+            <p class="text-sm font-semibold text-gray-400">Returns</p>
+            <table class="[&_*]:pl-3 text-black">
+                <tr class="font-bold border [&_*]:border [&_*]:border-gray-300 border-b-2 border-gray-300">
+                <td>Type</td>
+                <td>Description</td>
+            </tr>
+            <tr class={`[&_*]:border [&_*]:border-gray-300 bg-stone-100`}>
+                    <td class="text-orange-600">
+                        {item.syntax?.return?.type}</td>
+                    <td>{item.syntax?.return?.description}</td>
+                </tr>
+            </table>
+            )
+        }
+</div>

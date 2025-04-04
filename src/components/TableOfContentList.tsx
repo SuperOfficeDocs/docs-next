@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import type { ChangeEvent } from "react";
 import type { TocItem } from "~/types/TableOfContentTypes";
 const base = import.meta.env.BASE_URL;
@@ -7,18 +7,18 @@ type TableOfContentListProps = {
   inputItems: TocItem[];
   slug: string;
   isMainTable: boolean;
+  isWebApiTOC: boolean;
 };
 
 export default function TableOfContentList({
   inputItems,
   slug,
   isMainTable,
+  isWebApiTOC,
 }: TableOfContentListProps) {
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
   const [showToC, setShowToC] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
-
-
 
   const toggleItem = (index: number) => {
     setOpenIndexes((prev) =>
@@ -27,9 +27,21 @@ export default function TableOfContentList({
   };
 
   const generatePath = (item: TocItem): string => {
+    if (isWebApiTOC) {
+      return `${base}/en/api/reference/webapi/${item.uid}`;
+    }
+
     return item.topicHref
       ? `${base}/${slug}/${item.topicHref?.replace(".md", "")}`
       : `${base}/${slug}/${item.href?.replace(".md", "")}`;
+  };
+
+  const generateSlug = (item: TocItem) => {
+    if (isWebApiTOC) {
+      return slug;
+    }
+
+    return item.topicHref ? `${slug}/${item.topicHref.slice(0, -9)}` : slug;
   };
 
   const handleSearchTermChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -69,15 +81,15 @@ export default function TableOfContentList({
             {item.name.toLowerCase().includes(searchTerm.toLowerCase()) && (
               <button
                 onClick={() => toggleItem(index)}
-                className={`w-full text-left flex jus items-center px-3 pb-2 text-sm text-gray-600 hover:text-black  ${isMainTable && "pb-4"}`}
+                className={`w-fulltext-left flex jus items-center px-3 pb-2 text-sm text-gray-600 hover:text-black  ${isMainTable && "pb-4"}`}
               >
-                <span className="w-6">
+                <div className="w-6">
                   {item.items && (openIndexes.includes(index) ? "▼" : "▶")}
-                </span>
+                </div>
 
                 <a
                   href={generatePath(item)}
-                  className={`w-40 ${
+                  className={`w-full break-words text-wrap ${
                     generatePath(item) == window.location.pathname
                       ? "text-superOfficeGreen font-semibold"
                       : ""
@@ -91,13 +103,10 @@ export default function TableOfContentList({
             {openIndexes.includes(index) && item.items && (
               <div className="">
                 <TableOfContentList
-                  slug={
-                    item.topicHref
-                      ? `${slug}/${item.topicHref.slice(0, -9)}`
-                      : slug
-                  }
+                  slug={generateSlug(item)}
                   inputItems={item.items}
                   isMainTable={false}
+                  isWebApiTOC={isWebApiTOC}
                 />
               </div>
             )}

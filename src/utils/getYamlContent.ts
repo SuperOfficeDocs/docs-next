@@ -3,13 +3,12 @@ import path from "path";
 import YAML from "yaml";
 import type { CategoryContentItem } from "../types/CategoryPageTypes";
 import type { SubCategoryContentItem } from "../types/SubCategoryPageTypes";
+import type { ManagedReferenceType } from "../types/WebAPITypes";
 
 function loadYamlFile(
-  pathName: string,
+  filePath: string,
   type: string
-): CategoryContentItem | SubCategoryContentItem | null {
-  const filePath = path.join("src/content/docs/", `${pathName}/index.yml`);
-
+): CategoryContentItem | SubCategoryContentItem | ManagedReferenceType | null {
   if (!fs.existsSync(filePath)) {
     console.warn(`Warning: Category content file not found: ${filePath}`);
     return null;
@@ -22,7 +21,8 @@ function loadYamlFile(
 }
 
 export function getCategoryPageContents(pathName: string): CategoryContentItem {
-  const YAMLData = loadYamlFile(pathName, "category");
+  const filePath = path.join("src/content/docs/", `${pathName}/index.yml`);
+  const YAMLData = loadYamlFile(filePath, "category");
 
   if (!YAMLData) {
     throw new Error(`Failed to load Category index file: ${pathName}`);
@@ -34,11 +34,23 @@ export function getCategoryPageContents(pathName: string): CategoryContentItem {
 export function getSubCategoryPageContents(
   pathName: string
 ): SubCategoryContentItem {
-  const YAMLData = loadYamlFile(pathName, "subcategory");
+  const filePath = path.join("src/content/docs/", `${pathName}/index.yml`);
+  const YAMLData = loadYamlFile(filePath, "subcategory");
 
   if (!YAMLData) {
     throw new Error(`Failed to load Category index file: ${pathName}`);
   }
 
   return YAMLData as SubCategoryContentItem;
+}
+
+export function getWebApiContent(pathName: string): ManagedReferenceType {
+  const filePath = path.join("src/content/docs/en/api/reference/webapi/", `${pathName}.yml`);
+  const YAMLData = loadYamlFile(filePath, "webApi");
+
+  if (!YAMLData) {
+    throw new Error(`Failed to load Category index file: ${pathName}`);
+  }
+
+  return YAMLData as ManagedReferenceType;
 }
