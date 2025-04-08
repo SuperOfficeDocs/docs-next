@@ -1,7 +1,7 @@
 ---
 import type { ManagedReferenceType, Item } from "../types/WebAPITypes";
 import { getEntry } from "astro:content";
-import WebAPIItem from "@components/WebAPIItem.astro"
+import WebAPIItem from "@components/WebApiItem.astro"
 
 const { data } = Astro.props;
 
@@ -34,7 +34,6 @@ const indexDictionary : indexDictionaryProps = {
 const pagetitle = data.items[0].type + " " + data.items[0].id
 
 data.items.forEach( (item , index) => {
-  // console.log("Item",item.type,index)
   const key = item.type as keyof indexDictionaryProps;
 
   if (!indexDictionary[key]) {
@@ -44,13 +43,14 @@ data.items.forEach( (item , index) => {
   indexDictionary[key].push(index);
 })
 
-// console.log(indexDictionary)
+console.log(indexDictionary)
+
+
 
 ---
 
 <div class="">
   <h1>{pagetitle}</h1>
-
   {
     data.items[0].type == "Namespace" && (
     data.items[0].children?.map(async (item : string) => {
@@ -109,7 +109,7 @@ data.items.forEach( (item , index) => {
           </div>)}
         
 
-        {indexDictionary.Constructor && ( 
+        {indexDictionary.Constructor.length && ( 
           <p class="text-2xl">Constructors</p>
           <div>
             {indexDictionary.Constructor.map( (indexNo) => {
@@ -118,10 +118,18 @@ data.items.forEach( (item , index) => {
           </div>
          )}
 
-        {indexDictionary.Method && (
+        {indexDictionary.Method.length && (
           <div>
             <p class="text-2xl font-bold">Methods</p>
             {indexDictionary.Method.map( (indexNo) => {
+              return <WebAPIItem item={data.items[indexNo]} />
+            })}
+          </div>)}
+        
+        {indexDictionary.Field.length && (
+          <div>
+            <p class="text-2xl font-bold">Fields</p>
+            {indexDictionary.Field.map( (indexNo) => {
               return <WebAPIItem item={data.items[indexNo]} />
             })}
           </div>)}
