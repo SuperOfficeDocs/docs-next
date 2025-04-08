@@ -1,5 +1,5 @@
 ---
-import type { ManagedReferenceType, Item } from "../types/WebAPITypes";
+import type { ManagedReferenceType } from "../types/WebAPITypes";
 import { getEntry } from "astro:content";
 import WebAPIItem from "@components/WebApiItem.astro"
 
@@ -15,7 +15,7 @@ interface indexDictionaryProps {
   Class: number[];
   Constructor: number[];
   Method : number[];
-  Propertie: number[];
+  Property: number[];
   Implement : number[];
   Field: number[];
   Namespace: number[];
@@ -25,7 +25,7 @@ const indexDictionary : indexDictionaryProps = {
   Class: [],
   Constructor: [],
   Method : [],
-  Propertie : [],
+  Property : [],
   Implement: [],
   Field: [],
   Namespace: [],
@@ -43,7 +43,7 @@ data.items.forEach( (item , index) => {
   indexDictionary[key].push(index);
 })
 
-console.log(indexDictionary)
+// console.log(indexDictionary)
 
 
 
@@ -109,7 +109,7 @@ console.log(indexDictionary)
           </div>)}
         
 
-        {indexDictionary.Constructor.length && ( 
+        {indexDictionary.Constructor.length > 0 && ( 
           <p class="text-2xl">Constructors</p>
           <div>
             {indexDictionary.Constructor.map( (indexNo) => {
@@ -118,7 +118,7 @@ console.log(indexDictionary)
           </div>
          )}
 
-        {indexDictionary.Method.length && (
+        {indexDictionary.Method.length > 0 && (
           <div>
             <p class="text-2xl font-bold">Methods</p>
             {indexDictionary.Method.map( (indexNo) => {
@@ -126,7 +126,7 @@ console.log(indexDictionary)
             })}
           </div>)}
         
-        {indexDictionary.Field.length && (
+        {indexDictionary.Field.length > 0 && (
           <div>
             <p class="text-2xl font-bold">Fields</p>
             {indexDictionary.Field.map( (indexNo) => {
