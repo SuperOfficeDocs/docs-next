@@ -1,24 +1,46 @@
 ---
-import type { Item } from "../types/WebAPITypes";
+import type { Item, Reference } from "../types/WebAPITypes";
 
 export interface Props {
   item: Item;
+  ref: Reference[];
 }
 
-const { item } = Astro.props;
+const { item, ref } = Astro.props;
+
+const getDataFromReference = (uid:string) : Reference => {
+  return ref.filter((item) => {
+    return item.uid == uid
+  })[0]
+}
+
+var itemTypeKey;
+switch(item.type){
+    case "Property":
+        itemTypeKey = "Property Value"
+        break;
+    case "Field":
+        itemTypeKey = "Field Value"
+        break;
+    case "Method":
+        itemTypeKey = "Returns"
+        break;
+}
+
 ---
 <div>
     <p class="font-bold text-lg">{item.name}</p>
-    <p class="text-base">{item.summary}</p>
+    <p>{item.summary}</p>
+    
     {
         item.syntax && (
         <p class="text-sm font-semibold text-gray-400">Declaration</p>
         <p><pre>{item.syntax.content}</pre></p>
-    )
+        )
     }
     
     {
-        item.syntax?.parameters && (
+        item.syntax?.parameters && item.syntax?.parameters.length > 0 && (
         <p class="text-sm font-semibold text-gray-400">Parameters</p>
         <table class="[&_*]:pl-3 text-black">
             <tr class="font-bold border [&_*]:border [&_*]:border-gray-300 border-b-2 border-gray-300">
@@ -28,7 +50,7 @@ const { item } = Astro.props;
             </tr>
             {item.syntax?.parameters?.map( (row, index)=>{
                 return <tr class={`[&_*]:border [&_*]:border-gray-300 ${index % 2 == 0 && "bg-stone-100"}`}>
-                    <td class="text-orange-600">{row.type.split(".").pop()}</td>
+                    <td class="text-orange-600"><a href={row.type}>{getDataFromReference(row.type).name}</a></td>
                     <td class="italic">{row.id}</td>
                     <td>{row.description}</td>
                 </tr>
@@ -37,20 +59,20 @@ const { item } = Astro.props;
         )
     }
  
-        {
-            item.syntax?.return && (
-            <p class="text-sm font-semibold text-gray-400">Returns</p>
-            <table class="[&_*]:pl-3 text-black">
-                <tr class="font-bold border [&_*]:border [&_*]:border-gray-300 border-b-2 border-gray-300">
+    {
+        item.syntax?.return && (
+        <p class="text-sm font-semibold text-gray-400">{itemTypeKey}</p>
+        <table class="[&_*]:pl-3 text-black">
+            <tr class="font-bold border [&_*]:border [&_*]:border-gray-300 border-b-2 border-gray-300">
                 <td>Type</td>
                 <td>Description</td>
             </tr>
-            <tr class={`[&_*]:border [&_*]:border-gray-300 bg-stone-100`}>
-                    <td class="text-orange-600">
-                        {item.syntax?.return?.type}</td>
-                    <td>{item.syntax?.return?.description}</td>
-                </tr>
-            </table>
-            )
-        }
+            <tr class={`[&_*]:border [&_*]:border-gray-300 bg-stone-100 w-full`}>
+                <td class="w-full">
+                    <a class="break-all w-full text-orange-600" href={item.syntax.return.type}>{getDataFromReference(item.syntax.return.type).name}</a></td>
+                <td class="w-80">{item.syntax?.return?.description}</td>
+            </tr>
+        </table>
+        )
+    }
 </div>

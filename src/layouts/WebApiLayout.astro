@@ -1,13 +1,13 @@
 ---
-import type { ManagedReferenceType } from "../types/WebAPITypes";
+import type { ManagedReferenceType, Reference } from "../types/WebAPITypes";
 import { getEntry } from "astro:content";
 import WebAPIItem from "@components/WebApiItem.astro"
 
 const { data } = Astro.props;
-
 type Props = {
   data: ManagedReferenceType;
 };
+
 const base = import.meta.env.BASE_URL;
 const baseUrl = base + "/en/api/reference/webapi/"
 
@@ -16,7 +16,6 @@ interface indexDictionaryProps {
   Constructor: number[];
   Method : number[];
   Property: number[];
-  Implement : number[];
   Field: number[];
   Namespace: number[];
 }
@@ -26,7 +25,6 @@ const indexDictionary : indexDictionaryProps = {
   Constructor: [],
   Method : [],
   Property : [],
-  Implement: [],
   Field: [],
   Namespace: [],
 }
@@ -43,10 +41,12 @@ data.items.forEach( (item , index) => {
   indexDictionary[key].push(index);
 })
 
-// console.log(indexDictionary)
 
-
-
+const getDataFromReference = (uid:string) : Reference => {
+  return data.references.filter((item) => {
+    return item.uid == uid
+  })[0]
+}
 ---
 
 <div class="">
@@ -95,7 +95,6 @@ data.items.forEach( (item , index) => {
         <p class="font-medium text-sm">Syntax</p>
         <pre><code>{data.items[0].syntax?.content}</code></pre>
         
-
         {/* Remarks */}
         {data.items[0].remarks && ( <div>
             <p class="font-bold text-sm">Remarks</p>
@@ -113,7 +112,26 @@ data.items.forEach( (item , index) => {
           <p class="text-2xl">Constructors</p>
           <div>
             {indexDictionary.Constructor.map( (indexNo) => {
-              return <WebAPIItem item={data.items[indexNo]} />
+              return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
+            })}
+          </div>
+         )}
+
+        {indexDictionary.Field.length > 0 && (
+          <div>
+            <p class="text-2xl font-bold">Fields</p>
+            {indexDictionary.Field.map( (indexNo) => {
+              return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
+            })}
+          </div>
+        )}
+        
+
+        {indexDictionary.Property.length > 0 && ( 
+          <p class="text-2xl">Properties</p>
+          <div>
+            {indexDictionary.Property.map( (indexNo) => {
+              return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
             })}
           </div>
          )}
@@ -122,18 +140,26 @@ data.items.forEach( (item , index) => {
           <div>
             <p class="text-2xl font-bold">Methods</p>
             {indexDictionary.Method.map( (indexNo) => {
-              return <WebAPIItem item={data.items[indexNo]} />
+              return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
             })}
           </div>)}
         
-        {indexDictionary.Field.length > 0 && (
+        {
+          data.items[0].implements && data.items[0].implements.length > 0 &&
           <div>
-            <p class="text-2xl font-bold">Fields</p>
-            {indexDictionary.Field.map( (indexNo) => {
-              return <WebAPIItem item={data.items[indexNo]} />
-            })}
-          </div>)}
-        
+            <p class="text-2xl">Implements</p>
+            <div class="">
+              {
+              data.items[0].implements?.map( (itemUid) => {
+                return 
+                      <a  class="text-orange-600 no-underline hover:underline font-normal" 
+                          href={itemUid}>{getDataFromReference(itemUid).name}
+                      </a>
+              })
+            }
+            </div>
+          </div>
+        }
 
             
       </div>
