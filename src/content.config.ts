@@ -54,9 +54,9 @@ const deDocs = defineCollection({
 
 
 const WebAPI = defineCollection({
-  loader: glob({ pattern:["**/*.yml",], base:"./src/content/docs/en/api/reference/webapi"}),
-
+  loader: glob({ pattern:["**/!(*toc).yml",], base:"./src/content/docs/en/api/reference/webapi"}),
 });
+
 
 // 3. Export a single `collections` object to register your collection(s)
 //    This key should match your collection directory name in "src/content"
