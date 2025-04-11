@@ -151,10 +151,12 @@ const getDataFromReference = (uid:string) : Reference => {
             <div class="">
               {
               data.items[0].implements?.map( (itemUid) => {
-                return 
-                      <a  class="text-orange-600 no-underline hover:underline font-normal" 
+                return (
+                      <a class="text-orange-600 no-underline hover:underline font-normal" 
                           href={itemUid}>{getDataFromReference(itemUid).name}
                       </a>
+                )
+                      
               })
             }
             </div>

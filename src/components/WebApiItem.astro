@@ -42,15 +42,15 @@ switch(item.type){
     {
         item.syntax?.parameters && item.syntax?.parameters.length > 0 && (
         <p class="text-sm font-semibold text-gray-400">Parameters</p>
-        <table class="[&_*]:pl-3 text-black">
+        <table class="[&_td]:pl-3 text-black">
             <tr class="font-bold border [&_*]:border [&_*]:border-gray-300 border-b-2 border-gray-300">
                 <td>Type</td>
                 <td>Name</td>
                 <td>Description</td>
             </tr>
             {item.syntax?.parameters?.map( (row, index)=>{
-                return <tr class={`[&_*]:border [&_*]:border-gray-300 ${index % 2 == 0 && "bg-stone-100"}`}>
-                    <td class="text-orange-600"><a href={row.type}>{getDataFromReference(row.type).name}</a></td>
+                return <tr class={`[&_td]:border [&_td]:border-gray-300 ${index % 2 == 0 && "bg-stone-100"}`}>
+                    <td class=""><a class="text-orange-600" href={row.type}>{getDataFromReference(row.type).name}</a></td>
                     <td class="italic">{row.id}</td>
                     <td>{row.description}</td>
                 </tr>
@@ -67,8 +67,8 @@ switch(item.type){
                 <td>Type</td>
                 <td>Description</td>
             </tr>
-            <tr class={`[&_*]:border [&_*]:border-gray-300 bg-stone-100 w-full`}>
-                <td class="w-full">
+            <tr class={`[&_td]:border [&_td]:border-gray-300 bg-stone-100 w-full`}>
+                <td class="w-80">
                     <a class="break-all w-full text-orange-600" href={item.syntax.return.type}>{getDataFromReference(item.syntax.return.type).name}</a></td>
                 <td class="w-80">{item.syntax?.return?.description}</td>
             </tr>
