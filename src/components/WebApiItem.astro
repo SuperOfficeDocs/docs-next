@@ -1,5 +1,6 @@
 ---
 import type { Item, Reference } from "../types/WebAPITypes";
+import { Code } from 'astro:components';
 
 export interface Props {
   item: Item;
@@ -27,6 +28,9 @@ switch(item.type){
         break;
 }
 
+
+
+
 ---
 <div>
     <p class="font-bold text-lg">{item.name}</p>
@@ -35,7 +39,7 @@ switch(item.type){
     {
         item.syntax && (
         <p class="text-sm font-semibold text-gray-400">Declaration</p>
-        <p><pre>{item.syntax.content}</pre></p>
+        <p><Code code={item.syntax.content} lang={"csharp"} theme="houston"/></p>
         )
     }
     

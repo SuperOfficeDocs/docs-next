@@ -2,6 +2,7 @@
 import type { ManagedReferenceType, Reference } from "../types/WebAPITypes";
 import { getEntry } from "astro:content";
 import WebAPIItem from "@components/WebApiItem.astro"
+import { Code } from 'astro:components';
 
 const { data } = Astro.props;
 type Props = {
@@ -93,8 +94,10 @@ const getDataFromReference = (uid:string) : Reference => {
         <p class="text-xs"><span class="font-bold mr-1">Namespace:</span><a href={baseUrl+data.items[0].namespace} class="text-orange-600"> {data.items[0].namespace}</a></p>
         <p class="text-xs"><span class="font-bold mr-1">Assembly:</span><span class="font-semibold">{data.items[0].assemblies}.dll</span></p>
 
-        <p class="font-medium text-sm">Syntax</p>
-        <pre><code>{data.items[0].syntax?.content}</code></pre>
+        { data.items[0].syntax && (
+          <p class="font-medium text-sm">Syntax</p>
+          <Code code={data.items[0].syntax?.content} lang={"csharp"} theme="houston"/>
+        )}
         
         {/* Remarks */}
         {data.items[0].remarks && ( 
