@@ -49,8 +49,9 @@ const getDataFromReference = (uid:string) : Reference => {
 }
 ---
 
-<div class="">
-  <h1>{pagetitle}</h1>
+<div class="w-full overflow-x-hidden">
+  <p class="text-3xl md:text-4xl break-words">{pagetitle}</p>
+
   {
     data.items[0].type == "Namespace" && (
     data.items[0].children?.map(async (item : string) => {
@@ -65,7 +66,7 @@ const getDataFromReference = (uid:string) : Reference => {
 
   {
     data.items[0].type == "Class" && (
-      <div>
+      <div class="w-full">
 
         <p class="mt-0 pt-0" set:html = {data.items[0].summary}></p>
 
@@ -96,9 +97,10 @@ const getDataFromReference = (uid:string) : Reference => {
         <pre><code>{data.items[0].syntax?.content}</code></pre>
         
         {/* Remarks */}
-        {data.items[0].remarks && ( <div>
+        {data.items[0].remarks && ( 
+          <div class="w-full">
             <p class="font-bold text-sm">Remarks</p>
-            <p> <pre class="not-prose text-base text-inherit font-sans">{data.items[0].remarks}</pre></p>
+            <pre class="not-prose text-base text-inherit font-sans w-full overflow-x-auto whitespace-pre-line">{data.items[0].remarks}</pre>
           </div>)}
         
         {/* Examples */}
