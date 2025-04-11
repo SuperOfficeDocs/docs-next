@@ -2,8 +2,7 @@
 import { z, defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 
-const DocsSchema = z
-.object({
+const DocsSchema = z.object({
   
   //Mandatory Properties
   author : z.union([
@@ -33,7 +32,6 @@ const DocsSchema = z
   language : z.string().max(2).optional().nullable(),
   pilot : z.string().optional().nullable(),
   redirect_url : z.string().optional().nullable(),
-
 })
 .passthrough().partial()
 // .partial() is used to make every property optional due to current frontmatter mismatch in some markdown files. Needs to be removed once frontmatter fixed
@@ -56,7 +54,7 @@ const deDocs = defineCollection({
 
 
 const WebAPI = defineCollection({
-  loader: glob({ pattern:["**/*.yml",], base:"./src/content/docs/en/api/reference/webapi"}),
+  loader: glob({ pattern:["**/!(*toc).yml",], base:"./src/content/docs/en/api/reference/webapi"}),
 });
 
 // Export a single `collections` object to register your collection(s)
