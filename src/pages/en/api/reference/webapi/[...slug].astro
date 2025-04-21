@@ -2,41 +2,49 @@
 import { getCollection, render } from "astro:content";
 import MarkdownLayout from "@layouts/Markdown.astro";
 import { getTableOfContents } from "@utils/getTableOfContents";
-import WebApiLayout from "@layouts/WebApiLayout.astro";
+import WebApiNamespace from "@components/WebApiNamespace.astro"
+import WebApiClass from "@components/WebApiClass.astro"
 
-//generating static paths from en collection
+//generating static paths from webapi collection
 export async function getStaticPaths() {
   const docEntries = await getCollection("webapi");
-  const headings = await Promise.all(
-    docEntries.map(async (post) => {
-      const data = await render(post);
-      return data.headings;
-    })
-  );
 
-  return docEntries.map((entry, index) => {
+  return docEntries.map((entry) => {
     const generatedSlug = entry.filePath
       ?.replace("src/content/docs/en/api/reference/webapi", "")
       .replace(".yml", "");
     const tocData = getTableOfContents(`docs/en/api/reference/webapi`, "/toc", true);
     return {
       params: { slug: `${generatedSlug}` },
-      props: { entry, headings: headings[index], tocData },
+      props: { entry, tocData },
     };
   });
 }
 
-const { entry, headings, tocData } = Astro.props;
+const { entry, tocData } = Astro.props;
+const data = entry.data
+const pagetitle = data.items[0].type + " " + data.items[0].id
+
 ---
 
 <MarkdownLayout
   frontmatter={entry.data}
   collection={entry.collection}
   slug={entry.id}
-  headings={headings}
   TableOfContentData={tocData}
   isLearn={false}
   isWebAPI={true}
 >
-  <WebApiLayout data={entry.data} />
+  <div class="w-full overflow-x-hidden [&&]:not-prose">
+    <p class="text-3xl md:text-4xl break-words mt-6 mb-6">{pagetitle}</p>
+
+    {
+      data.items[0].type == "Namespace" && ( <WebApiNamespace data={data} />)
+    }
+
+    {
+      data.items[0].type == "Class" && (<WebApiClass data={data} />)
+    }
+
+  </div>
 </MarkdownLayout>
