@@ -20,7 +20,6 @@ function loadYamlFile(filePath: string): TocData | null {
 export function getTableOfContents(
   collection: string,
   pathName: string,
-  isWebApiTOC: boolean
 ): TocData | null {
   const filePath = path.join("src/content/", `${collection + pathName}.yml`);
 
@@ -46,7 +45,7 @@ export function getTableOfContents(
     }
   }
 
-  if (YAMLData.items && !isWebApiTOC) {
+  if (YAMLData.items) {
     recursivelyLoadSubItems(YAMLData.items);
   }
 

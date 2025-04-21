@@ -7,13 +7,14 @@ import WebApiClass from "@components/WebApiClass.astro"
 
 //generating static paths from webapi collection
 export async function getStaticPaths() {
-  const docEntries = await getCollection("webapi");
+  const YMLEntries = await getCollection("webapi");
 
-  return docEntries.map((entry) => {
+
+  return YMLEntries.map((entry) => {
     const generatedSlug = entry.filePath
       ?.replace("src/content/docs/en/api/reference/webapi", "")
       .replace(".yml", "");
-    const tocData = getTableOfContents(`docs/en/api/reference/webapi`, "/toc", true);
+    const tocData = getTableOfContents(`docs/en/api/reference/webapi`, "/toc");
     return {
       params: { slug: `${generatedSlug}` },
       props: { entry, tocData },
@@ -22,8 +23,7 @@ export async function getStaticPaths() {
 }
 
 const { entry, tocData } = Astro.props;
-const data = entry.data
-const pagetitle = data.items[0].type + " " + data.items[0].id
+const pagetitle = entry.data.items[0].type + " " + entry.data.items[0].id
 
 ---
 
@@ -39,11 +39,11 @@ const pagetitle = data.items[0].type + " " + data.items[0].id
     <p class="text-3xl md:text-4xl break-words mt-6 mb-6">{pagetitle}</p>
 
     {
-      data.items[0].type == "Namespace" && ( <WebApiNamespace data={data} />)
+      entry.data.items[0].type == "Namespace" && ( <WebApiNamespace data={entry.data} />)
     }
 
     {
-      data.items[0].type == "Class" && (<WebApiClass data={data} />)
+      entry.data.items[0].type == "Class" && (<WebApiClass data={entry.data} />)
     }
 
   </div>
