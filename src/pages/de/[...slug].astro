@@ -22,7 +22,7 @@ export async function getStaticPaths() {
     const generatedSlug = entry.filePath?.replace("src/content/docs/de", "").replace(".md","");
     const category = generatedSlug?.split("/")[1];
     const isLearn =  entry.data.uid?.startsWith("help")
-    const tocData = getTableOfContents(`docs/de/${isLearn ? "learn" : category}`, "/toc", false);
+    const tocData = getTableOfContents(`docs/de/${isLearn ? "learn" : category}`);
 
     return {
       params: { slug: `${generatedSlug}` },

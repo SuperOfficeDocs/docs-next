@@ -18,7 +18,7 @@ import { getSubCategoryPageContents } from "~/utils/getYamlContent";
 
 const { subcategory } = Astro.params;
 const SubCategoryData = getSubCategoryPageContents(`en/${subcategory}`);
-const ToCData = getTableOfContents(`docs/en/${subcategory}`, "/toc", false);
+const ToCData = getTableOfContents(`docs/en/${subcategory}`);
 ---
 
 <SubCategoryLandingLayout data={SubCategoryData} ToCData={ToCData} />
