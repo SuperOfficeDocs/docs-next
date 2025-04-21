@@ -14,7 +14,7 @@ export async function getStaticPaths() {
     const generatedSlug = entry.filePath
       ?.replace("src/content/docs/en/api/reference/webapi", "")
       .replace(".yml", "");
-    const tocData = getTableOfContents(`docs/en/api/reference/webapi`, "/toc");
+    const tocData = getTableOfContents(`docs/en/api/reference/webapi`);
     return {
       params: { slug: `${generatedSlug}` },
       props: { entry, tocData },

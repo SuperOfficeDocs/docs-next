@@ -25,17 +25,11 @@ export async function getStaticPaths() {
     const isWebAPI = entry.data.uid?.startsWith("webapi");
 
     var TocPath;
-    if(isLearn){
-      TocPath = "learn"
-    }
-    else if (isWebAPI){
-      TocPath = "api/reference/webapi"
-    }
-    else{
-      TocPath = category
-    }
+    if (isLearn) { TocPath = "learn" }
+    else if (isWebAPI) { TocPath = "api/reference/webapi" }
+    else { TocPath = category }
     
-    const tocData = getTableOfContents(`docs/en/${TocPath}`, "/toc");
+    const tocData = getTableOfContents(`docs/en/${TocPath}`);
 
     return {
       params: { slug: `${generatedSlug}` },
