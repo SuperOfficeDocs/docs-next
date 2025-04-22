@@ -1,0 +1,73 @@
+---
+import type { ManagedReferenceType, Reference, Item } from "../types/WebAPITypes";
+import { getEntry } from "astro:content";
+
+type Props = {
+    data: ManagedReferenceType;
+};
+const { data } = Astro.props;
+
+
+const classifiedData : classifiedDataProps = {
+    Class : [],
+    Interface : []
+}
+interface classifiedDataProps {
+    Class: Item[];
+    Interface: Item[];
+}
+
+
+const promises = data.items[0].children?.map( 
+    async(childName: string) => {
+        const formattedItem = childName.replaceAll(".", "").toLowerCase();
+        const childrenItemEntry = await getEntry("webapi", formattedItem);
+        const key = childrenItemEntry?.data.items[0].type as keyof classifiedDataProps;
+        if (!classifiedData[key]) {
+            classifiedData[key] = []; 
+        }
+        classifiedData[key].push(childrenItemEntry?.data.items[0]);
+})
+
+await Promise.all(promises || []);
+
+
+---
+
+<div> 
+    {
+        classifiedData.Class.length > 0 && (
+            <div>
+                <p class="text-2xl mb-5">Classes</p>
+                    {
+                    classifiedData.Class.map( (item)=> {
+                        return (
+                                <a class="font-bold text-orange-700 text-lg no-underline hover:underline" href={`${item.uid}`}>{item.id}</a>
+                                <p class="ml-4 !prose" set:html = {item.summary}></p>
+                        )
+                })}
+                 
+            </div>
+        )
+    }
+    {   
+        classifiedData.Interface.length > 0 && (
+            <div>
+                <p class="text-2xl mb-5">Interfaces</p>
+                    {
+                    classifiedData.Interface.map( (item)=> {
+                        return (
+                            <a class="font-bold text-orange-700 text-lg no-underline hover:underline" href={`${item.uid}`}>{item.id}</a>
+                            <p class="ml-4 !prose" set:html = {item.summary}></p>   
+                        )
+                })}
+                 
+            </div>
+        )
+}
+
+</div>
+
+
+
+

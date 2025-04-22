@@ -14,11 +14,11 @@ export function getStaticPaths() {
   ];
 }
 
-import { getSubCategoryPageContents } from "~/utils/getSubCategoryPageContents";
+import { getSubCategoryPageContents } from "~/utils/getYamlContent";
 
 const { subcategory } = Astro.params;
 const SubCategoryData = getSubCategoryPageContents(`en/${subcategory}`);
-const ToCData = getTableOfContents(`docs/en/${subcategory}`, "/toc");
+const ToCData = getTableOfContents(`docs/en/${subcategory}`);
 ---
 
 <SubCategoryLandingLayout data={SubCategoryData} ToCData={ToCData} />

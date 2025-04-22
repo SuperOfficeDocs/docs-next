@@ -22,16 +22,26 @@ export async function getStaticPaths() {
     const generatedSlug = entry.filePath?.replace("src/content/docs/en", "").replace(".md","");
     const category = generatedSlug?.split("/")[1];
     const isLearn =  entry.data.uid?.startsWith("help");
-    const tocData = getTableOfContents(`docs/en/${isLearn ? "learn" : category}`, "/toc");
+    const isWebAPI = entry.data.uid?.startsWith("webapi");
+
+    var TocPath;
+    if (isLearn) { TocPath = "learn" }
+    else if (isWebAPI) { TocPath = "api/reference/webapi" }
+    else { TocPath = category }
+    
+    const tocData = getTableOfContents(`docs/en/${TocPath}`);
 
     return {
       params: { slug: `${generatedSlug}` },
-      props: { entry, headings: headings[index], tocData, isLearn},
+      props: { entry, headings: headings[index], tocData, isLearn, isWebAPI},
     };
   });
 }
 
-const { entry, headings, tocData, isLearn } = Astro.props;
+
+
+
+const { entry, headings, tocData, isLearn, isWebAPI } = Astro.props;
 
 const { Content } = await render(entry);
 ---
@@ -43,6 +53,7 @@ const { Content } = await render(entry);
   headings={headings}
   TableOfContentData={tocData}
   isLearn={isLearn}
+  isWebAPI={isWebAPI}
 >
   {Content ? <Content /> : "Loading content..."}
 </MarkdownLayout>
