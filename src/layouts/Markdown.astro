@@ -1,7 +1,7 @@
 ---
 import Base from "./Base.astro";
 import PageHeader from "@components/PageHeader.astro";
-import OnThisArticle from "@components/OnThisArticle.astro";
+import OnThisArticle from "@components/OnThisArticle.tsx";
 import TableOfContentList from "@components/TableOfContentList.tsx";
 
 const { frontmatter, collection, slug, headings, TableOfContentData, isLearn, isWebAPI = false } =
@@ -54,7 +54,7 @@ if (collection != "release-notes") {
     <div
       class="md:col-span-2 pt-12 px-6 hidden lg:block h-screen sticky top-12"
     >
-      <OnThisArticle headings={headings} />
+      <OnThisArticle headings={headings} client:load/>
     </div>
   </article>
 </Base>

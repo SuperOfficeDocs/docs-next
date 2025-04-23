@@ -2,13 +2,12 @@
 import { getCollection, render } from "astro:content";
 import MarkdownLayout from "@layouts/Markdown.astro";
 import { getTableOfContents } from "@utils/getTableOfContents";
-import WebApiNamespace from "@components/WebApiNamespace.astro"
-import WebApiClass from "@components/WebApiClass.astro"
+import WebApiNamespace from "@components/WebApiNamespace.astro";
+import WebApiClass from "@components/WebApiClass.astro";
 
 //generating static paths from webapi collection
 export async function getStaticPaths() {
   const YMLEntries = await getCollection("webapi");
-
 
   return YMLEntries.map((entry) => {
     const generatedSlug = entry.filePath
@@ -23,8 +22,8 @@ export async function getStaticPaths() {
 }
 
 const { entry, tocData } = Astro.props;
-const pagetitle = entry.data.items[0].type + " " + entry.data.items[0].id
-
+const pagetitle = entry.data.items[0].type + " " + entry.data.items[0].id;
+const headings = [{ depth: 0, slug: "", text: "" }]; // TODO : generate headings for webapi content from the yml file
 ---
 
 <MarkdownLayout
@@ -34,17 +33,17 @@ const pagetitle = entry.data.items[0].type + " " + entry.data.items[0].id
   TableOfContentData={tocData}
   isLearn={false}
   isWebAPI={true}
+  headings={headings}
 >
   <div class="w-full overflow-x-hidden [&&]:not-prose">
     <p class="text-3xl md:text-4xl break-words mt-6 mb-6">{pagetitle}</p>
 
     {
-      entry.data.items[0].type == "Namespace" && ( <WebApiNamespace data={entry.data} />)
+      entry.data.items[0].type == "Namespace" && (
+        <WebApiNamespace data={entry.data} />
+      )
     }
 
-    {
-      entry.data.items[0].type == "Class" && (<WebApiClass data={entry.data} />)
-    }
-
+    {entry.data.items[0].type == "Class" && <WebApiClass data={entry.data} />}
   </div>
 </MarkdownLayout>
