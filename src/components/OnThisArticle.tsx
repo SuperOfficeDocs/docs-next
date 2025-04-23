@@ -11,7 +11,7 @@ interface TocProps {
 }
 
 const OnThisArticle: React.FC<TocProps> = ({ headings }) => {
-  const filteredHeadings = headings.filter((h) => h.depth > 1);
+  const filteredHeadings = headings?.filter((h) => h.depth > 1);
 
   useEffect(() => {
     const links = document.querySelectorAll<HTMLAnchorElement>(".toc-link");
@@ -54,7 +54,7 @@ const OnThisArticle: React.FC<TocProps> = ({ headings }) => {
     <nav className="toc">
       <p className="font-bold text-xs uppercase">In This Article</p>
       <ul className="pl-1">
-        {filteredHeadings.map((heading) => (
+        {filteredHeadings?.map((heading) => (
           <li key={heading.slug}>
             <a
               href={`#${heading.slug}`}
