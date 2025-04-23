@@ -38,7 +38,7 @@ const DocsSchema = z.object({
 
 
 const releaseNotes = defineCollection({
-  loader: glob({ pattern: "**/!(**includes**)/*.md", base: "./src/content/release-notes" }),
+  loader: glob({ pattern: ["*.md", "**/!(*includes*)/*.md"], base: "./src/content/release-notes" }),
   schema: DocsSchema,
 });
 
