@@ -139,7 +139,7 @@ export const heroItems = {
       title: "Developer Portal",
       description: "Learn how to create online applications.",
       icon: "material-symbols-light:developer-mode-tv-outline",
-      url: "en/developer-portal"
+      url: "/en/developer-portal"
     },
     {
       title: "Customer Service",
