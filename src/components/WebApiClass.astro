@@ -92,26 +92,35 @@ data.items.forEach( (item , index) => {
     
 
     {indexDictionary.Constructor.length > 0 && ( 
-      <p class="text-2xl">Constructors</p>
       <div>
-        {indexDictionary.Constructor.map( (indexNo) => {
-          return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
-        })}
+        <h2 id="Constructors" class="text-2xl">Constructors</h2>
+        <div>
+          {indexDictionary.Constructor.map( (indexNo) => {
+            return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
+          })}
+        </div>
       </div>
      )}
 
     {indexDictionary.Field.length > 0 && (
       <div>
-        <p class="text-2xl font-bold">Fields</p>
+        <h2 id="Fields" class="text-2xl font-bold">Fields</h2>
         {indexDictionary.Field.map( (indexNo) => {
           return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
         })}
       </div>
     )}
     
+    {indexDictionary.Method.length > 0 && (
+      <div>
+        <h2 id="Methods" class="text-2xl font-bold">Methods</h2>
+        {indexDictionary.Method.map( (indexNo) => {
+          return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
+        })}
+      </div>)}
 
     {indexDictionary.Property.length > 0 && ( 
-      <p class="text-2xl">Properties</p>
+      <h2 id="Properties" class="text-2xl">Properties</h2>
       <div>
         {indexDictionary.Property.map( (indexNo) => {
           return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
@@ -119,18 +128,12 @@ data.items.forEach( (item , index) => {
       </div>
      )}
 
-    {indexDictionary.Method.length > 0 && (
-      <div>
-        <p class="text-2xl font-bold">Methods</p>
-        {indexDictionary.Method.map( (indexNo) => {
-          return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
-        })}
-      </div>)}
+    
     
     {
       data.items[0].implements && data.items[0].implements.length > 0 &&
       <div>
-        <p class="text-2xl">Implements</p>
+        <h2 id="Implements" class="text-2xl">Implements</h2>
         <div class="">
           {
           data.items[0].implements?.map( (itemUid) => {

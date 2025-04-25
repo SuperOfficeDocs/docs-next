@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export interface Heading {
   depth: number;
@@ -8,27 +8,35 @@ export interface Heading {
 
 interface TocProps {
   headings: Heading[];
+  showSubHeading?: boolean;
 }
 
-const OnThisArticle: React.FC<TocProps> = ({ headings }) => {
-  const filteredHeadings = headings?.filter((h) => h.depth > 1);
+const OnThisArticle: React.FC<TocProps> = ({ headings, showSubHeading = true }) => {
+  const [activeSlug, setActiveSlug] = useState<string | null>(null);
+
+  const groupedHeadings = () => {
+    const result: { main: Heading; subs: Heading[] }[] = [];
+    let currentMain: Heading | null = null;
+
+    for (const heading of headings) {
+      if (heading.depth === 2) {
+        currentMain = heading;
+        result.push({ main: heading, subs: [] });
+      } else if (heading.depth > 2 && currentMain) {
+        result[result.length - 1].subs.push(heading);
+      }
+    }
+
+    return result;
+  };
 
   useEffect(() => {
-    const links = document.querySelectorAll<HTMLAnchorElement>(".toc-link");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const slug = entry.target.id;
-          const activeLink = document.querySelector<HTMLAnchorElement>(
-            `.toc-link[data-slug="${slug}"]`
-          );
-
-          if (entry.isIntersecting && activeLink) {
-            links.forEach((link) =>
-              link.classList.remove("text-superOfficeGreen", "font-semibold")
-            );
-            activeLink.classList.add("text-superOfficeGreen", "font-semibold");
+          const id = entry.target.id;
+          if (entry.isIntersecting) {
+            setActiveSlug(id);
           }
         });
       },
@@ -38,33 +46,63 @@ const OnThisArticle: React.FC<TocProps> = ({ headings }) => {
       }
     );
 
-    // Observe each matching heading section
-    const sections = Array.from(links).map((link) =>
-      document.getElementById(link.hash.slice(1))
-    );
-
-    sections.forEach((section) => {
-      if (section) observer.observe(section);
+    headings.forEach((h) => {
+      const el = document.getElementById(h.slug);
+      if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
   }, [headings]);
 
+  const isActive = (slug: string) => slug === activeSlug;
+  const shouldHighlightMain = (mainSlug: string, subSlugs: string[]) =>
+    isActive(mainSlug) || subSlugs.includes(activeSlug ?? "");
+
   return (
-    <nav className="toc">
+    <nav className="toc overflow-y-auto overflow-x-hidden">
       <p className="font-bold text-xs uppercase">In This Article</p>
-      <ul className="pl-1">
-        {filteredHeadings?.map((heading) => (
-          <li key={heading.slug}>
-            <a
-              href={`#${heading.slug}`}
-              data-slug={heading.slug}
-              className="text-xs font-light toc-link"
-            >
-              {heading.text}
-            </a>
-          </li>
-        ))}
+      <ul className="pl-1 space-y-1 mt-2">
+        {groupedHeadings().map(({ main, subs }) => {
+          const subSlugs = subs.map((s) => s.slug);
+          const expand = shouldHighlightMain(main.slug, subSlugs);
+          const highlightMain = shouldHighlightMain(main.slug, subSlugs);
+
+          return (
+            <li key={main.slug}>
+              <a
+                href={`#${main.slug}`}
+                className={`toc-link block text-xs font-normal ${
+                  highlightMain ? "text-superOfficeGreen font-semibold" : ""
+                }`}
+                data-slug={main.slug}
+              >
+                {main.text}
+              </a>
+
+              {showSubHeading && subs.length > 0 && (
+                <ul
+                  className={`pl-1 mt-1 space-y-1 transition-all duration-200 ${
+                    expand ? "max-h-[1000px] opacity-100" : "max-h-0 overflow-hidden opacity-0"
+                  }`}
+                >
+                  {subs.map((sub) => (
+                    <li key={sub.slug}>
+                      <a
+                        href={`#${sub.slug}`}
+                        className={`toc-link block text-xs font-normal ${
+                          isActive(sub.slug) ? "text-superOfficeGreen" : ""
+                        }`}
+                        data-slug={sub.slug}
+                      >
+                        <span className="w-4">{isActive(sub.slug) ? ">" : ""}</span>{sub.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
