@@ -8,10 +8,10 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test:e2e": "npm run test --workspace=tests-workspace"
+    "test:e2e": "npm run test --workspace=e2e-tests"
   },
   "workspaces": [
-    "tests-workspace"
+    "e2e-tests"
   ],
   "dependencies": {
     "@astrojs/check": "^0.9.4",
