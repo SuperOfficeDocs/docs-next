@@ -13,4 +13,4 @@ const { category } = Astro.params;
 const CategoryData = getCategoryPageContents(`de/${category}`);
 ---
 
-<CategoryLandingLayout category={category} data={CategoryData} />
+<CategoryLandingLayout category={category} data={CategoryData} collection={"de"} />
