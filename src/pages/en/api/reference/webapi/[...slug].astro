@@ -62,21 +62,24 @@ if (entry.data.items[0].type == "Namespace") {
     async (childName: string) => {
       const formattedItem = childName.replaceAll(".", "").toLowerCase();
       const childrenItemEntry = await getEntry("webapi", formattedItem);
-      const key = childrenItemEntry?.data.items[0]
-        .type as keyof namespaceClassifiedDataProps;
-      if (!namespaceData[key]) {
-        namespaceData[key] = [];
-      }
-      namespaceData[key].push({
-        uid: childrenItemEntry?.data.items[0].uid,
-        id: childrenItemEntry?.data.items[0].id,
-        summary: childrenItemEntry?.data.items[0].summary,
-      });
+      if (childrenItemEntry) {
+        const dataItem = childrenItemEntry?.data.items[0];
+        const key = dataItem
+          .type as keyof namespaceClassifiedDataProps;
+        if (!namespaceData[key]) {
+          namespaceData[key] = [];
+        }
+        namespaceData[key].push({
+          uid: dataItem.uid,
+          id: dataItem.id,
+          summary: dataItem.summary,
+        });
 
-      headingList[key].push({
-        text: childrenItemEntry?.data.items[0].id,
-        slug: childrenItemEntry?.data.items[0].uid,
-      });
+        headingList[key].push({
+          text: dataItem.id,
+          slug: dataItem.uid,
+        });
+      }
     }
   );
 
@@ -107,7 +110,10 @@ if (
     });
   });
 
-  if (entry.data.items[0].implements && entry.data.items[0].implements.length > 0) {
+  if (
+    entry.data.items[0].implements &&
+    entry.data.items[0].implements.length > 0
+  ) {
     const key = "Implement" as keyof headingsListProps;
     entry.data.items[0].implements.forEach((item: string) => {
       headingList[key].push({
