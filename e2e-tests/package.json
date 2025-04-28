@@ -1,0 +1,13 @@
+{
+    "name": "docs-next-tests",
+    "private": true,
+    "version": "1.0.0",
+    "devDependencies": {
+      "@playwright/test": "^1.52.0",
+      "@types/node": "^22.14.1"
+    },
+    "scripts": {
+      "test": "playwright test"
+    }
+  }
+  

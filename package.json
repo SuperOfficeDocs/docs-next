@@ -8,8 +8,11 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test:e2e" : "playwright test"
+    "test:e2e": "npm run test --workspace=e2e-tests"
   },
+  "workspaces": [
+    "e2e-tests"
+  ],
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "^4.2.3",
@@ -47,7 +50,6 @@
     "yaml": "^2.7.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.52.0",
     "@tailwindcss/typography": "^0.5.14",
     "@types/node": "^22.14.1",
     "remark-code-import": "^1.2.0"
