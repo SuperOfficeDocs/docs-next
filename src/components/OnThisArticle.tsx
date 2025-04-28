@@ -59,9 +59,9 @@ const OnThisArticle: React.FC<TocProps> = ({ headings, showSubHeading = true }) 
     isActive(mainSlug) || subSlugs.includes(activeSlug ?? "");
 
   return (
-    <nav className="toc overflow-y-auto overflow-x-hidden">
+    <nav className="toc overflow-y-auto overflow-x-hidden max-h-full">
       <p className="font-bold text-xs uppercase">In This Article</p>
-      <ul className="pl-1 space-y-1 mt-2">
+      <ul className="space-y-1.5 mt-2 text-gray-600">
         {groupedHeadings().map(({ main, subs }) => {
           const subSlugs = subs.map((s) => s.slug);
           const expand = shouldHighlightMain(main.slug, subSlugs);
@@ -71,9 +71,10 @@ const OnThisArticle: React.FC<TocProps> = ({ headings, showSubHeading = true }) 
             <li key={main.slug}>
               <a
                 href={`#${main.slug}`}
-                className={`toc-link block text-xs font-normal ${
-                  highlightMain ? "text-superOfficeGreen font-semibold" : ""
-                }`}
+                className={`toc-link block text-xs font-normal pl-2
+                  ${ highlightMain ? "text-superOfficeGreen font-semibold" : "" }
+                  ${ highlightMain && subs.length > 0 ? "border-l-2 border-superOfficeGreen" : ""}
+                  `}
                 data-slug={main.slug}
               >
                 {main.text}
@@ -81,7 +82,7 @@ const OnThisArticle: React.FC<TocProps> = ({ headings, showSubHeading = true }) 
 
               {showSubHeading && subs.length > 0 && (
                 <ul
-                  className={`pl-1 mt-1 space-y-1 transition-all duration-200 ${
+                  className={`pl-3 mt-2 space-y-1 transition-all duration-200 ${
                     expand ? "max-h-[1000px] opacity-100" : "max-h-0 overflow-hidden opacity-0"
                   }`}
                 >

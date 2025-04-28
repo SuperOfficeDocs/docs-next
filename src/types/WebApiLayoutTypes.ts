@@ -16,7 +16,8 @@ export interface headingsListProps {
     Method : headingsItem[];
     Property: headingsItem[];
     Field: headingsItem[];
-    Interface : headingsItem[]
+    Interface : headingsItem[];
+    Implement : headingsItem[];
 }
 
 interface headingsItem {

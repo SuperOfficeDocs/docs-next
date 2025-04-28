@@ -35,19 +35,21 @@ const headings = [{ depth: 0, slug: "", text: "" }];
 const headingList: headingsListProps = {
   Class: [],
   Constructor: [],
+  Field: [],
   Method: [],
   Property: [],
-  Field: [],
   Interface: [],
+  Implement: [],
 };
 
 const conversionList = {
   Class: "Classes",
   Constructor: "Constructors",
+  Field: "Fields",
   Method: "Methods",
   Property: "Properties",
-  Field: "Fields",
   Interface: "Interfaces",
+  Implement: "Implements",
 };
 
 const namespaceData: namespaceClassifiedDataProps = {
@@ -96,13 +98,24 @@ if (
   entry.data.items[0].type == "Class" ||
   entry.data.items[0].type == "Interface"
 ) {
-  entry.data.items.slice(1).forEach((item: Item) => {
+  const itemsExceptClassItem = entry.data.items.slice(1);
+  itemsExceptClassItem.forEach((item: Item) => {
     const key = item.type as keyof headingsListProps;
     headingList[key].push({
       text: item.name,
       slug: item.uid,
     });
   });
+
+  if (entry.data.items[0].implements && entry.data.items[0].implements.length > 0) {
+    const key = "Implement" as keyof headingsListProps;
+    entry.data.items[0].implements.forEach((item: string) => {
+      headingList[key].push({
+        text: item,
+        slug: item,
+      });
+    });
+  }
 
   let ItemType: keyof headingsListProps;
   for (ItemType in headingList) {
