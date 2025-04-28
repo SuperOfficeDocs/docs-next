@@ -15,25 +15,17 @@ const getDataFromReference = (uid:string) : Reference => {
   })[0]
 }
 
-var itemTypeKey;
-switch(item.type){
-    case "Property":
-        itemTypeKey = "Property Value"
-        break;
-    case "Field":
-        itemTypeKey = "Field Value"
-        break;
-    case "Method":
-        itemTypeKey = "Returns"
-        break;
+
+const itemTypeString = item.type as keyof typeof itemTypeKey;
+const itemTypeKey = {
+    "Property" : "Property Value",
+    "Field" : "Field Value",
+    "Method" : "Returns"
 }
-
-
-
 
 ---
 <div>
-    <p class="font-bold text-lg">{item.name}</p>
+    <p id={item.uid} class="font-bold text-lg">{item.name}</p>
     <p>{item.summary}</p>
     
     {
@@ -65,7 +57,7 @@ switch(item.type){
  
     {
         item.syntax?.return && (
-        <p class="text-sm font-semibold text-gray-400">{itemTypeKey}</p>
+        <p class="text-sm font-semibold text-gray-400">{itemTypeKey[itemTypeString]}</p>
         <table class="[&_td]:pl-2 text-black">
             <tr class="font-bold border [&_*]:border [&_*]:border-gray-300 border-b-2 border-gray-300">
                 <td >Type</td>

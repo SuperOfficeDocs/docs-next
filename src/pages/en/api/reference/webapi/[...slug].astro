@@ -4,6 +4,12 @@ import MarkdownLayout from "@layouts/Markdown.astro";
 import { getTableOfContents } from "@utils/getTableOfContents";
 import WebApiNamespace from "@components/WebApiNamespace.astro";
 import WebApiClass from "@components/WebApiClass.astro";
+import type {
+  headingsListProps,
+  namespaceClassifiedDataProps,
+} from "../../../../../types/WebApiLayoutTypes";
+import { getEntry } from "astro:content";
+import type { Item } from "../../../../../types/WebAPITypes";
 
 //generating static paths from webapi collection
 export async function getStaticPaths() {
@@ -23,7 +29,114 @@ export async function getStaticPaths() {
 
 const { entry, tocData } = Astro.props;
 const pagetitle = entry.data.items[0].type + " " + entry.data.items[0].id;
-const headings = [{ depth: 0, slug: "", text: "" }]; // TODO : generate headings for webapi content from the yml file
+
+//Genereting heading from yml data
+const headings = [{ depth: 0, slug: "", text: "" }];
+const headingList: headingsListProps = {
+  Class: [],
+  Constructor: [],
+  Field: [],
+  Method: [],
+  Property: [],
+  Interface: [],
+  Implement: [],
+};
+
+const conversionList = {
+  Class: "Classes",
+  Constructor: "Constructors",
+  Field: "Fields",
+  Method: "Methods",
+  Property: "Properties",
+  Interface: "Interfaces",
+  Implement: "Implements",
+};
+
+const namespaceData: namespaceClassifiedDataProps = {
+  Class: [],
+  Interface: [],
+};
+
+if (entry.data.items[0].type == "Namespace") {
+  const promises = entry.data.items[0].children?.map(
+    async (childName: string) => {
+      const formattedItem = childName.replaceAll(".", "").toLowerCase();
+      const childrenItemEntry = await getEntry("webapi", formattedItem);
+      if (childrenItemEntry) {
+        const dataItem = childrenItemEntry?.data.items[0];
+        const key = dataItem
+          .type as keyof namespaceClassifiedDataProps;
+        if (!namespaceData[key]) {
+          namespaceData[key] = [];
+        }
+        namespaceData[key].push({
+          uid: dataItem.uid,
+          id: dataItem.id,
+          summary: dataItem.summary,
+        });
+
+        headingList[key].push({
+          text: dataItem.id,
+          slug: dataItem.uid,
+        });
+      }
+    }
+  );
+
+  await Promise.all(promises || []);
+
+  let ItemType: keyof headingsListProps;
+  for (ItemType in headingList) {
+    if (headingList[ItemType].length > 0) {
+      headings.push({
+        depth: 2,
+        slug: conversionList[ItemType],
+        text: conversionList[ItemType],
+      });
+    }
+  }
+}
+
+if (
+  entry.data.items[0].type == "Class" ||
+  entry.data.items[0].type == "Interface"
+) {
+  const itemsExceptClassItem = entry.data.items.slice(1);
+  itemsExceptClassItem.forEach((item: Item) => {
+    const key = item.type as keyof headingsListProps;
+    headingList[key].push({
+      text: item.name,
+      slug: item.uid,
+    });
+  });
+
+  if (
+    entry.data.items[0].implements &&
+    entry.data.items[0].implements.length > 0
+  ) {
+    const key = "Implement" as keyof headingsListProps;
+    entry.data.items[0].implements.forEach((item: string) => {
+      headingList[key].push({
+        text: item,
+        slug: item,
+      });
+    });
+  }
+
+  let ItemType: keyof headingsListProps;
+  for (ItemType in headingList) {
+    if (headingList[ItemType].length > 0) {
+      headings.push({
+        depth: 2,
+        slug: conversionList[ItemType],
+        text: conversionList[ItemType],
+      });
+      headingList[ItemType].map((item) => {
+        headings.push({ depth: 3, slug: `${item.slug}`, text: item.text });
+      });
+    }
+  }
+}
 ---
 
 <MarkdownLayout
@@ -40,10 +153,15 @@ const headings = [{ depth: 0, slug: "", text: "" }]; // TODO : generate headings
 
     {
       entry.data.items[0].type == "Namespace" && (
-        <WebApiNamespace data={entry.data} />
+        <WebApiNamespace namespaceData={namespaceData} />
       )
     }
 
-    {entry.data.items[0].type == "Class" && <WebApiClass data={entry.data} />}
+    {
+      (entry.data.items[0].type == "Class" ||
+        entry.data.items[0].type == "Interface") && (
+        <WebApiClass data={entry.data} />
+      )
+    }
   </div>
 </MarkdownLayout>
