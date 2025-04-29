@@ -28,8 +28,8 @@ type Props = {
 <Base metadata={metadata}>
   <div class="relative">
 
-    {category == "learn" && <PageHeader collection={collection} filePath={currentPath}
-    metadata={metadata} isLearn={true}/> }
+    {category == "learn" && ( 
+      <PageHeader collection={collection} filePath={currentPath} metadata={metadata} isLearnCategoryPage={true}/>) }
 
     <!-- Top Banner -->
     <div

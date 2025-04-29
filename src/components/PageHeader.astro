@@ -17,11 +17,11 @@ export interface Props {
     description?: string;
     uid: string;
   };
-  isLearn: boolean;
+  isLearnCategoryPage: boolean;
   collection: string;
 }
 
-const { filePath, metadata, isLearn, collection } = Astro.props;
+const { filePath, metadata, isLearnCategoryPage, collection } = Astro.props;
 const { title, description, uid } = metadata;
 const isHelp = uid?.split("-")[0] == "help";
 const isWebApi = collection == "webapi"
@@ -67,7 +67,7 @@ const isWebApi = collection == "webapi"
         )
       }
       {
-        !(isLearn || isWebApi) && (<Share description={description} title={title} />
+        !(isLearnCategoryPage) && (<Share description={description} title={title} />
       <Feedback docurl={filePath} title={title} uid={uid} />
       <Edit docurl={filePath} />)
       }
