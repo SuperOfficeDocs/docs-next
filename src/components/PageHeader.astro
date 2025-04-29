@@ -17,12 +17,23 @@ export interface Props {
     description?: string;
     uid: string;
   };
-  isLearn: boolean;
+  isLearnCategoryPage: boolean;
+  collection: string;
 }
 
-const { filePath, metadata, isLearn } = Astro.props;
+const { filePath, metadata, isLearnCategoryPage, collection } = Astro.props;
 const { title, description, uid } = metadata;
 const isHelp = uid?.split("-")[0] == "help";
+const isWebApi = collection == "webapi"
+var filePathUrl = "";
+
+if(isWebApi) {
+  filePathUrl = liveUrl.replace("/docs-next/", "src/content/docs/").concat(".yml");
+}
+else{
+  filePathUrl = filePath;
+}
+
 ---
 
 <header
@@ -64,9 +75,9 @@ const isHelp = uid?.split("-")[0] == "help";
         )
       }
       {
-        !isLearn && (<Share description={description} title={title} />
-      <Feedback docurl={filePath} title={title} uid={uid} />
-      <Edit docurl={filePath} />)
+        !(isLearnCategoryPage) && (<Share description={description} title={title} />
+      <Feedback docurl={filePathUrl} title={title} uid={uid} />
+      <Edit docurl={filePathUrl} />)
       }
     </div>
   </div>

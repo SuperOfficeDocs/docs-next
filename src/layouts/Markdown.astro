@@ -4,34 +4,38 @@ import PageHeader from "@components/PageHeader.astro";
 import OnThisArticle from "@components/OnThisArticle.tsx";
 import TableOfContentList from "@components/TableOfContentList.tsx";
 
-const { frontmatter, collection, slug, headings, TableOfContentData, isLearn, isWebAPI = false } =
-  Astro.props;
+const {
+  frontmatter,
+  filePath,
+  collection,
+  slug,
+  headings,
+  TableOfContentData,
+  isLearn,
+  isWebAPI = false,
+} = Astro.props;
 const liveUrl = Astro.url.pathname;
-
-let filePath;
-if (collection && slug) {
-  filePath = `src/content/${collection}/${slug}`;
-} else {
-  filePath = `src/pages${liveUrl}.md`;
-}
-
-
 var TOCPath = collection;
 
 // Appends specific category of the page for langauge content collections (For every collection except for release-notes collection)
 if (collection != "release-notes") {
-  TOCPath = TOCPath.concat(
-    `/${isLearn ? "learn" : slug.split("/")[0]}`
-  );
+  TOCPath = TOCPath.concat(`/${isLearn ? "learn" : slug.split("/")[0]}`);
 }
 ---
 
 <Base metadata={frontmatter}>
   <div class="sticky top-0">
-    <PageHeader isLearn={false} filePath={filePath} metadata={frontmatter} />
+    <PageHeader
+      isLearnCategoryPage={false}
+      filePath={filePath}
+      metadata={frontmatter}
+      collection={collection}
+    />
   </div>
   <article class="w-full pt-1 article grid grid-cols-12">
-    <div class="grid grid-cols-1 col-span-12 md:col-span-10 lg:grid-cols-10 gap-0">
+    <div
+      class="grid grid-cols-1 col-span-12 md:col-span-10 lg:grid-cols-10 gap-0"
+    >
       <nav
         class="bg-lightTealGray md:col-span-3 pt-6 md:pt-12 w-full max-w-md mx-auto rounded-lg flex justify-center"
       >
@@ -54,7 +58,7 @@ if (collection != "release-notes") {
     <div
       class="md:col-span-2 pt-12 px-6 hidden lg:block h-screen sticky top-12"
     >
-      <OnThisArticle headings={headings} client:load/>
+      <OnThisArticle headings={headings} client:load />
     </div>
   </article>
 </Base>

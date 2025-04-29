@@ -1,9 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import MarkdownLayout from "@layouts/Markdown.astro";
-
 import { getTableOfContents } from "../../utils/getTableOfContents";
-
 
 //generating static paths from en collection
 export async function getStaticPaths() {
@@ -17,29 +15,31 @@ export async function getStaticPaths() {
   );
 
   return docEntries.map((entry, index) => {
-
     //removing .md extention AND "src/content/en" from filepath
-    const generatedSlug = entry.filePath?.replace("src/content/docs/en", "").replace(".md","");
+    const generatedSlug = entry.filePath
+      ?.replace("src/content/docs/en", "")
+      .replace(".md", "");
     const category = generatedSlug?.split("/")[1];
-    const isLearn =  entry.data.uid?.startsWith("help");
+    const isLearn = entry.data.uid?.startsWith("help");
     const isWebAPI = entry.data.uid?.startsWith("webapi");
 
     var TocPath;
-    if (isLearn) { TocPath = "learn" }
-    else if (isWebAPI) { TocPath = "api/reference/webapi" }
-    else { TocPath = category }
-    
+    if (isLearn) {
+      TocPath = "learn";
+    } else if (isWebAPI) {
+      TocPath = "api/reference/webapi";
+    } else {
+      TocPath = category;
+    }
+
     const tocData = getTableOfContents(`docs/en/${TocPath}`);
 
     return {
       params: { slug: `${generatedSlug}` },
-      props: { entry, headings: headings[index], tocData, isLearn, isWebAPI},
+      props: { entry, headings: headings[index], tocData, isLearn, isWebAPI },
     };
   });
 }
-
-
-
 
 const { entry, headings, tocData, isLearn, isWebAPI } = Astro.props;
 
@@ -50,6 +50,7 @@ const { Content } = await render(entry);
   frontmatter={entry.data}
   collection={entry.collection}
   slug={entry.id}
+  filePath={entry.filePath}
   headings={headings}
   TableOfContentData={tocData}
   isLearn={isLearn}
