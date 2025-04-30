@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { ChangeEvent } from "react";
 import type { TocItem } from "~/types/TableOfContentTypes";
 const base = import.meta.env.BASE_URL;
@@ -19,6 +19,15 @@ export default function TableOfContentList({
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
   const [showToC, setShowToC] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [currentPath, setCurrentPath] = useState<string>("");
+
+  document.addEventListener("astro:page-load", () => {
+    setCurrentPath(window.location.pathname)
+  });
+
+  useEffect( () => {
+    setCurrentPath(window.location.pathname);
+  },[window.location.pathname])
 
   const toggleItem = (index: number) => {
     setOpenIndexes((prev) =>
@@ -90,7 +99,7 @@ export default function TableOfContentList({
                 <a
                   href={generatePath(item)}
                   className={`w-full break-words text-wrap ${
-                    generatePath(item) == window.location.pathname
+                    generatePath(item) == currentPath
                       ? "text-superOfficeGreen font-semibold"
                       : ""
                   }`}
