@@ -35,7 +35,7 @@ const { links = [] } = Astro.props;
       aria-label="resources"
     >
       {
-        links?.length ? (
+        links?.length && (
           <ul class="md:flex ml-2 lg:ml-4 md:mb-0">
             {links.map(({ href, text }, index) => (
               <li class="flex items-center mb-2 md:mb-0">
@@ -51,8 +51,6 @@ const { links = [] } = Astro.props;
               </li>
             ))}
           </ul>
-        ) : (
-          ""
         )
       }
     </nav>
@@ -68,23 +66,16 @@ const { links = [] } = Astro.props;
     const footer = document.getElementById("scroll-footer");
     const scrollContainer = document.querySelector("[data-scroll-container]");
 
-    function checkScroll() {
-      const scrollY = scrollContainer?.scrollTop;
-      const visibleHeight = scrollContainer?.clientHeight;
-      const fullHeight = scrollContainer?.scrollHeight;
+    const checkScroll = () => {
 
-      var nearBottom;
-      if (
-        scrollY != undefined &&
-        visibleHeight != undefined &&
-        fullHeight != undefined
-      ) {
-        nearBottom = scrollY + visibleHeight >= fullHeight - 25;
-      } else {
-        nearBottom = false;
+      if(scrollContainer == null){
+        return;
       }
 
-      console.log(nearBottom);
+      const scrollY = scrollContainer.scrollTop;
+      const visibleHeight = scrollContainer.clientHeight;
+      const fullHeight = scrollContainer.scrollHeight;
+      const nearBottom = scrollY + visibleHeight >= fullHeight - 25;
 
       if (nearBottom) {
         footer?.classList.remove("opacity-0", "pointer-events-none");
