@@ -73,7 +73,7 @@ const OnThisArticle: React.FC<TocProps> = ({ headings, showSubHeading = true }) 
                 href={`#${main.slug}`}
                 className={`toc-link block text-xs font-normal pl-2
                   ${ highlightMain ? "text-superOfficeGreen font-semibold" : "" }
-                  ${ highlightMain && subs.length > 0 ? "border-l-2 border-superOfficeGreen" : ""}
+                  ${ highlightMain ? "border-l-2 border-superOfficeGreen" : ""}
                   `}
                 data-slug={main.slug}
               >

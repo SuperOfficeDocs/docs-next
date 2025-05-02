@@ -13,48 +13,81 @@ export interface Props {
 const { links = [] } = Astro.props;
 ---
 
-<footer class="bg-orange-400 text-white border-t">
-  <div class="mx-auto px-4 md:px-6 max-w-7xl md:flex items-center justify-between">
+<footer
+  id="scroll-footer"
+  class="fixed bottom-0 left-0 w-full z-50 bg-superOfficeGreen text-white opacity-0 pointer-events-none transition-opacity duration-500"
+>
+  <div
+    class="mx-auto px-2 md:px-4 max-w-7xl md:flex items-center justify-between"
+  >
     <!-- Copyright section -->
     <div class="text-sm mr-4">
       Copyright &copy; <span id="copyright" class="hidden md:inline"></span>
-      <a href="https://www.superoffice.com/">SuperOffice</a><span class="hidden xl:inline"> · All rights reserved.</span>
+      <a href="https://www.superoffice.com/">SuperOffice</a><span
+        class="hidden xl:inline"
+      >
+        · All rights reserved.</span
+      >
     </div>
     <!-- Navigation section -->
-    <nav class="py-6 md:py-8 md:flex md:items-center md:justify-between" aria-label="resources">
-      {links?.length ? (
-        <ul class="md:flex ml-2 lg:ml-4 md:mb-0">
-          {links.map(({ href, text }, index) => (
-            <li class="flex items-center mb-2 md:mb-0">
-              <a
-                href={href}
-                class="focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5 text-center mr-1 md:mr-0"
-              >
-                {text}
-              </a>
-              {index < links.length - 1 && (
-                <span class="text-gray-400 mx-1 hidden md:inline" >|</span>
-              )}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        ""
-      )}
+    <nav
+      class="py-6 md:py-8 md:flex md:items-center md:justify-between"
+      aria-label="resources"
+    >
+      {
+        links?.length && (
+          <ul class="md:flex ml-2 lg:ml-4 md:mb-0">
+            {links.map(({ href, text }, index) => (
+              <li class="flex items-center mb-2 md:mb-0">
+                <a
+                  href={href}
+                  class="focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5 text-center mr-1 md:mr-0"
+                >
+                  {text}
+                </a>
+                {index < links.length - 1 && (
+                  <span class="text-gray-400 mx-1 hidden md:inline">|</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        )
+      }
     </nav>
   </div>
 </footer>
-
-<style>
-  footer {
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-</style>
 
 <script>
   const copyrightElement = document.querySelector("#copyright");
   if (copyrightElement !== null) {
     copyrightElement.textContent = new Date().getFullYear().toString();
   }
+  document.addEventListener("DOMContentLoaded", () => {
+    const footer = document.getElementById("scroll-footer");
+    const scrollContainer = document.querySelector("[data-scroll-container]");
+
+    const checkScroll = () => {
+
+      if(scrollContainer == null){
+        return;
+      }
+
+      const scrollY = scrollContainer.scrollTop;
+      const visibleHeight = scrollContainer.clientHeight;
+      const fullHeight = scrollContainer.scrollHeight;
+      const nearBottom = scrollY + visibleHeight >= fullHeight - 25;
+
+      if (nearBottom) {
+        footer?.classList.remove("opacity-0", "pointer-events-none");
+        footer?.classList.add("opacity-100");
+      } else {
+        footer?.classList.remove("opacity-100");
+        footer?.classList.add("opacity-0", "pointer-events-none");
+      }
+    }
+
+    scrollContainer?.addEventListener("scroll", checkScroll);
+    scrollContainer?.addEventListener("resize", checkScroll);
+    checkScroll();
+  });
 </script>
