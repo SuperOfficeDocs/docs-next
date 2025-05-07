@@ -16,6 +16,8 @@ import rehypeSanitize from "rehype-sanitize";
 
 import react from "@astrojs/react";
 
+import node from "@astrojs/node";
+
 // https://astro.build/config
 export default defineConfig({
   markdown: {
@@ -31,6 +33,7 @@ export default defineConfig({
     ],
     // rehypeSanitize, rehypeSlug
   },
+
   integrations: [
     tailwind({
       applyBaseStyles: false,
@@ -61,9 +64,11 @@ export default defineConfig({
     pagefind(),
     react(),
   ],
+
   image: {
     service: sharpImageService({ limitInputPixels: false }),
   },
+
   i18n: {
     locales: ["da", "de", "en", "nl", "no", "sv"],
     defaultLocale: "en",
@@ -75,10 +80,16 @@ export default defineConfig({
       de: "en",
     },
   },
+
   build: {
     format: "preserve",
   },
+
   site: "https://superofficedocs.github.io",
   base: "/docs-next",
   trailingSlash: "never",
+
+  adapter: node({
+    mode: "standalone",
+  }),
 });
