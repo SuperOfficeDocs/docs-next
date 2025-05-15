@@ -18,6 +18,8 @@ import react from "@astrojs/react";
 
 import node from "@astrojs/node";
 
+import auth from "auth-astro";
+
 // https://astro.build/config
 export default defineConfig({
   markdown: {
@@ -34,36 +36,28 @@ export default defineConfig({
     // rehypeSanitize, rehypeSlug
   },
 
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-    icon({
-      include: {
-        tabler: ["*"],
-        mdi: ["*"],
-        fluent: ["*"],
-        "material-symbols-light": ["*"],
-        "flat-color-icons": [
-          "template",
-          "gallery",
-          "approval",
-          "document",
-          "advertising",
-          "currency-exchange",
-          "voice-presentation",
-          "business-contact",
-          "database",
-        ],
-      },
-    }),
-    mdx(),
-    // preact(),
-    robots(),
-    sitemap(),
-    pagefind(),
-    react(),
-  ],
+  integrations: [tailwind({
+    applyBaseStyles: false,
+  }), icon({
+    include: {
+      tabler: ["*"],
+      mdi: ["*"],
+      fluent: ["*"],
+      "material-symbols-light": ["*"],
+      "flat-color-icons": [
+        "template",
+        "gallery",
+        "approval",
+        "document",
+        "advertising",
+        "currency-exchange",
+        "voice-presentation",
+        "business-contact",
+        "database",
+      ],
+    },
+  }), mdx(), // preact(),
+  robots(), sitemap(), pagefind(), react(), auth()],
 
   image: {
     service: sharpImageService({ limitInputPixels: false }),
@@ -88,7 +82,8 @@ export default defineConfig({
   site: "https://superofficedocs.github.io",
   base: "/docs-next",
   trailingSlash: "never",
-
+  
+  output: 'static',
   adapter: node({
     mode: "standalone",
   }),

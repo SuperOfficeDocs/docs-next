@@ -1,0 +1,42 @@
+---
+export const prerender = false;
+import Layout from 'src/layouts/Base.astro';
+import { getSession } from 'auth-astro/server';
+
+const session = await getSession(Astro.request);
+
+const metadata ={
+    title : "Check"
+}
+
+console.log("session: ",session);
+---
+<Layout metadata={metadata}>
+  
+  <div class="flex flex-col min-h-screen justify-center items-center">
+    {
+    session ? (
+      <h2>Logged In, Welcome: {session.user?.email}</h2>
+    ) : (
+      <h2>Not logged in</h2>
+    )
+  }
+    <div class="pt-10">
+      <button class="bg-transparent hover:bg-superOfficeGreen text-superOfficeGreen font-semibold hover:text-white py-2 px-4 border border-superOfficeGreen hover:border-transparent rounded" id="login">Login</button>
+      <button class="bg-transparent hover:bg-superOfficeGreen text-superOfficeGreen font-semibold hover:text-white py-2 px-4 border border-superOfficeGreen hover:border-transparent rounded" id="logout">Logout</button>
+    </div>
+    
+  </div>
+
+  <script>
+    const { signIn, signOut } = await import("auth-astro/client")
+    const loginButton = document.querySelector("#login") as HTMLButtonElement;
+    if (loginButton) {
+      loginButton.onclick = () => signIn("superoffice");
+    }
+    const logoutButton = document.querySelector("#logout") as HTMLButtonElement;
+    if (logoutButton) {
+      logoutButton.onclick = () => signOut();
+    }
+  </script>
+</Layout>
