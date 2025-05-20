@@ -58,12 +58,12 @@ export default function TableOfContentList({
   };
 
   return (
-    <div className={`w-72 mx-5 ${isMainTable && "md:px-12"}`}>
+    <div className={`w-full mx-3 xl:mx-8 ${isMainTable && "md:px-8"}`}>
       <div
         onClick={() => {
           setShowToC(!showToC);
         }}
-        className={`${showToC ? "bg-sky-900" : "bg-superOfficeGreen"} flex h-10 rounded-md w-full mb-4 md:m-0 md:hidden ${isMainTable ? "block" : "hidden"}`}
+        className={`${showToC ? "bg-sky-900" : "bg-superOfficeGreen"} flex h-10 rounded-md w-full md:m-0 lg:hidden ${isMainTable ? "block" : "hidden"}`}
       >
         <p className="p-2 m-auto text-white text-sm">
           Show / Hide Table of Content
@@ -71,8 +71,8 @@ export default function TableOfContentList({
       </div>
 
       <div
-        className={`w-full max-w-md mx-auto rounded-lg  ${isMainTable && "h-[400px] overflow-y-scroll overflow-x-hidden"} 
-        md:block ${isMainTable && (showToC ? "block" : "hidden")}`}
+        className={`w-full mt-4 max-w-md mx-auto rounded-lg  ${isMainTable && "h-fit overflow-y-auto overflow-x-hidden"} 
+        lg:block ${isMainTable && (showToC ? "block" : "hidden")}`}
       >
         <div
           className={`mb-4 w-full flex justify-center ${!isMainTable && "hidden"} `}
