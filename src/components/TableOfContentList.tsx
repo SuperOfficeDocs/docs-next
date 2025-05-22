@@ -58,7 +58,7 @@ export default function TableOfContentList({
   };
 
   return (
-    <div className={`w-full mx-3 xl:mx-8 ${isMainTable && "md:px-8"}`}>
+    <div className={`w-full overflow-auto ${isMainTable && "md:mx-3 xl:mx-10 md:h-[78vh]"} ${!isMainTable && "pl-4 md:pl-3"}`}>
       <div
         onClick={() => {
           setShowToC(!showToC);
@@ -71,14 +71,14 @@ export default function TableOfContentList({
       </div>
 
       <div
-        className={`w-full mt-4 max-w-md mx-auto rounded-lg  ${isMainTable && "h-fit overflow-y-auto overflow-x-hidden"} 
+        className={`w-full max-w-md mx-auto rounded-md  ${isMainTable && "h-fit overflow-y-auto overflow-x-hidden"} 
         lg:block ${isMainTable && (showToC ? "block" : "hidden")}`}
       >
         <div
-          className={`mb-4 w-full flex justify-center ${!isMainTable && "hidden"} `}
+          className={`px-3 w-full flex justify-center ${!isMainTable && "hidden"} `}
         >
           <input
-            className="rounded-md h-8 w-full mx-2 focus:outline-none px-4"
+            className="rounded-md h-8 w-full focus:outline-none px-4"
             onChange={handleSearchTermChange}
             value={searchTerm}
             placeholder="Enter here to filter"
@@ -90,7 +90,7 @@ export default function TableOfContentList({
             {item.name.toLowerCase().includes(searchTerm.toLowerCase()) && (
               <button
                 onClick={() => toggleItem(index)}
-                className={`w-fulltext-left flex jus items-center px-3 pb-2 text-sm text-gray-600 hover:text-black  ${isMainTable && "pb-4"}`}
+                className={`w-full text-left flex items-center px-3 pb-2 text-sm text-gray-600 hover:text-black  ${isMainTable && "pt-3"}`}
               >
                 <div className="w-6">
                   {item.items && (openIndexes.includes(index) ? "▼" : "▶")}
@@ -110,7 +110,7 @@ export default function TableOfContentList({
             )}
 
             {openIndexes.includes(index) && item.items && (
-              <div className="">
+              <div className="w-full">
                 <TableOfContentList
                   slug={generateSlug(item)}
                   inputItems={item.items}
