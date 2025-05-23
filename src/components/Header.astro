@@ -134,6 +134,12 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         </ul>
       </div>
     </nav>
+
+    <Search
+      id="search"
+      className="pagefind-ui"
+      uiOptions={{ showImages: false }}
+    />
     <!-- <div
       class="relative hidden text-default lg:col-span-2 lg:flex items-center lg:mx-5 w-full lg:w-auto lg:justify-end"
       aria-label="Search"

@@ -28,7 +28,7 @@ const { metadata } = Astro.props;
   <body class="h-screen flex flex-col overflow-hidden">
     <div class="z-50"><Header {...headerData} /></div>
     <div class="min-h-screen overflow-y-auto" data-scroll-container>
-      <main class="flex-grow pb-36">
+      <main class="flex-grow mb-[140px] md:mb-[120px]">
         <slot />
       </main>
       <Footer client:load {...footerData} />
