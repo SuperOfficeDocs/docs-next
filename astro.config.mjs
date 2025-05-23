@@ -80,5 +80,5 @@ export default defineConfig({
   },
   site: "https://superofficedocs.github.io",
   base: "/docs-next/",
-  // trailingSlash: "never",
+  trailingSlash: "never",
 });
