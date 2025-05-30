@@ -94,10 +94,10 @@ export const headerData = {
         },
       ],
     },
-    {
-      text: "Search",
-      href: "#"
-    }
+    // {
+    //   text: "Search",
+    //   href: "#"
+    // }
   ],
   // actions: [{ text: 'Search', href: '#', target: '_blank' }],
 

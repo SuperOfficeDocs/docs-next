@@ -64,8 +64,7 @@ if (entry.data.items[0].type == "Namespace") {
       const childrenItemEntry = await getEntry("webapi", formattedItem);
       if (childrenItemEntry) {
         const dataItem = childrenItemEntry?.data.items[0];
-        const key = dataItem
-          .type as keyof namespaceClassifiedDataProps;
+        const key = dataItem.type as keyof namespaceClassifiedDataProps;
         if (!namespaceData[key]) {
           namespaceData[key] = [];
         }
@@ -149,7 +148,7 @@ if (
   headings={headings}
 >
   <div class="w-full overflow-x-hidden [&&]:not-prose">
-    <p class="text-3xl md:text-4xl break-words mt-6 mb-6">{pagetitle}</p>
+    <h1 class="text-3xl md:text-4xl break-words mt-6 mb-6">{pagetitle}</h1>
 
     {
       entry.data.items[0].type == "Namespace" && (
