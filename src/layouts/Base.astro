@@ -10,12 +10,13 @@ export interface Props {
   metadata: {
     title: string;
   };
+  lang: string;
 }
 
-const { metadata } = Astro.props;
+const { metadata, lang = "en" } = Astro.props;
 ---
 
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/x-icon" href={favIcon} />
@@ -33,6 +34,5 @@ const { metadata } = Astro.props;
       </main>
       <Footer client:load {...footerData} />
     </div>
-
   </body>
 </html>

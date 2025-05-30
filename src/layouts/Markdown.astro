@@ -13,6 +13,7 @@ const {
   TableOfContentData,
   isLearn,
   isWebAPI = false,
+  lang,
 } = Astro.props;
 var TOCPath = collection;
 
@@ -22,7 +23,7 @@ if (collection != "release-notes") {
 }
 ---
 
-<Base metadata={frontmatter}>
+<Base metadata={frontmatter} lang={lang}>
   <div class="sticky top-0">
     <PageHeader
       isLearnCategoryPage={false}

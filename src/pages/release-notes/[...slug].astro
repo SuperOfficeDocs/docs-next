@@ -46,6 +46,7 @@ const { Content } = await render(entry);
   slug={entry.id}
   headings={headings}
   TableOfContentData={tocData}
+  lang="en"
 >
   {Content ? <Content /> : "Loading content..."}
 </MarkdownLayout>
