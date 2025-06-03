@@ -6,6 +6,7 @@
   gap: min(calc(20px * var(--pagefind-ui-scale)), 3%);
   padding: calc(10px * var(--pagefind-ui-scale)) 0 calc(40px * var(--pagefind-ui-scale));
   border-top: solid var(--pagefind-ui-border-width) var(--pagefind-ui-border);
+  width: 100%;
 }
 .pagefind-ui__result.svelte-j9e30.svelte-j9e30:last-of-type {
   border-bottom: solid var(--pagefind-ui-border-width) var(--pagefind-ui-border);
@@ -442,6 +443,8 @@ legend.svelte-1v2r7ls.svelte-1v2r7ls {
 }
 .pagefind-ui__results.svelte-e9gkc3 {
   padding: 0;
+  max-width: 100%;
+  word-break: break-all;
 }
 .pagefind-ui__message.svelte-e9gkc3 {
   box-sizing: content-box;
