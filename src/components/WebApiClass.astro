@@ -46,7 +46,7 @@ data.items.forEach( (item , index) => {
     {/* Inheritance */}
     {data.items[0].inheritance &&
       <div class="m-0">
-        <p class="font-medium text-sm border-b-[1px] pb-1 border-gray-300">Inheritance</p>
+        <h2 class="font-medium text-sm border-b-[1px] pb-1 border-gray-300">Inheritance</h2>
         <ul class="list-none text-orange-500 [&>*]:my-0 m-0 p-0">{data.items[0].inheritance.map( (inheritClass :string, index : number) => {
             return <li> ↳ {inheritClass.split(".").pop()} </li>
         })}</ul>
@@ -61,7 +61,7 @@ data.items.forEach( (item , index) => {
     {
       data.items[0].implements && (
         <div class="">
-          <p class="font-medium text-sm">Implements</p>
+          <h2 class="font-medium text-sm">Implements</h2>
           <p class="text-orange-500">{data.items[0].implements?.map( (implementItem :string) => {
           return implementItem.split(".").pop()})}
           </p>
@@ -69,24 +69,24 @@ data.items.forEach( (item , index) => {
       )
     }
 
-    <p class="text-xs"><span class="font-bold mr-1">Namespace:</span><a href={baseUrl+data.items[0].namespace} class="text-orange-600"> {data.items[0].namespace}</a></p>
-    <p class="text-xs"><span class="font-bold mr-1">Assembly:</span><span class="font-semibold">{data.items[0].assemblies}.dll</span></p>
+    <h2 class="text-xs"><span class="font-bold mr-1">Namespace:</span><a href={baseUrl+data.items[0].namespace} class="text-orange-600"> {data.items[0].namespace}</a></h2>
+    <h2 class="text-xs"><span class="font-bold mr-1">Assembly:</span><span class="font-semibold">{data.items[0].assemblies}.dll</span></h2>
 
     { data.items[0].syntax && (
-      <p class="font-medium text-sm">Syntax</p>
+      <h2 class="font-medium text-sm">Syntax</h2>
       <div class="prose"><Code code={data.items[0].syntax?.content} lang={"csharp"} theme="houston"/></div>
     )}
     
     {/* Remarks */}
     {data.items[0].remarks && ( 
       <div class="w-full">
-        <p class="font-bold text-sm">Remarks</p>
+        <h2 class="font-bold text-sm">Remarks</h2>
         <pre class="text-base bg-white text-inherit font-sans w-full overflow-x-auto whitespace-pre-line">{data.items[0].remarks}</pre>
       </div>)}
     
     {/* Examples */}
     {data.items[0].example && ( <div>
-        <p class="font-bold text-sm">Examples</p>
+        <h2 class="font-bold text-sm">Examples</h2>
         <p set:html = {data.items[0].example}></p>
       </div>)}
     
