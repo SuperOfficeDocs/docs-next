@@ -55,6 +55,7 @@ const { Content } = await render(entry);
   TableOfContentData={tocData}
   isLearn={isLearn}
   isWebAPI={isWebAPI}
+  lang="en"
 >
   {Content ? <Content /> : "Loading content..."}
 </MarkdownLayout>

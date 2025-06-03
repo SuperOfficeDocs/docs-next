@@ -10,7 +10,7 @@ import PageHeader from "@components/PageHeader.astro";
 const currentPath = Astro.url.pathname;
 
 
-const { data, category, collection } = Astro.props;
+const { data, category, collection, lang } = Astro.props;
 
 const metadata = {
   title: data.title,
@@ -22,10 +22,11 @@ type Props = {
   data: CategoryContentItem;
   category: string;
   collection : string;
+  lang:string;
 };
 ---
 
-<Base metadata={metadata}>
+<Base metadata={metadata} lang={lang}>
   <div class="relative">
 
     {category == "learn" && ( 

@@ -115,7 +115,7 @@ h1 {
   --pagefind-ui-border-radius: 0.25rem;
   --pagefind-ui-font: sans-serif;
 
-  width: 50%;
+  width: 100%;
 }
 
 .pagefind-ui.yellow {
