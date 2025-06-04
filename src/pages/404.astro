@@ -4,27 +4,27 @@ import GradientBanner from "@components/GradientBanner.astro";
 import { Image } from "astro:assets";
 import hugoImg from "@assets/404_Hugo.svg";
 const title = `Error 404`;
+const base = import.meta.env.BASE_URL;
+const liveUrl = Astro.url.toString();
 ---
 
 <Layout lang="en" metadata={{ title }}>
-  <section class="relative px-8">
+  <section class="relative">
     <GradientBanner />
-    <div class="z-10 container mx-auto px-8 py-5 relative -mt-40">
+    <div class="z-10 container mx-auto px-8 pt-2 relative -mt-44">
       <Image src={hugoImg} alt="Hugo - the SuperOffice owl mascot" width={250} class="mx-auto mt-8 mb-8" />
     </div>
-    <div class="container max-w-lg mx-auto pt-8 pb-12">
-      <div class="text-center mt-16 mb-8">
-        <h2 class="font-bold mb-4 text-5xl sm:text-6xl">
-          <span class="sr-only">Error</span>
-          <span class="text-primary">404</span>
+    <div class="container max-w-lg mx-auto pb-6">
+      <div class="text-center mb-8">
+        <h2 class="mb-4">
+          <!-- <span class="sr-only">Error</span> -->
+          <span class="text-4xl">404!</span>
         </h2>
-        <p class="text-lg font-semibold sm:text-xl md:text-2xl lg:text-3xl mx-6">
+        <p class="text-base font-normal sm:text-lg md:text-xl lg:text-2xl">
           Sorry, the page you requested was not found.
         </p>
-        <p class="hidden md:flex mt-4 mb-6 text-base text-muted">
-          But don't worry, you can find plenty of other things on our homepage.
-        </p>
-        <a rel="noopener noreferrer" href="/" class="inline-block mt-6 px-8 py-2 bg-superOfficeGreen text-white rounded-md shadow-md hover:bg-primary-dark transition">
+        <p class="font-light text-xl mt-1">{liveUrl}</p>
+        <a rel="noopener noreferrer" href=`${base}` class="inline-block mt-6 px-8 py-2 bg-superOfficeGreen text-white rounded-md shadow-md hover:bg-primary-dark transition">
           Back to homepage
         </a>
       </div>
