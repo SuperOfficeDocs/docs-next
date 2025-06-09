@@ -26,7 +26,7 @@ const itemTypeKey = {
 ---
 <div>
     <p id={item.uid} class="font-bold text-lg">{item.name}</p>
-    <p>{item.summary}</p>
+    <p set:html = {item.summary}></p>
     
     {
         item.syntax && (
