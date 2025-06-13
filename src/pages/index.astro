@@ -2,6 +2,7 @@
 import Hero from "@components/Hero.astro";
 import AreasOfInterest from "@components/AreasOfInterest.astro";
 import Audience from "@components/Audience.astro";
+import QuickAccessShortcuts from "@components/QuickAccessShortcuts.astro";
 import Layout from "@layouts/Base.astro";
 import { areasOfInterest } from "../navigation";
 
@@ -14,8 +15,7 @@ const metadata = {
   <main>
     <Hero />
     <AreasOfInterest {...areasOfInterest} heading="Popular areas of interest" />
-    <Audience heading="What type of user are you?"></Audience>
-    <div class="container-fluid py-16 bg-transparentTeal"></div>
+    <Audience heading="What type of user are you?" />
+    <QuickAccessShortcuts />
   </main>
-
 </Layout>
