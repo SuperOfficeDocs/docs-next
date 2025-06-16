@@ -180,6 +180,91 @@ export const areasOfInterest = {
 };
 
 
+export const quickAccessShortcuts = {
+  cards: [
+    {
+      title : "Getting Started",
+      subLinks : [
+        {
+          title : "System requirements",
+          link : "https://docs.superoffice.com/en/onsite/requirements/"
+        },
+        {
+          title : "Security concerns",
+          link : "https://docs.superoffice.com/en/onsite/security/"
+        },
+        {
+          title : "Onsite topics",
+          link : "https://docs.superoffice.com/en/onsite/"
+        },
+        {
+          title : "Online migration",
+          link : "https://docs.superoffice.com/en/online/migrate/"
+        }
+      ]
+    },
+    {
+      title : "Installation",
+      subLinks : [
+        {
+          title : "CRM Server",
+          link : "https://docs.superoffice.com/en/onsite/install/server/"
+        },
+        {
+          title : "Web applications",
+          link : "https://docs.superoffice.com/en/onsite/install/web-client/"
+        },
+        {
+          title : "Web tools",
+          link : "https://docs.superoffice.com/en/document/webtools/index.html"
+        },
+        {
+          title : "Mobile application",
+          link : "https://docs.superoffice.com/en/mobile/overview.html"
+        }
+      ]
+    },
+    {
+      title : "Configuration",
+      subLinks : [
+        {
+          title : "NetServer Configuration",
+          link : "https://docs.superoffice.com/en/api/netserver/config/"
+        },
+        {
+          title : "Document template variables",
+          link : "https://docs.superoffice.com/en/document/templates/variables/index.html"
+        },
+        {
+          title : "Service reply templates",
+          link : "https://docs.superoffice.com/en/request/reply-templates/index.html"
+        },
+        {
+          title : "Batch task service",
+          link : "https://docs.superoffice.com/en/onsite/batch-task-server.html"
+        },
+        {
+          title : "INI files",
+          link : "https://docs.superoffice.com/en/onsite/config/"
+        }
+      ]
+    },
+    {
+      title : "Online development",
+      subLinks : [
+        {
+          title : "Register online developer account",
+          link : "https://docs.superoffice.com/en/onsite/requirements/"
+        },
+        {
+          title : "Developer portal",
+          link : "https://docs.superoffice.com/en/onsite/security/"
+        },
+      ]
+    },
+  ]
+};
+
 export const footerData = {
   links: [
     { text: 'SuperOffice', href: 'https://www.superoffice.com/' },
