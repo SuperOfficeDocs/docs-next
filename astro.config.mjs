@@ -5,21 +5,21 @@ import remarkDirective from "remark-directive";
 import { remarkDirectiveNote } from "./remark-directive-note.mjs";
 import codeImport from "remark-code-import";
 import mdx from "@astrojs/mdx";
-import preact from "@astrojs/preact";
+// import preact from "@astrojs/preact";
 import robots from "astro-robots";
 import sitemap from "@astrojs/sitemap";
 import pagefind from "astro-pagefind";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 //import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeSanitize from "rehype-sanitize";
-
+// import rehypeSanitize from "rehype-sanitize";
+import remarkIncludeDirective from "./src/plugins/AddIncludesToMD.js";
 import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
   markdown: {
-    remarkPlugins: [remarkDirective, remarkDirectiveNote, codeImport],
+    remarkPlugins: [remarkDirective, remarkDirectiveNote, codeImport, remarkIncludeDirective],
     rehypePlugins: [
       rehypeHeadingIds,
       [
