@@ -3,13 +3,25 @@ import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownHeading } from "astro";
 import MarkdownLayout from "@layouts/Markdown.astro";
+import { stripMarkdownSlug } from "~/utils/slugUtils";
 
-import { getTableOfContents } from "../../utils/getTableOfContents";
-const tocData = getTableOfContents("release-notes");
+// Old way of getting toc
+//import { getTableOfContents } from "../../utils/getTableOfContents";
+//const tocData = getTableOfContents("release-notes");
 
-//generating static paths from release-notes collection
+// New way of getting toc
+import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
+const collectionName = "release-notes";
+const allTocEntries = await getCollection("tocInternal");
+const tocEntries = allTocEntries.filter((entry) =>
+  entry.id.startsWith(collectionName)
+);
+const tocData = await getTableOfContentsFromCollection(tocEntries, collectionName);
+
+//Generate static paths from release-notes collection
 export async function getStaticPaths() {
-  const docEntries = await getCollection("release-notes");
+  const collectionName = "release-notes";
+  const docEntries = await getCollection(collectionName);
 
   const headings = await Promise.all(
     docEntries.map(async (post) => {
@@ -20,8 +32,8 @@ export async function getStaticPaths() {
 
   return docEntries.map((entry, index) => {
 
-    //removing .md extention AND "src/content/release-notes" from filepath
-    const generatedSlug = entry.filePath?.replace("src/content/release-notes", "").replace(".md","");
+    //Remove .md extension AND "src/content/release-notes" from filepath
+    const generatedSlug = stripMarkdownSlug(entry.filePath!, collectionName, false);
 
     return {
       params: { slug: `${generatedSlug}` },

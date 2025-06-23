@@ -1,0 +1,70 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import SubCategoryLandingLayout from "@layouts/SubCategoryLandingLayout.astro";
+import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
+import { trimFileExtension } from "~/utils/slugUtils";
+
+type SubCategoryDataType = Extract<
+  CollectionEntry<"external">["data"],
+  { YamlMime: "SubCategory" }
+>;
+
+// Build static paths from all SubCategory entries in external/contribution/
+export async function getStaticPaths() {
+  const collectionPath = "contribution";
+  const items = await getCollection("external");
+
+  const matched = items.filter(
+    (entry) =>
+      entry.data.YamlMime === "SubCategory" &&
+      entry.id.startsWith(`${collectionPath}`)
+  );
+
+  return matched.map((entry) => {
+    const rawSlug = entry.id === collectionPath
+      ? "" // when entry.id is exactly "contribution"
+      : entry.id.replace(`${collectionPath}/`, "");
+
+    const slug = rawSlug ? trimFileExtension(rawSlug) : "index";
+
+    return {
+      params: {
+        subcategory: slug,
+      },
+    };
+  });
+}
+
+const collectionPath = "contribution";
+
+// Get entry data
+const { subcategory } = Astro.params; // Will be 'index' or 'foo'
+
+const filePath = subcategory === "index"
+  ? `${collectionPath}`
+  : `${collectionPath}/${subcategory}`;
+
+const entry = await getEntry("external", filePath);
+if (!entry) {
+  throw new Error(`Subcategory not found or invalid: ${subcategory}`);
+}
+
+const SubCategoryData = entry.data as SubCategoryDataType;
+
+// Build toc
+const allTocEntries = await getCollection("tocExternal");
+
+const tocEntries = allTocEntries.filter((entry) =>
+  entry.id.startsWith(collectionPath) // Narrow to the relevant set for this folder
+);
+
+const ToCData = await getTableOfContentsFromCollection(tocEntries, collectionPath);
+---
+
+<SubCategoryLandingLayout
+  lang="en"
+  baseSlug="contribute"
+  data={SubCategoryData}
+  ToCData={ToCData}
+/>

@@ -6,8 +6,11 @@ import TableOfContentList from "@components/TableOfContentList";
 import SubCategoryCard from "@components/SubCategoryCard.astro";
 import { Breadcrumbs } from "astro-breadcrumbs";
 import "astro-breadcrumbs/breadcrumbs.css";
-const { data, ToCData, lang } = Astro.props;
+const { data, ToCData, lang, baseSlug } = Astro.props;
 const currentPath = Astro.url.pathname;
+const parts = currentPath.split("/").filter(Boolean);
+const last = parts.at(-1);
+const subCategorySlug = last === "index" ? parts.at(-2) : last;
 
 const metadata = {
   title: data.title,
@@ -17,6 +20,7 @@ type Props = {
   data: SubCategoryContentItem;
   ToCData: TocData | null;
   lang: string;
+  baseSlug?: string;
 };
 ---
 
@@ -53,7 +57,7 @@ type Props = {
             <TableOfContentList
               client:only="react"
               inputItems={ToCData.items}
-              slug="en/"
+              slug={baseSlug ?? lang}
               isMainTable={true}
               isWebApiTOC={false}
             />
@@ -76,7 +80,7 @@ type Props = {
             data.landingContent.map((card) => {
               return (
                 <SubCategoryCard
-                  subCategory={currentPath.split("/").pop()}
+                  subCategory={subCategorySlug}
                   item={card}
                 />
               );
