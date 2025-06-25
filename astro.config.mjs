@@ -13,8 +13,8 @@ import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 //import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSanitize from "rehype-sanitize";
-
 import react from "@astrojs/react";
+import yaml from '@rollup/plugin-yaml';
 
 // https://astro.build/config
 export default defineConfig({
@@ -30,6 +30,17 @@ export default defineConfig({
       ],
     ],
     // rehypeSanitize, rehypeSlug
+  },
+  vite: {
+    plugins: [yaml()]
+  },
+  content: {
+    sources: [
+      {
+        prefix: 'external',
+        include: ['./external-content/**/*.yml'],
+      },
+    ],
   },
   integrations: [
     tailwind({

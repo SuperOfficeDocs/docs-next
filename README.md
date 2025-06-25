@@ -55,3 +55,17 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## External content
+
+The external-content folder serves as a grafting point for content residing outside the docs-next repo.
+
+To get up and running on the current code:
+
+1. Clone superoffice-docs and contribution into this folder.
+2. Add "YamlMime: SubCategory" on line 2 of contribution/index.yml. (only until the repo's we're pulling in become compliant)
+
+To bring in more of the external content when building the site:
+
+1. Define collections from this external content in src/content.config.ts
+2. Add route-building and layout for each collection in src/pages.
