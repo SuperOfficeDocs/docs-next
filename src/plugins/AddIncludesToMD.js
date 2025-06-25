@@ -1,64 +1,3 @@
-// import fs from 'fs';
-// import path from 'path';
-// import { visit } from 'unist-util-visit';
-
-// /**
-//  * Remark plugin to process [!include[...](...)] syntax in Markdown files.
-//  */
-// export default function remarkIncludeDirective() {
-//   return (tree, file) => {
-//     // Log all Markdown files being processed
-//     console.log(`[remarkIncludeDirective] Processing: ${file.path}`);
-
-//     visit(tree, 'link', (node, index, parent) => {
-//       if (!node || !node.children || node.children.length === 0) return;
-
-//       const textNode = node.children[0];
-//       const label = textNode.value || '';
-
-//       const match = `[!include[${label}](${node.url})]`.match(/\[!include\[(.*?)\]\((.*?)\)\]/);
-
-//       if (match) {
-//         const includePath = match[2];
-
-//         // ✅ Resolve relative to the directory of the current file
-//         const currentDir = path.dirname(file.path);
-//         const fullPath = path.resolve(currentDir, includePath);
-
-//         // console.log(`[remarkIncludeDirective] Matched include: ${includePath}`);
-//         // console.log(`[remarkIncludeDirective] Full path: ${fullPath}`);
-
-//         try {
-//           const includeContent = fs.readFileSync(fullPath, 'utf-8');
-
-//           const newNode = {
-//             type: 'html',
-//             value: includeContent,
-//           };
-
-//           if (parent && typeof index === 'number') {
-//             parent.children.splice(index, 1, newNode);
-//           }
-//         } catch (err) {
-//           // console.warn(`[remarkIncludeDirective] Could not include: ${includePath}`, err);
-
-//           const errorNode = {
-//             type: 'html',
-//             value: `<blockquote><strong>Include error:</strong> ${includePath}</blockquote>`,
-//           };
-
-//           if (parent && typeof index === 'number') {
-//             parent.children.splice(index, 1, errorNode);
-//           }
-//         }
-//       }
-//     });
-//   };
-// }
-
-
-
-
 import fs from 'fs';
 import path from 'path';
 import { visit } from 'unist-util-visit';
@@ -66,196 +5,225 @@ import { fromMarkdown } from 'mdast-util-from-markdown';
 
 /**
  * Remark plugin to process [!include[...](...)] syntax in Markdown files.
+ * Replaces include directives with the content of referenced files and adjusts relative paths.
  */
 export default function remarkIncludeDirective() {
   return (tree, file) => {
-    console.log(`[remarkIncludeDirective] Processing: ${file.path}`);
+    // console.log(`[remarkIncludeDirective] Processing: ${tree}`);
 
-    // Look for paragraphs that contain the broken-up include pattern
     visit(tree, 'paragraph', (node, index, parent) => {
-      if (!node.children || node.children.length < 3) return;
-
-      // Look for the pattern: text("[!include") + link + text("]")
-      for (let i = 0; i < node.children.length - 2; i++) {
-        const firstNode = node.children[i];
-        const linkNode = node.children[i + 1];
-        const lastNode = node.children[i + 2];
-
-        // Check if we have the include pattern
-        if (
-          firstNode.type === 'text' && 
-          firstNode.value === '[!include' &&
-          linkNode.type === 'link' &&
-          lastNode.type === 'text' && 
-          lastNode.value === ']'
-        ) {
-          
-          const includePath = linkNode.url;
-          console.log(`[remarkIncludeDirective] Found include pattern: ${includePath}`);
-
-          try {
-            // Resolve relative to the directory of the current file
-            const currentDir = path.dirname(file.path);
-            const fullPath = path.resolve(currentDir, includePath);
-            
-            console.log(`[remarkIncludeDirective] Resolving: ${fullPath}`);
-            
-            let includeContent = fs.readFileSync(fullPath, 'utf-8');
-            
-            // Remove any markdown comments and clean up
-            includeContent = includeContent
-              .replace(/<!--[\s\S]*?-->/g, '') // Remove HTML comments
-              .trim();
-            
-            console.log(`[remarkIncludeDirective] Successfully loaded content from: ${includePath}`);
-            
-            // Fix relative paths in the included content
-            const includeDir = path.dirname(fullPath);
-            const currentFileDir = path.dirname(file.path);
-            
-            console.log(`[remarkIncludeDirective] Current file dir: ${currentFileDir}`);
-            console.log(`[remarkIncludeDirective] Include file dir: ${includeDir}`);
-            
-            // Update relative paths in the included content
-            includeContent = includeContent.replace(
-              /\]\((?!https?:\/\/)(?!\/)(.*?)\)/g, 
-              (match, relativePath) => {
-                // Resolve the path relative to the include file's directory
-                const absolutePath = path.resolve(includeDir, relativePath);
-                // Make it relative to the current file's directory
-                const adjustedPath = path.relative(currentFileDir, absolutePath);
-                // Convert to forward slashes for URLs
-                const adjustedPathPosix = adjustedPath.split(path.sep).join('/');
-                console.log(`[remarkIncludeDirective] Adjusting path: ${relativePath} -> ${adjustedPathPosix}`);
-                return `](${adjustedPathPosix})`;
-              }
-            );
-            
-            // Also update image reference definitions
-            includeContent = includeContent.replace(
-              /^\[([^\]]+)\]:\s*(?!https?:\/\/)(?!\/)(.*?)$/gm,
-              (match, label, relativePath) => {
-                // Resolve the path relative to the include file's directory
-                const absolutePath = path.resolve(includeDir, relativePath);
-                // Make it relative to the current file's directory
-                const adjustedPath = path.relative(currentFileDir, absolutePath);
-                // Convert to forward slashes for URLs
-                const adjustedPathPosix = adjustedPath.split(path.sep).join('/');
-                console.log(`[remarkIncludeDirective] Adjusting reference: ${relativePath} -> ${adjustedPathPosix}`);
-                return `[${label}]: ${adjustedPathPosix}`;
-              }
-            );
-            
-            // Parse the included content as markdown
-            const parsedContent = fromMarkdown(includeContent);
-            
-            // Check if this paragraph contains only the include directive
-            if (node.children.length === 3 && i === 0) {
-              // Replace the entire paragraph with the parsed content
-              if (parent && typeof index === 'number') {
-                parent.children.splice(index, 1, ...parsedContent.children);
-              }
-            } else {
-              // Replace just the three nodes (text + link + text) with the parsed content
-              node.children.splice(i, 3, ...parsedContent.children);
-            }
-            
-            console.log(`[remarkIncludeDirective] Successfully replaced include directive`);
-            return; // Exit after processing one include per paragraph
-            
-          } catch (err) {
-            console.warn(`[remarkIncludeDirective] Could not include: ${includePath}`, err.message);
-            
-            // Replace the three nodes with an error message
-            const errorNode = {
-              type: 'strong',
-              children: [{
-                type: 'text',
-                value: `Include error: Could not load ${includePath}`
-              }]
-            };
-            
-            node.children.splice(i, 3, errorNode);
-            return;
-          }
-        }
-      }
-    });
-
-    // Also check for complete include patterns in text nodes (fallback)
-    visit(tree, 'text', (node, index, parent) => {
-      if (!node.value) return;
-
-      const includeRegex = /\[!include\[.*?\]\((.*?)\)\]/g;
-      let match;
-      let hasMatches = false;
-      let newContent = node.value;
-
-      while ((match = includeRegex.exec(node.value)) !== null) {
-        hasMatches = true;
-        const [fullMatch, includePath] = match;
-        
-        console.log(`[remarkIncludeDirective] Found include in text: ${includePath}`);
-
-        try {
-          const currentDir = path.dirname(file.path);
-          const fullPath = path.resolve(currentDir, includePath);
-          
-          let includeContent = fs.readFileSync(fullPath, 'utf-8');
-          includeContent = includeContent
-            .replace(/<!--[\s\S]*?-->/g, '')
-            .trim();
-          
-          // Fix relative paths
-          const includeDir = path.dirname(fullPath);
-          const currentFileDir = path.dirname(file.path);
-          
-          // Update relative paths in the included content
-          includeContent = includeContent.replace(
-            /\]\((?!https?:\/\/)(?!\/)(.*?)\)/g, 
-            (match, relativePath) => {
-              // Resolve the path relative to the include file's directory
-              const absolutePath = path.resolve(includeDir, relativePath);
-              // Make it relative to the current file's directory
-              const adjustedPath = path.relative(currentFileDir, absolutePath);
-              // Convert to forward slashes for URLs
-              const adjustedPathPosix = adjustedPath.split(path.sep).join('/');
-              return `](${adjustedPathPosix})`;
-            }
-          );
-          
-          // Also update image reference definitions
-          includeContent = includeContent.replace(
-            /^\[([^\]]+)\]:\s*(?!https?:\/\/)(?!\/)(.*?)$/gm,
-            (match, label, relativePath) => {
-              // Resolve the path relative to the include file's directory
-              const absolutePath = path.resolve(includeDir, relativePath);
-              // Make it relative to the current file's directory
-              const adjustedPath = path.relative(currentFileDir, absolutePath);
-              // Convert to forward slashes for URLs
-              const adjustedPathPosix = adjustedPath.split(path.sep).join('/');
-              return `[${label}]: ${adjustedPathPosix}`;
-            }
-          );
-          
-          newContent = newContent.replace(fullMatch, includeContent);
-          
-        } catch (err) {
-          console.warn(`[remarkIncludeDirective] Could not include: ${includePath}`, err.message);
-          newContent = newContent.replace(fullMatch, `**Include error: Could not load ${includePath}**`);
-        }
-      }
-
-      if (hasMatches) {
-        if (parent && typeof index === 'number') {
-          try {
-            const parsedContent = fromMarkdown(newContent);
-            parent.children.splice(index, 1, ...parsedContent.children);
-          } catch (parseErr) {
-            node.value = newContent;
-          }
-        }
-      }
+      processIncludeInParagraph(node, index, parent, file);
     });
   };
 }
+
+
+/**
+ * Process include directives within paragraph nodes
+ * Handles pattern: text("[!include") + link + text("]")
+ */
+function processIncludeInParagraph(node, index, parent, file) {
+  if (!node.children || node.children.length < 3) return;
+
+  // Look for the pattern: text("[!include") + link + text("]")
+  for (let i = 0; i < node.children.length - 2; i++) {
+    const [firstNode, linkNode, lastNode] = [
+      node.children[i],
+      node.children[i + 1], 
+      node.children[i + 2]
+    ];
+
+    const isIncludePattern = (
+      firstNode.type === 'text' && firstNode.value === '[!include' &&
+      linkNode.type === 'link' &&
+      lastNode.type === 'text' && lastNode.value === ']'
+    );
+
+    if (!isIncludePattern) continue;
+
+    const includePath = linkNode.url;
+    // console.log(`[remarkIncludeDirective] Found include pattern: ${includePath}`);
+
+    try {
+      const includeContent = loadAndProcessIncludeFile(includePath, file);
+      const parsedContent = fromMarkdown(includeContent);
+
+      // Replace nodes with parsed content
+      if (isEntireParagraph(node, i)) {
+        // Replace entire paragraph
+        parent?.children.splice(index, 1, ...parsedContent.children);
+      } else {
+        // Replace just the three nodes
+        node.children.splice(i, 3, ...parsedContent.children);
+      }
+
+      // console.log(`[remarkIncludeDirective] Successfully replaced include directive`);
+      return; 
+
+    } catch (err) {
+      console.warn(`[remarkIncludeDirective] Could not include: ${includePath}`, err.message);
+      // replaceWithError(node, i, includePath);
+      return;
+    }
+  }
+}
+
+
+/**
+ * Load and process an include file
+ */
+function loadAndProcessIncludeFile(includePath, currentFile) {
+  const currentDir = path.dirname(currentFile.path);
+  const fullPath = path.resolve(currentDir, includePath);
+  
+  // console.log(`[remarkIncludeDirective] Resolving: ${fullPath}`);
+  
+  // Read and clean the file content
+  let content = fs.readFileSync(fullPath, 'utf-8');
+  content = removeComments(content);
+  
+  // console.log(`[remarkIncludeDirective] Successfully loaded content from: ${includePath}`);
+  
+  // Adjust relative paths in the content
+  const adjustedContent = adjustRelativePaths(content, fullPath, currentFile.path);
+  
+  return adjustedContent;
+}
+
+/**
+ * Remove HTML comments from content
+ */
+function removeComments(content) {
+  return content
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .trim();
+}
+
+/**
+ * Adjust relative paths in included content
+ */
+function adjustRelativePaths(content, includeFilePath, currentFilePath) {
+  const includeDir = path.dirname(includeFilePath);
+  const currentFileDir = path.dirname(currentFilePath);
+  
+  // console.log(`[remarkIncludeDirective] Current file dir: ${currentFileDir}`);
+  // console.log(`[remarkIncludeDirective] Include file dir: ${includeDir}`);
+  
+  // Fix relative paths in markdown links: [text](path)
+  content = adjustMarkdownLinks(content, includeDir, currentFileDir);
+  
+  // Fix relative paths in reference definitions: [1]: path
+  content = adjustReferenceDefinitions(content, includeDir, currentFileDir);
+  
+  return content;
+}
+
+/**
+ * Adjust relative paths in markdown links [text](path)
+ */
+function adjustMarkdownLinks(content, includeDir, currentFileDir) {
+  return content.replace(
+    /\]\((?!https?:\/\/)(?!\/)(.*?)\)/g, 
+    (match, relativePath) => {
+      const adjustedPath = resolveRelativePath(relativePath, includeDir, currentFileDir);
+      console.log(`[remarkIncludeDirective] Adjusting link: ${relativePath} -> ${adjustedPath}`);
+      return `](${adjustedPath})`;
+    }
+  );
+}
+
+/**
+ * Adjust relative paths in reference definitions [label]: path
+ */
+function adjustReferenceDefinitions(content, includeDir, currentFileDir) {
+  return content.replace(
+    /^\[([^\]]+)\]:\s*(.+)$/gm,
+    (match, label, urlOrPath) => {
+      urlOrPath = urlOrPath.trim();
+      
+      // Fix malformed URLs that got corrupted with includes/ prefix
+      if (urlOrPath.startsWith('includes/')) {
+        //console.log(`[remarkIncludeDirective] Fixing malformed reference: ${match}`);
+        return fixMalformedUrl(label, urlOrPath);
+      }
+      
+      // Don't modify absolute URLs
+      if (isAbsoluteUrl(urlOrPath)) {
+        //console.log(`[remarkIncludeDirective] Keeping absolute URL: ${match}`);
+        return match;
+      }
+      
+      // Don't modify absolute paths
+      if (urlOrPath.startsWith('/')) {
+        //console.log(`[remarkIncludeDirective] Keeping absolute path: ${match}`);
+        return match;
+      }
+      
+      // Adjust relative paths
+      //console.log(`[remarkIncludeDirective] Processing relative reference: ${urlOrPath}`);
+      try {
+        const adjustedPath = resolveRelativePath(urlOrPath, includeDir, currentFileDir);
+        //console.log(`[remarkIncludeDirective] Adjusting reference: ${urlOrPath} -> ${adjustedPath}`);
+        return `[${label}]: ${adjustedPath}`;
+      } catch (err) {
+        console.warn(`[remarkIncludeDirective] Failed to adjust reference: ${urlOrPath}`, err.message);
+        return match;
+      }
+    }
+  );
+}
+
+/**
+ * Resolve a relative path from include directory to current file directory
+ */
+function resolveRelativePath(relativePath, includeDir, currentFileDir) {
+  const absolutePath = path.resolve(includeDir, relativePath);
+  const adjustedPath = path.relative(currentFileDir, absolutePath);
+  // Convert to forward slashes for URLs
+  return adjustedPath.split(path.sep).join('/');
+}
+
+/**
+ * Fix malformed URLs that got corrupted with includes/ prefix
+ */
+function fixMalformedUrl(label, malformedUrl) {
+  // Remove the includes/ prefix and any following whitespace
+  let cleanUrl = malformedUrl.replace(/^includes\/\s*/, '');
+  
+  // Fix missing 's' in https if needed
+  if (cleanUrl.startsWith('http:/') && !cleanUrl.startsWith('http://')) {
+    cleanUrl = cleanUrl.replace('http:/', 'https://');
+  }
+  
+  //console.log(`[remarkIncludeDirective] Repaired URL: ${cleanUrl}`);
+  return `[${label}]: ${cleanUrl}`;
+}
+
+/**
+ * Check if a URL is absolute (starts with http:// or https://)
+ */
+function isAbsoluteUrl(url) {
+  return /^https?:\/\//.test(url);
+}
+
+/**
+ * Check if the include pattern is the entire paragraph
+ */
+function isEntireParagraph(node, startIndex) {
+  return node.children.length === 3 && startIndex === 0;
+}
+
+// /**
+//  * Replace include pattern with error message
+//  */
+// function replaceWithError(node, startIndex, includePath) {
+//   const errorNode = {
+//     type: 'strong',
+//     children: [{
+//       type: 'text',
+//       value: `Include error: Could not load ${includePath}`
+//     }]
+//   };
+  
+//   node.children.splice(startIndex, 3, errorNode);
+// }
