@@ -1,6 +1,7 @@
 ---
 import type { LandingContentCard } from "../types/SubCategoryPageTypes";
 import IconSelection from "./IconSelection.tsx";
+import { resolveHref } from "~/utils/slugUtils.ts";
 
 import "@styles/main.css";
 
@@ -36,7 +37,14 @@ interface Props {
             </div>
             <div class=" flex flex-col">
                 {subitem.links.map((linkItem) => {
-                return <a class="text-superOfficeGreen" href={linkItem.url.slice(-3) == ".md" ? `${subCategory}/${linkItem.url.slice(0, -3)}` : linkItem.url}>{linkItem.text}</a>;
+                return (
+                  <a
+                    class="text-superOfficeGreen"
+                    href={resolveHref(linkItem.url, subCategory)}
+                  >
+                    {linkItem.text}
+                  </a>
+                );
               })}
               </div>
           );

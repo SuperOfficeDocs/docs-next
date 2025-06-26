@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import type { ChangeEvent } from "react";
 import type { TocItem } from "~/types/TableOfContentTypes";
+import { trimFileExtension } from "~/utils/slugUtils";
+
 const base = import.meta.env.BASE_URL;
 
 type TableOfContentListProps = {
@@ -39,10 +41,12 @@ export default function TableOfContentList({
     if (isWebApiTOC) {
       return `${base}/en/api/reference/webapi/${item.uid}`;
     }
-
-    return item.topicHref
-      ? `${base}/${slug}/${item.topicHref?.replace(".md", "")}`
-      : `${base}/${slug}/${item.href?.replace(".md", "")}`;
+    const rawPath = item.topicHref || item.href;
+    if (!rawPath) {
+      console.warn(`[generatePath] Missing href/topicHref for TOC item:`, item);
+      return "#";
+    }
+    return `${base}/${slug}/${trimFileExtension(rawPath)}`;
   };
 
   const generateSlug = (item: TocItem) => {
