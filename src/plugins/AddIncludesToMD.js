@@ -42,13 +42,11 @@ function processIncludeInParagraph(node, index, parent, file) {
     if (!isIncludePattern) continue;
 
     const includePath = linkNode.url;
-    // console.log(`[remarkIncludeDirective] Found include pattern: ${includePath}`);
 
     try {
       const includeContent = loadAndProcessIncludeFile(includePath, file);
       const parsedContent = fromMarkdown(includeContent);
 
-      // Replace nodes with parsed content
       if (isEntireParagraph(node, i)) {
         // Replace entire paragraph
         parent?.children.splice(index, 1, ...parsedContent.children);
@@ -56,13 +54,10 @@ function processIncludeInParagraph(node, index, parent, file) {
         // Replace just the three nodes
         node.children.splice(i, 3, ...parsedContent.children);
       }
-
-      // console.log(`[remarkIncludeDirective] Successfully replaced include directive`);
       return; 
 
     } catch (err) {
       console.warn(`[remarkIncludeDirective] Could not include: ${includePath}`, err.message);
-      // replaceWithError(node, i, includePath);
       return;
     }
   }
@@ -76,17 +71,12 @@ function loadAndProcessIncludeFile(includePath, currentFile) {
   const currentDir = path.dirname(currentFile.path);
   const fullPath = path.resolve(currentDir, includePath);
   
-  // console.log(`[remarkIncludeDirective] Resolving: ${fullPath}`);
-  
   // Read and clean the file content
   let content = fs.readFileSync(fullPath, 'utf-8');
   content = removeComments(content);
   
-  // console.log(`[remarkIncludeDirective] Successfully loaded content from: ${includePath}`);
-  
   // Adjust relative paths in the content
   const adjustedContent = adjustRelativePaths(content, fullPath, currentFile.path);
-  
   return adjustedContent;
 }
 
@@ -106,9 +96,6 @@ function adjustRelativePaths(content, includeFilePath, currentFilePath) {
   const includeDir = path.dirname(includeFilePath);
   const currentFileDir = path.dirname(currentFilePath);
   
-  // console.log(`[remarkIncludeDirective] Current file dir: ${currentFileDir}`);
-  // console.log(`[remarkIncludeDirective] Include file dir: ${includeDir}`);
-  
   // Fix relative paths in markdown links: [text](path)
   content = adjustMarkdownLinks(content, includeDir, currentFileDir);
   
@@ -126,7 +113,7 @@ function adjustMarkdownLinks(content, includeDir, currentFileDir) {
     /\]\((?!https?:\/\/)(?!\/)(.*?)\)/g, 
     (match, relativePath) => {
       const adjustedPath = resolveRelativePath(relativePath, includeDir, currentFileDir);
-      console.log(`[remarkIncludeDirective] Adjusting link: ${relativePath} -> ${adjustedPath}`);
+      // console.log(`[remarkIncludeDirective] Adjusting link: ${relativePath} -> ${adjustedPath}`);
       return `](${adjustedPath})`;
     }
   );
@@ -143,27 +130,20 @@ function adjustReferenceDefinitions(content, includeDir, currentFileDir) {
       
       // Fix malformed URLs that got corrupted with includes/ prefix
       if (urlOrPath.startsWith('includes/')) {
-        //console.log(`[remarkIncludeDirective] Fixing malformed reference: ${match}`);
         return fixMalformedUrl(label, urlOrPath);
       }
       
-      // Don't modify absolute URLs
       if (isAbsoluteUrl(urlOrPath)) {
-        //console.log(`[remarkIncludeDirective] Keeping absolute URL: ${match}`);
         return match;
       }
       
-      // Don't modify absolute paths
       if (urlOrPath.startsWith('/')) {
-        //console.log(`[remarkIncludeDirective] Keeping absolute path: ${match}`);
         return match;
       }
       
       // Adjust relative paths
-      //console.log(`[remarkIncludeDirective] Processing relative reference: ${urlOrPath}`);
       try {
         const adjustedPath = resolveRelativePath(urlOrPath, includeDir, currentFileDir);
-        //console.log(`[remarkIncludeDirective] Adjusting reference: ${urlOrPath} -> ${adjustedPath}`);
         return `[${label}]: ${adjustedPath}`;
       } catch (err) {
         console.warn(`[remarkIncludeDirective] Failed to adjust reference: ${urlOrPath}`, err.message);
@@ -187,20 +167,19 @@ function resolveRelativePath(relativePath, includeDir, currentFileDir) {
  * Fix malformed URLs that got corrupted with includes/ prefix
  */
 function fixMalformedUrl(label, malformedUrl) {
+
   // Remove the includes/ prefix and any following whitespace
   let cleanUrl = malformedUrl.replace(/^includes\/\s*/, '');
   
-  // Fix missing 's' in https if needed
   if (cleanUrl.startsWith('http:/') && !cleanUrl.startsWith('http://')) {
     cleanUrl = cleanUrl.replace('http:/', 'https://');
   }
   
-  //console.log(`[remarkIncludeDirective] Repaired URL: ${cleanUrl}`);
   return `[${label}]: ${cleanUrl}`;
 }
 
 /**
- * Check if a URL is absolute (starts with http:// or https://)
+ * Check if a URL starts with http:// or https://)
  */
 function isAbsoluteUrl(url) {
   return /^https?:\/\//.test(url);
@@ -212,18 +191,3 @@ function isAbsoluteUrl(url) {
 function isEntireParagraph(node, startIndex) {
   return node.children.length === 3 && startIndex === 0;
 }
-
-// /**
-//  * Replace include pattern with error message
-//  */
-// function replaceWithError(node, startIndex, includePath) {
-//   const errorNode = {
-//     type: 'strong',
-//     children: [{
-//       type: 'text',
-//       value: `Include error: Could not load ${includePath}`
-//     }]
-//   };
-  
-//   node.children.splice(startIndex, 3, errorNode);
-// }
