@@ -37,7 +37,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: SuperOfficeDocs/contribution
-          path: external-content
+          path: external-content/contribution
+      - name: Show contents
+        run: |
+          echo "Main Repo:"
+          ls -l
+          echo "Contribution Repo:"
+          ls -l external-content
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         # with:
