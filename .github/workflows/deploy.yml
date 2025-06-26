@@ -33,6 +33,35 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+      - name: Checkout contribution repo using git
+        uses: actions/checkout@v4
+        with:
+          repository: SuperOfficeDocs/contribution
+          path: external-content/contribution
+      
+      # Following step is only required until contribution/index.yml gets updated with "YamlMime: SubCategory" as a property
+      - name: Update contribution/index.yml
+        run: |
+          set -e
+          FILE="external-content/contribution/index.yml"
+          LINE_TO_INSERT="YamlMime: SubCategory"
+
+          # Only insert if not already present at the top
+          if ! grep -Fxq "$LINE_TO_INSERT" "$FILE"; then
+            echo "Inserting line at top of $FILE"
+            tmpfile=$(mktemp)
+            echo "$LINE_TO_INSERT" > "$tmpfile"
+            echo "" >> "$tmpfile"
+            cat "$FILE" >> "$tmpfile"
+            mv "$tmpfile" "$FILE"
+          else
+            echo "Line already exists in $FILE"
+          fi
+      # Following step is only required until external-content\contribution\media\plain-action-buttons.PNG is capitalized correctly
+      - name: Fix capitalization issue in image files
+        run: |
+          mv "external-content/contribution/media/plain-action-buttons.PNG" "external-content/contribution/media/plain-action-buttons.png"
+          echo "Renamed image"
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         # with:
