@@ -13,7 +13,7 @@ import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 //import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 // import rehypeSanitize from "rehype-sanitize";
-import remarkIncludeDirective from "./src/plugins/AddIncludesToMD.js";
+import remarkIncludeDirective from "./src/plugins/AddIncludesToMarkdown.js";
 import react from "@astrojs/react";
 import yaml from '@rollup/plugin-yaml';
 
