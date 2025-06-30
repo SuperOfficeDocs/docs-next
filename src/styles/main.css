@@ -150,3 +150,52 @@ h1 {
 .pagefind-ui .pagefind-ui__result-excerpt {
   color: var(--pagefind-ui-text);
 }
+
+.note-block,
+.tip-block,
+.caution-block{
+  padding: 1em;
+  margin: 1.5em 0;
+  border-radius: 6px;
+}
+
+
+.note-block,
+.tip-block {
+  background-color: #d9edf7;
+  border: 1px solid #bce8f1;
+  color: #31708f;
+}
+
+.caution-block{
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  color: #a94442;
+}
+
+.warning-block{
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  color: #8a6d3b;
+}
+
+
+
+.directive-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.directive-label {
+  color: inherit;
+  text-transform: uppercase;
+}
+
+.directive-content {
+  font-size: 0.95rem;
+}
+
+
