@@ -64,8 +64,7 @@ const releaseNotes = defineCollection({
 const enDocs = defineCollection({
   loader: glob({
     pattern: [
-      "learn/**/*.md", //Temporary
-      "diary/**/*.md", //Temporary
+      "**/*.md",
       "!api/**/*.md",
       "!**/includes/**/*.md" 
     ],
