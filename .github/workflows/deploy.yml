@@ -37,7 +37,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: SuperOfficeDocs/contribution
-          path: external-content/contribution
+          path: external-content/contribution    
+      - name: Checkout SuperOfficeDocs repo using git
+        uses: actions/checkout@v4
+        with:
+          repository: SuperOfficeDocs/superoffice-docs
+          path: external-content/superoffice-docs
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         # with:
