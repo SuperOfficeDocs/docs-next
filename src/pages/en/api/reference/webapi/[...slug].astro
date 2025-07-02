@@ -10,6 +10,18 @@ import type {
 } from "../../../../../types/WebApiLayoutTypes";
 import { getEntry } from "astro:content";
 import type { Item } from "../../../../../types/WebAPITypes";
+import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
+
+const language = "en";
+const collectionPath = `superoffice-docs/docs/${language}/api/reference/webapi`;
+const allTocEntries = await getCollection("tocExternal");
+const tocEntries = allTocEntries.filter((entry) =>
+  entry.id.startsWith(collectionPath)
+);
+const tocData = await getTableOfContentsFromCollection(tocEntries, collectionPath);
+
+
+
 
 // Generates static paths from webapi collection
 export async function getStaticPaths() {
@@ -21,15 +33,14 @@ export async function getStaticPaths() {
         "",
       )
       .replace(".yml", "");
-    const tocData = getTableOfContents(`docs/en/api/reference/webapi`);
     return {
       params: { slug: `${generatedSlug}` },
-      props: { entry, tocData },
+      props: { entry },
     };
   });
 }
 
-const { entry, tocData } = Astro.props;
+const { entry} = Astro.props;
 const pagetitle = entry.data.items[0].type + " " + entry.data.items[0].id;
 
 // Use to get the plural forms of the name
@@ -49,7 +60,6 @@ const headingList: headingsListProps = {};
 const namespaceData: namespaceClassifiedDataProps = {};
 
 const documentType = entry.data.items[0].type;
-
 if (documentType == "Namespace") {
   const promises = entry.data.items[0].children?.map(
     async (childName: string) => {
