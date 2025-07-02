@@ -75,15 +75,15 @@ const enDocs = defineCollection({
 const deDocs = defineCollection({
   loader: glob({ 
     pattern: "**/!(**includes**)/*.md", 
-    base: "external-content/superoffice-docs/docs/de" }),
+        base: "external-content/superoffice-docs/docs/de" }),
   schema: DocsSchema,
 });
 
 
 const WebAPI = defineCollection({
   loader: glob({
-    // pattern:["**/!(*toc).yml"], 
-    pattern:[""], //Temporary disabled
+    pattern:["**/!(*toc).yml"], 
+    // pattern:[""], //Temporary disabled
     base: "external-content/superoffice-docs/docs/en/api/reference/webapi"
   }),
 });

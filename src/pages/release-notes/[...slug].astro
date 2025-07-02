@@ -33,7 +33,10 @@ export async function getStaticPaths() {
   return docEntries.map((entry, index) => {
 
     //Remove .md extension AND "src/content/release-notes" from filepath
-    const generatedSlug = stripMarkdownSlug(entry.filePath!, collectionName, false);
+    const generatedSlug = entry.filePath
+      ?.replace("external-content/superoffice-docs/release-notes", "")
+      .replace(".md", "");
+    // const generatedSlug = stripMarkdownSlug(entry.filePath!, collectionName, false);
 
     return {
       params: { slug: `${generatedSlug}` },

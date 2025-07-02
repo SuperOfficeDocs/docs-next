@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import MarkdownLayout from "@layouts/Markdown.astro";
-import { getTableOfContents } from "@utils/getTableOfContents";
 import WebApiNamespace from "@components/WebApiNamespace.astro";
 import WebApiClass from "@components/WebApiClass.astro";
 import type {
@@ -66,7 +65,7 @@ if (documentType == "Namespace") {
       const formattedItem = childName.replaceAll(".", "").toLowerCase();
       const childrenItemEntry = await getEntry("webapi", formattedItem);
       if (childrenItemEntry) {
-        console.log(childrenItemEntry.id);
+        // console.log(childrenItemEntry.id);
         const dataItem = childrenItemEntry?.data.items[0];
         const key = dataItem.type as keyof namespaceClassifiedDataProps;
         if (!namespaceData[key]) {
