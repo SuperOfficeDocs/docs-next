@@ -82,7 +82,8 @@ const deDocs = defineCollection({
 
 const WebAPI = defineCollection({
   loader: glob({
-    pattern:["**/!(*toc).yml"], 
+    // pattern:["**/!(*toc).yml"], 
+    pattern:[""], //Temporary disabled
     base: "external-content/superoffice-docs/docs/en/api/reference/webapi"
   }),
 });
