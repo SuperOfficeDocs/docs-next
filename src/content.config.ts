@@ -102,8 +102,7 @@ const WebAPI = defineCollection({
 // Collections in external-content (cloned from another GitHub repo)
 const tocFilesExternal = defineCollection({
   loader: glob({
-    // pattern: ["**/toc.yml"],
-    pattern: [""], //Temporary disabled
+    pattern: ["**/toc.yml"],
     base: "./external-content",
   }),
   schema: TocYamlSchema,
