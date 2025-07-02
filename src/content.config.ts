@@ -55,8 +55,7 @@ const TocYamlSchema = z.object({
 // Collections in src/content
 const releaseNotes = defineCollection({
   loader: glob({ 
-    // pattern: ["**/!(*includes*)/*.md"], 
-    pattern: [""], //Temporary disabled
+    pattern: ["**/!(*includes*)/*.md"], 
     base: "external-content/superoffice-docs/release-notes" }),
   schema: DocsSchema,
 });
@@ -75,8 +74,7 @@ const enDocs = defineCollection({
 
 const deDocs = defineCollection({
   loader: glob({ 
-    // pattern: "**/!(**includes**)/*.md", 
-    pattern: "", //Temporary disabled
+    pattern: "**/!(**includes**)/*.md", 
     base: "external-content/superoffice-docs/docs/de" }),
   schema: DocsSchema,
 });
@@ -84,8 +82,7 @@ const deDocs = defineCollection({
 
 const WebAPI = defineCollection({
   loader: glob({
-    // pattern:["**/!(*toc).yml"], 
-    pattern:[""], //Temporary disabled
+    pattern:["**/!(*toc).yml"], 
     base: "external-content/superoffice-docs/docs/en/api/reference/webapi"
   }),
 });
