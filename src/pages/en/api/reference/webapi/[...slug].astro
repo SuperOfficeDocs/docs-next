@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
 import MarkdownLayout from "@layouts/Markdown.astro";
 import { getTableOfContents } from "@utils/getTableOfContents";
 import WebApiNamespace from "@components/WebApiNamespace.astro";
@@ -11,13 +11,15 @@ import type {
 import { getEntry } from "astro:content";
 import type { Item } from "../../../../../types/WebAPITypes";
 
-//generating static paths from webapi collection
+// Generates static paths from webapi collection
 export async function getStaticPaths() {
   const YMLEntries = await getCollection("webapi");
-
   return YMLEntries.map((entry) => {
     const generatedSlug = entry.filePath
-      ?.replace("src/content/docs/en/api/reference/webapi", "")
+      ?.replace(
+        "external-content/superoffice-docs/docs/en/api/reference/webapi",
+        "",
+      )
       .replace(".yml", "");
     const tocData = getTableOfContents(`docs/en/api/reference/webapi`);
     return {
@@ -30,19 +32,8 @@ export async function getStaticPaths() {
 const { entry, tocData } = Astro.props;
 const pagetitle = entry.data.items[0].type + " " + entry.data.items[0].id;
 
-//Genereting heading from yml data
-const headings = [{ depth: 0, slug: "", text: "" }];
-const headingList: headingsListProps = {
-  Class: [],
-  Constructor: [],
-  Field: [],
-  Method: [],
-  Property: [],
-  Interface: [],
-  Implement: [],
-};
-
-const conversionList = {
+// Use to get the plural forms of the name
+export const conversionList = {
   Class: "Classes",
   Constructor: "Constructors",
   Field: "Fields",
@@ -50,19 +41,22 @@ const conversionList = {
   Property: "Properties",
   Interface: "Interfaces",
   Implement: "Implements",
+  Enum: "Enums",
 };
 
-const namespaceData: namespaceClassifiedDataProps = {
-  Class: [],
-  Interface: [],
-};
+// Genereting heading from yml data
+const headingList: headingsListProps = {};
+const namespaceData: namespaceClassifiedDataProps = {};
 
-if (entry.data.items[0].type == "Namespace") {
+const documentType = entry.data.items[0].type;
+
+if (documentType == "Namespace") {
   const promises = entry.data.items[0].children?.map(
     async (childName: string) => {
       const formattedItem = childName.replaceAll(".", "").toLowerCase();
       const childrenItemEntry = await getEntry("webapi", formattedItem);
       if (childrenItemEntry) {
+        console.log(childrenItemEntry.id);
         const dataItem = childrenItemEntry?.data.items[0];
         const key = dataItem.type as keyof namespaceClassifiedDataProps;
         if (!namespaceData[key]) {
@@ -73,68 +67,68 @@ if (entry.data.items[0].type == "Namespace") {
           id: dataItem.id,
           summary: dataItem.summary,
         });
-
-        headingList[key].push({
-          text: dataItem.id,
-          slug: dataItem.uid,
-        });
+        appendIntoHeadingList(key, dataItem);
       }
-    }
+    },
   );
 
   await Promise.all(promises || []);
-
-  let ItemType: keyof headingsListProps;
-  for (ItemType in headingList) {
-    if (headingList[ItemType].length > 0) {
-      headings.push({
-        depth: 2,
-        slug: conversionList[ItemType],
-        text: conversionList[ItemType],
-      });
-    }
-  }
-}
-
-if (
-  entry.data.items[0].type == "Class" ||
-  entry.data.items[0].type == "Interface"
-) {
-  const itemsExceptClassItem = entry.data.items.slice(1);
-  itemsExceptClassItem.forEach((item: Item) => {
-    const key = item.type as keyof headingsListProps;
-    headingList[key].push({
-      text: item.name,
-      slug: item.uid,
-    });
+} else if (["Class", "Interface", "Enum"].includes(documentType)) {
+  // Append headings of every other item except parent item to headingsList
+  const otherItemsExceptParentItem = entry.data.items.slice(1);
+  otherItemsExceptParentItem.forEach((dataItem: Item) => {
+    const key = dataItem.type as keyof headingsListProps;
+    appendIntoHeadingList(key, dataItem);
   });
 
+  // Check if implements exist and add them to headingList
   if (
     entry.data.items[0].implements &&
     entry.data.items[0].implements.length > 0
   ) {
     const key = "Implement" as keyof headingsListProps;
     entry.data.items[0].implements.forEach((item: string) => {
+      if (!(key in headingList)) {
+        headingList[key] = [];
+      }
       headingList[key].push({
         text: item,
         slug: item,
       });
     });
   }
+}
 
-  let ItemType: keyof headingsListProps;
-  for (ItemType in headingList) {
-    if (headingList[ItemType].length > 0) {
-      headings.push({
-        depth: 2,
-        slug: conversionList[ItemType],
-        text: conversionList[ItemType],
-      });
-      headingList[ItemType].map((item) => {
-        headings.push({ depth: 3, slug: `${item.slug}`, text: item.text });
-      });
-    }
+// Generate heading based on collected headings in headingList
+const headings = [{ depth: 0, slug: "", text: "" }];
+let ItemType: keyof headingsListProps;
+for (ItemType in headingList) {
+  if (headingList[ItemType].length > 0) {
+    headings.push({
+      depth: 2,
+      slug: conversionList[ItemType as keyof typeof conversionList],
+      text: conversionList[ItemType as keyof typeof conversionList],
+    });
+    headingList[ItemType].map((item) => {
+      headings.push({ depth: 3, slug: `${item.slug}`, text: item.text });
+    });
   }
+}
+
+/**
+ * Appends headings into headingList according to relevent key
+ *
+ * @param key - key of the heading to be included (ex: Class, Constructor, Enum)
+ * @param dataItem - dataItem's extracted from the yml
+ */
+function appendIntoHeadingList(key: keyof headingsListProps, dataItem: Item) {
+  if (!(key in headingList)) {
+    headingList[key] = [];
+  }
+  headingList[key].push({
+    text: dataItem.id,
+    slug: dataItem.uid,
+  });
 }
 ---
 
@@ -152,14 +146,13 @@ if (
     <h1 class="text-3xl md:text-4xl break-words mt-6 mb-6">{pagetitle}</h1>
 
     {
-      entry.data.items[0].type == "Namespace" && (
+      documentType == "Namespace" && (
         <WebApiNamespace namespaceData={namespaceData} />
       )
     }
 
     {
-      (entry.data.items[0].type == "Class" ||
-        entry.data.items[0].type == "Interface") && (
+      ["Class", "Interface", "Enum"].includes(documentType) && (
         <WebApiClass data={entry.data} />
       )
     }
