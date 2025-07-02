@@ -64,7 +64,8 @@ const releaseNotes = defineCollection({
 const enDocs = defineCollection({
   loader: glob({
     pattern: [
-      "**/*.md",
+      "learn/**/*.md", //Temporary
+      "diary/**/*.md", //Temporary
       "!api/**/*.md",
       "!**/includes/**/*.md" 
     ],
@@ -102,7 +103,11 @@ const WebAPI = defineCollection({
 // Collections in external-content (cloned from another GitHub repo)
 const tocFilesExternal = defineCollection({
   loader: glob({
-    pattern: ["**/toc.yml"],
+    pattern: [
+      "superoffice-docs/docs/**/toc.yml",
+      "superoffice-docs/release-notes/**/toc.yml",
+      "contribution/**/toc.yml",
+    ],
     base: "./external-content",
   }),
   schema: TocYamlSchema,
