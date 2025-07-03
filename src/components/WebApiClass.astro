@@ -89,7 +89,7 @@ const selectedKeys = ["Constructor", "Method", "Property"];
       .filter(([typeName]) => selectedKeys.includes(typeName))
       .map(([typeName, items]) => (
         <div>
-          <h2 id={typeName} class="text-2xl">
+          <h2 id={conversionList[typeName as keyof typeof conversionList]} class="text-2xl">
             {conversionList[typeName as keyof typeof conversionList]}
             </h2>
           <div>
