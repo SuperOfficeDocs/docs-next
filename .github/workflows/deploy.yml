@@ -28,12 +28,12 @@ concurrency:
 
 jobs:
   build-main:
-    uses: ./.github/workflows/build-split.yml
+    uses: SuperOfficeDocs/docs-next/.github/workflows/build-split.yml@main
     with:
       api_only: 'false'
 
   build-api:
-    uses: ./.github/workflows/build-split.yml
+    uses: SuperOfficeDocs/docs-next/.github/workflows/build-split.yml@main
     with:
       api_only: 'true'
 
