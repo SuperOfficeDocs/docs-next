@@ -1,20 +1,10 @@
 // Astro automatically loads this file and uses it to configure content collections.
 
-
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema } from "./content.schema";
 
 const apiOnly = process.env.API_ONLY === 'true';
-
-const releaseNotes = defineCollection({
-  loader: glob({
-    // pattern: ["**/!(*includes*)/*.md"],
-    pattern: [""], //Temporary
-    base: "external-content/superoffice-docs/release-notes"
-  }),
-  schema: DocsSchema,
-});
 
 const enDocs = defineCollection({
   loader: glob({
@@ -30,13 +20,11 @@ const enDocs = defineCollection({
 
 const deDocs = defineCollection({
   loader: glob({
-    // pattern: "**/!(**includes**)/*.md",
-    pattern: [""], //Temporary
+    pattern: apiOnly ? [""] : "**/!(**includes**)/*.md",
     base: "external-content/superoffice-docs/docs/de"
   }),
   schema: DocsSchema,
 });
-
 
 const WebAPI = defineCollection({
   loader: glob({
@@ -44,7 +32,6 @@ const WebAPI = defineCollection({
     base: "external-content/superoffice-docs/docs/en/api/reference/webapi"
   }),
 });
-
 
 const tocFilesExternal = defineCollection({
   loader: glob({
@@ -60,12 +47,11 @@ const tocFilesExternal = defineCollection({
 
 const externalLandingPages = defineCollection({
   loader: glob({
-    // pattern: [
-    //   "contribution/**/*.yml",
-    //   "!**/toc.yml",
-    //   // Add in ext superoffice-docs later
-    // ],
-    pattern: [""], //Temporary
+    pattern: apiOnly ? [""] : [
+      "contribution/**/*.yml",
+      "!**/toc.yml",
+      // Add in ext superoffice-docs later
+    ],
     base: "./external-content",
   }),
   schema: SimplifiedYamlSchema,
@@ -73,12 +59,19 @@ const externalLandingPages = defineCollection({
 
 const contributionRepo = defineCollection({
   loader: glob({
-    // pattern: [
-    //   "**/*.md",
-    //   "!**/includes/**",
-    //   "!CODE_OF_CONDUCT.md"],
-    pattern: [""], //Temporary
+    pattern: apiOnly ? [""] : [
+      "**/*.md",
+      "!**/includes/**",
+      "!CODE_OF_CONDUCT.md"],
     base: "./external-content/contribution",
+  }),
+  schema: DocsSchema,
+});
+
+const releaseNotes = defineCollection({
+  loader: glob({
+    pattern: apiOnly ? [""] : ["**/!(*includes*)/*.md"],
+    base: "external-content/superoffice-docs/release-notes"
   }),
   schema: DocsSchema,
 });
