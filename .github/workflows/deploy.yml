@@ -1,41 +1,107 @@
 name: Build & Deploy Astro
 
 on:
-  # Runs on pull requests and manual invocations for targeted branch  
   pull_request:
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
       target_branch:
         description: 'Branch to run the workflow on'
         required: false
         default: ''
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
   build-main:
-    uses: SuperOfficeDocs/docs-next/.github/workflows/build-split.yml@main
-    with:
-      api_only: 'false'
+    runs-on: ubuntu-latest
+    outputs:
+      artifact-name: artifact-main
+    steps:
+      - name: Checkout docs-next
+        uses: actions/checkout@v4
+
+      - name: Checkout contribution repo
+        uses: actions/checkout@v4
+        with:
+          repository: SuperOfficeDocs/contribution
+          path: external-content/contribution
+
+      - name: Checkout SuperOfficeDocs repo
+        uses: actions/checkout@v4
+        with:
+          repository: SuperOfficeDocs/superoffice-docs
+          path: external-content/superoffice-docs
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Build Astro excluding API
+        env:
+          API_ONLY: 'false'
+        run: |
+          npm run build
+          mkdir -p dist-out
+          cp -r dist/* dist-out/
+
+      - name: Upload main artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifact-main
+          path: dist-out
 
   build-api:
-    uses: SuperOfficeDocs/docs-next/.github/workflows/build-split.yml@main
-    with:
-      api_only: 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      artifact-name: artifact-api
+    steps:
+      - name: Checkout docs-next
+        uses: actions/checkout@v4
+
+      - name: Checkout contribution repo
+        uses: actions/checkout@v4
+        with:
+          repository: SuperOfficeDocs/contribution
+          path: external-content/contribution
+
+      - name: Checkout SuperOfficeDocs repo
+        uses: actions/checkout@v4
+        with:
+          repository: SuperOfficeDocs/superoffice-docs
+          path: external-content/superoffice-docs
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Build Astro API only
+        env:
+          API_ONLY: 'true'
+        run: |
+          npm run build
+          mkdir -p dist-out
+          cp -r dist/* dist-out/
+
+      - name: Upload API artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifact-api
+          path: dist-out
 
   deploy:
     needs: [build-main, build-api]
@@ -44,16 +110,23 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Download all artifacts
+      - name: Download main artifact
         uses: actions/download-artifact@v4
         with:
-          path: ./artifacts
+          name: artifact-main
+          path: ./artifacts/main
 
-      - name: Merge both builds
+      - name: Download API artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: artifact-api
+          path: ./artifacts/api
+
+      - name: Merge build outputs
         run: |
           mkdir final-dist
-          cp -r artifacts/artifact-main/* final-dist/
-          cp -r artifacts/artifact-api/* final-dist/
+          cp -r artifacts/main/* final-dist/
+          cp -r artifacts/api/* final-dist/
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
