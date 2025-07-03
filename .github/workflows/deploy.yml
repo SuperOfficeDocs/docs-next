@@ -1,5 +1,4 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy to GitHub Pages
+name: Build & Deploy Astro
 
 on:
   # Runs on pull requests and manual invocations for targeted branch  
@@ -28,39 +27,39 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v4
-      - name: Checkout contribution repo using git
-        uses: actions/checkout@v4
-        with:
-          repository: SuperOfficeDocs/contribution
-          path: external-content/contribution    
-      - name: Checkout SuperOfficeDocs repo using git
-        uses: actions/checkout@v4
-        with:
-          repository: SuperOfficeDocs/superoffice-docs
-          path: external-content/superoffice-docs
-      - name: Install, build, and upload your site
-        uses: withastro/action@v3
-        # with:
-          # path: . # The root location of your Astro project inside the repository. (optional)
-          # node-version: 20 # The specific version of Node that should be used to build your site. Defaults to 20. (optional)
-          # package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
+  build-main:
+    uses: ./.github/workflows/build-split.yml
+    with:
+      api_only: 'false'
+
+  build-api:
+    uses: ./.github/workflows/build-split.yml
+    with:
+      api_only: 'true'
 
   deploy:
-    needs: build
+    needs: [build-main, build-api]
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
     steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
+
+      - name: Merge both builds
+        run: |
+          mkdir final-dist
+          cp -r artifacts/artifact-main/* final-dist/
+          cp -r artifacts/artifact-api/* final-dist/
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: final-dist
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

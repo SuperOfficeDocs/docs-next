@@ -1,0 +1,58 @@
+name: Split Astro Build
+
+on:
+  workflow_call:
+    inputs:
+      api_only:
+        required: true
+        type: string
+    outputs:
+      artifact_name:
+        value: ${{ jobs.build.outputs.artifact_name }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      artifact_name: ${{ steps.set-output.outputs.name }}
+
+    steps:
+      - name: Checkout docs-next
+        uses: actions/checkout@v4
+
+      - name: Checkout contribution repo
+        uses: actions/checkout@v4
+        with:
+          repository: SuperOfficeDocs/contribution
+          path: external-content/contribution
+
+      - name: Checkout SuperOfficeDocs repo
+        uses: actions/checkout@v4
+        with:
+          repository: SuperOfficeDocs/superoffice-docs
+          path: external-content/superoffice-docs
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Build Astro with api_only=${{ inputs.api_only }}
+        env:
+          API_ONLY: ${{ inputs.api_only }}
+        run: |
+          npm run build
+          mkdir -p dist-out
+          cp -r dist/* dist-out/
+
+      - name: Set output name
+        id: set-output
+        run: echo "name=artifact-${{ inputs.api_only == 'true' && 'api' || 'main' }}" >> $GITHUB_OUTPUT
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.set-output.outputs.name }}
+          path: dist-out
