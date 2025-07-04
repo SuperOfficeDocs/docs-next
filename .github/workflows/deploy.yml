@@ -34,7 +34,6 @@ jobs:
         with:
           repository: SuperOfficeDocs/contribution
           path: external-content/contribution
-
       - name: Checkout SuperOfficeDocs repo
         uses: actions/checkout@v4
         with:
@@ -102,7 +101,6 @@ jobs:
         with:
           name: artifact-api
           path: dist-out
-
   deploy:
     needs: [build-main, build-api]
     runs-on: ubuntu-latest
