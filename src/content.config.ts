@@ -37,7 +37,7 @@ const DocsSchema = z.object({
 // .partial() is used to make every property optional due to current frontmatter mismatch in some markdown files. Needs to be removed once frontmatter fixed
 
 const SimplifiedYamlSchema = z.object({
-  YamlMime: z.enum(["Category", "SubCategory"]), //- can't use as-is since it's a comment in our code
+  yamlMime: z.enum(["Category", "SubCategory"]), //- can't use as-is since it's a comment in our code
   title: z.string(),
   metadata: z.any(),
 }).passthrough(); // Allow all other fields like landingContent, conceptualContent, tools, etc.
