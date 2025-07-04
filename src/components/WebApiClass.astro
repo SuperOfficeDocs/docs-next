@@ -3,7 +3,7 @@ import { Code } from 'astro:components';
 import type { ManagedReferenceType, Reference } from "../types/WebAPITypes";
 import type {indexDictionaryProps} from "../types/WebApiLayoutTypes"
 import WebAPIItem from "@components/WebApiItem.astro"
-
+import { conversionList } from '~/pages/en/api/reference/webapi/[...slug].astro';
 type Props = {
     data: ManagedReferenceType;
 };
@@ -19,14 +19,7 @@ const getDataFromReference = (uid:string) : Reference => {
   })[0]
 }
 
-const indexDictionary : indexDictionaryProps = {
-  Class: [],
-  Constructor: [],
-  Field: [],
-  Method : [],
-  Property : [],
-  Namespace: [],
-}
+const indexDictionary : indexDictionaryProps = {}
 
 data.items.forEach( (item , index) => {
   const key = item.type as keyof indexDictionaryProps;
@@ -35,6 +28,8 @@ data.items.forEach( (item , index) => {
   }
   indexDictionary[key].push(index);
 })
+
+const selectedKeys = ["Constructor", "Method", "Property"];
 
 
 ---
@@ -85,53 +80,62 @@ data.items.forEach( (item , index) => {
       </div>)}
     
     {/* Examples */}
-    {data.items[0].example && ( <div>
+    {data.items[0].example && data.items[0].example.length > 0 && ( <div>
         <h2 class="font-bold text-sm">Examples</h2>
         <p set:html = {data.items[0].example}></p>
       </div>)}
     
-
-    {indexDictionary.Constructor.length > 0 && ( 
-      <div>
-        <h2 id="Constructors" class="text-2xl">Constructors</h2>
+    {Object.entries(indexDictionary)
+      .filter(([typeName]) => selectedKeys.includes(typeName))
+      .map(([typeName, items]) => (
         <div>
-          {indexDictionary.Constructor.map( (indexNo) => {
-            return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
-          })}
+          <h2 id={typeName} class="text-2xl">
+            {conversionList[typeName as keyof typeof conversionList]}
+            </h2>
+          <div>
+            {items.map( (indexNo) => {
+              return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
+            })}
+          </div>
         </div>
-      </div>
-     )}
+    ))}
 
-    {indexDictionary.Field.length > 0 && (
+    {indexDictionary.Field?.length > 0 && (
       <div>
         <h2 id="Fields" class="text-2xl font-bold">Fields</h2>
-        {indexDictionary.Field.map( (indexNo) => {
-          return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
-        })}
+        
+        {data.items[0].type == "Enum" 
+        ? (
+          <table class="">
+            <tr class="[&>th]:font-bold [&>th]:border [&>th]:p-2 [&>th]:border-slate-400">
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+            {
+              indexDictionary.Field.map( (indexNo) => {
+              return (
+                <tr class="even:bg-neutral-100 [&>td]:pl-2  [&>td]:border [&>td]:border-slate-300">
+                  <td>{data.items[indexNo].name}</td>
+                  <td>{data.items[indexNo].summary}</td>
+                </tr>
+              )
+            })
+            }
+          </table>)
+        : indexDictionary.Field.map( (indexNo) => {
+            return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
+          })
+
+        }
       </div>
     )}
-    
-    {indexDictionary.Method.length > 0 && (
-      <div>
-        <h2 id="Methods" class="text-2xl font-bold">Methods</h2>
-        {indexDictionary.Method.map( (indexNo) => {
-          return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
-        })}
-      </div>)}
-
-    {indexDictionary.Property.length > 0 && ( 
-      <h2 id="Properties" class="text-2xl">Properties</h2>
-      <div>
-        {indexDictionary.Property.map( (indexNo) => {
-          return <WebAPIItem ref={data.references} item={data.items[indexNo]} />
-        })}
-      </div>
-     )}
+   
 
     
-    
+
+
     {
-      data.items[0].implements && data.items[0].implements.length > 0 &&
+      data.items[0].implements && data.items[0].implements?.length > 0 &&
       <div>
         <h2 id="Implements" class="text-2xl">Implements</h2>
         <div class="">

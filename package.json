@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "NODE_OPTIONS='--max-old-space-size=12288' astro check && astro build",
+    "normal-build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "test:e2e": "npm run test --workspace=e2e-tests"

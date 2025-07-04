@@ -27,7 +27,7 @@ function normalizePath(path: string): string {
  */
 
 export async function getTableOfContentsFromCollection(
-  tocEntries: CollectionEntry<"tocInternal" | "tocExternal">[],
+  tocEntries: CollectionEntry<"tocExternal">[],
   rootCollectionName: string
 ): Promise<TocData> {
 
