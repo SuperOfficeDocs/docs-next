@@ -89,7 +89,11 @@ const tocFilesInternal = defineCollection({
 
 const tocFilesExternal = defineCollection({
   loader: glob({
-    pattern: ["contribution/**/toc.yml"], // Add in ext superoffice-docs later
+    pattern: [
+      "superoffice-docs/docs/**/toc.yml",
+      "superoffice-docs/release-notes/**/toc.yml",
+      "contribution/**/toc.yml",
+    ], // Add in ext superoffice-docs later
     base: "./external-content",
   }),
   schema: TocYamlSchema,
