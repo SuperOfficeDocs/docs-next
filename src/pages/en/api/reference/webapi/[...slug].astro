@@ -16,12 +16,12 @@ const language = "en";
 const collectionPath = `superoffice-docs/docs/${language}/api/reference/webapi`;
 const allTocEntries = await getCollection("tocExternal");
 const tocEntries = allTocEntries.filter((entry) =>
-  entry.id.startsWith(collectionPath)
+  entry.id.startsWith(collectionPath),
 );
-const tocData = await getTableOfContentsFromCollection(tocEntries, collectionPath);
-
-
-
+const tocData = await getTableOfContentsFromCollection(
+  tocEntries,
+  collectionPath,
+);
 
 // Generates static paths from webapi collection
 export async function getStaticPaths() {
@@ -40,7 +40,7 @@ export async function getStaticPaths() {
   });
 }
 
-const { entry} = Astro.props;
+const { entry } = Astro.props;
 const pagetitle = entry.data.items[0].type + " " + entry.data.items[0].id;
 
 // Use to get the plural forms of the name
