@@ -77,19 +77,15 @@ const WebAPI = defineCollection({
   loader: glob({ pattern:["**/!(*toc).yml",], base:"./src/content/docs/en/api/reference/webapi"}),
 });
 
-const tocFilesInternal = defineCollection({
-  loader: glob({
-    pattern: ["**/toc.yml"],
-    base: "./src/content",
-  }),
-  schema: TocYamlSchema,
-});
-
 // Collections in external-content (cloned from another GitHub repo)
 
 const tocFilesExternal = defineCollection({
   loader: glob({
-    pattern: ["contribution/**/toc.yml"], // Add in ext superoffice-docs later
+    pattern: [
+      "superoffice-docs/docs/**/toc.yml",
+      "superoffice-docs/release-notes/**/toc.yml",
+      "contribution/**/toc.yml",
+    ],
     base: "./external-content",
   }),
   schema: TocYamlSchema,
@@ -127,6 +123,5 @@ export const collections = {
   webapi: WebAPI,
   contribute: contributionRepo,
   external: externalLandingPages,
-  tocInternal: tocFilesInternal,
   tocExternal: tocFilesExternal,
 };

@@ -1,46 +1,28 @@
 ---
 import type { namespaceClassifiedDataProps } from "../types/WebApiLayoutTypes";
 
-
 type Props = {
     namespaceData : namespaceClassifiedDataProps
 };
+
 const { namespaceData } = Astro.props;
 
 ---
 
 <div> 
-    {
-        namespaceData.Class.length > 0 && (
-            <div>
-                <h2 id="Classes" class="text-2xl mb-5">Classes</h2>
-                    {
-                    namespaceData.Class.map( (item)=> {
-                        return (
-                                <a class="font-bold text-orange-700 text-lg no-underline hover:underline" href={`${item.uid}`}>{item.id}</a>
-                                <p class="ml-4 !prose" set:html = {item.summary}></p>
-                        )
-                })}
-                 
-            </div>
-        )
-    }
-    {   
-        namespaceData.Interface.length > 0 && (
-            <div>
-                <h2 id="Interfaces" class="text-2xl mb-5">Interfaces</h2>
-                    {
-                    namespaceData.Interface.map( (item)=> {
-                        return (
+    {Object.entries(namespaceData).map(([typeName, items]) => (
+        <div>
+            <h2 id="Classes" class="text-2xl mb-5">{typeName}</h2>
+            {
+                items.map( (item)=> {
+                    return (
                             <a class="font-bold text-orange-700 text-lg no-underline hover:underline" href={`${item.uid}`}>{item.id}</a>
-                            <p class="ml-4 !prose" set:html = {item.summary}></p>   
-                        )
-                })}
-                 
-            </div>
-        )
-}
-
+                            <p class="ml-4 !prose" set:html = {item.summary}></p>
+                    )
+            })}
+        </div>
+    ))
+    }
 </div>
 
 
