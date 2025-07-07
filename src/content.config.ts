@@ -1,5 +1,3 @@
-// Astro automatically loads this file and uses it to configure content collections.
-
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema } from "./content.schema";
@@ -31,6 +29,7 @@ const WebAPI = defineCollection({
     pattern: apiOnly ? ["**/!(*toc).yml"] : [""],
     base: "external-content/superoffice-docs/docs/en/api/reference/webapi"
   }),
+
 });
 
 const tocFilesExternal = defineCollection({
