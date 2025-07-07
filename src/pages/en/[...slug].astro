@@ -16,7 +16,7 @@ export async function getStaticPaths() {
   return docEntries.map((entry, index) => {
     //removing .md extention AND "src/content/en" from filepath
     const generatedSlug = entry.filePath
-      ?.replace("external-content/superoffice-docs/docs/en", "")
+      ?.replace("src/content/docs/en", "")
       .replace(".md", "");
     const category = generatedSlug?.split("/")[1];
     const isLearn = entry.data.uid?.startsWith("help");

@@ -1,15 +1,14 @@
 ---
 import { getCollection } from "astro:content";
 import MarkdownLayout from "@layouts/Markdown.astro";
-import { getTableOfContents } from "@utils/getTableOfContents";
 import WebApiNamespace from "@components/WebApiNamespace.astro";
 import WebApiClass from "@components/WebApiClass.astro";
 import type {
   headingsListProps,
   namespaceClassifiedDataProps,
-} from "../../../../../types/WebApiLayoutTypes";
+} from "~/types/WebApiLayoutTypes";
 import { getEntry } from "astro:content";
-import type { Item } from "../../../../../types/WebAPITypes";
+import type { Item } from "~/types/WebAPITypes";
 import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
 
 const language = "en";
