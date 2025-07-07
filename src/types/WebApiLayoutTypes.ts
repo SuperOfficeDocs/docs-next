@@ -1,23 +1,9 @@
-import type { Item } from "../types/WebAPITypes";
-
-
 export interface indexDictionaryProps {
-    Class: number[];
-    Constructor: number[];
-    Method : number[];
-    Property: number[];
-    Field: number[];
-    Namespace: number[];
+    [key: string]: number[]; 
 }
 
 export interface headingsListProps {
-    Class: headingsItem[];
-    Constructor: headingsItem[];
-    Method : headingsItem[];
-    Property: headingsItem[];
-    Field: headingsItem[];
-    Interface : headingsItem[];
-    Implement : headingsItem[];
+  [key: string]: headingsItem[]; 
 }
 
 interface headingsItem {
@@ -26,8 +12,7 @@ interface headingsItem {
 }
 
 export interface namespaceClassifiedDataProps {
-    Class: namespaceClassifiedDataItem [];
-    Interface: namespaceClassifiedDataItem [];
+    [key: string]: namespaceClassifiedDataItem [];
 }
 
 interface namespaceClassifiedDataItem {

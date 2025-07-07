@@ -11,8 +11,8 @@ import { stripMarkdownSlug } from "~/utils/slugUtils";
 
 // New way of getting toc
 import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
-const collectionName = "release-notes";
-const allTocEntries = await getCollection("tocInternal");
+const collectionName = "superoffice-docs/release-notes";
+const allTocEntries = await getCollection("tocExternal");
 const tocEntries = allTocEntries.filter((entry) =>
   entry.id.startsWith(collectionName)
 );

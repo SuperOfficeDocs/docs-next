@@ -41,7 +41,7 @@ if (collection != "release-notes") {
       >
         <TableOfContentList
           client:only="react"
-          inputItems={isWebAPI ? TableOfContentData : TableOfContentData?.items}
+          inputItems={TableOfContentData?.items}
           slug={TOCPath}
           isMainTable={true}
           isWebApiTOC={isWebAPI}
