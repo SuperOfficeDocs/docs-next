@@ -15,7 +15,6 @@ const language = "en";
 const collectionPath = `superoffice-docs/docs/${language}/api/reference/webapi`;
 const allTocEntries = await getCollection("tocExternal");
 const tocEntries = allTocEntries.filter((entry) =>
-
   entry.id.startsWith(collectionPath),
 );
 const tocData = await getTableOfContentsFromCollection(
@@ -41,7 +40,6 @@ export async function getStaticPaths() {
 }
 
 const { entry} = Astro.props;
-
 const pagetitle = entry.data.items[0].type + " " + entry.data.items[0].id;
 
 // Use to get the plural forms of the name
@@ -67,8 +65,6 @@ if (documentType == "Namespace") {
       const formattedItem = childName.replaceAll(".", "").toLowerCase();
       const childrenItemEntry = await getEntry("webapi", formattedItem);
       if (childrenItemEntry) {
-        // console.log(childrenItemEntry.id);
-
         const dataItem = childrenItemEntry?.data.items[0];
         const key = dataItem.type as keyof namespaceClassifiedDataProps;
         if (!namespaceData[key]) {
