@@ -1,36 +1,78 @@
-import { defineCollection } from "astro:content";
+// This is a special file that Astro will automatically load and use to configure your content collections.
+import { z, defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
-import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema } from "./content.schema";
 
-const apiOnly = process.env.API_ONLY === 'true';
+const DocsSchema = z.object({
+
+  //Mandatory Properties
+    author: z.string().nullable(),
+    date: z.coerce.string().nullable(),
+    uid: z.string().nullable(),
+
+    //Optional Properties
+    title: z.string().optional().nullable(),
+    description: z.string().optional().nullable(),
+    audience: z.string().optional().nullable(),
+    audience_tooltip: z.string().optional().nullable(),
+    category: z.string().optional().nullable(),
+    updated: z.coerce.string().optional().nullable(),
+    version: z.coerce.string().optional().nullable(),
+    version_sofo: z.coerce.string().optional().nullable(),
+    version_devportal: z.coerce.string().optional().nullable(),
+    version_mobile: z.coerce.string().optional().nullable(),
+    translation_type: z.union([z.number(), z.string()]).optional().nullable(),
+    deployment: z.union([z.string(), z.array(z.string())]).optional().nullable(),
+    generated: z.coerce.string().optional().nullable(),
+    keywords: z.union([z.string(), z.array(z.string())]).optional().nullable(),
+    language: z.string().max(2).optional().nullable(),
+    pilot: z.string().optional().nullable(),
+    redirect_url: z.string().optional().nullable(),
+})
+  .passthrough().partial()
+// .partial() is used to make every property optional due to current frontmatter mismatch in some markdown files. Needs to be removed once frontmatter fixed
+
+const SimplifiedYamlSchema = z.object({
+  yamlMime: z.enum(["Category", "SubCategory"]), //- can't use as-is since it's a comment in our code
+  title: z.string(),
+  metadata: z.any(),
+}).passthrough(); // Allow all other fields like landingContent, conceptualContent, tools, etc.
+
+const TocItemSchema: z.ZodType<any> = z.lazy(() =>
+  z.object({
+    name: z.string(),
+    uid: z.string().optional(),
+    href: z.string().optional(),
+    topicHref: z.string().optional(),
+    items: z.array(TocItemSchema).optional(),
+  })
+);
+
+const TocYamlSchema = z.object({
+  items: z.array(TocItemSchema),
+});
+
+// Collections in src/content
+const releaseNotes = defineCollection({
+  loader: glob({ pattern: ["*.md", "**/!(*includes*)/*.md"], base: "external-content/superoffice-docs/release-notes" }),
+  schema: DocsSchema,
+});
 
 const enDocs = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? [""] : [
-      "**/*.md",
-      "!api/**/*.md",
-      "!**/includes/**/*.md"
-    ],
-    base: "external-content/superoffice-docs/docs/en",
-  }),
+  loader: glob({ pattern: "**/!(**includes**)/*.md", base: "external-content/superoffice-docs/docs/en" }),
   schema: DocsSchema,
 });
 
 const deDocs = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? [""] : "**/!(**includes**)/*.md",
-    base: "external-content/superoffice-docs/docs/de"
-  }),
+  loader: glob({ pattern: "**/!(**includes**)/*.md", base: "external-content/superoffice-docs/docs/de" }),
   schema: DocsSchema,
 });
 
-const WebAPI = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? ["**/!(*toc).yml"] : [""],
-    base: "external-content/superoffice-docs/docs/en/api/reference/webapi"
-  }),
 
+const WebAPI = defineCollection({
+  loader: glob({ pattern: ["**/!(*toc).yml",], base: "external-content/superoffice-docs/docs/en/api/reference/webapi" }),
 });
+
+// Collections in external-content (cloned from another GitHub repo)
 
 const tocFilesExternal = defineCollection({
   loader: glob({
@@ -46,7 +88,7 @@ const tocFilesExternal = defineCollection({
 
 const externalLandingPages = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [""] : [
+    pattern: [
       "contribution/**/*.yml",
       "!**/toc.yml",
       // Add in ext superoffice-docs later
@@ -58,7 +100,7 @@ const externalLandingPages = defineCollection({
 
 const contributionRepo = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [""] : [
+    pattern: [
       "**/*.md",
       "!**/includes/**",
       "!CODE_OF_CONDUCT.md"],
@@ -67,14 +109,8 @@ const contributionRepo = defineCollection({
   schema: DocsSchema,
 });
 
-const releaseNotes = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? [""] : ["**/!(*includes*)/*.md"],
-    base: "external-content/superoffice-docs/release-notes"
-  }),
-  schema: DocsSchema,
-});
-
+// 3. Export a single `collections` object to register your collection(s)
+//    This key should match your collection directory name in "src/content"
 export const collections = {
   "release-notes": releaseNotes,
   en: enDocs,
