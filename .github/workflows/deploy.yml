@@ -126,6 +126,9 @@ jobs:
           cp -r artifacts/main/* final-dist/
           cp -r artifacts/api/* final-dist/
 
+      - name: Index pages using pagefind
+        run: npx pagefind --site dist
+
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
