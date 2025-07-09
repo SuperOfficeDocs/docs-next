@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import MarkdownLayout from "@layouts/Markdown.astro";
 import { getTableOfContents } from "../../utils/getTableOfContents";
+import { stripMarkdownSlug } from "~/utils/slugUtils";
 
 //generating static paths from en collection
 export async function getStaticPaths() {
@@ -14,10 +15,8 @@ export async function getStaticPaths() {
     })
   );
   return docEntries.map((entry, index) => {
-    //removing .md extention AND "src/content/en" from filepath
-    const generatedSlug = entry.filePath
-      ?.replace("external-content/superoffice-docs/docs/en", "")
-      .replace(".md", "");
+    //Remove .md extension AND filepath prefix (ex:superoffice-docs/docs/en) from filepath
+    const generatedSlug = stripMarkdownSlug(entry.filePath!, `superoffice-docs/docs/en`, true);
     const category = generatedSlug?.split("/")[1];
     const isLearn = entry.data.uid?.startsWith("help");
     const isWebAPI = entry.data.uid?.startsWith("webapi");
