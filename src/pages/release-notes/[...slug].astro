@@ -7,7 +7,7 @@ import { stripMarkdownSlug } from "~/utils/slugUtils";
 import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
 
 const collectionFullName = `superoffice-docs/release-notes`;
-const allTocEntries = await getCollection("tocExternal");
+const allTocEntries = await getCollection("toc");
 const tocEntries = allTocEntries.filter((entry) =>
   entry.id.startsWith(collectionFullName)
 );

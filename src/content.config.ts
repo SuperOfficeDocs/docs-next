@@ -126,5 +126,5 @@ export const collections = {
   webapi: WebAPI,
   contribute: contributionRepo,
   external: externalLandingPages,
-  tocExternal: tocFilesExternal,
+  toc: tocFilesExternal,
 };
