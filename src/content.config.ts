@@ -2,42 +2,38 @@
 import { z, defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 
+const apiOnly = process.env.API_ONLY === 'true';
+
 const DocsSchema = z.object({
 
   //Mandatory Properties
-  author: z.union([
-    z.string(),
-    z.object({ "github-id": z.string().nullable() }),
-  ]).nullable(),
+  author: z.string().nullable(),
   date: z.coerce.string().nullable(),
-  title: z.string().nullable(),
   uid: z.string().nullable(),
-  topic: z.string().nullable(),
-
 
   //Optional Properties
+  title: z.string().optional().nullable(),
   description: z.string().optional().nullable(),
   audience: z.string().optional().nullable(),
   audience_tooltip: z.string().optional().nullable(),
   category: z.string().optional().nullable(),
-  updated: z.date().optional().nullable(),
+  updated: z.coerce.string().optional().nullable(),
   version: z.coerce.string().optional().nullable(),
   version_sofo: z.coerce.string().optional().nullable(),
   version_devportal: z.coerce.string().optional().nullable(),
   version_mobile: z.coerce.string().optional().nullable(),
-  translation_type: z.number().optional().nullable(),
-  envir: z.union([z.string(), z.array(z.string())]).optional().nullable(),
-  generated: z.boolean().optional().nullable(),
+  translation_type: z.union([z.number(), z.string()]).optional().nullable(),
+  deployment: z.union([z.string(), z.array(z.string())]).optional().nullable(),
+  generated: z.coerce.string().optional().nullable(),
   keywords: z.union([z.string(), z.array(z.string())]).optional().nullable(),
   language: z.string().max(2).optional().nullable(),
   pilot: z.string().optional().nullable(),
   redirect_url: z.string().optional().nullable(),
-})
-  .passthrough().partial()
+}).passthrough().partial()
 // .partial() is used to make every property optional due to current frontmatter mismatch in some markdown files. Needs to be removed once frontmatter fixed
 
 const SimplifiedYamlSchema = z.object({
-  yamlMime: z.enum(["Category", "SubCategory"]), //- can't use as-is since it's a comment in our code
+  yamlMime: z.enum(["Category", "SubCategory"]), 
   title: z.string(),
   metadata: z.any(),
 }).passthrough(); // Allow all other fields like landingContent, conceptualContent, tools, etc.
@@ -58,23 +54,30 @@ const TocYamlSchema = z.object({
 
 // Collections in src/content
 const releaseNotes = defineCollection({
-  loader: glob({ pattern: ["*.md", "**/!(*includes*)/*.md"], base: "./src/content/release-notes" }),
+  loader: glob({ pattern: apiOnly ? [""] :  ["*.md", "**/!(*includes*)/*.md"], base: "external-content/superoffice-docs/release-notes" }),
   schema: DocsSchema,
 });
 
 const enDocs = defineCollection({
-  loader: glob({ pattern: "**/!(**includes**)/*.md", base: "./src/content/docs/en" }),
+  loader: glob({
+    pattern: apiOnly ? [""] : [
+      "**/*.md",
+      "!api/**/*.md",
+      "!**/includes/**/*.md"
+    ],
+    base: "external-content/superoffice-docs/docs/en",
+  }),
   schema: DocsSchema,
 });
 
 const deDocs = defineCollection({
-  loader: glob({ pattern: "**/!(**includes**)/*.md", base: "./src/content/docs/de" }),
+  loader: glob({ pattern: apiOnly ? [""] : "**/!(**includes**)/*.md", base: "external-content/superoffice-docs/docs/de" }),
   schema: DocsSchema,
 });
 
 
 const WebAPI = defineCollection({
-  loader: glob({ pattern: ["**/!(*toc).yml",], base: "external-content/superoffice-docs/docs/en/api/reference/webapi" }),
+  loader: glob({ pattern: apiOnly ? ["**/!(*toc).yml"] : [""], base: "external-content/superoffice-docs/docs/en/api/reference/webapi" }),
 });
 
 // Collections in external-content (cloned from another GitHub repo)
@@ -93,7 +96,7 @@ const tocFilesExternal = defineCollection({
 
 const externalLandingPages = defineCollection({
   loader: glob({
-    pattern: [
+    pattern: apiOnly ? [""] : [
       "contribution/**/*.yml",
       "!**/toc.yml",
       // Add in ext superoffice-docs later
@@ -105,7 +108,7 @@ const externalLandingPages = defineCollection({
 
 const contributionRepo = defineCollection({
   loader: glob({
-    pattern: [
+    pattern: apiOnly ? [""] : [
       "**/*.md",
       "!**/includes/**",
       "!CODE_OF_CONDUCT.md"],

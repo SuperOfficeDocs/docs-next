@@ -10,6 +10,7 @@ import type {
 import { getEntry } from "astro:content";
 import type { Item } from "~/types/WebAPITypes";
 import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
+import { stripMarkdownSlug } from "~/utils/slugUtils";
 
 const language = "en";
 const collectionPath = `superoffice-docs/docs/${language}/api/reference/webapi`;
@@ -26,12 +27,15 @@ const tocData = await getTableOfContentsFromCollection(
 export async function getStaticPaths() {
   const YMLEntries = await getCollection("webapi");
   return YMLEntries.map((entry) => {
-    const generatedSlug = entry.filePath
-      ?.replace(
-        "external-content/superoffice-docs/docs/en/api/reference/webapi",
-        "",
-      )
-      .replace(".yml", "");
+
+    //Remove .md extension AND filepath prefix (ex:superoffice-docs/docs/en/api/reference/webapi) from filepath
+    const generatedSlug = stripMarkdownSlug(entry.filePath!, `superoffice-docs/docs/en/api/reference/webapi`, true);
+    // const generatedSlug = entry.filePath
+    //   ?.replace(
+    //     "external-content/superoffice-docs/docs/en/api/reference/webapi",
+    //     "",
+    //   )
+    //   .replace(".yml", "");
     return {
       params: { slug: `${generatedSlug}` },
       props: { entry },
@@ -39,7 +43,7 @@ export async function getStaticPaths() {
   });
 }
 
-const { entry } = Astro.props;
+const { entry} = Astro.props;
 const pagetitle = entry.data.items[0].type + " " + entry.data.items[0].id;
 
 // Use to get the plural forms of the name
@@ -65,7 +69,6 @@ if (documentType == "Namespace") {
       const formattedItem = childName.replaceAll(".", "").toLowerCase();
       const childrenItemEntry = await getEntry("webapi", formattedItem);
       if (childrenItemEntry) {
-        console.log(childrenItemEntry.id);
         const dataItem = childrenItemEntry?.data.items[0];
         const key = dataItem.type as keyof namespaceClassifiedDataProps;
         if (!namespaceData[key]) {
