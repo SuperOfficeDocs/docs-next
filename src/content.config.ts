@@ -54,7 +54,7 @@ const TocYamlSchema = z.object({
 
 // Collections in src/content
 const releaseNotes = defineCollection({
-  loader: glob({ pattern: ["*.md", "**/!(*includes*)/*.md"], base: "external-content/superoffice-docs/release-notes" }),
+  loader: glob({ pattern: apiOnly ? [""] :  ["*.md", "**/!(*includes*)/*.md"], base: "external-content/superoffice-docs/release-notes" }),
   schema: DocsSchema,
 });
 
