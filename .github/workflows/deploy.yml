@@ -126,8 +126,16 @@ jobs:
           cp -r artifacts/main/* final-dist/
           cp -r artifacts/api/* final-dist/
 
-      - name: Index pages using pagefind
-        run: npx pagefind --site dist
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+        node-version: 20
+
+      - name: Install Pagefind
+        run: npx pagefind --version
+
+      - name: Index pages using Pagefind
+        run: npx pagefind --site final-dist
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
