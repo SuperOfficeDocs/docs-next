@@ -8,15 +8,23 @@ const apiOnly = process.env.API_ONLY === 'true';
 
 
 const releaseNotes = defineCollection({
-  loader: glob({ pattern: apiOnly ? [""] : ["*.md", "**/!(*includes*)/*.md"], base: "external-content/superoffice-docs/release-notes" }),
+  loader: glob({ pattern: apiOnly ? [""] : [
+      "**/*.md",               // Include all .md files recursively
+      "!**/includes/**",       // Exclude any path that includes a folder named "includes"
+    ], 
+    base: "external-content/superoffice-docs/release-notes" 
+  }),
   schema: DocsSchema,
 });
 
 const enDocs = defineCollection({
   loader: glob({
     pattern: apiOnly ? [""] : [
-      "**/!(**includes**)/*.md",
-      "!api/**/*.md",
+      "**/*.md",               // Include all .md files recursively
+      "!*.md",                 // Exclude .md files in the root (docs/en/*.md)
+      "!**/includes/**",       // Exclude any path that includes a folder named "includes"
+      "!api/tutorials/minimal-csharp-app", //Temporary excluded until corrupted images problem is resolved
+      "!api/reference/soap"   // Exclude .md files in the root (external-content/*.md)
     ],
     base: "external-content/superoffice-docs/docs/en",
   }),
@@ -24,7 +32,13 @@ const enDocs = defineCollection({
 });
 
 const deDocs = defineCollection({
-  loader: glob({ pattern: apiOnly ? [""] : "**/!(**includes**)/*.md", base: "external-content/superoffice-docs/docs/de" }),
+  loader: glob({ pattern: apiOnly ? [""] : [
+      "**/*.md",               // Include all .md files recursively
+      "!*.md",                 // Exclude .md files in the root (external-content/*.md)
+      "!**/includes/**",       // Exclude any path that includes a folder named "includes"
+    ], 
+    base: "external-content/superoffice-docs/docs/de" 
+  }),
   schema: DocsSchema,
 });
 
