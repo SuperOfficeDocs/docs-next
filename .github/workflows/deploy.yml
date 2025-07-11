@@ -118,8 +118,6 @@ jobs:
 
   # deploy job downloads artifacts from build jobs, merge them in to one directory, create search index, and deploy to github pages
   deploy:
-    # run the deploy job if it only comes from main repo (not from a forked repo)
-    if: github.event.pull_request.head.repo.full_name == github.repository || github.event_name == 'push'
     needs: [build-main, build-api]
     runs-on: ubuntu-latest
     environment:
