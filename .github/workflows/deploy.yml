@@ -165,16 +165,13 @@ jobs:
             echo "skip_deploy=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Exit early if deployment is skipped
-        if: steps.check_pr_source.outputs.skip_deploy == 'true'
-        run: exit 0
-
-
       - name: Upload GitHub Pages artifact
+        if: steps.check_pr_source.outputs.skip_deploy == 'false'
         uses: actions/upload-pages-artifact@v3
         with:
           path: final-dist
 
       - name: Deploy to GitHub Pages
+        if: steps.check_pr_source.outputs.skip_deploy == 'false'
         id: deployment
         uses: actions/deploy-pages@v4
