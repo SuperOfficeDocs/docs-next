@@ -152,12 +152,26 @@ jobs:
 
       - name: Index pages using Pagefind
         run: npx pagefind --site final-dist
+      
+      - name: Check if the PR originates from source repo
+        id: check_pr_source
+        run: |
+          echo "PR source: ${{ github.event.pull_request.head.repo.full_name }}"
+          echo "Base repo: ${{ github.repository }}"
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ] && [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "PR is from a forked repo. Skipping deployment."
+            echo "skip_deploy=true" >> $GITHUB_OUTPUT
+          else
+            echo "skip_deploy=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Upload GitHub Pages artifact
+        if: steps.check_pr_source.outputs.skip_deploy == 'false'
         uses: actions/upload-pages-artifact@v3
         with:
           path: final-dist
 
       - name: Deploy to GitHub Pages
+        if: steps.check_pr_source.outputs.skip_deploy == 'false'
         id: deployment
         uses: actions/deploy-pages@v4
