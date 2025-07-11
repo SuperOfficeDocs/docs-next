@@ -23,7 +23,9 @@ const enDocs = defineCollection({
       "**/*.md",               // Include all .md files recursively
       "!*.md",                 // Exclude .md files in the root (docs/en/*.md)
       "!**/includes/**",       // Exclude any path that includes a folder named "includes"
+      
       "!api/tutorials/minimal-csharp-app", //Temporary excluded until corrupted images problem is resolved
+      "!api/overview/index.md", //Temporary excluded until image extention casing issue is resolved
       "!api/reference/soap"   // Exclude .md files in the root (external-content/*.md)
     ],
     base: "external-content/superoffice-docs/docs/en",
