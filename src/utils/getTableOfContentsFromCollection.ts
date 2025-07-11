@@ -21,13 +21,13 @@ function normalizePath(path: string): string {
  *
  * This enables a multi-file ToC to be constructed from modular parts, using content collections.
  *
- * @param tocEntries Filtered `tocInternal` or `tocExternal` entries matching a specific collection.
+ * @param tocEntries Filtered `toc` entries matching a specific collection.
  * @param rootCollectionName Path prefix to locate the root `toc.yml`, such as "release-notes".
  * @returns A complete nested `TocData` object representing the full Table of Contents.
  */
 
 export async function getTableOfContentsFromCollection(
-  tocEntries: CollectionEntry<"tocExternal">[],
+  tocEntries: CollectionEntry<"toc">[],
   rootCollectionName: string
 ): Promise<TocData> {
 

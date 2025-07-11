@@ -7,7 +7,7 @@ import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFrom
 import MarkdownLayout from "@layouts/Markdown.astro";
 
 const collectionPath = "contribution";
-const allTocEntries = await getCollection("tocExternal");
+const allTocEntries = await getCollection("toc");
 const tocEntries = allTocEntries.filter((entry) =>
   entry.id.startsWith(collectionPath)
 );

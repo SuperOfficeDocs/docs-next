@@ -14,7 +14,7 @@ import { stripMarkdownSlug } from "~/utils/slugUtils";
 
 const language = "en";
 const collectionPath = `superoffice-docs/docs/${language}/api/reference/webapi`;
-const allTocEntries = await getCollection("tocExternal");
+const allTocEntries = await getCollection("toc");
 const tocEntries = allTocEntries.filter((entry) =>
   entry.id.startsWith(collectionPath),
 );

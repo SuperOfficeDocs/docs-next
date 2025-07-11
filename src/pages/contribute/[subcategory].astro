@@ -53,7 +53,7 @@ if (!entry) {
 const SubCategoryData = entry.data as SubCategoryDataType;
 
 // Build toc
-const allTocEntries = await getCollection("tocExternal");
+const allTocEntries = await getCollection("toc");
 
 const tocEntries = allTocEntries.filter((entry) =>
   entry.id.startsWith(collectionPath) // Narrow to the relevant set for this folder
