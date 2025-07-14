@@ -17,7 +17,7 @@ export async function getStaticPaths() {
   return docEntries.map((entry, index) => {
     //Remove .md extension AND filepath prefix (ex:superoffice-docs/docs/en) from filepath
     const generatedSlug = stripMarkdownSlug(entry.filePath!, `superoffice-docs/docs/en`, true);
-    const category = generatedSlug?.split("/")[1];
+    const category = generatedSlug?.split("/")[0];
     const isLearn = entry.data.uid?.startsWith("help");
     const isWebAPI = entry.data.uid?.startsWith("webapi");
 
