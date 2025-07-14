@@ -2,7 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownHeading } from "astro";
 import { getCollection, render } from "astro:content";
-import { stripMarkdownSlug } from "~/utils/slugUtils";
+import { stripFilePathAndExtension } from "~/utils/slugUtils";
 import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
 import MarkdownLayout from "@layouts/Markdown.astro";
 
@@ -24,7 +24,7 @@ export async function getStaticPaths() {
   );
 
   const paths = docEntries.map((entry, index) => {
-    const slug = stripMarkdownSlug(entry.filePath!, "contribution", true);
+    const slug = stripFilePathAndExtension(entry.filePath!, "contribution", true);
 
     return {
       params: { slug },

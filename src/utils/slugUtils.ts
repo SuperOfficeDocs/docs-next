@@ -4,12 +4,12 @@ const supportedExtensions = [".md", ".mdx", ".yml", ".yaml"];
  * Strips the slug prefix and file extension from an entry.filePath.
  * For example: "src/content/release-notes/v11/index.md" -> "/v11/index"
  */
-export function stripMarkdownSlug(filePath: string, collection: string, isExternal = false): string {
+export function stripFilePathAndExtension(filePath: string, collection: string, isExternal = false): string {
   const base = isExternal
   ? `external-content/${collection}/`
   : `src/content/${collection}/`;
 
-  return filePath.replace(base, "").replace(/\.md$/, "");
+  return filePath.replace(base, "").replace(/\.(md|ya?ml)$/, "");
 }
 
 /**
