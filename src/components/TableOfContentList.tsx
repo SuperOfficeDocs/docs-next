@@ -73,14 +73,16 @@ export default function TableOfContentList({
           Show / Hide Table of Content
         </p>
       </div>
-
+      
+      {/* ToC outer div */}
       <div
         className={`w-full max-w-md mx-auto rounded-md  ${isMainTable && "h-fit overflow-y-auto overflow-x-hidden"} 
         lg:block ${isMainTable && (showToC ? "block" : "hidden")}`}
       >
         <div
-          className={`px-3 w-full flex justify-center ${!isMainTable && "hidden"} `}
+          className={`px-3 pt-3 w-full flex justify-center ${!isMainTable && "hidden"} `}
         >
+          {/* Input for ToC Search */}
           <input
             className="rounded-md h-8 w-full focus:outline-none px-4"
             onChange={handleSearchTermChange}
@@ -89,6 +91,7 @@ export default function TableOfContentList({
           />
         </div>
 
+        {/* ToC items */}
         {inputItems?.map((item, index) => (
           <div key={index}>
             {item.name.toLowerCase().includes(searchTerm.toLowerCase()) && (
@@ -102,7 +105,7 @@ export default function TableOfContentList({
 
                 <a
                   href={generatePath(item)}
-                  className={`w-full break-words text-wrap ${
+                  className={`w-full break-words text-wrap overflow-hidden ${
                     generatePath(item) == currentPath
                       ? "text-superOfficeGreen font-semibold"
                       : ""
