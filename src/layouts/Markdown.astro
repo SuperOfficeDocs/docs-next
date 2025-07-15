@@ -12,14 +12,17 @@ const {
   headings,
   TableOfContentData,
   isLearn,
-  isWebAPI = false,
   lang,
 } = Astro.props;
-var TOCPath = collection;
 
 // Appends specific category of the page for langauge content collections (For every collection except for release-notes collection)
-if (collection != "release-notes") {
-  TOCPath = TOCPath.concat(`/${isLearn ? "learn" : slug.split("/")[0]}`);
+var TOCPath;
+if (collection == "release-notes") {
+  TOCPath = collection;
+} else if (collection == "api-docs") {
+  TOCPath = lang.concat("/api");
+} else {
+  TOCPath = lang.concat(`/${isLearn ? "learn" : slug.split("/")[0]}`);
 }
 ---
 
@@ -44,7 +47,6 @@ if (collection != "release-notes") {
           inputItems={TableOfContentData?.items}
           slug={TOCPath}
           isMainTable={true}
-          isWebApiTOC={isWebAPI}
           transition:persist
         />
       </nav>
