@@ -32,7 +32,7 @@ export default defineConfig({
     ],
     // rehypeSanitize, rehypeSlug
     shikiConfig: {
-      theme: "huston",
+      theme: "houston",
       wrap: true,
       langAlias: {
         // Map our special cases
