@@ -16,7 +16,9 @@ const tocData = await getTableOfContentsFromCollection(tocEntries, collectionFul
 // Generate static paths from release-notes collection
 export async function getStaticPaths() {
   const collectionName = "release-notes";
-  const docEntries = await getCollection(collectionName);
+  const docEntries = (await getCollection(collectionName, ({ data }) => {
+    return !data.redirect_url;
+  }));
 
   const headings = await Promise.all(
     docEntries.map(async (post) => {

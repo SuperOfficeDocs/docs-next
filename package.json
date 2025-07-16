@@ -33,6 +33,7 @@
     "astro-breadcrumbs": "^3.0.0",
     "astro-icon": "^1.1.5",
     "astro-pagefind": "^1.6.0",
+    "astro-redirect-from": "^1.4.0-beta.0",
     "astro-robots": "^2.0.1",
     "astro-social-share": "^2.0.2",
     "dayjs": "^1.11.12",

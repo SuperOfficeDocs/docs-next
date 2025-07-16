@@ -15,7 +15,10 @@ const tocData = await getTableOfContentsFromCollection(tocEntries, `superoffice-
 // Generate static paths from de collection
 export async function getStaticPaths() {
   const language = "de" as const;
-  const docEntries = await getCollection(language);
+  const docEntries = await getCollection(language, ({ data }) => {
+  return !data.redirect_url;
+});
+
 
   const headings = await Promise.all(
     docEntries.map(async (post) => {

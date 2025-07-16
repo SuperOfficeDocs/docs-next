@@ -16,6 +16,8 @@ import remarkIncludeDirective from "./src/plugins/AddIncludesToMarkdown.js";
 import remarkRestyleDirective from "./src/plugins/RestyleDirectives.js";
 import react from "@astrojs/react";
 import yaml from '@rollup/plugin-yaml';
+import redirectFrom from "astro-redirect-from";
+import { getRedirectFromSlug } from './src/utils/slugUtils.ts';
 
 // https://astro.build/config
 export default defineConfig({
@@ -86,11 +88,13 @@ export default defineConfig({
       },
     }),
     mdx(),
-    // preact(),
-    robots(),
-    sitemap(),
     pagefind(),
-    react(),
+    react(), // preact(),
+    redirectFrom({
+      contentDir: './external-content',
+      getSlug: getRedirectFromSlug, // Function to get the slug for redirect_from
+    }),
+    robots(), sitemap(),
   ],
   image: {
     service: sharpImageService({ limitInputPixels: false }),
