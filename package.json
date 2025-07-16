@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "cross-env NODE_OPTIONS='--max-old-space-size=12288' astro check && astro build",
+    "build": "NODE_OPTIONS='--max-old-space-size=12288' astro check && astro build",
     "normal-build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -55,7 +55,6 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.14",
     "@types/node": "^22.14.1",
-    "cross-env": "^7.0.3",
     "remark-code-import": "^1.2.0"
   }
 }
