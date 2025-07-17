@@ -30,15 +30,15 @@ concurrency:
   cancel-in-progress: false
 
 # Application is built using 2 jobs which focuses on different content files.
-# build-main is built using every content except en/api and build-api only build with en/api content.
+# build-spilt1 is built using every content except en/api and build-spilt2 only build with en/api content.
 # Both build jobs clones 3 repos - SuperOfficeDocs/docs-next, SuperOfficeDocs/superoffice-docs, SuperOfficeDocs/contribution
-# Both build jobs outputs respective artifacts - artifact-main and artifact-api
+# Both build jobs outputs respective artifacts - artifact-spilt1 and artifact-spilt2
 
 jobs:
-  build-main:
+  build-split-1:
     runs-on: ubuntu-latest
     outputs:
-      artifact-name: artifact-main
+      artifact-name: artifact-spilt1
     steps:
       - name: Checkout docs-next
         uses: actions/checkout@v4
@@ -61,24 +61,24 @@ jobs:
 
       - run: npm ci
 
-      - name: Build Astro excluding API
+      - name: Build Astro - Split 1
         env:
-          API_ONLY: 'false'
+          BUILD_SPLIT: 'split1'
         run: |
           npm run build
           mkdir -p dist-out
           cp -r dist/* dist-out/
 
-      - name: Upload main artifact
+      - name: Upload spilt1 artifact
         uses: actions/upload-artifact@v4
         with:
-          name: artifact-main
+          name: artifact-spilt1
           path: dist-out
 
-  build-api:
+  build-split-2:
     runs-on: ubuntu-latest
     outputs:
-      artifact-name: artifact-api
+      artifact-name: artifact-spilt2
     steps:
       - name: Checkout docs-next
         uses: actions/checkout@v4
@@ -102,45 +102,45 @@ jobs:
 
       - run: npm ci
 
-      - name: Build Astro API only
+      - name: Build Astro - Split2
         env:
-          API_ONLY: 'true'
+          BUILD_SPLIT: 'split2'
         run: |
           npm run build
           mkdir -p dist-out
           cp -r dist/* dist-out/
 
-      - name: Upload API artifact
+      - name: Upload Split2 artifact
         uses: actions/upload-artifact@v4
         with:
-          name: artifact-api
+          name: artifact-spilt2
           path: dist-out
 
   # deploy job downloads artifacts from build jobs, merge them in to one directory, create search index, and deploy to github pages
   deploy:
-    needs: [build-main, build-api]
+    needs: [build-spilt1, build-spilt2]
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Download main artifact
+      - name: Download spilt1 artifact
         uses: actions/download-artifact@v4
         with:
-          name: artifact-main
-          path: ./artifacts/main
+          name: artifact-spilt1
+          path: ./artifacts/spilt1
 
-      - name: Download API artifact
+      - name: Download spilt2 artifact
         uses: actions/download-artifact@v4
         with:
-          name: artifact-api
-          path: ./artifacts/api
+          name: artifact-spilt2
+          path: ./artifacts/spilt2
 
       - name: Merge build outputs
         run: |
           mkdir final-dist
-          cp -r artifacts/main/* final-dist/
-          cp -r artifacts/api/* final-dist/
+          cp -r artifacts/spilt1/* final-dist/
+          cp -r artifacts/spilt2/* final-dist/
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
