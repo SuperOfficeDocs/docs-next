@@ -79,7 +79,7 @@ const tocFiles = defineCollection({
   schema: TocYamlSchema,
 });
 
-const externalLandingPages = defineCollection({
+const landingPages = defineCollection({
   loader: glob({
     pattern: apiOnly ? [""] : [
       "contribution/**/*.yml",
@@ -97,7 +97,8 @@ const contribution = defineCollection({
     pattern: apiOnly ? [""] : [
       "**/*.md",
       "!**/includes/**",
-      "!CODE_OF_CONDUCT.md"],
+      "!CODE_OF_CONDUCT.md",
+      "!README.md",],
     base: "./external-content/contribution",
   }),
   schema: DocsSchema,
@@ -111,6 +112,6 @@ export const collections = {
   "reference-docs" : referenceDocs,
   webapi: WebAPI,
   contribute: contribution,
-  external: externalLandingPages,
+  cats: landingPages,
   toc: tocFiles,
 };

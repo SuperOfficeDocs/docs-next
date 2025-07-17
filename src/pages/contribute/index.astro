@@ -1,0 +1,35 @@
+---
+import { getEntry, getCollection, type CollectionEntry } from "astro:content";
+import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
+import SubCategoryLandingLayout from "@layouts/SubCategoryLandingLayout.astro";
+
+type SubCategoryDataType = Extract<
+  CollectionEntry<"cats">["data"],
+  { YamlMime: "SubCategory" }
+>;
+
+const collectionPath = "contribution" as const;
+
+// This route supports only the SubCategory YAML at contribution/index.yml.
+// It is a special case since we have an index.yml at the root of the repo/collection. 
+const page = await getEntry("cats", collectionPath);
+if (!page) throw new Error("Missing contribution/index.yml");
+
+const CategoryData = page.data as SubCategoryDataType;
+
+// Build ToC for the sidebar
+const tocEntries = await getCollection("toc", (entry) =>
+  entry.id.startsWith(collectionPath)
+);
+
+const ToCData = await getTableOfContentsFromCollection(tocEntries, collectionPath);
+
+export const prerender = true;
+---
+
+<SubCategoryLandingLayout
+  lang="en"
+  baseSlug="contribute"
+  data={CategoryData}
+  ToCData={ToCData}
+/>
