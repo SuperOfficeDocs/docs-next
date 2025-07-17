@@ -1,13 +1,21 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import type { MarkdownHeading } from "astro";
 import MarkdownLayout from "@layouts/Markdown.astro";
 import { stripFilePathAndExtension } from "~/utils/slugUtils";
-import { getTableOfContents } from "../../utils/getTableOfContents";
+import { getLocalizedToc } from "~/utils/getLocalizedToc";
+import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
 
+const language = "de" as const;
 
-//generating static paths from de collection
+// Computed tocData once at module load (build-time) and reuse it for all pages
+const tocEntries = await getLocalizedToc(language);
+const tocData = await getTableOfContentsFromCollection(tocEntries, `superoffice-docs/docs/${language}/learn`);
+
+// Generate static paths from de collection
 export async function getStaticPaths() {
-  const docEntries = await getCollection("de");
+  const language = "de" as const;
+  const docEntries = await getCollection(language);
 
   const headings = await Promise.all(
     docEntries.map(async (post) => {
@@ -18,20 +26,21 @@ export async function getStaticPaths() {
 
   return docEntries.map((entry, index) => {
 
-     //Remove .md extension AND filepath prefix (ex:superoffice-docs/docs/de) from filepath
-    const generatedSlug = stripFilePathAndExtension(entry.filePath!, `superoffice-docs/docs/de`, true);
-    const category = generatedSlug?.split("/")[1];
-    const isLearn =  entry.data.uid?.startsWith("help")
-    const tocData = getTableOfContents(`docs/de/${isLearn ? "learn" : category}`);
+    const generatedSlug = stripFilePathAndExtension(entry.filePath!, `superoffice-docs/docs/${language}`, true);
 
     return {
       params: { slug: `${generatedSlug}` },
-      props: { entry, headings: headings[index], tocData, isLearn},
+      props: { entry, headings: headings[index] },
     };
   });
 }
 
-const { entry, headings, tocData, isLearn } = Astro.props;
+type Props = {
+  entry: CollectionEntry<typeof language>;
+  headings: MarkdownHeading[];
+};
+
+const { entry, headings } = Astro.props;
 
 const { Content } = await render(entry);
 ---
@@ -42,8 +51,8 @@ const { Content } = await render(entry);
   slug={entry.id}
   headings={headings}
   TableOfContentData={tocData}
-  isLearn={isLearn}
-  lang="de"
+  isLearn="true"
+  lang={language}
 >
   {Content ? <Content /> : "Loading content..."}
 </MarkdownLayout>
