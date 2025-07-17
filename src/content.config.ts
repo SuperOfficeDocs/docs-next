@@ -25,6 +25,7 @@ const enDocs = defineCollection({
       "!**/includes/**",       // Exclude any path that includes a folder named "includes"
       "!api/reference/**/*.md",               // Exclude api folder
       "!api/tutorials/minimal-csharp-app", //Temporary excluded until corrupted images problem is resolved
+      "!automation/**/reference/**",
     ],
     base: "external-content/superoffice-docs/docs/en",
   }),
@@ -82,8 +83,9 @@ const externalLandingPages = defineCollection({
   loader: glob({
     pattern: apiOnly ? [""] : [
       "contribution/**/*.yml",
+      "superoffice-docs/docs/**/*.yml",
       "!**/toc.yml",
-      // Add in ext superoffice-docs later
+      "!**/reference/**",
     ],
     base: "./external-content",
   }),
@@ -101,7 +103,7 @@ const contribution = defineCollection({
   schema: DocsSchema,
 });
 
-//  Export a single `collections` object to register collections
+// Export a single `collections` object to register collections
 export const collections = {
   "release-notes": releaseNotes,
   en: enDocs,
