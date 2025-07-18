@@ -9,14 +9,12 @@ type TableOfContentListProps = {
   inputItems: TocItem[];
   slug: string;
   isMainTable: boolean;
-  isWebApiTOC: boolean;
 };
 
 export default function TableOfContentList({
   inputItems,
   slug,
   isMainTable,
-  isWebApiTOC,
 }: TableOfContentListProps) {
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
   const [showToC, setShowToC] = useState<boolean>(false);
@@ -27,9 +25,9 @@ export default function TableOfContentList({
     setCurrentPath(window.location.pathname)
   });
 
-  useEffect( () => {
+  useEffect(() => {
     setCurrentPath(window.location.pathname);
-  },[window.location.pathname])
+  }, [window.location.pathname])
 
   const toggleItem = (index: number) => {
     setOpenIndexes((prev) =>
@@ -38,9 +36,13 @@ export default function TableOfContentList({
   };
 
   const generatePath = (item: TocItem): string => {
-    if (isWebApiTOC) {
-      return `${base}/en/api/reference/webapi/${item.uid}`;
+    // uid is only defined in toc files with YamlMime:TableOfContent
+    if (item.uid != undefined) {
+      const currentPathExceptLastTerm = currentPath.substring(0, currentPath.lastIndexOf("/"))
+      return `${ currentPathExceptLastTerm}/${item.uid}`;
     }
+
+    // Use topicHref if available, otherwise fall back to href.
     const rawPath = item.topicHref || item.href;
     if (!rawPath) {
       console.warn(`[generatePath] Missing href/topicHref for TOC item:`, item);
@@ -50,10 +52,6 @@ export default function TableOfContentList({
   };
 
   const generateSlug = (item: TocItem) => {
-    if (isWebApiTOC) {
-      return slug;
-    }
-
     return item.topicHref ? `${slug}/${item.topicHref.slice(0, -9)}` : slug;
   };
 
@@ -62,7 +60,9 @@ export default function TableOfContentList({
   };
 
   return (
-    <div className={`w-full overflow-auto ${isMainTable && "md:mx-3 xl:mx-10 md:h-[78vh]"} ${!isMainTable && "pl-4 md:pl-3"}`}>
+    <div className={`w-full overflow-auto ${isMainTable ? "md:mx-3 xl:mx-10 md:h-[78vh]" : "pl-4 md:pl-3"}`}>
+
+      {/* Show/Hide ToC Button. Only visible on mobile view */}
       <div
         onClick={() => {
           setShowToC(!showToC);
@@ -73,23 +73,29 @@ export default function TableOfContentList({
           Show / Hide Table of Content
         </p>
       </div>
-      
+
       {/* ToC outer div */}
       <div
         className={`w-full max-w-md mx-auto rounded-md  ${isMainTable && "h-fit overflow-y-auto overflow-x-hidden"} 
         lg:block ${isMainTable && (showToC ? "block" : "hidden")}`}
       >
-        <div
-          className={`px-3 pt-3 w-full flex justify-center ${!isMainTable && "hidden"} `}
-        >
-          {/* Input for ToC Search */}
-          <input
-            className="rounded-md h-8 w-full focus:outline-none px-4"
-            onChange={handleSearchTermChange}
-            value={searchTerm}
-            placeholder="Enter here to filter"
-          />
-        </div>
+
+        {/* Input box ToC Search */}
+        {
+          isMainTable && (
+            <div
+              className={`px-3 pt-3 w-full flex justify-center`}
+            >
+
+              <input
+                className="rounded-md h-8 w-full focus:outline-none px-4"
+                onChange={handleSearchTermChange}
+                value={searchTerm}
+                placeholder="Enter here to filter"
+              />
+            </div>
+          )
+        }
 
         {/* ToC items */}
         {inputItems?.map((item, index) => (
@@ -105,11 +111,10 @@ export default function TableOfContentList({
 
                 <a
                   href={generatePath(item)}
-                  className={`w-full break-words text-wrap overflow-hidden ${
-                    generatePath(item) == currentPath
-                      ? "text-superOfficeGreen font-semibold"
-                      : ""
-                  }`}
+                  className={`w-full break-words text-wrap overflow-hidden ${generatePath(item) == currentPath
+                    ? "text-superOfficeGreen font-semibold"
+                    : ""
+                    }`}
                 >
                   {item.name}
                 </a>
@@ -118,12 +123,14 @@ export default function TableOfContentList({
 
             {openIndexes.includes(index) && item.items && (
               <div className="w-full">
+
+                {/* Recursively call TableOfContentList for exapnded sub items */}
                 <TableOfContentList
                   slug={generateSlug(item)}
                   inputItems={item.items}
                   isMainTable={false}
-                  isWebApiTOC={isWebApiTOC}
                 />
+
               </div>
             )}
           </div>
