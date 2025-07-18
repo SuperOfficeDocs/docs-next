@@ -77,11 +77,7 @@ const releaseNotes = defineCollection({
 
 const tocFiles = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [
-      "superoffice-docs/docs/en/api/**/toc.yml",
-      "superoffice-docs/docs/en/api/toc.yml",
-    ] : [
-      "superoffice-docs/docs/en/!(api)/**/toc.yml",
+    pattern: [
       "superoffice-docs/docs/**/toc.yml",
       "superoffice-docs/release-notes/**/toc.yml",
       "contribution/**/toc.yml",
