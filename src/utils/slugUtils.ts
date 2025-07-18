@@ -15,9 +15,15 @@ export function stripFilePathAndExtension(filePath: string, collection: string, 
 /**
  * Removes a known file extension (.md, .mdx, .yml, .yaml, .html) from a path.
  * Logs a warning if an unknown or unsupported extension is detected.
+ * If there's no extension at all, just return as-is.
  */
 export function trimFileExtension(filename: string): string {
+  const extPattern = /\.[^.]+$/;
   const knownExtPattern = /\.(mdx?|ya?ml|html)$/i;
+
+  if (!extPattern.test(filename)) {
+    return filename;
+  }
 
   if (!knownExtPattern.test(filename)) {
     console.warn(`[trimFileExtension] Unknown or missing file extension in: "${filename}"`);
@@ -52,4 +58,19 @@ export function resolveHref(url: string, baseSlug?: string): string {
   }
 
   return baseSlug ? `${baseSlug}/${trimmed}` : trimmed;
+}
+
+/**
+ * Extracts the clean slug from a full file ID by removing the base path and file extension.
+ *
+ * Useful for generating route parameters for category and subcategory pages from landing entry IDs, such as converting
+ * 'learn/administration.yml' to 'administration', or returning 'index' if the file matches the base path.
+ *
+ * @param id - The full landing entry ID, for example, 'en/learn/index.yml'.
+ * @param basePath - The root collection or folder prefix to remove from the ID.
+ * @returns A clean slug string, such as 'foo' or 'index'.
+ */
+export function extractCategorySlug(id: string, basePath: string): string {
+  const rawSlug = id === basePath ? "" : id.replace(`${basePath}/`, "");
+  return rawSlug ? trimFileExtension(rawSlug) : "index";
 }

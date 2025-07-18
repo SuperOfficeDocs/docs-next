@@ -1,6 +1,7 @@
 import type { CollectionEntry } from "astro:content";
 import type { TocData } from "~/types/TableOfContentTypes";
 import { trimFileExtension } from "~/utils/slugUtils";
+import path from "path";
 
 function isNestedTocFile(href: string): boolean {
   const fileName = href.split("/").pop()?.toLowerCase();
@@ -47,16 +48,17 @@ export async function getTableOfContentsFromCollection(
   const visited = new Set<string>();
 
   // Recursively resolve nested toc.yml references
-  function resolveItems(items: any[]): any[] {
+  function resolveItems(items: any[], currentDir = rootCollectionName): any[] {
     for (const item of items) {
       const href = item.href;
       if (href && isNestedTocFile(href)) {
-        const subId = normalizePath(`${rootCollectionName}/${href}`);
+        const resolved = path.posix.normalize(path.posix.join(currentDir, href));
+        const subId = normalizePath(resolved);
         if (tocMap.has(subId) && !visited.has(subId)) {
           visited.add(subId);
           const subData = tocMap.get(subId);
           if (subData?.items) {
-            item.items = resolveItems(subData.items);
+            item.items = resolveItems(subData.items, path.posix.dirname(resolved));
           }
         }
       }

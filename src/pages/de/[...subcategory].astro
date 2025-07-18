@@ -1,0 +1,52 @@
+---
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
+import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
+import { extractCategorySlug } from "~/utils/slugUtils";
+import { getLocalizedToc } from "~/utils/getLocalizedToc";
+import SubCategoryLandingLayout from "@layouts/SubCategoryLandingLayout.astro";
+
+type SubCategoryDataType = Extract<
+  CollectionEntry<"cats">["data"],
+  { YamlMime: "SubCategory" }
+>;
+
+const language = "de" as const;
+const collectionPath = `superoffice-docs/docs/${language}` as const;
+
+// Computed tocData once at module load (build-time) and reuse it for all pages.
+// A single TOC for all DE pages, rooted at "learn".
+const tocEntries = await getLocalizedToc(language);
+const ToCData = await getTableOfContentsFromCollection(tocEntries, `${collectionPath}/learn`);
+
+// Dynamically generate one path per SubCategory YAML this folder:
+export async function getStaticPaths() {
+  const collectionPath = `superoffice-docs/docs/de` as const;
+  const yamlEntries = await getCollection("cats", (entry) =>
+    entry.data.yamlMime === "SubCategory" &&
+    entry.id.startsWith(collectionPath)
+  );
+
+  return yamlEntries.map((entry) => {
+    const slug = extractCategorySlug(entry.id, collectionPath);
+    return { params: { subcategory: slug } };
+  });
+}
+
+// Load the matching YAML for each slug:
+const { subcategory } = Astro.params;
+
+const filePath = `${collectionPath}/${subcategory}`;
+
+const entry = await getEntry("cats", filePath);
+if (!entry) {
+  throw new Error(`Subcategory not found: ${filePath}`);
+}
+const CategoryData = entry.data as SubCategoryDataType;
+---
+
+<SubCategoryLandingLayout
+  lang={language}
+  data={CategoryData}
+  ToCData={ToCData}
+  baseSlug={filePath}
+/>

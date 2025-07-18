@@ -7,16 +7,6 @@ import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema } from "~/content.schem
 const apiOnly = process.env.API_ONLY === 'true';
 
 
-const releaseNotes = defineCollection({
-  loader: glob({ pattern: apiOnly ? [""] : [
-      "**/*.md",               // Include all .md files recursively
-      "!**/includes/**",       // Exclude any path that includes a folder named "includes"
-    ], 
-    base: "external-content/superoffice-docs/release-notes" 
-  }),
-  schema: DocsSchema,
-});
-
 const enDocs = defineCollection({
   loader: glob({
     pattern: apiOnly ? [""] : [
@@ -25,6 +15,7 @@ const enDocs = defineCollection({
       "!**/includes/**",       // Exclude any path that includes a folder named "includes"
       "!api/reference/**/*.md",               // Exclude api folder
       "!api/tutorials/minimal-csharp-app", //Temporary excluded until corrupted images problem is resolved
+      "!automation/**/reference/**",
     ],
     base: "external-content/superoffice-docs/docs/en",
   }),
@@ -47,6 +38,10 @@ const referenceDocs = defineCollection({
   schema: DocsSchema,
 })
 
+const WebAPI = defineCollection({
+  loader: glob({ pattern: apiOnly ? ["**/!(*toc).yml"] : [""], base: "external-content/superoffice-docs/docs/en/api/reference/webapi" }),
+});
+
 const deDocs = defineCollection({
   loader: glob({ pattern: apiOnly ? [""] : [
       "**/*.md",               // Include all .md files recursively
@@ -58,8 +53,26 @@ const deDocs = defineCollection({
   schema: DocsSchema,
 });
 
-const WebAPI = defineCollection({
-  loader: glob({ pattern: apiOnly ? ["**/!(*toc).yml"] : [""], base: "external-content/superoffice-docs/docs/en/api/reference/webapi" }),
+const contribution = defineCollection({
+  loader: glob({
+    pattern: apiOnly ? [""] : [
+      "**/*.md",
+      "!**/includes/**",
+      "!CODE_OF_CONDUCT.md",
+      "!README.md",],
+    base: "./external-content/contribution",
+  }),
+  schema: DocsSchema,
+});
+
+const releaseNotes = defineCollection({
+  loader: glob({ pattern: apiOnly ? [""] : [
+      "**/*.md",               // Include all .md files recursively
+      "!**/includes/**",       // Exclude any path that includes a folder named "includes"
+    ], 
+    base: "external-content/superoffice-docs/release-notes" 
+  }),
+  schema: DocsSchema,
 });
 
 const tocFiles = defineCollection({
@@ -78,30 +91,20 @@ const tocFiles = defineCollection({
   schema: TocYamlSchema,
 });
 
-const externalLandingPages = defineCollection({
+const landingPages = defineCollection({
   loader: glob({
     pattern: apiOnly ? [""] : [
       "contribution/**/*.yml",
+      "superoffice-docs/docs/**/*.yml",
       "!**/toc.yml",
-      // Add in ext superoffice-docs later
+      "!**/reference/**",
     ],
     base: "./external-content",
   }),
   schema: SimplifiedYamlSchema,
 });
 
-const contribution = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? [""] : [
-      "**/*.md",
-      "!**/includes/**",
-      "!CODE_OF_CONDUCT.md"],
-    base: "./external-content/contribution",
-  }),
-  schema: DocsSchema,
-});
-
-//  Export a single `collections` object to register collections
+// Export a single `collections` object to register collections
 export const collections = {
   "release-notes": releaseNotes,
   en: enDocs,
@@ -109,6 +112,6 @@ export const collections = {
   "reference-docs" : referenceDocs,
   webapi: WebAPI,
   contribute: contribution,
-  external: externalLandingPages,
+  cats: landingPages,
   toc: tocFiles,
 };
