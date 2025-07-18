@@ -77,6 +77,10 @@ export function extractCategorySlug(id: string, basePath: string): string {
   return rawSlug ? trimFileExtension(rawSlug) : "index";
 }
 
+/**
+ * Used by the `astro-redirect-from` package to generate a redirect slug from a file path.
+ * It determines the collection based on the file path and returns a clean slug.
+ */
 export function getRedirectFromSlug(filePath: string) {
   let collection = "superoffice-docs/docs/en"; // default
 
