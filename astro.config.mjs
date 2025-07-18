@@ -113,6 +113,7 @@ export default defineConfig({
   build: {
     format: "preserve",
   },
+  logLevel: process.env.CI ? 'error' : 'info',
   site: "https://superofficedocs.github.io",
   base: "/docs-next",
   trailingSlash: "never",
