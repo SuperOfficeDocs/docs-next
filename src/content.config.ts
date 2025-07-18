@@ -93,7 +93,7 @@ const tocFiles = defineCollection({
 
 const landingPages = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [""] : [
+    pattern: [
       "contribution/**/*.yml",
       "superoffice-docs/docs/**/*.yml",
       "!**/toc.yml",
