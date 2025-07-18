@@ -2,86 +2,45 @@
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema } from "~/content.schema"
+import { getPattern } from "~/buildSplitPattern"
 
-// apiOnly variable is used in the split build to isolate docs/en/api folder content
-const apiOnly = process.env.API_ONLY === 'true';
-
+const buildSplit = process.env.BUILD_SPLIT ?? "full";
 
 const enDocs = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [""] : [
-      "**/*.md",               // Include all .md files recursively
-      "!*.md",                 // Exclude .md files in the root (docs/en/*.md)
-      "!**/includes/**",       // Exclude any path that includes a folder named "includes"
-      "!api/reference/**/*.md",               // Exclude api folder
-      "!api/tutorials/minimal-csharp-app", //Temporary excluded until corrupted images problem is resolved
-      "!automation/**/reference/**",
-    ],
+    pattern: getPattern(buildSplit, "en"),
     base: "external-content/superoffice-docs/docs/en",
+  }),
+  schema: DocsSchema,
+});
+
+const deDocs = defineCollection({
+  loader: glob({
+    pattern: getPattern(buildSplit, "de"),
+    base: "external-content/superoffice-docs/docs/de"
   }),
   schema: DocsSchema,
 });
 
 const referenceDocs = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [
-      "**/*.md",               // Include all .md files recursively
-      "!**/includes/**",       // Exclude any path that includes a folder named "includes"
-      
-      
-      "!soap",   // Exclude .md files in the root (external-content/*.md)
-      "!restful",   // Exclude files 
-      "!netserver",   // Exclude files
-    ] : [""],
+    pattern: getPattern(buildSplit, "reference-docs"),
     base: "external-content/superoffice-docs/docs/en/api/reference",
+
   }),
   schema: DocsSchema,
 })
 
 const WebAPI = defineCollection({
-  loader: glob({ pattern: apiOnly ? ["**/!(*toc).yml"] : [""], base: "external-content/superoffice-docs/docs/en/api/reference/webapi" }),
-});
-
-const deDocs = defineCollection({
-  loader: glob({ pattern: apiOnly ? [""] : [
-      "**/*.md",               // Include all .md files recursively
-      "!*.md",                 // Exclude .md files in the root (external-content/*.md)
-      "!**/includes/**",       // Exclude any path that includes a folder named "includes"
-    ], 
-    base: "external-content/superoffice-docs/docs/de" 
-  }),
-  schema: DocsSchema,
-});
-
-const contribution = defineCollection({
   loader: glob({
-    pattern: [
-      "**/*.md",
-      "!**/includes/**",
-      "!CODE_OF_CONDUCT.md",
-      "!README.md",],
-    base: "./external-content/contribution",
+    pattern: getPattern(buildSplit, "webapi"),
+    base: "external-content/superoffice-docs/docs/en/api/reference/webapi"
   }),
-  schema: DocsSchema,
-});
-
-const releaseNotes = defineCollection({
-  loader: glob({ pattern: apiOnly ? [""] : [
-      "**/*.md",               // Include all .md files recursively
-      "!**/includes/**",       // Exclude any path that includes a folder named "includes"
-    ], 
-    base: "external-content/superoffice-docs/release-notes" 
-  }),
-  schema: DocsSchema,
 });
 
 const tocFiles = defineCollection({
   loader: glob({
-    pattern: [
-      "superoffice-docs/docs/**/toc.yml",
-      "superoffice-docs/release-notes/**/toc.yml",
-      "contribution/**/toc.yml",
-    ],
+    pattern: getPattern(buildSplit, "toc"),
     base: "./external-content",
   }),
   schema: TocYamlSchema,
@@ -89,25 +48,37 @@ const tocFiles = defineCollection({
 
 const landingPages = defineCollection({
   loader: glob({
-    pattern: [
-      "contribution/**/*.yml",
-      "superoffice-docs/docs/**/*.yml",
-      "!**/toc.yml",
-      "!**/reference/**",
-    ],
+    pattern: getPattern(buildSplit, "cats"),
     base: "./external-content",
   }),
   schema: SimplifiedYamlSchema,
 });
+
+const contribute = defineCollection({
+  loader: glob({
+    pattern: getPattern(buildSplit, "contribute"),
+    base: "./external-content/contribution",
+  }),
+  schema: DocsSchema,
+});
+
+const releaseNotes = defineCollection({
+  loader: glob({
+    pattern: getPattern(buildSplit, "release-notes"),
+    base: "external-content/superoffice-docs/release-notes"
+  }),
+  schema: DocsSchema,
+});
+
 
 // Export a single `collections` object to register collections
 export const collections = {
   "release-notes": releaseNotes,
   en: enDocs,
   de: deDocs,
-  "reference-docs" : referenceDocs,
+  "reference-docs": referenceDocs,
   webapi: WebAPI,
-  contribute: contribution,
+  contribute: contribute,
   cats: landingPages,
   toc: tocFiles,
 };
