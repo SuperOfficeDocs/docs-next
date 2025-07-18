@@ -18,9 +18,7 @@ const {
 // Appends specific category of the page for langauge content collections (For every collection except for release-notes collection)
 var TOCPath;
 if (collection == "release-notes") {
-  TOCPath = collection;
-} else if (collection == "api-docs") {
-  TOCPath = lang.concat("/api");
+  TOCPath = "release-notes";
 } else {
   TOCPath = lang.concat(`/${isLearn ? "learn" : slug.split("/")[0]}`);
 }

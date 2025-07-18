@@ -22,7 +22,7 @@ const deDocs = defineCollection({
   schema: DocsSchema,
 });
 
-const apiDocs = defineCollection({
+const referenceDocs = defineCollection({
   loader: glob({
     pattern: getPattern(buildSplit, "api-docs"),
     base: "external-content/superoffice-docs/docs/en/api",
@@ -75,7 +75,7 @@ export const collections = {
   "release-notes": releaseNotes,
   en: enDocs,
   de: deDocs,
-  "api-docs": apiDocs,
+  "reference-docs": referenceDocs,
   webapi: WebAPI,
   contribute: contribute,
   external: externalLandingPages,
