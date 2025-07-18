@@ -5,6 +5,7 @@ import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema } from "~/content.schem
 import { getPattern } from "~/buildSplitPattern"
 
 const buildSplit = process.env.BUILD_SPLIT ?? "full";
+
 const enDocs = defineCollection({
   loader: glob({
     pattern: getPattern(buildSplit, "en"),
@@ -44,9 +45,10 @@ const tocFiles = defineCollection({
   schema: TocYamlSchema,
 });
 
-const externalLandingPages = defineCollection({
+const landingPages = defineCollection({
   loader: glob({
     pattern: getPattern(buildSplit, "external"),
+
     base: "./external-content",
   }),
   schema: SimplifiedYamlSchema,
@@ -69,7 +71,7 @@ const releaseNotes = defineCollection({
 });
 
 
-//  Export a single `collections` object to register collections
+// Export a single `collections` object to register collections
 export const collections = {
   "release-notes": releaseNotes,
   en: enDocs,
@@ -77,6 +79,6 @@ export const collections = {
   "reference-docs": referenceDocs,
   webapi: WebAPI,
   contribute: contribute,
-  external: externalLandingPages,
+  cats: landingPages,
   toc: tocFiles,
 };

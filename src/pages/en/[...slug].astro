@@ -6,7 +6,9 @@ import { stripFilePathAndExtension } from "~/utils/slugUtils";
 
 //generating static paths from en collection
 export async function getStaticPaths() {
-  const docEntries = await getCollection("en");
+  const docEntries = (await getCollection("en", ({ data }) => {
+    return !data.redirect_url;
+  }));
 
   const headings = await Promise.all(
     docEntries.map(async (post) => {
