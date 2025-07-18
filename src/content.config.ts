@@ -26,6 +26,7 @@ const referenceDocs = defineCollection({
   loader: glob({
     pattern: getPattern(buildSplit, "reference-docs"),
     base: "external-content/superoffice-docs/docs/en/api/reference",
+
   }),
   schema: DocsSchema,
 })
@@ -48,7 +49,6 @@ const tocFiles = defineCollection({
 const landingPages = defineCollection({
   loader: glob({
     pattern: getPattern(buildSplit, "external"),
-
     base: "./external-content",
   }),
   schema: SimplifiedYamlSchema,
