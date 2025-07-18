@@ -5,7 +5,6 @@ import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema } from "~/content.schem
 import { getPattern } from "~/buildSplitPattern"
 
 const buildSplit = process.env.BUILD_SPLIT ?? "full";
-console.log(buildSplit);
 const enDocs = defineCollection({
   loader: glob({
     pattern: getPattern(buildSplit, "en"),
@@ -24,8 +23,8 @@ const deDocs = defineCollection({
 
 const referenceDocs = defineCollection({
   loader: glob({
-    pattern: getPattern(buildSplit, "api-docs"),
-    base: "external-content/superoffice-docs/docs/en/api",
+    pattern: getPattern(buildSplit, "reference-docs"),
+    base: "external-content/superoffice-docs/docs/en/api/reference",
   }),
   schema: DocsSchema,
 })

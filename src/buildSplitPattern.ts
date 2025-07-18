@@ -1,5 +1,5 @@
 type splitType = "full" | "split1" | "split2";
-type CollectionTypes = "release-notes" | "en" | "de" | "api-docs" | "webapi" | "contribute" | "external" | "toc";
+type CollectionTypes = "release-notes" | "en" | "de" | "reference-docs" | "webapi" | "contribute" | "external" | "toc";
 type PatternMap = {
     [variant in splitType]: {
         [collection in CollectionTypes]?: string | string[];
@@ -24,20 +24,19 @@ export const patternMap: PatternMap = {
             "**/*.md",               // Include all .md files in en
             "!*.md",                 // Exclude .md files in the root (docs/en/*.md)
             "!**/includes/**",       // Exclude any path that includes a folder named "includes"
-            "!api/**/*.md",          // Exclude api folder
+            "!api/reference/**/*.md",          // Exclude api folder
+            "!api/tutorials/minimal-csharp-app", // Temporary excluded until corrupted images problem is resolved
         ],
         "de": [
             "**/*.md",               // Include all .md files in de
             "!**/includes/**",       // Exclude any path that includes a folder named "includes"
         ],
-        "api-docs": [
+        "reference-docs": [
             "**/*.md",               // Include all .md files in en/api
             "!**/includes/**",       // Exclude any path that includes a folder named "includes"
-
-            "!tutorials/minimal-csharp-app", // Temporary excluded until corrupted images problem is resolved
-            "!reference/soap",               // Exclude files in soap
-            "!reference/restful",            // Exclude files in restful
-            "!reference/netserver",          // Exclude files in netserver
+            "!soap",               // Exclude files in soap
+            "!restful",            // Exclude files in restful
+            "!netserver",          // Exclude files in netserver
         ],
         "webapi": [
             "**/!(*toc).yml"        // Include all .yml files in webapi
@@ -67,13 +66,14 @@ export const patternMap: PatternMap = {
             "**/*.md",               // Include all .md files in en
             "!*.md",                 // Exclude .md files in the root (docs/en/*.md)
             "!**/includes/**",       // Exclude any path that includes a folder named "includes"
-            "!api/**/*.md",          // Exclude api folder
+            "!api/reference/**/*.md",          // Exclude api folder
+            "!api/tutorials/minimal-csharp-app", // Temporary excluded until corrupted images problem is resolved
         ],
         "de": [
             "**/*.md",               // Include all .md files in de
             "!**/includes/**",       // Exclude any path that includes a folder named "includes"
         ],
-        "api-docs": [""],
+        "reference-docs": [""],
         "webapi": [""],
         "toc": [
             "!superoffice-docs/docs/en/api",
@@ -96,14 +96,13 @@ export const patternMap: PatternMap = {
         "release-notes": [""],
         "en": [""],
         "de": [""],
-        "api-docs": [
+        "reference-docs": [
             "**/*.md",               // Include all .md files in en/api
             "!**/includes/**",       // Exclude any path that includes a folder named "includes"
 
-            "!tutorials/minimal-csharp-app", // Temporary excluded until corrupted images problem is resolved
-            "!reference/soap",               // Exclude files in soap
-            "!reference/restful",            // Exclude files in restful
-            "!reference/netserver",          // Exclude files in netserver
+            "!soap",               // Exclude files in soap
+            "!restful",            // Exclude files in restful
+            "!netserver",          // Exclude files in netserver
         ],
         "webapi": ["**/!(*toc).yml"],
         "toc": [
