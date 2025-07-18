@@ -6,7 +6,7 @@ import { stripFilePathAndExtension } from "~/utils/slugUtils";
 
 //generating static paths from en collection
 export async function getStaticPaths() {
-  const docEntries = await getCollection("api-docs");
+  const docEntries = await getCollection("reference-docs");
 
   const headings = await Promise.all(
     docEntries.map(async (post) => {
@@ -15,22 +15,15 @@ export async function getStaticPaths() {
     }),
   );
   return docEntries.map((entry, index) => {
-    //Remove .md extension AND filepath prefix (ex:superoffice-docs/docs/en/api) from filepath
+    //Remove .md extension AND filepath prefix (ex:superoffice-docs/docs/en/api/reference) from filepath
     const generatedSlug = stripFilePathAndExtension(
       entry.filePath!,
-      `superoffice-docs/docs/en/api`,
+      `superoffice-docs/docs/en/api/reference`,
       true,
     );
     
-    const category = generatedSlug?.split("/")[0];
-
-    function getTocPath(): string{
-      if (category == "reference") return `/${generatedSlug.substring(0, generatedSlug.lastIndexOf("/"))}`;
-      return ""
-    }
-
-    const tocPath = getTocPath();
-    const tocData = getTableOfContents(`docs/en/api${tocPath}`);
+    const tocPath = generatedSlug?.split("/")[0];
+    const tocData = getTableOfContents(`docs/en/api/reference/${tocPath}`);
 
     return {
       params: { slug: `${generatedSlug}` },
@@ -46,7 +39,7 @@ const { Content } = await render(entry);
 
 <MarkdownLayout
   frontmatter={entry.data}
-  collection={"api-docs"}
+  collection={"reference-docs"}
   slug={entry.id}
   filePath={entry.filePath}
   headings={headings}
