@@ -55,7 +55,7 @@ const deDocs = defineCollection({
 
 const contribution = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [""] : [
+    pattern: [
       "**/*.md",
       "!**/includes/**",
       "!CODE_OF_CONDUCT.md",
