@@ -35,3 +35,4 @@ e2e-tests/playwright/.cache/
 # External content (other GitHub repos)
 
 external-content/
+public/downloads/
