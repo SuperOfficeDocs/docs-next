@@ -31,6 +31,25 @@ export default defineConfig({
       ],
     ],
     // rehypeSanitize, rehypeSlug
+    shikiConfig: {
+      theme: "houston",
+      wrap: true,
+      langAlias: {
+        // Map our special cases
+        crmscript: "javascript",
+        dotnetcli: "console",
+        http_: "http",
+        https: "http",
+        serilog: "log",
+        vbnet: "vb",
+        // Casing aliases
+        C: "c",
+        Javascript: "javascript",
+        JSON: "json",
+        SQL: "sql",
+        XML: "xml",
+      },
+    },
   },
   vite: {
     plugins: [yaml()]
