@@ -48,7 +48,7 @@ const tocFiles = defineCollection({
 
 const landingPages = defineCollection({
   loader: glob({
-    pattern: getPattern(buildSplit, "external"),
+    pattern: getPattern(buildSplit, "cats"),
     base: "./external-content",
   }),
   schema: SimplifiedYamlSchema,

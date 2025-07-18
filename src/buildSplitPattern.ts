@@ -1,5 +1,5 @@
 type splitType = "full" | "split1" | "split2";
-type CollectionTypes = "release-notes" | "en" | "de" | "reference-docs" | "webapi" | "contribute" | "external" | "toc";
+type CollectionTypes = "release-notes" | "en" | "de" | "reference-docs" | "webapi" | "contribute" | "cats" | "toc";
 type PatternMap = {
     [variant in splitType]: {
         [collection in CollectionTypes]?: string | string[];
@@ -9,7 +9,7 @@ type PatternMap = {
 
 /* 
 Current build split setup
-    split 1 - en (excluding api), de, release-notes, contribute, external and toc (relevent files)
+    split 1 - en (excluding api), de, release-notes, contribute, cats and toc (relevent files)
     split 2 - api-docs, webapi and relevent files from toc 
 */
 
@@ -46,15 +46,17 @@ export const patternMap: PatternMap = {
             "superoffice-docs/release-notes/**/toc.yml",    // Include all toc.yml files in release-notes
             "contribution/**/toc.yml",                      // Include all toc.yml files in contribution
         ],
-        "external": [
+        "cats": [
             "contribution/**/*.yml",
+            "superoffice-docs/docs/**/*.yml",
             "!**/toc.yml",
-            // Add in ext superoffice-docs later
+            "!**/reference/**",
         ],
         "contribute": [
             "**/*.md",
             "!**/includes/**",
-            "!CODE_OF_CONDUCT.md"
+            "!CODE_OF_CONDUCT.md",
+            "!README.md",
         ],
     },
     split1: {
@@ -76,20 +78,21 @@ export const patternMap: PatternMap = {
         "reference-docs": [""],
         "webapi": [""],
         "toc": [
-            "!superoffice-docs/docs/en/api",
-            "superoffice-docs/docs/**/toc.yml",
-            "superoffice-docs/release-notes/**/toc.yml",
-            "contribution/**/toc.yml",
-        ],
-        "external": [
+            "superoffice-docs/docs/**/toc.yml",             // Include all toc.yml files in docs
+            "superoffice-docs/release-notes/**/toc.yml",    // Include all toc.yml files in release-notes
+            "contribution/**/toc.yml",                      // Include all toc.yml files in contribution
+       ],
+        "cats": [
             "contribution/**/*.yml",
+            "superoffice-docs/docs/**/*.yml",
             "!**/toc.yml",
-            // Add in ext superoffice-docs later
+            "!**/reference/**",
         ],
         "contribute": [
             "**/*.md",
             "!**/includes/**",
-            "!CODE_OF_CONDUCT.md"
+            "!CODE_OF_CONDUCT.md",
+            "!README.md",
         ],
     },
     split2: {
@@ -106,11 +109,22 @@ export const patternMap: PatternMap = {
         ],
         "webapi": ["**/!(*toc).yml"],
         "toc": [
-            "superoffice-docs/docs/en/api/**/toc.yml",
-            "superoffice-docs/docs/en/api/toc.yml",
+            "superoffice-docs/docs/**/toc.yml",             // Include all toc.yml files in docs
+            "superoffice-docs/release-notes/**/toc.yml",    // Include all toc.yml files in release-notes
+            "contribution/**/toc.yml",                      // Include all toc.yml files in contribution
+         ],
+        "cats": [      
+            "contribution/**/*.yml",
+            "superoffice-docs/docs/**/*.yml",
+            "!**/toc.yml",
+            "!**/reference/**",
         ],
-        "external": [""],
-        "contribute": [""],
+        "contribute": [
+            "**/*.md",
+            "!**/includes/**",
+            "!CODE_OF_CONDUCT.md",
+            "!README.md",
+        ],
     }
 }
 
