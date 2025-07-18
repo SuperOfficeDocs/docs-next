@@ -118,7 +118,7 @@ jobs:
 
   # deploy job downloads artifacts from build jobs, merge them in to one directory, create search index, and deploy to github pages
   deploy:
-    needs: [build-spilt-1, build-spilt-2]
+    needs: [build-split-1, build-split-2]
     runs-on: ubuntu-latest
     environment:
       name: github-pages
