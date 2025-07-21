@@ -9,7 +9,7 @@ const language = "en" as const;
 //generating static paths from en collection
 export async function getStaticPaths() {
   const language = "en" as const;
-  const excluded = ["database", "developer-portal", "mobile", "online", "onsite"]; // Exclude specific segments
+  const excluded = ["automation", "database", "developer-portal", "mobile", "online", "onsite", "service", "ui"]; // Exclude specific segments
 
   // No redirects and not in excluded folders
   const docEntries = await getFilteredDocEntries(language, excluded);
