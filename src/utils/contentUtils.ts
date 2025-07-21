@@ -4,7 +4,9 @@ import type { MarkdownHeading } from 'astro';
 const contentRoot = 'superoffice-docs/docs';
 
 /**
- * Fetches all non-redirect entries in a language, or—if `folder` is provided—only those under that folder.
+ * Fetches all non‐redirect entries in a language, or—if `folder` is provided—only those under that folder.
+ * Special‐cased so that when `folder === "learn"`, it ignores path and instead returns only entries whose
+ * `data.uid` starts with `"help-"`.
  *
  * @param language - The Astro collection key, such as "en", "de".
  * @param folder?  - Optional sub-folder name to include, for example "database".
@@ -15,17 +17,20 @@ export async function getDocEntries<L extends keyof DataEntryMap>(
   language: L,
   folder?: string
 ): Promise<CollectionEntry<L>[]> {
-  const base = `${contentRoot}/${language}`;
   return getCollection(language, ({ id, data }) =>
     !data.redirect_url &&
-    (!folder || id.includes(`/${folder}/`))
+    (folder === "learn"
+      ? Boolean(data.uid?.startsWith("help-"))
+      : (!folder || id.includes(`/${folder}/`)))
   );
 }
 
 /**
- * Fetches all non-redirect entries in a language, omitting any that live under the named folders.
+ * Fetches all non-redirect entries in a language, omitting any that live under the named folders,
+ * and always excluding any entries whose `data.uid` starts with "help-".
+ * Assumes English learn is handled via getDocEntries.
  *
- * @param language      - The Astro collection key, such as "en", "de".
+ * @param language      - The Astro collection key (normally "en")
  * @param excludeFolders - Array of sub-folder names to skip entirely,
  *                         for example, `["database", "onsite"]`.
  * @returns A promise resolving to the filtered array of `CollectionEntry<language>`.
@@ -39,7 +44,8 @@ export async function getFilteredDocEntries<L extends keyof DataEntryMap>(
 
   return getCollection(language, ({ id, data }) =>
     !data.redirect_url &&
-    !skipRe.test(id)
+    !data.uid?.startsWith("help-") &&
+    (!skipRe || !skipRe.test(id))
   );
 }
 
