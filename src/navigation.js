@@ -94,13 +94,7 @@ export const headerData = {
         },
       ],
     },
-    // {
-    //   text: "Search",
-    //   href: "#"
-    // }
   ],
-  // actions: [{ text: 'Search', href: '#', target: '_blank' }],
-
 };
 
 export const heroItems = {
