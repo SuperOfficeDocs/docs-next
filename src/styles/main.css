@@ -114,7 +114,6 @@ h1 {
   --pagefind-ui-border-width: 1px;
   --pagefind-ui-border-radius: 0.25rem;
   --pagefind-ui-font: sans-serif;
-
   width: 100%;
 }
 
@@ -125,6 +124,10 @@ h1 {
 .pagefind-ui.red {
   --pagefind-ui-background: peachpuff;
   width: 100%;
+}
+
+.pagefind-ui__result-excerpt.svelte-j9e30 mark{
+  background-color: #FBBD9D;
 }
 
 .pagefind-ui .pagefind-ui__drawer:not(.pagefind-ui__hidden) {
