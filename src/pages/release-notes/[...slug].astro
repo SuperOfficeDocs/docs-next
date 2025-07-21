@@ -1,61 +1,39 @@
 ---
-import { getCollection, render } from "astro:content";
-import type { CollectionEntry } from "astro:content";
-import type { MarkdownHeading } from "astro";
-import MarkdownLayout from "@layouts/Markdown.astro";
-import { stripFilePathAndExtension } from "~/utils/slugUtils";
-import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
+import { getCollection } from "astro:content";
+import { stripFilePathAndExtension } from "@utils/slugUtils";
+import { getHeadings } from "@utils/contentUtils";
+import { getTocByPath } from "@utils/tocUtils";
+import MarkdownPage from "@components/MarkdownPage.astro";
 
-const collectionFullName = `superoffice-docs/release-notes`;
-const allTocEntries = await getCollection("toc");
-const tocEntries = allTocEntries.filter((entry) =>
-  entry.id.startsWith(collectionFullName)
-);
-const tocData = await getTableOfContentsFromCollection(tocEntries, collectionFullName);
+const language = "en" as const;
+
+const tocData = await getTocByPath('superoffice-docs/release-notes');
 
 // Generate static paths from release-notes collection
 export async function getStaticPaths() {
-  const collectionName = "release-notes";
-  const docEntries = (await getCollection(collectionName, ({ data }) => {
+  const collection = "release-notes";
+  const docEntries = (await getCollection(collection, ({ data }) => {
     return !data.redirect_url;
   }));
 
-  const headings = await Promise.all(
-    docEntries.map(async (post) => {
-      const data = await render(post);
-      return data.headings;
-    })
-  );
+  const headings = await getHeadings(docEntries);
 
   return docEntries.map((entry, index) => {
-
-    //Remove .md extension AND filepath prefix (ex:superoffice-docs/release-notes) from filepath
-    const generatedSlug = stripFilePathAndExtension(entry.filePath!, `superoffice-docs/${collectionName}`, true);
+    const generatedSlug = stripFilePathAndExtension(entry.filePath!, `superoffice-docs/${collection}`, true);
 
     return {
-      params: { slug: `${generatedSlug}` },
+      params: { slug: generatedSlug },
       props: { entry, headings: headings[index] },
     };
   });
 }
 
-type Props = {
-  entry: CollectionEntry<"release-notes">;
-  headings: MarkdownHeading[];
-};
-
 const { entry, headings } = Astro.props;
-
-const { Content } = await render(entry);
 ---
 
-<MarkdownLayout
-  frontmatter={entry.data}
-  collection={entry.collection}
-  slug={entry.id}
+<MarkdownPage
+  entry={entry}
   headings={headings}
-  TableOfContentData={tocData}
-  lang="en"
->
-  {Content ? <Content /> : "Loading content..."}
-</MarkdownLayout>
+  toc={tocData}
+  language={language}
+/>

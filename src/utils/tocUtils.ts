@@ -32,3 +32,17 @@ export async function getLocalizedToc(language: string) {
     const tocEntries = await getCollection('toc', (e) => e.id.startsWith(base));
     return getTableOfContentsFromCollection(tocEntries, base);
 }
+
+/**
+ * Builds a table‐of‐contents data array for any collection base path,
+ * computing once at build-time. Handles special cases.
+ *
+ * @param basePath - The full prefix, for example "superoffice-docs/release-notes", or "contribution".
+ * @returns A Promise resolving to the ToC data array for that path.
+ */
+export async function getTocByPath(path: string) {
+  const tocEntries = await getCollection('toc', (e) =>
+    e.id.startsWith(path)
+  );
+  return getTableOfContentsFromCollection(tocEntries, path);
+}

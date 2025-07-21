@@ -1,0 +1,28 @@
+---
+import { render, type CollectionEntry, type DataEntryMap } from 'astro:content';
+import type { MarkdownHeading } from 'astro';
+import MarkdownLayout from '@layouts/Markdown.astro';
+
+export interface Props {
+  /** Accept an entry from *any* collection our site defines */
+  entry: CollectionEntry<keyof DataEntryMap>;
+  headings: MarkdownHeading[];
+  toc: unknown;
+  isLearn?: boolean;
+  language: string;
+}
+
+const { entry, headings, toc, isLearn = false, language } = Astro.props;
+const { Content } = await render(entry);
+---
+<MarkdownLayout
+  frontmatter={entry.data}
+  collection={entry.collection}
+  slug={entry.id}
+  headings={headings}
+  TableOfContentData={toc}
+  isLearn={isLearn.toString()}
+  lang={language}
+>
+  {Content && <Content />}
+</MarkdownLayout>

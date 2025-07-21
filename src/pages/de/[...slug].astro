@@ -1,10 +1,8 @@
 ---
-import { render, type CollectionEntry } from "astro:content";
-import type { MarkdownHeading } from "astro";
 import { getHeadings, getDocEntries } from "@utils/contentUtils";
 import { getLocalizedToc } from "@utils/tocUtils";
 import { getContentSlug } from "@utils/slugUtils";
-import MarkdownLayout from "@layouts/Markdown.astro";
+import MarkdownPage from "@components/MarkdownPage.astro";
 
 const language = "de" as const;
 
@@ -28,24 +26,13 @@ export async function getStaticPaths() {
   });
 }
 
-type Props = {
-  entry: CollectionEntry<typeof language>;
-  headings: MarkdownHeading[];
-};
-
 const { entry, headings } = Astro.props;
-
-const { Content } = await render(entry);
 ---
 
-<MarkdownLayout
-  frontmatter={entry.data}
-  collection={entry.collection}
-  slug={entry.id}
+<MarkdownPage
+  entry={entry}
   headings={headings}
-  TableOfContentData={tocData}
-  isLearn="true"
-  lang={language}
->
-  {Content ? <Content /> : "Loading content..."}
-</MarkdownLayout>
+  toc={tocData}
+  language={language}
+  isLearn={true}
+/>
