@@ -12,26 +12,14 @@ interface Link {
   href?: string;
   ariaLabel?: string;
   icon?: string;
-}
-
-interface MenuLink extends Link {
-  links?: Array<MenuLink>;
+  links?: Link[];
 }
 
 export interface Props {
-  id?: string;
-  links?: Array<MenuLink>;
-  isFullWidth?: boolean;
-  position?: string;
+  links?: Link[];
 }
 
-const {
-  id = "header",
-  links = [],
-  isFullWidth = false,
-  position = "center",
-} = Astro.props;
-
+const { links = [] } = Astro.props;
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 ---
 
@@ -39,30 +27,15 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   class:list={[
     "z-40 flex-none bg-white mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out",
   ]}
-  {...id ? { id } : {}}
+  id="header"
 >
   <div
     class:list={[
-      "relative text-default py-2 px-5 md:py-1 md:pl-3 lg:pl-10 mx-auto w-full ",
-      {
-        "md:flex md:justify-between": position !== "center",
-      },
-      {
-        "flex flex-col md:flex-row md:justify-between md:grid-cols-6 md:items-center":
-          position === "center",
-      },
-      {
-        "max-w-9xl": !isFullWidth,
-      },
+      "relative w-full text-default mx-auto py-2 xl:px-5  flex flex-col lg:justify-between xl:flex-row xl:items-center",
     ]}
   >
     <!-- Logo -->
-    <div
-      class:list={[
-        { "mr-auto": position === "right" },
-        "md:col-span-1 flex justify-between",
-      ]}
-    >
+    <div class="flex justify-between md:pl-5">
       <a class="flex items-start" href=`${base}`>
         <span class="">
           <img id="logo" class="svg" src={logo.src} alt={"SuperOffice"} />
@@ -73,13 +46,10 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
     <!-- Nav -->
     <nav
-      class="text-sm md:text-base md:col-span-5 items-center md:mx-2 lg:mx-5 w-full md:w-fit"
+      class="text-sm lg:text-base items-center md:ml-auto md:mr-3 md:mt-3 w-full md:w-fit"
       aria-label="Main"
     >
-      <div
-        class="hidden md:flex md:justify-self-end md:h-10"
-        id="primaryNav"
-      >
+      <div class="hidden md:flex md:justify-self-end md:h-10" id="primaryNav">
         <ul
           class="font-medium w-full py-4 md:py-0 text-left flex flex-col md:flex-row md:self-center md:w-auto md:text-base md:text-[0.9375rem] tracking-[0.01rem] md:justify-center"
         >
@@ -88,7 +58,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               <li
                 class:list={[
                   links?.length ? "dropdown" : "",
-                  "py-1 md:py-0 md:px-2 lg:px-4 md:content-center w-full md:w-fit",
+                  "py-1 md:py-0 lg:px-4 md:content-center w-full md:w-fit",
                   id != 5 ? "md:border-r md:border-black" : "",
                 ]}
               >
@@ -96,7 +66,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                   <>
                     <button
                       type="button"
-                      class="hover:text-link rounded px-4 py-1 flex items-center text-sm md:text-base"
+                      class="hover:text-link rounded px-4 py-1 flex items-center text-xs lg:text-base"
                     >
                       {text}
                       <Icon
@@ -110,7 +80,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                         <li>
                           <a
                             class:list={[
-                              "text-sm md:text-sm md:hover:bg-gray-100 md:hover:border-l-4 md:hover:border-superOfficeGreen hover:text-link py-1.5 md:py-2 px-5 block whitespace-no-wrap ",
+                              "text-xs lg:text-sm md:hover:bg-gray-100 md:hover:border-l-4 md:hover:border-superOfficeGreen hover:text-link py-1.5 md:py-2 px-5 block whitespace-no-wrap ",
                               { "aw-link-active": href2 === currentPath },
                             ]}
                             href={base + href2}
@@ -124,7 +94,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 ) : (
                   <a
                     class:list={[
-                      "hover:text-link text-sm md:text-base rounded px-4 py-2 md:flex md:items-center text-right md:text-left",
+                      "hover:text-link text-xs lg:text-base rounded px-2 py-2 md:flex md:items-center text-right md:text-center",
                       { "aw-link-active": href === currentPath },
                     ]}
                     href={base + href}
@@ -145,27 +115,6 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         </div>
       </div>
     </nav>
-
-    <!-- <div
-      class="relative hidden text-default lg:col-span-2 lg:flex items-center lg:mx-5 w-full lg:w-auto lg:justify-end"
-      aria-label="Search"
-    >
-      <Search
-        id="search1"
-        className="pagefind-ui"
-        uiOptions={{ showImages: false }}
-      />
-    </div> -->
-    <!-- <div
-      class:list={[
-        { "ml-auto": position === "left" },
-        "hidden md:self-center md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 bottom-0 p-3 md:p-0 md:justify-self-end",
-      ]}
-    >
-      <div class="items-center flex justify-between w-full md:w-auto">
-        <div class="flex"></div>
-      </div>
-    </div> -->
   </div>
 </header>
 
