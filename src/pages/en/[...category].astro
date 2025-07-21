@@ -1,0 +1,43 @@
+---
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
+import { getCategorySlug } from "@utils/slugUtils";
+import CategoryLandingLayout from "@layouts/CategoryLandingLayout.astro";
+
+type CategoryDataType = Extract<
+  CollectionEntry<"cats">["data"],
+  { YamlMime: "Category" }
+>;
+
+const language = "en" as const;
+const basePath = `superoffice-docs/docs/${language}` as const;
+
+export async function getStaticPaths() {
+  const basePath = `superoffice-docs/docs/en` as const;
+
+  const yamlEntries = await getCollection("cats", (entry) =>
+    entry.data.yamlMime === "Category" &&
+    entry.id.startsWith(basePath)
+  );
+
+  return yamlEntries.map((entry) => {
+    const slug = getCategorySlug(entry.id, basePath);
+    return { params: { category: slug } };
+  });
+}
+
+const { category } = Astro.params;
+const fullPath = `${basePath}/${category}`;
+
+const entry = await getEntry("cats", fullPath);
+if (!entry) {
+  throw new Error(`Category not found: ${fullPath}`);
+}
+const categoryData = entry.data as CategoryDataType;
+---
+
+<CategoryLandingLayout
+  lang={language}
+  category={category}
+  data={categoryData}
+  collection={language}
+/>

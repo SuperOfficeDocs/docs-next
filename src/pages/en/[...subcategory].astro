@@ -1,0 +1,46 @@
+---
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
+import { getCategorySlug } from "@utils/slugUtils";
+import { getSegmentToc } from "@utils/tocUtils";
+import SubCategoryLandingLayout from "@layouts/SubCategoryLandingLayout.astro";
+
+type SubCategoryDataType = Extract<
+  CollectionEntry<"cats">["data"],
+  { YamlMime: "SubCategory" }
+>;
+
+const language = "en" as const;
+const basePath = `superoffice-docs/docs/${language}` as const;
+
+export async function getStaticPaths() {
+  const basePath = `superoffice-docs/docs/en` as const;
+
+  const yamlEntries = await getCollection("cats", (entry) =>
+    entry.data.yamlMime === "SubCategory" &&
+    entry.id.startsWith(basePath)
+  );
+
+  return yamlEntries.map((entry) => {
+    const slug = getCategorySlug(entry.id, basePath);
+    return { params: { subcategory: slug } };
+  });
+}
+
+const { subcategory } = Astro.params;
+const fullPath = `${basePath}/${subcategory}`;
+
+const tocData = await getSegmentToc(language, subcategory);
+
+const entry = await getEntry("cats", fullPath);
+if (!entry) {
+  throw new Error(`Subcategory not found: ${fullPath}`);
+}
+const categoryData = entry.data as SubCategoryDataType;
+---
+
+<SubCategoryLandingLayout
+  lang={language}
+  data={categoryData}
+  ToCData={tocData}
+  baseSlug={fullPath}
+/>

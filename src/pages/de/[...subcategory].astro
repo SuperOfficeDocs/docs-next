@@ -1,6 +1,6 @@
 ---
 import { getCollection, getEntry, type CollectionEntry } from "astro:content";
-import { extractCategorySlug } from "@utils/slugUtils";
+import { getCategorySlug } from "@utils/slugUtils";
 import { getLocalizedToc } from "@utils/tocUtils";
 import SubCategoryLandingLayout from "@layouts/SubCategoryLandingLayout.astro";
 
@@ -25,7 +25,7 @@ export async function getStaticPaths() {
   );
 
   return yamlEntries.map((entry) => {
-    const slug = extractCategorySlug(entry.id, collectionPath);
+    const slug = getCategorySlug(entry.id, collectionPath);
     return { params: { subcategory: slug } };
   });
 }
