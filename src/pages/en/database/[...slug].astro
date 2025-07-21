@@ -1,25 +1,27 @@
 ---
 import { render, type CollectionEntry } from "astro:content";
 import type { MarkdownHeading } from "astro";
-import { getHeadings, getDocEntries } from "@utils/contentUtils";
-import { getLocalizedToc } from "@utils/tocUtils";
+import { getSegmentToc } from "@utils/tocUtils";
+import { getDocEntries, getHeadings } from "@utils/contentUtils";
 import { getContentSlug } from "@utils/slugUtils";
 import MarkdownLayout from "@layouts/Markdown.astro";
 
-const language = "de" as const;
+const language = "en" as const;
+const segment = "database" as const;
 
 // Computed tocData once at module load (build-time) and reuse it for all pages
-const tocData = await getLocalizedToc(language);
+const tocData = getSegmentToc(language, segment);
 
 // Generate static paths from de collection
 export async function getStaticPaths() {
-  const language = "de" as const;
+  const language = "en" as const;
+  const segment = "database" as const;
 
-  const docEntries = await getDocEntries(language);
+  const docEntries = await getDocEntries(language, segment);
   const headings = await getHeadings(docEntries);
 
   return docEntries.map((entry, index) => {
-    const generatedSlug = getContentSlug(entry.filePath!, language);
+    const generatedSlug = getContentSlug(entry.filePath!, language, segment);
 
     return {
       params: { slug: `${generatedSlug}` },
@@ -44,7 +46,7 @@ const { Content } = await render(entry);
   slug={entry.id}
   headings={headings}
   TableOfContentData={tocData}
-  isLearn="true"
+  isLearn="false"
   lang={language}
 >
   {Content ? <Content /> : "Loading content..."}

@@ -1,39 +1,34 @@
 ---
-import { getCollection, render } from "astro:content";
+import { render } from "astro:content";
+import { getTableOfContents } from "@utils/getTableOfContents";
+import { getFilteredDocEntries, getHeadings } from "@utils/contentUtils";
+import { getContentSlug } from "@utils/slugUtils";
 import MarkdownLayout from "@layouts/Markdown.astro";
-import { getTableOfContents } from "../../utils/getTableOfContents";
-import { stripFilePathAndExtension } from "~/utils/slugUtils";
+
+const language = "en" as const;
 
 //generating static paths from en collection
 export async function getStaticPaths() {
-  const docEntries = (await getCollection("en", ({ data }) => {
-    return !data.redirect_url;
-  }));
+  const language = "en" as const;
+  const excluded = ["database"];
 
-  const headings = await Promise.all(
-    docEntries.map(async (post) => {
-      const data = await render(post);
-      return data.headings;
-    }),
-  );
+  // No redirects and not in excluded folders
+  const docEntries = await getFilteredDocEntries(language, excluded);
+  const headings = await getHeadings(docEntries);
+
   return docEntries.map((entry, index) => {
-    //Remove .md extension AND filepath prefix (ex:superoffice-docs/docs/en) from filepath
-    const generatedSlug = stripFilePathAndExtension(
-      entry.filePath!,
-      `superoffice-docs/docs/en`,
-      true,
-    );
-    
+    const generatedSlug = getContentSlug(entry.filePath!, language);
+
     const category = generatedSlug?.split("/")[0];
     const isLearn = entry.data.uid?.startsWith("help");
 
-    function getTocPath(): string{
+    function getTocPath(): string {
       if (isLearn) return "learn";
       return category;
     }
 
     const tocPath = getTocPath();
-    const tocData = getTableOfContents(`docs/en/${tocPath}`);
+    const tocData = getTableOfContents(`docs/${language}/${tocPath}`);
 
     return {
       params: { slug: `${generatedSlug}` },
@@ -55,7 +50,7 @@ const { Content } = await render(entry);
   headings={headings}
   TableOfContentData={tocData}
   isLearn={isLearn}
-  lang="en"
+  lang={language}
 >
   {Content ? <Content /> : "Loading content..."}
 </MarkdownLayout>
