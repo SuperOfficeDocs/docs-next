@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import MarkdownLayout from "@layouts/Markdown.astro";
 import WebApiNamespace from "@components/WebApiNamespace.astro";
 import WebApiClass from "@components/WebApiClass.astro";
@@ -7,10 +7,9 @@ import type {
   headingsListProps,
   namespaceClassifiedDataProps,
 } from "~/types/WebApiLayoutTypes";
-import { getEntry } from "astro:content";
 import type { Item } from "~/types/WebAPITypes";
-import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
-import { stripFilePathAndExtension } from "~/utils/slugUtils";
+import { getTableOfContentsFromCollection } from "@utils/tocUtils";
+import { stripFilePathAndExtension } from "@utils/slugUtils";
 
 const collectionPath = `superoffice-docs/docs/en/api/reference/webapi`;
 const allTocEntries = await getCollection("toc");
