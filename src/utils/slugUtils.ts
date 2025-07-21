@@ -98,7 +98,7 @@ export function getContentSlug(
  * @param basePath - The root collection or folder prefix to remove from the ID.
  * @returns A clean slug string, such as 'foo' or 'index'.
  */
-export function extractCategorySlug(id: string, basePath: string): string {
+export function getCategorySlug(id: string, basePath: string): string {
   const rawSlug = id === basePath ? "" : id.replace(`${basePath}/`, "");
   return rawSlug ? trimFileExtension(rawSlug) : "index";
 }
