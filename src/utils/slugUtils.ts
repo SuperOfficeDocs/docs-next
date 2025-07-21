@@ -63,6 +63,32 @@ export function resolveHref(url: string, baseSlug?: string): string {
 }
 
 /**
+ * Gets a clean route slug from an Astro content entry.filePath.
+ *
+ * Strips off the common repo/folder prefix (`superoffice-docs/docs/{language}`)
+ * and, if provided, an extra `/{segment}` folder, and then removes the file extension.
+ *
+ * @param filePath - The raw `entry.filePath`,  such as "superoffice-docs/docs/en/database/index.md".
+ * @param language - The locale folder, such as "en", "de".
+ * @param segment? - Optional subfolder under the language, for example "database".
+ *                   If omitted, only the language folder is stripped.
+ * @returns A slug string such as "foo" or "bar/index".
+ */
+export function getContentSlug(
+  filePath: string,
+  language: string,
+  segment?: string
+): string {
+  const base = `${contentRepo}/docs`;
+  const prefix = segment
+    ? `${base}/${language}/${segment}`
+    : `${base}/${language}`;
+
+  // strip prefix and extension
+  return stripFilePathAndExtension(filePath, prefix, true);
+}
+
+/**
  * Extracts the clean slug from a full file ID by removing the base path and file extension.
  *
  * Useful for generating route parameters for category and subcategory pages from landing entry IDs, such as converting
