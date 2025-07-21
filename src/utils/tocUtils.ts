@@ -44,7 +44,7 @@ export async function getTableOfContentsFromCollection(
   const rootId = trimFileExtension(`${rootCollectionName}/toc.yml`);
   const root = tocMap.get(rootId);
   if (!root) {
-    throw new Error(`No toc.yml found for collection: ${rootCollectionName}`);
+    return { items: [] };
   }
 
   const visited = new Set<string>();
