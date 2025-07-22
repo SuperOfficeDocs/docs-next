@@ -130,6 +130,20 @@ export function getApiContentSlug(
 }
 
 /**
+ * Extracts the clean slug from api reference folder.
+ * @param filePath - The raw `entry.filePath`, such as "superoffice-docs/docs/en/api/reference/webapi".
+ * @returns A slug string such as "SuperOffice.License".
+ */
+export function getApiReferenceSlug(
+  filePath: string,
+  api: string,
+): string {
+  const basePath = `superoffice-docs/docs/en/api/reference` as const;
+
+  return stripFilePathAndExtension(filePath, `${basePath}/${api}`, true);
+}
+
+/**
  * Extracts the clean slug from a full file ID by removing the base path and file extension.
  *
  * Useful for generating route parameters for category and subcategory pages from landing entry IDs, such as converting
