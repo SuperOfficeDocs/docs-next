@@ -28,6 +28,9 @@ const apiDocs = defineCollection({
       "!**/includes/**",
       "!tutorials/minimal-csharp-app",   //Temporary excluded due to corrupted images
       "!reference/**/*.md",   // In referenceDocs
+      "!nuget/**/*.md",   // Never published
+      "!tooltip/**/*.md",   // Never published
+      "!web-extensions/**/*.md",   // Never published
     ],
     base: "external-content/superoffice-docs/docs/en/api",
   }),
