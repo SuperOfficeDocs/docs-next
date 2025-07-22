@@ -5,8 +5,6 @@ const contentRoot = 'superoffice-docs/docs';
 
 /**
  * Fetches all non‐redirect entries in a language, or—if `folder` is provided—only those under that folder.
- * Special‐cased so that when `folder === "learn"`, it ignores path and instead returns only entries whose
- * `data.uid` starts with `"help-"`.
  *
  * @param language - The Astro collection key, such as "en", "de".
  * @param folder?  - Optional sub-folder name to include, for example "database".
@@ -19,16 +17,12 @@ export async function getDocEntries<L extends keyof DataEntryMap>(
 ): Promise<CollectionEntry<L>[]> {
   return getCollection(language, ({ id, data }) =>
     !data.redirect_url &&
-    (folder === "learn"
-      ? Boolean(data.uid?.startsWith("help-"))
-      : (!folder || id.includes(`/${folder}/`)))
+    (!folder || id.startsWith(`/${folder}/`))
   );
 }
 
 /**
- * Fetches all non-redirect entries in a language, omitting any that live under the named folders,
- * and always excluding any entries whose `data.uid` starts with "help-".
- * Assumes English learn is handled via getDocEntries.
+ * Fetches all non-redirect entries in a language, omitting any that live under the named folders.
  *
  * @param language      - The Astro collection key (normally "en")
  * @param excludeFolders - Array of sub-folder names to skip entirely,
@@ -44,7 +38,6 @@ export async function getFilteredDocEntries<L extends keyof DataEntryMap>(
 
   return getCollection(language, ({ id, data }) =>
     !data.redirect_url &&
-    !data.uid?.startsWith("help-") &&
     (!skipRe || !skipRe.test(id))
   );
 }
