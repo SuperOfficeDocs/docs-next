@@ -1,26 +1,40 @@
 ---
-import { getSegmentToc } from "@utils/tocUtils";
+import { getLocalizedToc, getSegmentToc } from "@utils/tocUtils";
 import { getFilteredDocEntries, getHeadings } from "@utils/contentUtils";
 import { getContentSlug } from "@utils/slugUtils";
 import MarkdownPage from "@components/MarkdownPage.astro";
 
 const language = "en" as const;
 
-// Generate static paths from EN collection excluding learn (implied) and specific segments.
+// Generate static paths from EN collection including learn and excluding specific segments.
 export async function getStaticPaths() {
   const language = "en" as const;
-  const excluded = ["automation", "database", "developer-portal", "mobile", "online", "onsite", "service", "ui"]; // api is its own collection
+  const learnSegmentKey = "learn";
+  const excluded = [
+    "authentication",
+    "automation",
+    "database",
+    "developer-portal",
+    "mobile",
+    "online",
+    "onsite",
+    "service",
+    "ui",
+  ]; // api is its own collection
 
   // No redirects and not in excluded folders
   const docEntries = await getFilteredDocEntries(language, excluded);
   const headings = await getHeadings(docEntries);
 
   const tocCache = new Map<string, Awaited<ReturnType<typeof getSegmentToc>>>();
+  tocCache.set(learnSegmentKey, await getLocalizedToc(language));
 
   return Promise.all(
     docEntries.map(async (entry, i) => {
       const slug = getContentSlug(entry.filePath!, language);
-      const segment = slug.split("/")[0];
+
+      const isLearn = entry.data.uid?.startsWith("help-") ?? false;
+      const segment = isLearn ? learnSegmentKey : slug.split("/")[0];
 
       if (!tocCache.has(segment)) {
         tocCache.set(segment, await getSegmentToc(language, segment));
@@ -32,13 +46,14 @@ export async function getStaticPaths() {
           entry,
           headings: headings[i],
           tocData: tocCache.get(segment)!,
+          isLearn,
         },
       };
-    })
+    }),
   );
 }
 
-const { entry, headings, tocData } = Astro.props;
+const { entry, headings, tocData, isLearn } = Astro.props;
 ---
 
 <MarkdownPage
@@ -46,4 +61,5 @@ const { entry, headings, tocData } = Astro.props;
   headings={headings}
   toc={tocData}
   language={language}
+  isLearn={isLearn}
 />
