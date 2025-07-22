@@ -13,11 +13,23 @@ const enDocs = defineCollection({
       "**/*.md",
       "!index.md",
       "!**/includes/**",
-      "!api/reference/**/*.md",   // In referenceDocs
-      "!api/tutorials/minimal-csharp-app",   //Temporary excluded due to corrupted images
-      "!automation/**/reference/**",
+      "!api/**/*.md",   // In apiDocs
+      "!automation/**/reference/**",   // Currently not handled anywhere. TODO
     ],
     base: "external-content/superoffice-docs/docs/en",
+  }),
+  schema: DocsSchema,
+});
+
+const apiDocs = defineCollection({
+  loader: glob({
+    pattern: apiOnly ? [""] : [
+      "**/*.md",
+      "!**/includes/**",
+      "!tutorials/minimal-csharp-app",   //Temporary excluded due to corrupted images
+      "!reference/**/*.md",   // In referenceDocs
+    ],
+    base: "external-content/superoffice-docs/docs/en/api",
   }),
   schema: DocsSchema,
 });
@@ -160,6 +172,7 @@ export const collections = {
   nl: nlDocs,
   no: noDocs,
   sv: svDocs,
+  "api-docs": apiDocs,
   "reference-docs" : referenceDocs,
   webapi: WebAPI,
   contribute: contribution,
