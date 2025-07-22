@@ -1,0 +1,33 @@
+---
+import { getEntry, type CollectionEntry } from "astro:content";
+import CategoryLandingLayout from "@layouts/CategoryLandingLayout.astro";
+
+type CategoryDataType = Extract<
+  CollectionEntry<"cats">["data"],
+  { YamlMime: "Category" }
+>;
+
+const language = "nl" as const;
+
+// This route currently only supports the Dutch "learn" category page.
+export function getStaticPaths() {
+  return [{ params: { category: "learn" } }];
+}
+
+const { category } = Astro.params;
+
+const filePath = `superoffice-docs/docs/${language}/${category}`;
+
+const entry = await getEntry("cats", filePath);
+if (!entry) {
+  throw new Error(`Category not found: ${filePath}`);
+}
+const CategoryData = entry.data as CategoryDataType;
+---
+
+<CategoryLandingLayout
+  lang={language}
+  category={category}
+  data={CategoryData}
+  collection={language}
+/>
