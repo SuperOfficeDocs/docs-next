@@ -51,6 +51,25 @@ export async function getFilteredDocEntries<L extends keyof DataEntryMap>(
 
 
 /**
+ * Fetches all non‐redirect entries for any collection base path,
+ * computing once at build-time. Handles special cases in en/api.
+ *
+ * @param collection - The Astro content collection key, such as "api-docs".
+ * @param basePath - The full prefix, for example "superoffice-docs/docs/en/api".
+ * @returns A promise resolving to the filtered array of `CollectionEntry<language>`.
+ */
+export async function getDocEntriesByPath<C extends keyof DataEntryMap>(
+  collection: C,
+  basePath: string
+): Promise<CollectionEntry<C>[]> {
+  return getCollection(collection, ({ data, filePath }) =>
+    !data.redirect_url &&
+    filePath?.startsWith(basePath)
+  );
+}
+
+
+/**
  * Renders a list of content entries and extracts their Markdown headings.
  *
  * Useful for generating an array of page‐specific TOC headings in `getStaticPaths` or similar data loaders.

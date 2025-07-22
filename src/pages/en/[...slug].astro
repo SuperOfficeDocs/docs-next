@@ -9,7 +9,7 @@ const language = "en" as const;
 // Generate static paths from EN collection excluding learn (implied) and specific segments.
 export async function getStaticPaths() {
   const language = "en" as const;
-  const excluded = ["automation", "database", "developer-portal", "mobile", "online", "onsite", "service", "ui"];
+  const excluded = ["automation", "database", "developer-portal", "mobile", "online", "onsite", "service", "ui"]; // api is its own collection
 
   // No redirects and not in excluded folders
   const docEntries = await getFilteredDocEntries(language, excluded);
