@@ -85,7 +85,8 @@ export async function getSegmentToc(
     language: string,
     segment: string
 ) {
-    const base = `${root}/${language}/${segment}`;
+    const tocScope = segment === 'api/authentication' ? 'api' : segment;
+    const base = `${root}/${language}/${tocScope}`;
     const tocEntries = await getCollection('toc', (e) => e.id.startsWith(base));
     return getTableOfContentsFromCollection(tocEntries, base);
 }

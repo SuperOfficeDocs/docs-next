@@ -27,7 +27,10 @@ export async function getStaticPaths() {
 }
 
 const { subcategory } = Astro.params;
-const fullPath = `${basePath}/${subcategory}`;
+const fullPath =
+  subcategory === 'authentication'
+    ? `${basePath}/api/${subcategory}`
+    : `${basePath}/${subcategory}`;
 
 const tocData = await getSegmentToc(language, subcategory);
 
