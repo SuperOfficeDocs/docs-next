@@ -154,13 +154,16 @@ const landingPages = defineCollection({
 
 // Export a single `collections` object to register collections
 export const collections = {
-  "release-notes": releaseNotes,
   en: enDocs,
+  da: daDocs,
   de: deDocs,
+  nl: nlDocs,
   no: noDocs,
+  sv: svDocs,
   "reference-docs" : referenceDocs,
   webapi: WebAPI,
   contribute: contribution,
+  "release-notes": releaseNotes,
   cats: landingPages,
   toc: tocFiles,
 };
