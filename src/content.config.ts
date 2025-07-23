@@ -49,6 +49,7 @@ const referenceDocs = defineCollection({
       "**/*.md",
       "!**/includes/**",
       "!soap",   // Exclude files (due to size)
+      "!restful",   // Exclude files (due to size)
       "!netserver",   // Exclude files (yaml)
     ] : [""],
     base: "external-content/superoffice-docs/docs/en/api/reference",
