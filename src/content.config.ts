@@ -15,7 +15,7 @@ const enDocs = defineCollection({
       "!**/includes/**",
       "!api/**/*.md",   // In apiDocs
       "api/authentication/**/*.md",   // Routed as en/authentication
-      "!automation/**/reference/**",   // Currently not handled anywhere. TODO
+      "!automation/netserver-scripting/reference/**",   // In NSScriptingRef
     ],
     base: "external-content/superoffice-docs/docs/en",
   }),
