@@ -43,6 +43,17 @@ const apiDocs = defineCollection({
  * API REFERENCES
  */
 
+const NSScriptingRef = defineCollection({
+  loader: glob({
+    pattern: apiOnly ? [
+      "**/*.md",
+      "!**/includes/**",
+    ] : [""] ,
+    base: "external-content/superoffice-docs/docs/en/automation/netserver-scripting/reference",
+  }),
+  schema: DocsSchema,
+});
+
 const referenceDocs = defineCollection({
   loader: glob({
     pattern: apiOnly ? [
@@ -178,6 +189,7 @@ export const collections = {
   no: noDocs,
   sv: svDocs,
   "api-docs": apiDocs,
+  "nsscripting": NSScriptingRef,
   "reference-docs" : referenceDocs,
   webapi: WebAPI,
   contribute: contribution,
