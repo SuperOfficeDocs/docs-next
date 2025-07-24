@@ -1,0 +1,14 @@
+---
+import Layout from "@layouts/Base.astro";
+import SearchPage from "@components/SearchPage"
+const metadata = {
+  title: "SuperOffice Docs",
+};
+
+---
+
+<Layout lang="en" metadata={metadata}>
+    <SearchPage client:load/>
+</Layout>
+
+
