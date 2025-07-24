@@ -21,7 +21,7 @@ const { Content } = await render(entry);
   slug={entry.id}
   headings={headings}
   TableOfContentData={toc}
-  isLearn={isLearn.toString()}
+  isLearn={isLearn}
   lang={language}
 >
   {Content && <Content />}
