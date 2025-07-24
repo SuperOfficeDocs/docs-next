@@ -127,6 +127,14 @@ h1 {
   width: 100%;
 }
 
+.pagefind-ui__result-excerpt.svelte-j9e30 mark{
+  background-color: #FBBD9D;
+}
+
+.search-snippet mark{
+  background-color: #FBBD9D;
+}
+
 .pagefind-ui .pagefind-ui__drawer:not(.pagefind-ui__hidden) {
   position: absolute;
   left: 0;
