@@ -1,4 +1,5 @@
 import { getCollection, render, type CollectionEntry, type DataEntryMap } from 'astro:content';
+import type { DocsFrontmatter } from "~/types/DocsTypes";
 import type { MarkdownHeading } from 'astro';
 
 const contentRoot = 'superoffice-docs/docs';
@@ -15,10 +16,10 @@ export async function getDocEntries<L extends keyof DataEntryMap>(
   language: L,
   folder?: string
 ): Promise<CollectionEntry<L>[]> {
-  return getCollection(language, ({ id, data }) =>
-    !data.redirect_url &&
-    (!folder || id.startsWith(`/${folder}/`))
-  );
+  return getCollection(language, ({ id, data }) => {
+    const doc = data as DocsFrontmatter;
+    return !doc.redirect_url && (!folder || id.startsWith(`/${folder}/`));
+  });
 }
 
 /**
@@ -36,10 +37,10 @@ export async function getFilteredDocEntries<L extends keyof DataEntryMap>(
   const base = `${contentRoot}/${language}`;
   const skipRe = new RegExp(`^${base}(?:${excludeFolders.join("|")})(?:/|$)`);
 
-  return getCollection(language, ({ id, data }) =>
-    !data.redirect_url &&
-    (!skipRe || !skipRe.test(id))
-  );
+  return getCollection(language, ({ id, data }) => {
+    const doc = data as DocsFrontmatter;
+    return !doc.redirect_url && (!skipRe || !skipRe.test(id));
+  });
 }
 
 
@@ -55,10 +56,10 @@ export async function getDocEntriesByPath<C extends keyof DataEntryMap>(
   collection: C,
   basePath: string
 ): Promise<CollectionEntry<C>[]> {
-  return getCollection(collection, ({ data, filePath }) =>
-    !data.redirect_url &&
-    filePath?.startsWith(basePath)
-  );
+  return getCollection(collection, ({ data, filePath }) => {
+    const doc = data as DocsFrontmatter;
+    return !doc.redirect_url && filePath?.startsWith(basePath);
+  });
 }
 
 

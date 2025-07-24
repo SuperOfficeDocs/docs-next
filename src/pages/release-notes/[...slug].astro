@@ -13,7 +13,7 @@ const tocData = await getTocByPath('superoffice-docs/release-notes');
 export async function getStaticPaths() {
   const collection = "release-notes";
   const docEntries = (await getCollection(collection, ({ data }) => {
-    return !data.redirect_url;
+    return !(data as { redirect_url?: string }).redirect_url;
   }));
 
   const headings = await getHeadings(docEntries);
