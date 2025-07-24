@@ -2,6 +2,7 @@
 import { getLocalizedToc, getSegmentToc } from "@utils/tocUtils";
 import { getFilteredDocEntries, getHeadings } from "@utils/contentUtils";
 import { getContentSlug } from "@utils/slugUtils";
+import type { DocsFrontmatter } from "~/types/DocsTypes";
 import MarkdownPage from "@components/MarkdownPage.astro";
 
 const language = "en" as const;
@@ -33,7 +34,7 @@ export async function getStaticPaths() {
     docEntries.map(async (entry, i) => {
       const slug = getContentSlug(entry.filePath!, language);
 
-      const isLearn = entry.data.uid?.startsWith("help-") ?? false;
+      const isLearn = ((entry.data as DocsFrontmatter).uid ?? "").startsWith("help-");
       const segment = isLearn ? learnSegmentKey : slug.split("/")[0];
 
       if (!tocCache.has(segment)) {
