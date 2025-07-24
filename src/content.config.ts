@@ -1,7 +1,7 @@
 // Astro will automatically load the exported collections constant defined in this file and use it to configure content collections.
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
-import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema } from "~/content.schema"
+import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema, YamlManagedReferenceSchema } from "~/content.schema"
 
 // apiOnly variable is used in the split build to isolate docs/en/api folder content
 const apiOnly = process.env.API_ONLY === 'true';
@@ -42,6 +42,17 @@ const apiDocs = defineCollection({
 /**
  * API REFERENCES
  */
+
+const CRMScript = defineCollection({
+  loader: glob({
+    pattern: apiOnly ? [
+      "**/!(*toc).yml",
+      "!**/includes/**",
+    ] : [""] ,
+    base: "external-content/superoffice-docs/docs/en/automation/crmscript/reference",
+  }),
+  schema: YamlManagedReferenceSchema,
+});
 
 const NSScriptingRef = defineCollection({
   loader: glob({
@@ -189,6 +200,7 @@ export const collections = {
   no: noDocs,
   sv: svDocs,
   "api-docs": apiDocs,
+  "crmscript": CRMScript,
   "nsscripting": NSScriptingRef,
   "reference-docs" : referenceDocs,
   webapi: WebAPI,
