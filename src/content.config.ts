@@ -16,7 +16,6 @@ const enDocs = defineCollection({
       "!index.md",
       "!**/includes/**",
       "!api/**/*.md",   // In apiDocs
-      "api/authentication/**/*.md",   // Routed as en/authentication
       "!automation/netserver-scripting/reference/**",   // In NSScriptingRef
     ],
     base: `${DOCS_BASE}/en`,
@@ -31,7 +30,6 @@ const apiDocs = defineCollection({
       "!**/includes/**",
       "!tutorials/minimal-csharp-app",   //Temporary excluded due to corrupted images
       "!reference/**/*.md",   // In referenceDocs
-      "!authentication/**/*.md",   // Routed as en/authentication
       "!nuget/**/*.md",   // Never published
       "!tooltip/**/*.md",   // Never published
       "!web-extensions/**/*.md",   // Never published
