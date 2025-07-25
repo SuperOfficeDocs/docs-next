@@ -2,7 +2,7 @@
 import { getHeadings, getDocEntries } from "@utils/contentUtils";
 import { getLocalizedToc } from "@utils/tocUtils";
 import { getContentSlug } from "@utils/slugUtils";
-import MarkdownPage from "@components/MarkdownPage.astro";
+import MarkdownLayout from "@layouts/Markdown.astro";
 
 const language = "da" as const;
 
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 const { entry, headings } = Astro.props;
 ---
 
-<MarkdownPage
+<MarkdownLayout
   entry={entry}
   headings={headings}
   toc={tocData}

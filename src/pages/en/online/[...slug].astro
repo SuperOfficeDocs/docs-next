@@ -2,7 +2,7 @@
 import { getSegmentToc } from "@utils/tocUtils";
 import { getDocEntries, getHeadings } from "@utils/contentUtils";
 import { getContentSlug } from "@utils/slugUtils";
-import MarkdownPage from "@components/MarkdownPage.astro";
+import MarkdownLayout from "@layouts/Markdown.astro";
 
 const language = "en" as const;
 const segment = "online" as const;
@@ -31,9 +31,8 @@ export async function getStaticPaths() {
 const { entry, headings } = Astro.props;
 ---
 
-<MarkdownPage
+<MarkdownLayout
   entry={entry}
   headings={headings}
   toc={tocData}
-  language={language}
 />
