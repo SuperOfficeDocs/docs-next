@@ -1,37 +1,32 @@
 ---
 import { getCollection } from "astro:content";
 import { stripFilePathAndExtension } from "@utils/slugUtils";
-import { getHeadings } from "@utils/contentUtils";
 import { getTocByPath } from "@utils/tocUtils";
-import MarkdownPage from "@components/MarkdownPage.astro";
+import MarkdownLayout from "@layouts/Markdown.astro";
 
-const language = "en" as const;
+//const language = "en" as const;
 
 const tocData = await getTocByPath('contribution');
 
 export async function getStaticPaths() {
   const docEntries = await getCollection("contribute");
 
-  const headings = await getHeadings(docEntries);
-
-  const paths = docEntries.map((entry, index) => {
+  const paths = docEntries.map((entry) => {
     const slug = stripFilePathAndExtension(entry.filePath!, "contribution", true);
 
     return {
       params: { slug },
-      props: { entry, headings: headings[index] }
+      props: { entry }
     };
   });
 
   return paths;
 }
 
-const { entry, headings } = Astro.props;
+const { entry } = Astro.props;
 ---
 
-<MarkdownPage
+<MarkdownLayout
   entry={entry}
-  headings={headings}
   toc={tocData}
-  language={language}
 />

@@ -1,9 +1,9 @@
 ---
 import { getLocalizedToc, getSegmentToc } from "@utils/tocUtils";
-import { getFilteredDocEntries, getHeadings } from "@utils/contentUtils";
+import { getFilteredDocEntries } from "@utils/contentUtils";
 import { getContentSlug } from "@utils/slugUtils";
 import type { DocsFrontmatter } from "~/types/DocsTypes";
-import MarkdownPage from "@components/MarkdownPage.astro";
+import MarkdownLayout from "@layouts/Markdown.astro";
 
 const language = "en" as const;
 
@@ -25,13 +25,11 @@ export async function getStaticPaths() {
 
   // No redirects and not in excluded folders
   const docEntries = await getFilteredDocEntries(language, excluded);
-  const headings = await getHeadings(docEntries);
-
   const tocCache = new Map<string, Awaited<ReturnType<typeof getSegmentToc>>>();
   tocCache.set(learnSegmentKey, await getLocalizedToc(language));
 
   return Promise.all(
-    docEntries.map(async (entry, i) => {
+    docEntries.map(async (entry) => {
       const slug = getContentSlug(entry.filePath!, language);
 
       const isLearn = ((entry.data as DocsFrontmatter).uid ?? "").startsWith("help-");
@@ -45,7 +43,6 @@ export async function getStaticPaths() {
         params: { slug },
         props: {
           entry,
-          headings: headings[i],
           tocData: tocCache.get(segment)!,
           isLearn,
         },
@@ -54,12 +51,11 @@ export async function getStaticPaths() {
   );
 }
 
-const { entry, headings, tocData, isLearn } = Astro.props;
+const { entry, tocData, isLearn } = Astro.props;
 ---
 
-<MarkdownPage
+<MarkdownLayout
   entry={entry}
-  headings={headings}
   toc={tocData}
   language={language}
   isLearn={isLearn}

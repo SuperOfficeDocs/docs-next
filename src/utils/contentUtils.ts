@@ -1,6 +1,5 @@
-import { getCollection, render, type CollectionEntry, type DataEntryMap } from 'astro:content';
+import { getCollection, type CollectionEntry, type DataEntryMap } from 'astro:content';
 import type { DocsFrontmatter } from "~/types/DocsTypes";
-import type { MarkdownHeading } from 'astro';
 
 const contentRoot = 'superoffice-docs/docs';
 
@@ -62,23 +61,3 @@ export async function getDocEntriesByPath<C extends keyof DataEntryMap>(
   });
 }
 
-
-/**
- * Renders a list of content entries and extracts their Markdown headings.
- *
- * Useful for generating an array of page‐specific TOC headings in `getStaticPaths` or similar data loaders.
- * The generic `<T extends keyof DataEntryMap>` preserves the concrete collection key (such as "en", "de") for full type safety.
- *
- * @param entries - An array of `CollectionEntry<T>` items from Astro's content collections.
- * @returns A promise that resolves to an array of `MarkdownHeading[]`, where each inner array corresponds to the headings of one entry.
- */
-export async function getHeadings<T extends keyof DataEntryMap>(
-  entries: CollectionEntry<T>[]
-): Promise<MarkdownHeading[][]> {
-  return Promise.all(
-    entries.map(async (post) => {
-      const { headings } = await render(post);
-      return headings;
-    })
-  );
-}
