@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import { getSegmentToc } from "@utils/tocUtils";
-import { getHeadings } from "@utils/contentUtils";
 import { getApiContentSlug } from "@utils/slugUtils";
 import MarkdownLayout from "@layouts/Markdown.astro";
 
@@ -14,23 +13,20 @@ const tocData = await getSegmentToc(language, segment);
 // Generate static paths from de collection
 export async function getStaticPaths() {
   const docEntries = await getCollection("api-docs");
-  const headings = await getHeadings(docEntries);
-
-  return docEntries.map((entry, index) => {
+  return docEntries.map((entry) => {
     const generatedSlug = getApiContentSlug(entry.filePath!);
 
     return {
       params: { slug: generatedSlug },
-      props: { entry, headings: headings[index] },
+      props: { entry },
     };
   });
 }
 
-const { entry, headings } = Astro.props;
+const { entry } = Astro.props;
 ---
 
 <MarkdownLayout
   entry={entry}
-  headings={headings}
   toc={tocData}
 />

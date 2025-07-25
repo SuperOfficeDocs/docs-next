@@ -1,6 +1,5 @@
 ---
 import { render, type CollectionEntry, type DataEntryMap } from 'astro:content';
-import type { MarkdownHeading } from 'astro';
 import type { TocData } from "~/types/TableOfContentTypes";
 import PageHeader from "@components/PageHeader.astro";
 import OnThisArticle from "@components/OnThisArticle.tsx";
@@ -10,13 +9,12 @@ import Base from "./Base.astro";
 export interface Props {
   /** Accept an entry from *any* collection our site defines */
   entry: CollectionEntry<keyof DataEntryMap>;
-  headings: MarkdownHeading[];
   toc: TocData;
   isLearn?: boolean;
   language?: string;
 }
 
-const { entry, headings, toc, isLearn = false, language = "en" } = Astro.props;
+const { entry, toc, isLearn = false, language = "en" } = Astro.props;
 const {
   data: frontmatter,
   filePath,
@@ -30,7 +28,7 @@ const TOCPath =
     ? "release-notes"
     : `${language}/${isLearn ? "learn" : slug.split("/")[0]}`;
 
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
 ---
 
 <Base metadata={frontmatter} lang={language}>

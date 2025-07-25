@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import { stripFilePathAndExtension } from "@utils/slugUtils";
-import { getHeadings } from "@utils/contentUtils";
 import { getTocByPath } from "@utils/tocUtils";
 import MarkdownLayout from "@layouts/Markdown.astro";
 
@@ -16,23 +15,20 @@ export async function getStaticPaths() {
     return !(data as { redirect_url?: string }).redirect_url;
   }));
 
-  const headings = await getHeadings(docEntries);
-
-  return docEntries.map((entry, index) => {
+  return docEntries.map((entry) => {
     const generatedSlug = stripFilePathAndExtension(entry.filePath!, `superoffice-docs/${collection}`, true);
 
     return {
       params: { slug: generatedSlug },
-      props: { entry, headings: headings[index] },
+      props: { entry },
     };
   });
 }
 
-const { entry, headings } = Astro.props;
+const { entry } = Astro.props;
 ---
 
 <MarkdownLayout
   entry={entry}
-  headings={headings}
   toc={tocData}
 />

@@ -1,5 +1,5 @@
 ---
-import { getHeadings, getDocEntries } from "@utils/contentUtils";
+import { getDocEntries } from "@utils/contentUtils";
 import { getLocalizedToc } from "@utils/tocUtils";
 import { getContentSlug } from "@utils/slugUtils";
 import MarkdownLayout from "@layouts/Markdown.astro";
@@ -14,24 +14,21 @@ export async function getStaticPaths() {
   const language = "da" as const;
 
   const docEntries = await getDocEntries(language);
-  const headings = await getHeadings(docEntries);
-
-  return docEntries.map((entry, index) => {
+  return docEntries.map((entry) => {
     const generatedSlug = getContentSlug(entry.filePath!, language);
 
     return {
       params: { slug: `${generatedSlug}` },
-      props: { entry, headings: headings[index] },
+      props: { entry },
     };
   });
 }
 
-const { entry, headings } = Astro.props;
+const { entry } = Astro.props;
 ---
 
 <MarkdownLayout
   entry={entry}
-  headings={headings}
   toc={tocData}
   language={language}
   isLearn={true}

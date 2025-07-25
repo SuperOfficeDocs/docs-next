@@ -1,6 +1,6 @@
 ---
 import { getSegmentToc } from "@utils/tocUtils";
-import { getDocEntries, getHeadings } from "@utils/contentUtils";
+import { getDocEntries } from "@utils/contentUtils";
 import { getContentSlug } from "@utils/slugUtils";
 import MarkdownLayout from "@layouts/Markdown.astro";
 
@@ -16,25 +16,22 @@ export async function getStaticPaths() {
   const basePath = `superoffice-docs/docs/en/api/authentication` as const;
 
   const docEntries = await getDocEntries(language, basePath);
-  const headings = await getHeadings(docEntries);
-
   return Promise.all(
-    docEntries.map((entry, index) => {
+    docEntries.map((entry) => {
       const generatedSlug = getContentSlug(entry.filePath!, language, basePath);
 
       return {
         params: { slug: generatedSlug },
-        props: { entry, headings: headings[index] },
+        props: { entry },
       };
     }),
   );
 }
 
-const { entry, headings } = Astro.props;
+const { entry } = Astro.props;
 ---
 
 <MarkdownLayout
   entry={entry}
-  headings={headings}
   toc={tocData}
 />
