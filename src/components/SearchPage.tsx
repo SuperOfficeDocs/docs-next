@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import { ColorCheckbox } from "./CheckBox";
-
+import { trimFileExtension } from "@utils/slugUtils"
 
 const baseUrl = import.meta.env.BASE_URL ?? "" // Currently baseUrl is /docs-next/
-var pathname: string;
+// var pathname: string;
 
 type filterType = {
   [filterGroupName: string]: {
     [filterItemName: string]: number
   };
+}
+
+type filterListType = {
+  [filterGroupName: string]: string[];
 }
 
 type currentFiltersCollection = {
@@ -17,15 +21,22 @@ type currentFiltersCollection = {
   active: boolean;
 }
 
-
-
 export default function PagefindSearch() {
   const [query, setQuery] = useState("");
   const [filters, setFilters] = useState<filterType>({});
   const [results, setResults] = useState<any[]>([]);
   const [filterState, setFilterState] = useState<currentFiltersCollection[]>([]);
   const [isFiltersChanged, setIsFiltersChanged] = useState<boolean>(false);
+  const [noOfResults, setNoOfResults] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
 
+
+  const capitalizeFirstLetter = (str: string) => {
+    if (typeof str !== 'string' || str.length === 0) {
+      return str;
+    }
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
 
   const checkboxOnChange = (filterGroup: string, filterName: string): void => {
@@ -39,15 +50,24 @@ export default function PagefindSearch() {
   }
 
   const getActiveFilters = () => {
-    return filterState.filter((item) => item.active).map((item) => { return { [item.filterGroup]: item.filterName } })
+    let tempFilterList: filterListType = {}
+    filterState.filter((item) => item.active).map((item) => {
+      if (tempFilterList[item.filterGroup] === undefined) {
+        tempFilterList[item.filterGroup] = []
+      }
+      tempFilterList[item.filterGroup].push(item.filterName)
+    })
+    return tempFilterList
   }
 
   const applyFilerChanges = () => {
-    // console.log("click")
-    setIsFiltersChanged(false)
-    doSearch()
+    if (query == "") {
+      doSearch(true)
+    }
+    else {
+      doSearch(false)
+    }
   }
-
 
   let _pagefind: any;
 
@@ -85,44 +105,48 @@ export default function PagefindSearch() {
     setFilterState(filterStateTemp)
   }
 
-  async function doSearch() {
+  async function doSearch(filterOnly: boolean) {
     try {
+      setLoading(true)
       let pagefind = await getPagefind();
-      console.log("test")
       const currentFilterArray = getActiveFilters();
-      console.log("current", currentFilterArray)
-      const searchResponse = await pagefind.search(query, {
-        filters: Object.assign({}, ...currentFilterArray)
-      });
+      const searchResponse = await pagefind.search(
+        filterOnly ? null : query,
+        {
+          filters: currentFilterArray
+        });
       const detailedResults = await Promise.all(
         (searchResponse.results || []).map((r: any) => r.data())
       );
+
       setResults(detailedResults);
-      console.log("result", detailedResults)
+      setFilters(searchResponse.filters)
+      setIsFiltersChanged(false);
+      setNoOfResults(searchResponse.results.length)
     } catch (error) {
       console.error("Pagefind search failed:", error);
       setResults([]);
+    }
+    finally {
+      setLoading(false)
     }
   }
 
   useEffect(() => {
     if (!query) {
       setResults([]);
+      setInitialFilters();
       return;
     }
-    doSearch();
+    doSearch(false);
 
   }, [query]);
 
   useEffect(() => {
-    pathname = window?.location.host
-    setInitialFilters()
+    // pathname = window?.location.host
+    setInitialFilters();
   }, [])
 
-
-  // useEffect(() => {
-  //   console.log(filterState)
-  // }, [filterState])
 
 
   return (
@@ -138,68 +162,78 @@ export default function PagefindSearch() {
       </div>
 
       {/* Search Body*/}
-      <div className="p-6">
 
-        {/* Search Results text */}
-        {query != "" && <p>Search Results for <strong>{query}</strong></p>}
-
-
-        <div className="mt-10 flex flex-row">
-
-          {/* Filters */}
-          <div className="bg-lightTealGray p-4 w-[25%] h-80 rounded-lg">
-
-            <div className="flex flex-row justify-between pb-3 border-b-2 border-black">
-              <p className="font-bold">Filters</p>
-              <p className="text-superOfficeGreen">Clear All</p>
-            </div>
-
-
-
-            <ul className="flex flex-col">
-              {Object.entries(filters).map(([filterGroupName, filterGroup]) => (
-                <li className="mt-5" key={filterGroupName}>
-                  <p className="font-semibold">By {filterGroupName}</p>
-                  <ul>
-                    {Object.entries(filterGroup).map(([filterItemName, count], index) => (
-                      <li className="ml-2" key={index + filterItemName}>
-                        <ColorCheckbox
-                          checked={getFilterState(filterGroupName, filterItemName)}
-                          onChange={() => checkboxOnChange(filterGroupName, filterItemName)}
-                        />
-                        <label className="ml-2" htmlFor={filterItemName}>
-                          {filterItemName} ({count})
-                        </label>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-
-            <div>
-              {isFiltersChanged && <button onClick={applyFilerChanges} className="text-superOfficeGreen">Set Filters</button>}
-            </div>
-
+      {loading ?
+        <div className="w-full h-96 flex justify-center items-center">
+          {/* Loading animation */}
+          <div
+            className="inline-block h-8 w-8 animate-spin text-superOfficeGreen rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+            role="status">
           </div>
-
-          {/* Results */}
-          <div className="pl-10 w-[60%] overflow-y-auto">
-            <ul>
-              {results.length === 0 && (query ? <li>No results found</li> : <li>Type in search text then press Enter</li>)}
-              {results.map((result: any) => (
-                <li className="flex flex-col mb-5" key={result.id + result.meta.title}>
-                  <a className="font-semibold text-lg" href={result.url}>{result.meta.title}</a>
-                  <a className="text-superOfficeGreen" href={result.url}>{pathname}{result.url}</a>
-                  <p className="search-snippet" dangerouslySetInnerHTML={{ __html: result.excerpt }}></p>
-                </li>
-              ))}
-            </ul>
-
-          </div>
-
         </div>
-      </div>
+        :
+        <div className="pl-6 pt-4 pr-2">
+
+          {/* Search Results text */}
+          <div className="h-7">
+            {query != "" && !loading && <p>Found {noOfResults} results for <strong>"{query}"</strong></p>}
+          </div>
+
+          <div className="mt-2 flex flex-row">
+
+            {/* Filters */}
+            <div className="bg-lightTealGray p-4 w-[25%] h-[400px] rounded-lg">
+
+              <div className="flex flex-row justify-between pb-3 border-b-2 border-black">
+                <p className="font-bold">Filters</p>
+                {/* <p className="text-superOfficeGreen">Clear All</p> */}
+              </div>
+
+
+              {/* filter list */}
+              <ul className="flex flex-col overflow-y-auto h-[275px] 2xl:h-96">
+                {Object.entries(filters).map(([filterGroupName, filterGroup], index) => (
+                  <li className="mt-5" key={index + filterGroupName}>
+                    <p className="font-semibold mb-2">By {capitalizeFirstLetter(filterGroupName)}</p>
+                    <ul>
+                      {Object.entries(filterGroup).map(([filterItemName, count], index) => (
+                        <li className="ml-2 flex items-center" key={index + filterItemName}>
+                          <ColorCheckbox
+                            checked={getFilterState(filterGroupName, filterItemName)}
+                            onChange={() => checkboxOnChange(filterGroupName, filterItemName)}
+                          />
+                          <label className="ml-2" htmlFor={filterItemName}>
+                            {filterItemName != "" ? capitalizeFirstLetter(filterItemName) : "No filter"} ({count})
+                          </label>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex justify-end gap-2">
+                <button onClick={setInitialFilters} className={` mt-5 rounded-lg px-3 py-1 w-fit text-superOfficeGreen hover:text-red-400`} disabled={!(isFiltersChanged)}>Reset</button>
+                <button onClick={applyFilerChanges} className={` mt-5 rounded-lg px-3 py-1 w-fit  ${(isFiltersChanged) ? "bg-superOfficeGreen text-white hover:shadow-md" : "bg-gray-200 text-slate-500"}`} disabled={!(isFiltersChanged)}>Set Filters</button>
+              </div>
+
+            </div>
+
+            {/* Results */}
+            <div className="pl-8 w-full h-96 overflow-y-auto overflow-x-hidden">
+              <ul>
+                {results.length === 0 && (query ? <li>No results found</li> : <li>Type in search text then press Enter</li>)}
+                {results.map((result: any, index: number) => (
+                  <li className="flex flex-col mb-5" key={index + result.meta.title}>
+                    <a className="font-semibold text-lg text-superOfficeGreen hover:text-black hover:underline" href={trimFileExtension(result.url)}>{result.meta.title}</a>
+                    {/* <a className="text-superOfficeGreen" href={result.url}>{pathname}{result.url}</a> */}
+                    <p className="search-snippet" dangerouslySetInnerHTML={{ __html: result.excerpt }}></p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>}
     </div>
   );
 }
