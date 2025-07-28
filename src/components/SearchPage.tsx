@@ -29,7 +29,6 @@ export default function PagefindSearch() {
   const [results, setResults] = useState<any[]>([]);
   const [filterState, setFilterState] = useState<currentFiltersCollection[]>([]);
   const [isFiltersChanged, setIsFiltersChanged] = useState<boolean>(false);
-  const [noOfResults, setNoOfResults] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [filtersExpanded, setFiltersExpanded] = useState<boolean>(true);
 
@@ -64,12 +63,8 @@ export default function PagefindSearch() {
   }
 
   const applyFilerChanges = () => {
-    if (query == "") {
-      doSearch(true)
-    }
-    else {
-      doSearch(false)
-    }
+    // Pass filterOnly param value based on whether query is empty
+    doSearch(query == "")
   }
 
   let _pagefind: any;
@@ -125,7 +120,6 @@ export default function PagefindSearch() {
       setResults(detailedResults);
       setFilters(searchResponse.filters)
       setIsFiltersChanged(false);
-      setNoOfResults(searchResponse.results.length)
     } catch (error) {
       console.error("Pagefind search failed:", error);
       setResults([]);
@@ -154,7 +148,7 @@ export default function PagefindSearch() {
   return (
     <div className="w-full">
       {/* Search Hero */}
-      <div className="w-full px-6 py-3 md:py-6 bg-gradient-to-r from-[#31b494] to-[#0a5e58] text-white md:h-24 flex justify-center items-center  md:px-72">
+      <div className="w-full px-6 py-3 md:px-28 lg:px-72 lg:py-6 bg-gradient-to-r from-[#31b494] to-[#0a5e58] text-white lg:h-20 flex justify-center items-center">
         <input
           placeholder="Search"
           className="w-full h-10 rounded-full px-5 text-black"
@@ -174,67 +168,75 @@ export default function PagefindSearch() {
           </div>
         </div>
         :
-        <div className="pl-2 md:pl-6 pt-2 md:pt-4 pr-2">
+        <div className="flex flex-col p-2 md:flex-row md:mt-2 md:pl-6 md:pt-4">
 
-          <div className="md:mt-2 flex flex-col md:flex-row">
+          {/* Filters Menu */}
+          <div className={`bg-lightTealGray py-2 px-4 md:py-4 w-full md:w-[25%] h-fit rounded-lg mb-3`}>
 
-            {/* Filters */}
-            <div className={`bg-lightTealGray py-2 px-4 md:py-4 w-full md:w-[25%] h-fit rounded-lg mb-3`}>
-
-              <div className={`flex flex-row justify-between  ${filtersExpanded && "border-b-[1px] pb-3"} border-black`}>
-                <p className="font-bold">Filters</p>
-                <button onClick={() => setFiltersExpanded(!filtersExpanded)}>{filtersExpanded ? <CaretUp /> : <CaretDown />}</button>
-              </div>
-
-              {filtersExpanded && <>
-
-                {/* filter list */}
-                <ul className={`flex-col overflow-y-auto h-[275px] 2xl:h-96`}>
-                  {Object.entries(filters).map(([filterGroupName, filterGroup], index) => (
-                    <li className="mt-5" key={index + filterGroupName}>
-                      <p className="font-semibold mb-2">By {capitalizeFirstLetter(filterGroupName)}</p>
-                      <ul>
-                        {Object.entries(filterGroup).map(([filterItemName, count], index) => (
-                          <li className="ml-2 flex items-center" key={index + filterItemName}>
-                            <ColorCheckbox
-                              checked={getFilterState(filterGroupName, filterItemName)}
-                              onChange={() => checkboxOnChange(filterGroupName, filterItemName)}
-                            />
-                            <label className="ml-2" htmlFor={filterItemName}>
-                              {filterItemName != "" ? capitalizeFirstLetter(filterItemName) : "No filter"} ({count})
-                            </label>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex justify-end gap-2">
-                  <button onClick={setInitialFilters} className={` mt-5 rounded-lg px-3 py-1 w-fit text-superOfficeGreen hover:text-red-400`} disabled={!(isFiltersChanged)}>Reset</button>
-                  <button onClick={applyFilerChanges} className={` mt-5 rounded-lg px-3 py-1 w-fit  ${(isFiltersChanged) ? "bg-superOfficeGreen text-white hover:shadow-md" : "bg-gray-200 text-slate-500"}`} disabled={!(isFiltersChanged)}>Set Filters</button>
-                </div>
-              </>
-              }
+            <div className={`flex flex-row justify-between  ${filtersExpanded && "border-b-[1px] pb-3"} border-black`}>
+              <p className="font-bold">Filters</p>
+              <button onClick={() => setFiltersExpanded(!filtersExpanded)}>{filtersExpanded ? <CaretUp /> : <CaretDown />}</button>
             </div>
 
-            {/* Results */}
-            <div className="w-full px-2 md:pl-8">
-              {/* Search Results text */}
-              <div className="h-10">
-                {(query != "" && !loading) ? <p>Found {noOfResults} results for <strong>"{query}"</strong></p> : <p className="w-full md:text-lg md:p-3">Type in a term to search</p>}
-              </div>
-              <ul className="h-[400px] 2xl:h-[600px] overflow-y-auto overflow-x-hidden">
-                {results.length === 0 && (query && <li>No results found</li>)}
-                {results.map((result: any, index: number) => (
-                  <li className="flex flex-col mb-5" key={index + result.meta.title}>
-                    <a className="font-semibold text-lg text-superOfficeGreen hover:text-black hover:underline" href={trimFileExtension(result.url)}>{result.meta.title}</a>
-                    {/* <a className="text-superOfficeGreen" href={result.url}>{pathname}{result.url}</a> */}
-                    <p className="search-snippet" dangerouslySetInnerHTML={{ __html: result.excerpt }}></p>
+            {filtersExpanded && <>
+
+              {/* filter list */}
+              <ul className={`flex flex-col overflow-y-auto h-fit max-h-80`}>
+                {Object.entries(filters).map(([filterGroupName, filterGroup], index) => (
+                  <li className="mt-5" key={index + filterGroupName}>
+                    <p className="font-semibold mb-2">By {capitalizeFirstLetter(filterGroupName)}</p>
+                    <ul>
+                      {Object.entries(filterGroup).map(([filterItemName, count], index) => (
+                        <li className="ml-2 flex items-center" key={index + filterItemName}>
+                          <ColorCheckbox
+                            checked={getFilterState(filterGroupName, filterItemName)}
+                            onChange={() => checkboxOnChange(filterGroupName, filterItemName)}
+                          />
+                          <label className="ml-2" htmlFor={filterItemName}>
+                            {filterItemName != "" ? capitalizeFirstLetter(filterItemName) : "No filter"} ({count})
+                          </label>
+                        </li>
+                      ))}
+                    </ul>
                   </li>
                 ))}
               </ul>
+
+              {/* Filter buttons */}
+              <div className="flex justify-end gap-2">
+                <button onClick={setInitialFilters} className={` mt-5 rounded-lg px-3 py-1 w-fit text-superOfficeGreen hover:text-red-400`} disabled={!(isFiltersChanged)}>Reset</button>
+                <button onClick={applyFilerChanges} className={` mt-5 rounded-lg px-3 py-1 w-fit  ${(isFiltersChanged) ? "bg-superOfficeGreen text-white hover:shadow-md" : "bg-gray-200 text-slate-500"}`} disabled={!(isFiltersChanged)}>Set Filters</button>
+              </div>
+            </>
+            }
+          </div>
+
+          {/* Results Section*/}
+          <div className="w-full px-2 md:pl-8">
+
+            {/* Search Results text */}
+            <div className="h-10">
+              {((results.length > 0 || query) && !loading) ? <p>
+                Found {results.length} results
+                {query && (
+                  <>
+                    {' for '}
+                    <strong>{query}</strong>
+                  </>
+                )}
+              </p> : <p className="w-full md:text-lg md:p-3">Type in a term to search</p>}
             </div>
+
+            {/* Results list */}
+            <ul className="h-[400px] 2xl:h-[600px] overflow-y-auto overflow-x-hidden">
+              {/* {results.length === 0 && (query && <li>No results found</li>)} */}
+              {results.map((result: any, index: number) => (
+                <li className="flex flex-col mb-5" key={index + result.meta.title}>
+                  <a className="font-semibold text-lg text-superOfficeGreen hover:text-black hover:underline" href={trimFileExtension(result.url)}>{result.meta.title}</a>
+                  <p className="search-snippet" dangerouslySetInnerHTML={{ __html: result.excerpt }}></p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>}
     </div>
