@@ -3,7 +3,6 @@ import { ColorCheckbox } from "./CheckBox";
 import { trimFileExtension } from "@utils/slugUtils"
 
 const baseUrl = import.meta.env.BASE_URL ?? "" // Currently baseUrl is /docs-next/
-// var pathname: string;
 
 type filterType = {
   [filterGroupName: string]: {
@@ -143,7 +142,6 @@ export default function PagefindSearch() {
   }, [query]);
 
   useEffect(() => {
-    // pathname = window?.location.host
     setInitialFilters();
   }, [])
 
