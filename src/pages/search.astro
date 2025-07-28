@@ -1,5 +1,5 @@
 ---
-import Layout from "@layouts/Base.astro";
+import Base from "@layouts/Base.astro";
 import SearchPage from "@components/SearchPage"
 const metadata = {
   title: "SuperOffice Docs",
@@ -7,8 +7,8 @@ const metadata = {
 
 ---
 
-<Layout scroll={false} lang="en" metadata={metadata}>
+<Base scroll={false} lang="en" metadata={metadata}>
     <SearchPage client:load/>
-</Layout>
+</Base>
 
 
