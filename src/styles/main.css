@@ -131,8 +131,11 @@ h1 {
   background-color: #FBBD9D;
 }
 
+ */
 .search-snippet mark{
-  background-color: #FBBD9D;
+  background-color: transparent;
+  font-weight: bold;
+  color: #C9500E;
 }
 
 .pagefind-ui .pagefind-ui__drawer:not(.pagefind-ui__hidden) {
