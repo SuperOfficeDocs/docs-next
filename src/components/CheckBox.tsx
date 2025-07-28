@@ -1,7 +1,5 @@
 import React from "react";
 
-type Color = "blue" | "red" | "green" | "yellow" | "purple" | "pink" | "teal" | "gray";
-
 interface ColorCheckboxProps {
     checked: boolean;
     onChange: (checked: boolean) => void;
