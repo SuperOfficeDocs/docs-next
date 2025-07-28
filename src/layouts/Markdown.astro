@@ -1,40 +1,41 @@
 ---
-import Base from "./Base.astro";
+import { render, type CollectionEntry, type DataEntryMap } from 'astro:content';
+import type { TocData } from "~/types/TableOfContentTypes";
 import PageHeader from "@components/PageHeader.astro";
 import OnThisArticle from "@components/OnThisArticle.tsx";
 import TableOfContentList from "@components/TableOfContentList.tsx";
+import Base from "./Base.astro";
 
-const {
-  frontmatter,
-  filePath,
-  collection,
-  slug,
-  headings,
-  TableOfContentData,
-  isLearn,
-  lang,
-} = Astro.props;
-
-// Appends specific category of the page for langauge content collections (For every collection except for release-notes collection)
-var TOCPath;
-if (collection == "release-notes") {
-  TOCPath = "release-notes";
-} else {
-  TOCPath = lang.concat(`/${isLearn ? "learn" : slug.split("/")[0]}`);
+export interface Props {
+  /** Accept an entry from *any* collection our site defines */
+  entry: CollectionEntry<keyof DataEntryMap>;
+  toc: TocData;
+  isLearn?: boolean;
+  language?: string;
 }
 
+const { entry, toc, isLearn = false, language = "en" } = Astro.props;
+const {
+  data: frontmatter,
+  filePath,
+  collection,
+  id: slug,
+} = entry;
+
+// Determine TOC path: use fixed segment for release notes, otherwise build from language + category
+const TOCPath =
+  collection === "release-notes"
+    ? "release-notes"
+    : `${language}/${isLearn ? "learn" : slug.split("/")[0]}`;
+
+const { Content, headings } = await render(entry);
 ---
 
-<!-- pagefind uses "lang" attribute to identify the language -->
-
-<Base 
-  metadata={frontmatter} 
-  lang={lang} 
->
+<Base metadata={frontmatter} lang={language}>
   <div class="sticky top-0">
     <PageHeader
       isLearnCategoryPage={false}
-      filePath={filePath}
+      filePath={filePath ?? ""}
       metadata={frontmatter}
       collection={collection}
     />
@@ -48,14 +49,13 @@ if (collection == "release-notes") {
       >
         <TableOfContentList
           client:only="react"
-          inputItems={TableOfContentData?.items}
+          inputItems={toc?.items}
           slug={TOCPath}
           isMainTable={true}
           transition:persist
         />
       </nav>
 
-      <!-- Markdown file contents render withitn the slot -->
       <main
         class=`md:col-span-7 p-8 max-w-none prose prose-headings:font-normal`
         data-pagefind-body
@@ -63,7 +63,7 @@ if (collection == "release-notes") {
         data-pagefind-filter="language[data-language], audience[data-audience]"
         data-audience={frontmatter.audience}
       >
-        <slot />
+        {Content && <Content />}
       </main>
     </div>
     <div

@@ -1,0 +1,50 @@
+---
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
+import { getCategorySlug } from "@utils/slugUtils";
+import { getLocalizedToc } from "@utils/tocUtils";
+import SubCategoryLandingLayout from "@layouts/SubCategoryLandingLayout.astro";
+
+type SubCategoryDataType = Extract<
+  CollectionEntry<"cats">["data"],
+  { YamlMime: "SubCategory" }
+>;
+
+const language = "da" as const;
+const collectionPath = `superoffice-docs/docs/${language}` as const;
+
+// Computed tocData once at module load (build-time) and reuse it for all pages.
+// A single TOC for all DA pages, rooted at "learn".
+const tocData = await getLocalizedToc(language);
+
+// Dynamically generate one path per SubCategory YAML this folder:
+export async function getStaticPaths() {
+  const collectionPath = `superoffice-docs/docs/da` as const;
+  const yamlEntries = await getCollection("cats", (entry) =>
+    entry.data.yamlMime === "SubCategory" &&
+    entry.id.startsWith(collectionPath)
+  );
+
+  return yamlEntries.map((entry) => {
+    const slug = getCategorySlug(entry.id, collectionPath);
+    return { params: { subcategory: slug } };
+  });
+}
+
+// Load the matching YAML for each slug:
+const { subcategory } = Astro.params;
+
+const filePath = `${collectionPath}/${subcategory}`;
+
+const entry = await getEntry("cats", filePath);
+if (!entry) {
+  throw new Error(`Subcategory not found: ${filePath}`);
+}
+const CategoryData = entry.data as SubCategoryDataType;
+---
+
+<SubCategoryLandingLayout
+  lang={language}
+  data={CategoryData}
+  ToCData={tocData}
+  baseSlug={filePath}
+/>

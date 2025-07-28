@@ -3,7 +3,7 @@ import { Code } from 'astro:components';
 import type { ManagedReferenceType, Reference } from "../types/WebAPITypes";
 import type {indexDictionaryProps} from "../types/WebApiLayoutTypes"
 import WebAPIItem from "@components/WebApiItem.astro"
-import { conversionList } from '~/pages/en/api/reference/webapi/[...slug].astro';
+import { conversionList } from "@components/WebApiPage.astro";
 type Props = {
     data: ManagedReferenceType;
 };
@@ -42,7 +42,7 @@ const selectedKeys = ["Constructor", "Method", "Property"];
     {data.items[0].inheritance &&
       <div class="m-0">
         <h2 class="font-medium text-sm border-b-[1px] pb-1 border-gray-300">Inheritance</h2>
-        <ul class="list-none text-orange-500 [&>*]:my-0 m-0 p-0">{data.items[0].inheritance.map( (inheritClass :string, index : number) => {
+        <ul class="list-none text-orange-500 [&>*]:my-0 m-0 p-0">{data.items[0].inheritance.map( (inheritClass :string) => {
             return <li> ↳ {inheritClass.split(".").pop()} </li>
         })}</ul>
         <p class="ml-4 my-0">↳ {data.items[0].id}</p>

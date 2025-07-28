@@ -1,0 +1,20 @@
+---
+import { extractCodeIfPresent } from "@utils/yamlManagedReferenceUtils";
+import YamlCodeBlock from "./YamlCodeBlock.astro";
+
+interface Props {
+  ex: string;   // raw example string from YAML
+  api: string;   // "crmscript", "webapi"
+}
+
+const { ex, api } = Astro.props;
+
+// Check if example contains <pre><code> and extract pure code if present
+const code = extractCodeIfPresent(ex);
+---
+
+{code ? (
+  <YamlCodeBlock code={code} api={api} />
+) : (
+  <div class="prose text-sm" set:html={ex} />
+)}

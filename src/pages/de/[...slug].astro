@@ -1,61 +1,35 @@
 ---
-import { getCollection, render, type CollectionEntry } from "astro:content";
-import type { MarkdownHeading } from "astro";
+import { getDocEntries } from "@utils/contentUtils";
+import { getLocalizedToc } from "@utils/tocUtils";
+import { getContentSlug } from "@utils/slugUtils";
 import MarkdownLayout from "@layouts/Markdown.astro";
-import { stripFilePathAndExtension } from "~/utils/slugUtils";
-import { getLocalizedToc } from "~/utils/getLocalizedToc";
-import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
 
 const language = "de" as const;
 
 // Computed tocData once at module load (build-time) and reuse it for all pages
-const tocEntries = await getLocalizedToc(language);
-const tocData = await getTableOfContentsFromCollection(tocEntries, `superoffice-docs/docs/${language}/learn`);
+const tocData = await getLocalizedToc(language);
 
 // Generate static paths from de collection
 export async function getStaticPaths() {
   const language = "de" as const;
-  const docEntries = await getCollection(language, ({ data }) => {
-  return !data.redirect_url;
-});
 
-
-  const headings = await Promise.all(
-    docEntries.map(async (post) => {
-      const data = await render(post);
-      return data.headings;
-    })
-  );
-
-  return docEntries.map((entry, index) => {
-
-    const generatedSlug = stripFilePathAndExtension(entry.filePath!, `superoffice-docs/docs/${language}`, true);
+  const docEntries = await getDocEntries(language);
+  return docEntries.map((entry) => {
+    const generatedSlug = getContentSlug(entry.filePath!, language);
 
     return {
       params: { slug: `${generatedSlug}` },
-      props: { entry, headings: headings[index] },
+      props: { entry },
     };
   });
 }
 
-type Props = {
-  entry: CollectionEntry<typeof language>;
-  headings: MarkdownHeading[];
-};
-
-const { entry, headings } = Astro.props;
-
-const { Content } = await render(entry);
+const { entry } = Astro.props;
 ---
 
 <MarkdownLayout
-  frontmatter={entry.data}
-  collection={entry.collection}
-  slug={entry.id}
-  headings={headings}
-  TableOfContentData={tocData}
-  isLearn="true"
-  lang={language}
->
-  {Content ? <Content /> : "Loading content..."}
-</MarkdownLayout>
+  entry={entry}
+  toc={tocData}
+  language={language}
+  isLearn={true}
+/>

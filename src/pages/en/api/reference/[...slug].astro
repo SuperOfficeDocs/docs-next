@@ -1,51 +1,48 @@
 ---
-import { getCollection, render } from "astro:content";
-import MarkdownLayout from "@layouts/Markdown.astro";
-import { getTableOfContents } from "~/utils/getTableOfContents";
+import { getCollection } from "astro:content";
+import type { TocData } from "~/types/TableOfContentTypes";
+import { getTocByPath } from "@utils/tocUtils";
 import { stripFilePathAndExtension } from "~/utils/slugUtils";
+import MarkdownLayout from "@layouts/Markdown.astro";
+
+//const language = "en" as const;
 
 //generating static paths from en collection
 export async function getStaticPaths() {
-  const docEntries = await getCollection("reference-docs");
+  const referencePath = `superoffice-docs/docs/en/api/reference` as const;
 
-  const headings = await Promise.all(
-    docEntries.map(async (post) => {
-      const data = await render(post);
-      return data.headings;
+  const docEntries = await getCollection("reference-docs");
+  const tocCache = new Map<string, TocData>();
+
+  return Promise.all(
+    docEntries.map(async (entry, index) => {
+      const slug = stripFilePathAndExtension(
+        entry.filePath!,
+        referencePath,
+        true,
+      );
+
+      const api = slug?.split("/")[0];
+
+      if (!tocCache.has(api)) {
+        tocCache.set(api, await getTocByPath(`${referencePath}/${api}`));
+      }
+
+      return {
+        params: { slug: `${slug}` },
+        props: {
+          entry,
+          tocData: tocCache.get(api)!,
+        },
+      };
     }),
   );
-  return docEntries.map((entry, index) => {
-    //Remove .md extension AND filepath prefix (ex:superoffice-docs/docs/en/api/reference) from filepath
-    const generatedSlug = stripFilePathAndExtension(
-      entry.filePath!,
-      `superoffice-docs/docs/en/api/reference`,
-      true,
-    );
-    
-    const tocPath = generatedSlug?.split("/")[0];
-    const tocData = getTableOfContents(`docs/en/api/reference/${tocPath}`);
-
-    return {
-      params: { slug: `${generatedSlug}` },
-      props: { entry, headings: headings[index], tocData },
-    };
-  });
 }
 
-const { entry, headings, tocData } = Astro.props;
-const { Content } = await render(entry);
-
+const { entry, tocData } = Astro.props;
 ---
 
 <MarkdownLayout
-  frontmatter={entry.data}
-  collection={"reference-docs"}
-  slug={entry.id}
-  filePath={entry.filePath}
-  headings={headings}
-  TableOfContentData={tocData}
-  isLearn={false}
-  lang="en"
->
-  {Content ? <Content /> : "Loading content..."}
-</MarkdownLayout>
+  entry={entry}
+  toc={tocData}
+/>

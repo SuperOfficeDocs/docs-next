@@ -1,0 +1,35 @@
+---
+import { getDocEntries } from "@utils/contentUtils";
+import { getLocalizedToc } from "@utils/tocUtils";
+import { getContentSlug } from "@utils/slugUtils";
+import MarkdownLayout from "@layouts/Markdown.astro";
+
+const language = "sv" as const;
+
+// Computed tocData once at module load (build-time) and reuse it for all pages
+const tocData = await getLocalizedToc(language);
+
+// Generate static paths from sv collection
+export async function getStaticPaths() {
+  const language = "sv" as const;
+
+  const docEntries = await getDocEntries(language);
+  return docEntries.map((entry) => {
+    const generatedSlug = getContentSlug(entry.filePath!, language);
+
+    return {
+      params: { slug: `${generatedSlug}` },
+      props: { entry },
+    };
+  });
+}
+
+const { entry } = Astro.props;
+---
+
+<MarkdownLayout
+  entry={entry}
+  toc={tocData}
+  language={language}
+  isLearn={true}
+/>

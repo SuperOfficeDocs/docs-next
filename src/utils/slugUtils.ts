@@ -3,6 +3,29 @@ const contentDir = "external-content"; // external content directory
 const contentRepo = "superoffice-docs"; // primary content repository
 
 /**
+ * The set of folders that DocFX routed into "netserver".
+ * Anything in here (or the empty root) should go to netserver.
+ */
+const netserverFolders = new Set([
+  'archive-providers',
+  'bulk-operations',
+  'caching',
+  'config',
+  'custom-objects',
+  'entities',
+  'foreign-keys',
+  'lists',
+  'logging',
+  'mdo-providers',
+  'osql',
+  'plugins',
+  'rows',
+  'search',
+  'sql',
+  'web-services',
+]);
+
+/**
  * Strips the content directory prefix, collection path, and file extension from an entry.filePath.
  * For example: "external-content/superoffice-docs/docs/en/project/learn/index.md" -> "/project/learn/index"
  */
@@ -63,6 +86,64 @@ export function resolveHref(url: string, baseSlug?: string): string {
 }
 
 /**
+ * Gets a clean route slug from an Astro content entry.filePath.
+ *
+ * Strips off the common repo/folder prefix (`superoffice-docs/docs/{language}`)
+ * and, if provided, an extra `/{segment}` folder, and then removes the file extension.
+ *
+ * @param filePath - The raw `entry.filePath`,  such as "superoffice-docs/docs/en/database/index.md".
+ * @param language - The locale folder, such as "en", "de".
+ * @param segment? - Optional subfolder under the language, for example "database".
+ *                   If omitted, only the language folder is stripped.
+ * @returns A slug string such as "foo" or "bar/index".
+ */
+export function getContentSlug(
+  filePath: string,
+  language: string,
+  segment?: string
+): string {
+  const base = `${contentRepo}/docs`;
+  const prefix = segment
+    ? `${base}/${language}/${segment}`
+    : `${base}/${language}`;
+
+  // strip prefix and extension
+  return stripFilePathAndExtension(filePath, prefix, true);
+}
+
+/**
+ * Wrapper for getContentSlug that handles api folder routing.
+
+ * @param filePath - The raw `entry.filePath`,  such as "superoffice-docs/docs/en/api/webservices/index.md".
+ * @returns A slug string such as "api/netserver/webservices" or "api/overview/quickstart".
+ */
+export function getApiContentSlug(
+  filePath: string,
+): string {
+  const basePath = `superoffice-docs/docs/en/api` as const;
+  const rawSlug = stripFilePathAndExtension(filePath, basePath, true);
+
+  const segment = rawSlug.split('/')[0];
+
+  // If the segment is in the netserverFolders, prepend "netserver/"
+  return netserverFolders.has(segment) ? `netserver/${rawSlug}` : rawSlug;
+}
+
+/**
+ * Extracts the clean slug from api reference folder.
+ * @param filePath - The raw `entry.filePath`, such as "superoffice-docs/docs/en/api/reference/webapi".
+ * @returns A slug string such as "SuperOffice.License".
+ */
+export function getApiReferenceSlug(
+  filePath: string,
+  api: string,
+): string {
+  const basePath = `superoffice-docs/docs/en/api/reference` as const;
+
+  return stripFilePathAndExtension(filePath, `${basePath}/${api}`, true);
+}
+
+/**
  * Extracts the clean slug from a full file ID by removing the base path and file extension.
  *
  * Useful for generating route parameters for category and subcategory pages from landing entry IDs, such as converting
@@ -72,8 +153,14 @@ export function resolveHref(url: string, baseSlug?: string): string {
  * @param basePath - The root collection or folder prefix to remove from the ID.
  * @returns A clean slug string, such as 'foo' or 'index'.
  */
-export function extractCategorySlug(id: string, basePath: string): string {
-  const rawSlug = id === basePath ? "" : id.replace(`${basePath}/`, "");
+export function getCategorySlug(id: string, basePath: string): string {
+  let rawSlug = id === basePath ? "" : id.replace(`${basePath}/`, "");
+
+  if (rawSlug.startsWith('api/authentication')) {
+    // remove the leading "api/" (4 characters)
+    rawSlug = rawSlug.slice(4);
+  }
+
   return rawSlug ? trimFileExtension(rawSlug) : "index";
 }
 

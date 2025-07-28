@@ -1,59 +1,32 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import type { MarkdownHeading } from "astro";
-import { getCollection, render } from "astro:content";
-import { stripFilePathAndExtension } from "~/utils/slugUtils";
-import { getTableOfContentsFromCollection } from "~/utils/getTableOfContentsFromCollection";
+import { getCollection } from "astro:content";
+import { stripFilePathAndExtension } from "@utils/slugUtils";
+import { getTocByPath } from "@utils/tocUtils";
 import MarkdownLayout from "@layouts/Markdown.astro";
 
-const collectionPath = "contribution";
-const allTocEntries = await getCollection("toc");
-const tocEntries = allTocEntries.filter((entry) =>
-  entry.id.startsWith(collectionPath)
-);
-const tocData = await getTableOfContentsFromCollection(tocEntries, collectionPath);
+//const language = "en" as const;
+
+const tocData = await getTocByPath('contribution');
 
 export async function getStaticPaths() {
   const docEntries = await getCollection("contribute");
 
-  const headings = await Promise.all(
-    docEntries.map(async (entry) => {
-      const rendered = await render(entry);
-      return rendered.headings;
-    })
-  );
-
-  const paths = docEntries.map((entry, index) => {
+  const paths = docEntries.map((entry) => {
     const slug = stripFilePathAndExtension(entry.filePath!, "contribution", true);
 
     return {
       params: { slug },
-      props: { entry, headings: headings[index] }
+      props: { entry }
     };
   });
 
   return paths;
 }
 
-type Props = {
-  entry: CollectionEntry<"contribute">;
-  headings: MarkdownHeading[];
-};
-
-const { entry, headings } = Astro.props;
-
-const { Content } = await render(entry);
+const { entry } = Astro.props;
 ---
 
 <MarkdownLayout
-  frontmatter={entry.data}
-  collection={entry.collection}
-  slug={entry.id}
-  filePath={entry.filePath}
-  headings={headings}
-  TableOfContentData={tocData}
-  isLearn={false}
-  lang="en"
->
-  {Content ? <Content /> : "Loading..."}
-</MarkdownLayout>
+  entry={entry}
+  toc={tocData}
+/>

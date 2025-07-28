@@ -31,11 +31,9 @@ export function getFeedbackHref(docurl:string, title:string, uid:string) {
   return newIssueUrl + '?title=' + title + '&body=' + body;
 }
 
-export function getEditHref(docurl: string): string {
+export function getEditHref(docurl?: string | null): string {
   if (!docurl) return '';
 
   // Construct the full GitHub URL to the file
-  const fullUrl = `${baseGithubUrl}${docurl.replace(/^\//, '')}`;
-
-  return fullUrl;
+  return `${baseGithubUrl}${docurl.replace(/^\//, '')}`;
 }

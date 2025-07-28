@@ -1,0 +1,38 @@
+---
+import type { YamlNamespaceData } from "~/types/YamlManagedReferenceTypes";
+import Link from "@components/Link.astro";
+
+interface Props {
+  namespaceData: YamlNamespaceData;
+  baseUrl: string;
+}
+
+const { namespaceData, baseUrl } = Astro.props;
+---
+
+<div class="space-y-8">
+  {Object.entries(namespaceData).map(([typeName, items]) => {
+   console.log("Namespace item summaries:", items.map(i => ({ uid: i.uid, summary: i.summary })));
+    const displayName = typeName === "Other" ? "Classes" : typeName;
+
+    return (
+      <section>
+        <h3 id={displayName.toLowerCase()} class="text-2xl font-bold mb-4">
+          {displayName}
+        </h3>
+
+        {items.map((item) => (
+          <div class="mb-6">
+            <h4 class="text-xl font-semibold mb-1">
+              <Link href={`${baseUrl}/${item.uid}`} text={item.name} />
+            </h4>
+
+            <!-- Summary -->
+            {item.summary && (
+                <p class="ml-4 prose text-sm" set:html={item.summary}></p>)}
+          </div>
+        ))}
+      </section>
+    );
+  })}
+</div>

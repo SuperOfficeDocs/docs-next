@@ -1,0 +1,36 @@
+---
+import type { YamlManagedReferenceItem } from "~/types/YamlManagedReferenceTypes";
+import YamlCodeBlock from "@components/YamlCodeBlock.astro";
+import YamlExampleBlock from "@components/YamlExampleBlock.astro";
+
+interface Props {
+  ctor: YamlManagedReferenceItem;
+  api: string;
+}
+
+const { ctor, api } = Astro.props;
+---
+
+<div class="mb-4">
+  <h3 id={ctor.uid} class="text-xl font-semibold">{ctor.name}</h3>
+
+  {ctor.summary && (
+    <p class="mb-2" set:html={ctor.summary} />
+  )}
+
+  {ctor.syntax?.content && (
+    <>
+      <h4 class="text-md font-semibold">Declaration</h4>
+      <YamlCodeBlock code={ctor.syntax.content} api={api} />
+    </>
+  )}
+
+  {ctor.example && ctor.example.length > 0 && (
+    <>
+      <h4 class="text-md font-semibold">Examples</h4>
+      {ctor.example.map((ex) => (
+        <YamlExampleBlock ex={ex} api={api} />
+      ))}
+    </>
+  )}
+</div>

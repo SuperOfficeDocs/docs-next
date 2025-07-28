@@ -19,10 +19,17 @@ import yaml from '@rollup/plugin-yaml';
 import redirectFrom from "astro-redirect-from";
 import { getRedirectFromSlug } from './src/utils/slugUtils.ts';
 
-// https://astro.build/config
+const apiOnly = process.env.API_ONLY === 'true';
+
 export default defineConfig({
+  // Conditionally exclude static landing page
+  pages: [
+    'src/pages/**/*',
+    ...(apiOnly ? ['!src/pages/contribute/index.astro'] : []),
+  ],
+
   markdown: {
-    remarkPlugins: [remarkDirective, codeImport, remarkIncludeDirective, remarkRestyleDirective ],
+    remarkPlugins: [remarkDirective, codeImport, remarkIncludeDirective, remarkRestyleDirective],
     rehypePlugins: [
       rehypeHeadingIds,
       [
@@ -53,9 +60,11 @@ export default defineConfig({
       },
     },
   },
+
   vite: {
-    plugins: [yaml()]
+    plugins: [yaml()],
   },
+
   content: {
     sources: [
       {
@@ -64,10 +73,9 @@ export default defineConfig({
       },
     ],
   },
+
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
+    tailwind({ applyBaseStyles: false }),
     icon({
       include: {
         tabler: ["*"],
@@ -89,16 +97,18 @@ export default defineConfig({
     }),
     mdx(),
     pagefind(),
-    react(), // preact(),
+    react(),
     redirectFrom({
       contentDir: './external-content',
       getSlug: getRedirectFromSlug, // Function to get the slug for redirect_from
     }),
     robots(), sitemap(),
   ],
+
   image: {
     service: sharpImageService({ limitInputPixels: false }),
   },
+
   i18n: {
     locales: ["da", "de", "en", "nl", "no", "sv"],
     defaultLocale: "en",
@@ -110,6 +120,7 @@ export default defineConfig({
       de: "en",
     },
   },
+
   build: {
     format: "preserve",
   },

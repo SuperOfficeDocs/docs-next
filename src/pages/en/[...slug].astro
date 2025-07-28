@@ -1,61 +1,62 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getLocalizedToc, getSegmentToc } from "@utils/tocUtils";
+import { getFilteredDocEntries } from "@utils/contentUtils";
+import { getContentSlug } from "@utils/slugUtils";
+import type { DocsFrontmatter } from "~/types/DocsTypes";
 import MarkdownLayout from "@layouts/Markdown.astro";
-import { getTableOfContents } from "../../utils/getTableOfContents";
-import { stripFilePathAndExtension } from "~/utils/slugUtils";
 
-//generating static paths from en collection
+const language = "en" as const;
+
+// Generate static paths from EN collection including learn and excluding specific segments.
 export async function getStaticPaths() {
-  const docEntries = (await getCollection("en", ({ data }) => {
-    return !data.redirect_url;
-  }));
+  const language = "en" as const;
+  const learnSegmentKey = "learn";
+  const excluded = [
+    "authentication",
+    "automation",
+    "database",
+    "developer-portal",
+    "mobile",
+    "online",
+    "onsite",
+    "service",
+    "ui",
+  ]; // api is its own collection
 
-  const headings = await Promise.all(
-    docEntries.map(async (post) => {
-      const data = await render(post);
-      return data.headings;
+  // No redirects and not in excluded folders
+  const docEntries = await getFilteredDocEntries(language, excluded);
+  const tocCache = new Map<string, Awaited<ReturnType<typeof getSegmentToc>>>();
+  tocCache.set(learnSegmentKey, await getLocalizedToc(language));
+
+  return Promise.all(
+    docEntries.map(async (entry) => {
+      const slug = getContentSlug(entry.filePath!, language);
+
+      const isLearn = ((entry.data as DocsFrontmatter).uid ?? "").startsWith("help-");
+      const segment = isLearn ? learnSegmentKey : slug.split("/")[0];
+
+      if (!tocCache.has(segment)) {
+        tocCache.set(segment, await getSegmentToc(language, segment));
+      }
+
+      return {
+        params: { slug },
+        props: {
+          entry,
+          tocData: tocCache.get(segment)!,
+          isLearn,
+        },
+      };
     }),
   );
-  return docEntries.map((entry, index) => {
-    //Remove .md extension AND filepath prefix (ex:superoffice-docs/docs/en) from filepath
-    const generatedSlug = stripFilePathAndExtension(
-      entry.filePath!,
-      `superoffice-docs/docs/en`,
-      true,
-    );
-    
-    const category = generatedSlug?.split("/")[0];
-    const isLearn = entry.data.uid?.startsWith("help");
-
-    function getTocPath(): string{
-      if (isLearn) return "learn";
-      return category;
-    }
-
-    const tocPath = getTocPath();
-    const tocData = getTableOfContents(`docs/en/${tocPath}`);
-
-    return {
-      params: { slug: `${generatedSlug}` },
-      props: { entry, headings: headings[index], tocData, isLearn },
-    };
-  });
 }
 
-const { entry, headings, tocData, isLearn } = Astro.props;
-
-const { Content } = await render(entry);
+const { entry, tocData, isLearn } = Astro.props;
 ---
 
 <MarkdownLayout
-  frontmatter={entry.data}
-  collection={entry.collection}
-  slug={entry.id}
-  filePath={entry.filePath}
-  headings={headings}
-  TableOfContentData={tocData}
+  entry={entry}
+  toc={tocData}
+  language={language}
   isLearn={isLearn}
-  lang="en"
->
-  {Content ? <Content /> : "Loading content..."}
-</MarkdownLayout>
+/>
