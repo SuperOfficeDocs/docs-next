@@ -14,7 +14,9 @@ type filterType = {
 }
 
 type filterListType = {
-  [filterGroupName: string]: string[];
+  [filterGroupName: string]: {
+    "any": string[]
+  };
 }
 
 type currentFiltersCollection = {
@@ -44,7 +46,7 @@ export default function PagefindSearch() {
   const checkboxOnChange = (filterGroup: string, filterName: string): void => {
     setIsFiltersChanged(true)
     setFilterState(filterState.map(
-      (item) => item.filterGroup == filterGroup && item.filterName == filterName ? { ...item, active: !item.active } : item))
+      (item) => (item.filterGroup == filterGroup && item.filterName == filterName) ? { ...item, active: !item.active } : item))
   }
 
   const getFilterState = (filterGroup: string, filterName: string): boolean => {
@@ -55,16 +57,32 @@ export default function PagefindSearch() {
     let tempFilterList: filterListType = {}
     filterState.filter((item) => item.active).map((item) => {
       if (tempFilterList[item.filterGroup] === undefined) {
-        tempFilterList[item.filterGroup] = []
+        tempFilterList[item.filterGroup] = {
+          "any": []
+        }
       }
-      tempFilterList[item.filterGroup].push(item.filterName)
+      tempFilterList[item.filterGroup].any.push(item.filterName)
     })
     return tempFilterList
+  }
+
+  const setPreferredLanguage = () => {
+
+    let langArray: string[] = [];
+
+    filterState.filter(item => item.active && item.filterGroup == "language").map(
+      item => {
+        langArray.push(item.filterName)
+      }
+    )
+    localStorage.setItem("SuperOfficeDocs-lang", JSON.stringify(langArray))
   }
 
   const applyFilerChanges = () => {
     // Pass filterOnly param value based on whether query is empty
     doSearch(query == "")
+    //set user's preferred language
+    setPreferredLanguage()
   }
 
   let _pagefind: any;
@@ -84,25 +102,27 @@ export default function PagefindSearch() {
   }
 
   async function setInitialFilters() {
+
+
+
+    const selectedLanguage = JSON.parse(localStorage.getItem("SuperOfficeDocs-lang") ?? "")
+    console.log("se", selectedLanguage)
     let pagefind = await getPagefind();
     const currentFilters: filterType = await pagefind.filters();
     setFilters(currentFilters)
 
     let filterStateTemp: currentFiltersCollection[] = [];
-    const selectedLanguage = "en"
 
     Object.entries(currentFilters).map(([filterGroupName, filterGroup]) => {
       Object.entries(filterGroup).map(([filterItemName]) => {
         filterStateTemp.push({
           filterGroup: filterGroupName,
           filterName: filterItemName,
-          active: (filterItemName == selectedLanguage) ? true : false
+          active: (filterGroupName == "language" && selectedLanguage.includes(filterItemName)) ? true : false
         })
       })
     })
-
-    console.log(filterStateTemp)
-
+    // console.log(filterStateTemp)
     setFilterState(filterStateTemp)
   }
 
@@ -111,6 +131,7 @@ export default function PagefindSearch() {
       setLoading(true)
       let pagefind = await getPagefind();
       const currentFilterArray = getActiveFilters();
+      console.log(currentFilterArray)
       const searchResponse = await pagefind.search(
         filterOnly ? null : query,
         {
@@ -209,7 +230,7 @@ export default function PagefindSearch() {
 
               {/* Filter buttons */}
               <div className="flex justify-end gap-2">
-                <button onClick={setInitialFilters} className={` mt-5 rounded-lg px-3 py-1 w-fit text-superOfficeGreen hover:text-red-400`} disabled={!(isFiltersChanged)}>Reset</button>
+                <button onClick={() => setInitialFilters()} className={` mt-5 rounded-lg px-3 py-1 w-fit text-superOfficeGreen hover:text-red-400`}>Reset</button>
                 <button onClick={applyFilerChanges} className={` mt-5 rounded-lg px-3 py-1 w-fit  ${(isFiltersChanged) ? "bg-superOfficeGreen text-white hover:shadow-md" : "bg-gray-200 text-slate-500"}`} disabled={!(isFiltersChanged)}>Set Filters</button>
               </div>
             </>
