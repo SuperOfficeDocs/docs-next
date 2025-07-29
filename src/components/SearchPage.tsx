@@ -89,16 +89,19 @@ export default function PagefindSearch() {
     setFilters(currentFilters)
 
     let filterStateTemp: currentFiltersCollection[] = [];
+    const selectedLanguage = "en"
 
     Object.entries(currentFilters).map(([filterGroupName, filterGroup]) => {
       Object.entries(filterGroup).map(([filterItemName]) => {
         filterStateTemp.push({
           filterGroup: filterGroupName,
           filterName: filterItemName,
-          active: false
+          active: (filterItemName == selectedLanguage) ? true : false
         })
       })
     })
+
+    console.log(filterStateTemp)
 
     setFilterState(filterStateTemp)
   }
@@ -140,6 +143,8 @@ export default function PagefindSearch() {
   }, [query]);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setQuery(params.get("query") || "");
     setInitialFilters();
   }, [])
 
