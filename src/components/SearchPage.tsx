@@ -42,7 +42,6 @@ export default function PagefindSearch() {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-
   const checkboxOnChange = (filterGroup: string, filterName: string): void => {
     setIsFiltersChanged(true)
     setFilterState(filterState.map(
@@ -102,11 +101,7 @@ export default function PagefindSearch() {
   }
 
   async function setInitialFilters() {
-
-
-
-    const selectedLanguage = JSON.parse(localStorage.getItem("SuperOfficeDocs-lang") ?? "")
-    console.log("se", selectedLanguage)
+    const selectedLanguage = JSON.parse(localStorage.getItem("SuperOfficeDocs-lang") ?? '["en"]')
     let pagefind = await getPagefind();
     const currentFilters: filterType = await pagefind.filters();
     setFilters(currentFilters)
@@ -122,7 +117,6 @@ export default function PagefindSearch() {
         })
       })
     })
-    // console.log(filterStateTemp)
     setFilterState(filterStateTemp)
   }
 
@@ -131,7 +125,6 @@ export default function PagefindSearch() {
       setLoading(true)
       let pagefind = await getPagefind();
       const currentFilterArray = getActiveFilters();
-      console.log(currentFilterArray)
       const searchResponse = await pagefind.search(
         filterOnly ? null : query,
         {
