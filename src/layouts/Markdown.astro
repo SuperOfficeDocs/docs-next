@@ -1,5 +1,5 @@
 ---
-import { render, type CollectionEntry, type DataEntryMap } from 'astro:content';
+import { render, type CollectionEntry, type DataEntryMap } from "astro:content";
 import type { TocData } from "~/types/TableOfContentTypes";
 import PageHeader from "@components/PageHeader.astro";
 import OnThisArticle from "@components/OnThisArticle.tsx";
@@ -12,21 +12,26 @@ export interface Props {
   toc: TocData;
   isLearn?: boolean;
   language?: string;
+  TOCBasePath?: string;
 }
 
-const { entry, toc, isLearn = false, language = "en" } = Astro.props;
 const {
-  data: frontmatter,
-  filePath,
-  collection,
-  id: slug,
-} = entry;
+  entry,
+  toc,
+  isLearn = false,
+  language = "en",
+  TOCBasePath,
+} = Astro.props;
+const { data: frontmatter, filePath, collection, id: slug } = entry;
 
-// Determine TOC path: use fixed segment for release notes, otherwise build from language + category
-const TOCPath =
-  collection === "release-notes"
-    ? "release-notes"
-    : `${language}/${isLearn ? "learn" : slug.split("/")[0]}`;
+// Determine TOC path: use fixed segment for release notes, if a TOCBasePath is available, use it as TOCPath, otherwise build from language + category
+const getTOCPath = (): string => {
+  if (collection === "release-notes") return "release-notes";
+  else if (TOCBasePath != undefined) return TOCBasePath;
+  else return `${language}/${isLearn ? "learn" : slug.split("/")[0]}`;
+};
+
+const TOCPath = getTOCPath();
 
 const { Content, headings } = await render(entry);
 ---
