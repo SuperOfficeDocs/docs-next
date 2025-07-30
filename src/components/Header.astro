@@ -3,7 +3,6 @@ import { Icon } from "astro-icon/components";
 import Hamburger from "./Hamburger.astro";
 import logo from "@assets/logo.svg";
 import { trimSlash } from "@scripts/utils";
-import Search from "@components/Search.astro";
 
 const base = import.meta.env.BASE_URL;
 
@@ -102,12 +101,35 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             ))
           }
         </ul>
-        <div class="md:pl-3 md:pt-0.5">
-          <Search
-            id="search"
-            className="pagefind-ui"
-            uiOptions={{ showImages: false, excerptLength: 15 }}
-          />
+        <div class="md:pl-3 flex justify-center items-center">
+          <form
+            class="flex items-center w-full max-w-md border border-gray-300 rounded-md"
+            action=`${base}/search`
+            method="GET"
+          >
+            <input
+              type="text"
+              name="query"
+              placeholder="Search"
+              required
+              class="px-4 py-[2px] focus:outline-none"
+            />
+            <button
+              type="submit"
+              class="bg-superOfficeGreen hover:bg-[#0b4642] py-1 px-2 rounded-r-md"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="24"
+                fill="#FFFFFF"
+                viewBox="0 0 256 256"
+                ><path
+                  d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+                ></path></svg
+              >
+            </button>
+          </form>
         </div>
       </div>
     </nav>
