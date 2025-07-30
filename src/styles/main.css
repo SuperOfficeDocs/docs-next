@@ -127,7 +127,19 @@ h1 {
 }
 
 .pagefind-ui__result-excerpt.svelte-j9e30 mark{
-  background-color: #FBBD9D;
+  background-color: transparent;
+  font-weight: bold;
+  color: #C9500E;
+}
+
+.search-snippet mark{
+  background-color: transparent;
+  font-weight: bold;
+  color: #C9500E;
+}
+
+.pagefind-ui__filter-panel{
+  display: none !important;
 }
 
 .pagefind-ui .pagefind-ui__drawer:not(.pagefind-ui__hidden) {
