@@ -37,6 +37,7 @@
     "astro-robots": "^2.0.1",
     "astro-social-share": "^2.0.2",
     "dayjs": "^1.11.12",
+    "marked": "^16.1.2",
     "mdast-util-from-markdown": "^2.0.2",
     "node-fetch": "^3.3.2",
     "phosphor-astro": "^2.1.0",
