@@ -66,7 +66,6 @@ export default defineConfig({
   },
 
   content: {
-    cacheDir: false, // disable disk cache
     sources: [
       {
         prefix: 'external',
