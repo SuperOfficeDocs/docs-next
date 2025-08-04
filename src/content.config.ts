@@ -22,7 +22,7 @@ const enDocs = defineCollection({
 
 const apiDocs = defineCollection({
   loader: glob({
-    pattern: false ? [] : [
+    pattern: true ? [] : [
       // "**/*.md",
       "!**/includes/**",
       "reference/soap/**/*.md",
@@ -60,11 +60,9 @@ const NSScriptingRef = defineCollection({
 
 const referenceDocs = defineCollection({
   loader: glob({
-    pattern: false ? [
-      "**/*.md",
+    pattern: true ? [
+      "soap/**/*.md",
       "!**/includes/**",
-      "!soap",   // Exclude files (due to size)
-      "!restful",   // Exclude files (due to size)
     ] : [],
     base: `${API_BASE}/reference`,
   }),
