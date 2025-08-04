@@ -60,7 +60,7 @@ const NSScriptingRef = defineCollection({
 
 const referenceDocs = defineCollection({
   loader: glob({
-    pattern: true ? [
+    pattern: false ? [
       "soap/**/*.md",
       "!**/includes/**",
     ] : [],
