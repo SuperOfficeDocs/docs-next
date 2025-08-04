@@ -75,103 +75,103 @@ jobs:
           name: artifact-main
           path: dist-out
 
-  build-api:
-    runs-on: ubuntu-latest
-    outputs:
-      artifact-name: artifact-api
-    steps:
-      - name: Checkout docs-next
-        uses: actions/checkout@v4
+  # build-api:
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     artifact-name: artifact-api
+  #   steps:
+  #     - name: Checkout docs-next
+  #       uses: actions/checkout@v4
 
-      - name: Checkout contribution repo
-        uses: actions/checkout@v4
-        with:
-          repository: SuperOfficeDocs/contribution
-          path: external-content/contribution
+  #     - name: Checkout contribution repo
+  #       uses: actions/checkout@v4
+  #       with:
+  #         repository: SuperOfficeDocs/contribution
+  #         path: external-content/contribution
 
-      - name: Checkout SuperOfficeDocs repo
-        uses: actions/checkout@v4
-        with:
-          repository: SuperOfficeDocs/superoffice-docs
-          path: external-content/superoffice-docs
+  #     - name: Checkout SuperOfficeDocs repo
+  #       uses: actions/checkout@v4
+  #       with:
+  #         repository: SuperOfficeDocs/superoffice-docs
+  #         path: external-content/superoffice-docs
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 20
 
-      - run: npm ci
+  #     - run: npm ci
 
-      - name: Build Astro API only
-        env:
-          API_ONLY: 'true'
-        run: |
-          npm run build
-          mkdir -p dist-out
-          cp -r dist/* dist-out/
+  #     - name: Build Astro API only
+  #       env:
+  #         API_ONLY: 'true'
+  #       run: |
+  #         npm run build
+  #         mkdir -p dist-out
+  #         cp -r dist/* dist-out/
 
-      - name: Upload API artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: artifact-api
-          path: dist-out
+  #     - name: Upload API artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: artifact-api
+  #         path: dist-out
 
   # deploy job downloads artifacts from build jobs, merge them in to one directory, create search index, and deploy to github pages
-  deploy:
-    needs: [build-main, build-api]
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Download main artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: artifact-main
-          path: ./artifacts/main
+  # deploy:
+  #   needs: [build-main, build-api]
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   steps:
+  #     - name: Download main artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: artifact-main
+  #         path: ./artifacts/main
 
-      - name: Download API artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: artifact-api
-          path: ./artifacts/api
+  #     - name: Download API artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: artifact-api
+  #         path: ./artifacts/api
 
-      - name: Merge build outputs
-        run: |
-          mkdir final-dist
-          cp -r artifacts/main/* final-dist/
-          cp -r artifacts/api/* final-dist/
+  #     - name: Merge build outputs
+  #       run: |
+  #         mkdir final-dist
+  #         cp -r artifacts/main/* final-dist/
+  #         cp -r artifacts/api/* final-dist/
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 20
 
-      - name: Install Pagefind
-        run: npx pagefind --version
+  #     - name: Install Pagefind
+  #       run: npx pagefind --version
 
-      - name: Index pages using Pagefind
-        run: npx pagefind --site final-dist
+  #     - name: Index pages using Pagefind
+  #       run: npx pagefind --site final-dist
       
-      - name: Check if the PR originates from source repo
-        id: check_pr_source
-        run: |
-          echo "PR source: ${{ github.event.pull_request.head.repo.full_name }}"
-          echo "Base repo: ${{ github.repository }}"
-          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ] && [ "${{ github.event_name }}" == "pull_request" ]; then
-            echo "PR is from a forked repo. Skipping deployment."
-            echo "skip_deploy=true" >> $GITHUB_OUTPUT
-          else
-            echo "skip_deploy=false" >> $GITHUB_OUTPUT
-          fi
+  #     - name: Check if the PR originates from source repo
+  #       id: check_pr_source
+  #       run: |
+  #         echo "PR source: ${{ github.event.pull_request.head.repo.full_name }}"
+  #         echo "Base repo: ${{ github.repository }}"
+  #         if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ] && [ "${{ github.event_name }}" == "pull_request" ]; then
+  #           echo "PR is from a forked repo. Skipping deployment."
+  #           echo "skip_deploy=true" >> $GITHUB_OUTPUT
+  #         else
+  #           echo "skip_deploy=false" >> $GITHUB_OUTPUT
+  #         fi
 
-      - name: Upload GitHub Pages artifact
-        if: steps.check_pr_source.outputs.skip_deploy == 'false'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: final-dist
+  #     - name: Upload GitHub Pages artifact
+  #       if: steps.check_pr_source.outputs.skip_deploy == 'false'
+  #       uses: actions/upload-pages-artifact@v3
+  #       with:
+  #         path: final-dist
 
-      - name: Deploy to GitHub Pages
-        if: steps.check_pr_source.outputs.skip_deploy == 'false'
-        id: deployment
-        uses: actions/deploy-pages@v4
+  #     - name: Deploy to GitHub Pages
+  #       if: steps.check_pr_source.outputs.skip_deploy == 'false'
+  #       id: deployment
+  #       uses: actions/deploy-pages@v4
