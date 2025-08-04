@@ -8,7 +8,7 @@ import Base from "./Base.astro";
 
 export interface Props {
   /** Accept an entry from *any* collection our site defines */
-  entry: any;
+  entry: CollectionEntry<keyof DataEntryMap>;
   toc: TocData;
   isLearn?: boolean;
   language?: string;
