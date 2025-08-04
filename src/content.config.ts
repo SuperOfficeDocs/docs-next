@@ -4,16 +4,19 @@ import { glob } from "astro/loaders";
 import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema, YamlManagedReferenceSchema } from "~/content.schema"
 
 // apiOnly variable is used in the split build to isolate docs/en/api folder content
-const apiOnly = true;
+const apiOnly = process.env.API_ONLY === 'true';
 
 const DOCS_BASE = "external-content/superoffice-docs/docs";
 const API_BASE = `${DOCS_BASE}/en/api`;
 
 const enDocs = defineCollection({
   loader: glob({
-    pattern: true ? [] : [
+    pattern: apiOnly ? [] : [
+      "**/*.md",
       "!index.md",
       "!**/includes/**",
+      "!api/**/*.md",   // In apiDocs
+      "!automation/netserver-scripting/reference/**",   // In NSScriptingRef
     ],
     base: `${DOCS_BASE}/en`,
   }),
@@ -22,10 +25,14 @@ const enDocs = defineCollection({
 
 const apiDocs = defineCollection({
   loader: glob({
-    pattern: true ? [] : [
-      // "**/*.md",
+    pattern: apiOnly ? [] : [
+      "**/*.md",
       "!**/includes/**",
-      "reference/soap/**/*.md",
+      "!tutorials/minimal-csharp-app",   //Temporary excluded due to corrupted images
+      "!reference/**/*.md",   // In referenceDocs
+      "!nuget/**/*.md",   // Never published
+      "!tooltip/**/*.md",   // Never published
+      "!web-extensions/**/*.md",   // Never published
     ],
     base: API_BASE,
   }),
@@ -38,10 +45,10 @@ const apiDocs = defineCollection({
 
 const CRMScript = defineCollection({
   loader: glob({
-    pattern: false ? [
+    pattern: apiOnly ? [
       "**/!(*toc).yml",
       "!**/includes/**",
-    ] : [],
+    ] : [] ,
     base: `${DOCS_BASE}/en/automation/crmscript/reference`,
   }),
   schema: YamlManagedReferenceSchema,
@@ -49,10 +56,10 @@ const CRMScript = defineCollection({
 
 const NSScriptingRef = defineCollection({
   loader: glob({
-    pattern: false ? [
+    pattern: apiOnly ? [
       "**/*.md",
       "!**/includes/**",
-    ] : [],
+    ] : [] ,
     base: `${DOCS_BASE}/en/automation/netserver-scripting/reference`,
   }),
   schema: DocsSchema,
@@ -60,9 +67,11 @@ const NSScriptingRef = defineCollection({
 
 const referenceDocs = defineCollection({
   loader: glob({
-    pattern: false ? [
-      "soap/**/*.md",
+    pattern: apiOnly ? [
+      "**/*.md",
       "!**/includes/**",
+      "!soap",   // Exclude files (due to size)
+      "!restful",   // Exclude files (due to size)
     ] : [],
     base: `${API_BASE}/reference`,
   }),
@@ -71,7 +80,7 @@ const referenceDocs = defineCollection({
 
 const WebAPI = defineCollection({
   loader: glob({
-    pattern: false ? ["**/!(*toc).yml"] : [],
+    pattern: apiOnly ? ["**/!(*toc).yml"] : [],
     base: `${API_BASE}/reference/webapi`
   }),
 });
@@ -81,8 +90,7 @@ const WebAPI = defineCollection({
  */
 
 const daDocs = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? [] : [
+  loader: glob({ pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -92,8 +100,7 @@ const daDocs = defineCollection({
 });
 
 const deDocs = defineCollection({
-  loader: glob({
-    pattern: true ? [] : [
+  loader: glob({ pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -103,8 +110,7 @@ const deDocs = defineCollection({
 });
 
 const nlDocs = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? [] : [
+  loader: glob({ pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -114,8 +120,7 @@ const nlDocs = defineCollection({
 });
 
 const noDocs = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? [] : [
+  loader: glob({ pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -125,8 +130,7 @@ const noDocs = defineCollection({
 });
 
 const svDocs = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? [] : [
+  loader: glob({ pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -141,7 +145,7 @@ const svDocs = defineCollection({
 
 const contribution = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
+  pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
       "!CODE_OF_CONDUCT.md",
@@ -152,12 +156,11 @@ const contribution = defineCollection({
 });
 
 const releaseNotes = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? [] : [
+  loader: glob({ pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
-    ],
-    base: "external-content/superoffice-docs/release-notes"
+    ], 
+    base: "external-content/superoffice-docs/release-notes" 
   }),
   schema: DocsSchema,
 });
@@ -198,7 +201,7 @@ export const collections = {
   "api-docs": apiDocs,
   "crmscript": CRMScript,
   "nsscripting": NSScriptingRef,
-  "reference-docs": referenceDocs,
+  "reference-docs" : referenceDocs,
   webapi: WebAPI,
   contribute: contribution,
   "release-notes": releaseNotes,
