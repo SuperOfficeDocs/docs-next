@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import { getSegmentToc } from "@utils/tocUtils";
+import { stripFilePathAndExtension } from "~/utils/slugUtils";
+import YamlManagedReference from "@layouts/YamlManagedReference.astro";
+import YamlManagedReferenceContent from "@components/YamlManagedReferenceContent.astro";
+
+const language = "en" as const;
+const segment = "automation" as const;
+const baseUrl = `/${language}/automation/crmscript/reference`;
+
+// Same toc as for automation segment
+const tocData = await getSegmentToc(language, segment);
+
+export async function getStaticPaths() {
+  const collection = "crmscript" as const;
+  const referencePath = "superoffice-docs/docs/en/automation/crmscript" as const;
+
+  const docEntries = await getCollection(collection);
+  return docEntries.map((entry) => {
+    const generatedSlug = stripFilePathAndExtension(
+        entry.filePath!,
+        referencePath,
+        true,
+      );
+
+    return {
+      params: { slug: generatedSlug },
+      props: { entry },
+    };
+  });
+}
+
+const { entry } = Astro.props;
+---
+
+<YamlManagedReference
+  entry={entry}
+  toc={tocData}
+  language={language}
+  baseUrl={baseUrl}
+>
+  <YamlManagedReferenceContent entry={entry} baseUrl={baseUrl} />
+</YamlManagedReference>

@@ -1,41 +1,48 @@
 ---
-import MarkdownLayout from "@layouts/Markdown.astro";
+import { getCollection } from "astro:content";
 import type { TocData } from "~/types/TableOfContentTypes";
 import { getTocByPath } from "@utils/tocUtils";
-import { getMarkdownSlugs } from "~/utils/scanMarkdownSlugs";
-import { readMarkdownFile } from "~/utils/readMarkdown";
+import { stripFilePathAndExtension } from "~/utils/slugUtils";
+import MarkdownLayout from "@layouts/Markdown.astro";
 
+//const language = "en" as const;
+
+//generating static paths from en collection
 export async function getStaticPaths() {
-  const referencePath = `superoffice-docs/docs/en/api/reference`;
+  const referencePath = `superoffice-docs/docs/en/api/reference` as const;
 
-  const slugs = await getMarkdownSlugs();
-
+  const docEntries = await getCollection("reference-docs");
   const tocCache = new Map<string, TocData>();
 
   return Promise.all(
-    slugs.map(async (slug) => {
-      // Assuming first slug segment is your "api" segment for toc
-      const api = slug.split("/")[0];
+    docEntries.map(async (entry, index) => {
+      const slug = stripFilePathAndExtension(
+        entry.filePath!,
+        referencePath,
+        true,
+      );
+
+      const api = slug?.split("/")[0];
 
       if (!tocCache.has(api)) {
         tocCache.set(api, await getTocByPath(`${referencePath}/${api}`));
       }
 
       return {
-        params: { slug },
+        params: { slug: `${slug}` },
         props: {
-          slug,
+          entry,
           tocData: tocCache.get(api)!,
         },
       };
-    })
+    }),
   );
 }
 
-const { slug, tocData } = Astro.props;
-
-const entry = await readMarkdownFile(slug);
-if (!entry) throw new Error(`Page not found: ${slug}`);
+const { entry, tocData } = Astro.props;
 ---
 
-<MarkdownLayout entry={entry} toc={tocData} />
+<MarkdownLayout
+  entry={entry}
+  toc={tocData}
+/>
