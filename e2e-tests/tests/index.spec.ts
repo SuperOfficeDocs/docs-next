@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { heroItems } from '~/navigation';
+import { heroItems } from '~/data/navigation';
 
 test('Check index page title', async ({ page }) => {
     await page.goto("");

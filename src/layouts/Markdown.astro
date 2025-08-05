@@ -64,6 +64,9 @@ const { Content, headings } = await render(entry);
       <main
         class=`md:col-span-7 p-8 max-w-none prose prose-headings:font-normal`
         data-pagefind-body
+        data-language={language}
+        data-pagefind-filter="language[data-language], audience[data-audience]"
+        data-audience={frontmatter.audience}
       >
         {Content && <Content />}
       </main>

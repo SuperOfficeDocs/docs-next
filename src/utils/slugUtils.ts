@@ -156,11 +156,6 @@ export function getApiReferenceSlug(
 export function getCategorySlug(id: string, basePath: string): string {
   let rawSlug = id === basePath ? "" : id.replace(`${basePath}/`, "");
 
-  if (rawSlug.startsWith('api/authentication')) {
-    // remove the leading "api/" (4 characters)
-    rawSlug = rawSlug.slice(4);
-  }
-
   return rawSlug ? trimFileExtension(rawSlug) : "index";
 }
 

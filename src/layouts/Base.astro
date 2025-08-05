@@ -2,7 +2,7 @@
 import favIcon from "@assets/favicon.ico";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.tsx";
-import { footerData, headerData } from "../navigation";
+import { footerData, headerData } from "../data/navigation";
 import { ClientRouter } from "astro:transitions";
 import "@styles/main.css";
 
@@ -11,12 +11,13 @@ export interface Props {
     title: string;
   };
   lang: string;
+  scroll?: boolean;
 }
 
-const { metadata, lang = "en" } = Astro.props;
+const { metadata, lang = "en", scroll = true } = Astro.props;
 ---
 
-<html lang={lang}>
+<html>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/x-icon" href={favIcon} />
@@ -28,7 +29,10 @@ const { metadata, lang = "en" } = Astro.props;
   </head>
   <body class="h-screen flex flex-col overflow-hidden">
     <div class="z-50"><Header {...headerData} /></div>
-    <div class="min-h-screen overflow-y-auto" data-scroll-container>
+    <div
+      class=`min-h-screen ${scroll && "overflow-y-auto"}`
+      data-scroll-container
+    >
       <main class="flex-grow mb-[140px] md:mb-[120px]">
         <slot />
       </main>
