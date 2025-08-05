@@ -30,7 +30,6 @@ const getTOCPath = (): string => {
   else if (TOCBasePath != undefined) return TOCBasePath;
   else return `${language}/${isLearn ? "learn" : slug.split("/")[0]}`;
 };
-
 const TOCPath = getTOCPath();
 
 // const { headings } = await render(entry);

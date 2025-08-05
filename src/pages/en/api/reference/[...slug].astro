@@ -6,21 +6,20 @@ import matter from "gray-matter";
 import type { TocData } from "~/types/TableOfContentTypes";
 import { getTocByPath } from "@utils/tocUtils";
 import { marked } from "marked";
-// import { getLocalizedToc, getSegmentToc } from "@utils/tocUtils";
-// import { getFilteredDocEntries } from "@utils/contentUtils";
-// import { getContentSlug, trimFileExtension } from "@utils/slugUtils";
-// import type { DocsFrontmatter } from "~/types/DocsTypes";
 import MarkdownLayout from "@layouts/Markdown.astro";
 
-const language = "en" as const;
-
 export async function getStaticPaths() {
-  const baseContentPath = "external-content";
-  const referencePath = path.join(baseContentPath, "superoffice-docs/docs/en/api/reference");
-  
-  // const language = "en" as const;
-  // const learnSegmentKey = "learn";
+  const apiOnly = process.env.API_ONLY === "true";
 
+  if (!apiOnly) {
+    return [];
+  }
+
+  const baseContentPath = "external-content";
+  const referencePath = path.join(
+    baseContentPath,
+    "superoffice-docs/docs/en/api/reference",
+  );
 
   // Function to create lazy loader for markdown content
   function loadMarkdownContent(filePath: string) {
@@ -31,23 +30,19 @@ export async function getStaticPaths() {
       // Create a more complete entry object that matches content collection structure
       const relativePath = filePath.replace(
         "external-content/superoffice-docs/docs/",
-        ""
+        "",
       );
       const slug = relativePath.replace(/\.(md|mdx)$/, "");
-
       const html = marked(content);
-
-
 
       return {
         data,
         body: content,
         filePath: filePath,
         html: html,
-        slug: slug,
+        // slug: slug,
         id: slug,
         collection: "en",
-        isLearn: false,
       };
     };
   }
@@ -56,7 +51,6 @@ export async function getStaticPaths() {
   function loadTocData(apiPath: string) {
     return async () => {
       try {
-        console.log(`Loading TOC data for path: ${apiPath}`);
         const tocData = await getTocByPath(apiPath);
         return tocData;
       } catch (error) {
@@ -81,7 +75,7 @@ export async function getStaticPaths() {
       return [];
     }
 
-    // const tocLoaderCache = new Map<string, () => Promise<TocData>>();
+    const tocLoaderCache = new Map<string, () => Promise<TocData>>();
 
     const paths = filePaths.map((relativePath) => {
       // Convert relative path to absolute path for file reading
@@ -94,100 +88,39 @@ export async function getStaticPaths() {
         .replace(/\.(md|mdx)$/, "");
       const slug = cleanPath;
 
-      console.log("Generated slug for", relativePath, ":", slug);
+      const apiType = slug?.split("/")[1];
+      const tocCollectionPath = `superoffice-docs/docs/en/api/reference/${apiType}`;
 
-      // Extract API type from the reference subfolder (restful, soap, webhooks, etc.)
-      // const pathAfterReference = relativePath.replace(
-      //   "superoffice-docs/docs/en/",
-      //   ""
-      // );
-
-      // // Add safety check for split operation
-      // if (!pathAfterReference || pathAfterReference === relativePath) {
-      //   console.warn(
-      //     "Failed to extract path after reference for:",
-      //     relativePath
-      //   );
-      //   console.warn("pathAfterReference:", pathAfterReference);
-      //   return null; // Skip this file
-      // }
-
-      // const category = pathAfterReference.split("/")[0];
-
-      // // Build the correct TOC path for the collection lookup
-      // // The getTocByPath expects a path like "superoffice-docs/docs/en/api/reference/restful"
-      // const tocCollectionPath = `superoffice-docs/docs/en/${category}`;
-
-      // // Cache the TOC loader function, not the data
-      // if (!tocLoaderCache.has(category)) {
-      //   // console.log(
-      //   //   `Caching TOC loader for API: ${api}, collection path: ${tocCollectionPath}`
-      //   // );
-      //   tocLoaderCache.set(category, loadTocData(tocCollectionPath));
-      // }
+      // Cache the TOC loader function, not the data
+      if (!tocLoaderCache.has(apiType)) {
+        tocLoaderCache.set(apiType, loadTocData(tocCollectionPath));
+      }
 
       return {
         params: { slug: slug },
         props: {
           loadEntry: loadMarkdownContent(absoluteFilePath),
-          // loadTocData: tocLoaderCache.get(category)!,
-
+          loadTocData: tocLoaderCache.get(apiType)!,
+          apiType: apiType,
         },
       };
     });
-    // console.log("Generated paths:", paths.length);
-    // console.log(
-    //   "Sample generated slugs:",
-    //   paths.slice(0, 3).map((p) => p?.params.slug)
-    // );
     return paths;
   } catch (error) {
     console.error("Error in getStaticPaths:", error);
     return [];
   }
-
-  // No redirects and not in excluded folders
-  // const docEntries = await getFilteredDocEntries(language, excluded);
-
-  // return Promise.all(
-  //   docEntries.map(async (entry) => {
-  //     // const slug = getContentSlug(entry.filePath!, language);
-
-  //     // const isLearn = ((entry.data as DocsFrontmatter).uid ?? "").startsWith(
-  //     //   "help-"
-  //     // );
-  //     // const segment = isLearn ? learnSegmentKey : slug.split("/")[0];
-
-  //     // if (!tocCache.has(segment)) {
-  //     //   tocCache.set(segment, await getSegmentToc(language, segment));
-  //     // }
-
-  //     return {
-  //       params: { slug },
-  //       props: {
-  //         entry,
-  //         tocData: tocCache.get(segment)!,
-  //         isLearn,
-  //       },
-  //     };
-  //   })
-  // );
 }
 
-// const { entry, tocData, isLearn } = Astro.props;
-const { loadEntry } = Astro.props;
+const { loadEntry, loadTocData, apiType } = Astro.props;
 
 // Load the data when the page is being built
 const entry = await loadEntry();
-// const tocData = await loadTocData();
-const tocData = {
-  items : []
-};
+const tocData = await loadTocData();
 ---
 
 <MarkdownLayout
   entry={entry}
   toc={tocData}
-  language={language}
-  isLearn={entry.isLearn}
+  TOCBasePath={`en/api/reference/${apiType}`}
 />
