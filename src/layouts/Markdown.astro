@@ -8,7 +8,7 @@ import Base from "./Base.astro";
 
 export interface Props {
   /** Accept an entry from *any* collection our site defines */
-  entry: CollectionEntry<keyof DataEntryMap>;
+  entry: any;
   toc: TocData;
   isLearn?: boolean;
   language?: string;
@@ -28,7 +28,7 @@ const TOCPath =
     ? "release-notes"
     : `${language}/${isLearn ? "learn" : slug.split("/")[0]}`;
 
-const { Content, headings } = await render(entry);
+// const { headings } = await render(entry);
 ---
 
 <Base metadata={frontmatter} lang={language}>
@@ -63,13 +63,13 @@ const { Content, headings } = await render(entry);
         data-pagefind-filter="language[data-language], audience[data-audience]"
         data-audience={frontmatter.audience}
       >
-        {Content && <Content />}
+        <div class="prose max-w-none" set:html={entry.html} />
       </main>
     </div>
     <div
       class="lg:col-span-2 z-10 w-40 xl:w-52 2xl:w-80 absolute top-24 right-4 lg:pt-16 xl:pt-12 lg:px-1 xl:px-6 hidden lg:block h-screen"
     >
-      <OnThisArticle headings={headings} client:load />
+      <OnThisArticle headings={[]} client:load />
     </div>
   </article>
 </Base>
