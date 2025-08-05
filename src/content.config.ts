@@ -65,18 +65,18 @@ const NSScriptingRef = defineCollection({
   schema: DocsSchema,
 });
 
-const referenceDocs = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? [
-      "**/*.md",
-      "!**/includes/**",
-      "!soap",   // Exclude files (due to size)
-      "!restful",   // Exclude files (due to size)
-    ] : [],
-    base: `${API_BASE}/reference`,
-  }),
-  schema: DocsSchema,
-})
+// const referenceDocs = defineCollection({
+//   loader: glob({
+//     pattern: apiOnly ? [
+//       "**/*.md",
+//       "!**/includes/**",
+//       "!soap",   // Exclude files (due to size)
+//       "!restful",   // Exclude files (due to size)
+//     ] : [],
+//     base: `${API_BASE}/reference`,
+//   }),
+//   schema: DocsSchema,
+// })
 
 const WebAPI = defineCollection({
   loader: glob({
@@ -201,7 +201,7 @@ export const collections = {
   "api-docs": apiDocs,
   "crmscript": CRMScript,
   "nsscripting": NSScriptingRef,
-  "reference-docs" : referenceDocs,
+  // "reference-docs" : referenceDocs,
   webapi: WebAPI,
   contribute: contribution,
   "release-notes": releaseNotes,
