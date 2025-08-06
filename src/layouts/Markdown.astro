@@ -43,7 +43,7 @@ const TOCPath = getTOCPath();
 
 const { Content, headings } = entry
   ? await render(entry)
-  : { Content: null, headings: [] };
+  : { Content: null, headings: htmlEntry.headings };
 ---
 
 <Base metadata={frontmatter} lang={language}>

@@ -7,6 +7,7 @@ import type { TocData } from "~/types/TableOfContentTypes";
 import { getTocByPath } from "@utils/tocUtils";
 import { marked } from "marked";
 import MarkdownLayout from "@layouts/Markdown.astro";
+import { renderMarkdownWithHeadingIds } from "@utils/contentUtils";
 
 export async function getStaticPaths() {
   const apiOnly = process.env.API_ONLY === "true";
@@ -26,21 +27,20 @@ export async function getStaticPaths() {
     return async () => {
       const rawContent = await readFile(filePath, "utf8");
       const { data, content } = matter(rawContent);
-
       // Create a more complete entry object that matches content collection structure
       const relativePath = filePath.replace(
         "external-content/superoffice-docs/docs/",
         "",
       );
       const slug = relativePath.replace(/\.(md|mdx)$/, "");
-      const html = marked(content);
+      const { html, headings } = await renderMarkdownWithHeadingIds(content);
 
       return {
         data,
         body: content,
         filePath: filePath,
         html: html,
-        // slug: slug,
+        headings,
         id: slug,
         collection: "en",
       };
