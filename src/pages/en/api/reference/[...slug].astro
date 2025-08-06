@@ -5,7 +5,6 @@ import path from "path";
 import matter from "gray-matter";
 import type { TocData } from "~/types/TableOfContentTypes";
 import { getTocByPath } from "@utils/tocUtils";
-import { marked } from "marked";
 import MarkdownLayout from "@layouts/Markdown.astro";
 import { renderMarkdownWithHeadingIds } from "@utils/contentUtils";
 
@@ -64,7 +63,8 @@ export async function getStaticPaths() {
   }
 
   try {
-    const pattern = "superoffice-docs/docs/en/api/reference/**/*.{md,mdx}";
+    // Temporary configured to only pick restful until github pages limitation is solved
+    const pattern = "superoffice-docs/docs/en/api/reference/restful/**/*.{md,mdx}";
     const filePaths = await glob(pattern, {
       cwd: baseContentPath,
       absolute: false,
