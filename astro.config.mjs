@@ -96,7 +96,7 @@ export default defineConfig({
       },
     }),
     mdx(),
-    pagefind(),
+    // pagefind(),
     react(),
     redirectFrom({
       contentDir: './external-content',

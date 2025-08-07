@@ -8,11 +8,12 @@ import Base from "./Base.astro";
 
 export interface Props {
   /** Accept an entry from *any* collection our site defines */
-  entry: CollectionEntry<keyof DataEntryMap>;
+  entry?: CollectionEntry<keyof DataEntryMap>;
   toc: TocData;
   isLearn?: boolean;
   language?: string;
   TOCBasePath?: string;
+  htmlEntry?: any;
 }
 
 const {
@@ -21,8 +22,15 @@ const {
   isLearn = false,
   language = "en",
   TOCBasePath,
+  htmlEntry,
 } = Astro.props;
-const { data: frontmatter, filePath, collection, id: slug } = entry;
+
+const {
+  data: frontmatter,
+  filePath,
+  collection,
+  id: slug,
+} = entry ?? htmlEntry;
 
 // Determine TOC path: use fixed segment for release notes, if a TOCBasePath is available, use it as TOCPath, otherwise build from language + category
 const getTOCPath = (): string => {
@@ -33,7 +41,9 @@ const getTOCPath = (): string => {
 
 const TOCPath = getTOCPath();
 
-const { Content, headings } = await render(entry);
+const { Content, headings } = entry
+  ? await render(entry)
+  : { Content: null, headings: htmlEntry.headings };
 ---
 
 <Base metadata={frontmatter} lang={language}>
@@ -68,7 +78,13 @@ const { Content, headings } = await render(entry);
         data-pagefind-filter="language[data-language], audience[data-audience]"
         data-audience={frontmatter.audience}
       >
-        {Content && <Content />}
+        {
+          entry ? (
+            Content && <Content />
+          ) : (
+            <div class="prose max-w-none" set:html={htmlEntry.html} />
+          )
+        }
       </main>
     </div>
     <div

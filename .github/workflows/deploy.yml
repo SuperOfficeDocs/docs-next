@@ -46,11 +46,13 @@ jobs:
       - name: Checkout contribution repo
         uses: actions/checkout@v4
         with:
+          fetch-depth: 1
           repository: SuperOfficeDocs/contribution
           path: external-content/contribution
       - name: Checkout SuperOfficeDocs repo
         uses: actions/checkout@v4
         with:
+          fetch-depth: 1
           repository: SuperOfficeDocs/superoffice-docs
           path: external-content/superoffice-docs
 
@@ -82,16 +84,20 @@ jobs:
     steps:
       - name: Checkout docs-next
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
       - name: Checkout contribution repo
         uses: actions/checkout@v4
         with:
+          fetch-depth: 1
           repository: SuperOfficeDocs/contribution
           path: external-content/contribution
 
       - name: Checkout SuperOfficeDocs repo
         uses: actions/checkout@v4
         with:
+          fetch-depth: 1
           repository: SuperOfficeDocs/superoffice-docs
           path: external-content/superoffice-docs
 
@@ -142,6 +148,9 @@ jobs:
           cp -r artifacts/main/* final-dist/
           cp -r artifacts/api/* final-dist/
 
+      - name: Delete original artifacts to save space
+        run: rm -rf artifacts
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -164,6 +173,9 @@ jobs:
           else
             echo "skip_deploy=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Check final-dist size
+        run: du -sh final-dist
 
       - name: Upload GitHub Pages artifact
         if: steps.check_pr_source.outputs.skip_deploy == 'false'
