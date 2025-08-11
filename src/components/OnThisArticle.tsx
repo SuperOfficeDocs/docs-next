@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
+import type {Heading, TocProps} from "~/types/OnThisArticleTypes"
 
-export interface Heading {
-  depth: number;
-  slug: string;
-  text: string;
-}
 
-interface TocProps {
-  headings: Heading[];
-  showSubHeading?: boolean;
-}
 
 const OnThisArticle: React.FC<TocProps> = ({ headings, showSubHeading = true }) => {
   const [activeSlug, setActiveSlug] = useState<string | null>(null);

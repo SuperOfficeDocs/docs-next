@@ -64,7 +64,7 @@ export async function getDocEntriesByPath<C extends keyof DataEntryMap>(
 import { marked } from "marked";
 import GithubSlugger from "github-slugger";
 import type { Tokens } from "marked";
-import type { Heading } from "@components/OnThisArticle";
+import type { Heading } from "~/types/OnThisArticleTypes";
 
 /**
  * Renders Markdown content to HTML, assigning unique IDs to heading elements and collecting heading metadata.
