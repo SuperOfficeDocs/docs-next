@@ -52,7 +52,6 @@ const { Content, headings } = entry
       isLearnCategoryPage={false}
       filePath={filePath ?? ""}
       metadata={frontmatter}
-      collection={collection}
     />
   </div>
   <article class="w-full pt-1 article grid grid-cols-12">
@@ -85,6 +84,7 @@ const { Content, headings } = entry
             <div class="prose max-w-none" set:html={htmlEntry.html} />
           )
         }
+        <slot />
       </main>
     </div>
     <div

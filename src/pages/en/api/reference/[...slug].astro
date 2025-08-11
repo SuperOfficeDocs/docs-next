@@ -63,8 +63,12 @@ export async function getStaticPaths() {
   }
 
   try {
-    // Temporary configured to only pick restful until github pages limitation is solved
-    const pattern = "superoffice-docs/docs/en/api/reference/restful/**/*.{md,mdx}";
+    // Temporary configured to exclude "soap" until github pages limitation is solved
+    const pattern = [
+      "superoffice-docs/docs/en/api/reference/restful/**/*.{md,mdx}",
+      "superoffice-docs/docs/en/api/reference/{webapi,web,netserver}/**/*.{md,mdx}",
+      "!**/includes/**/*.{md,mdx}"
+    ];
     const filePaths = await glob(pattern, {
       cwd: baseContentPath,
       absolute: false,
