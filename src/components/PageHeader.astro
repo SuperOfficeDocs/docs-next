@@ -31,7 +31,7 @@ if(isWebApi) {
   filePathUrl = liveUrl.replace("/docs-next/", "src/content/docs/").concat(".yml");
 }
 else{
-  filePathUrl = filePath;
+  filePathUrl = filePath.replace("external-content/superoffice-docs/","");
 }
 
 ---
