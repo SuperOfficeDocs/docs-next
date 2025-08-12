@@ -63,13 +63,14 @@ export function trimFileExtension(filename: string): string {
  * @returns Resolved URL with no file extension and correct prefix.
  */
 export function resolveHref(url: string, baseSlug?: string): string {
-  //console.warn(`[resolveHref] 🔹 url: "${url}", baseSlug: "${baseSlug}"`);
-  if (url.startsWith("http")) return url; // external, leave unchanged
+  
+   // leave unchanged if it is a external link
+  if (url.startsWith("http")) return url;
 
   const isSupported = supportedExtensions.some(ext => url.endsWith(ext));
   if (!isSupported) return url;
 
-  const trimmed = trimFileExtension(url);
+  const trimmed = trimFileExtension(url).replace("/index", "");
 
   if (baseSlug === "contribute") { // special case for this repo
     return trimmed;
