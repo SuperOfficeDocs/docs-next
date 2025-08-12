@@ -26,15 +26,15 @@ const netserverFolders = new Set([
 ]);
 
 /**
- * Strips the content directory prefix, collection path, and file extension from an entry.filePath.
- * For example: "external-content/superoffice-docs/docs/en/project/learn/index.md" -> "/project/learn/index"
+ * Strips the content directory prefix, collection path, "index" and file extension from an entry.filePath.
+ * For example: "external-content/superoffice-docs/docs/en/project/learn/index.md" -> "/project/learn"
  */
 export function stripFilePathAndExtension(filePath: string, collection: string, isExternal: boolean = false): string {
   const base = isExternal
   ? `${contentDir}/`
   : `src/content/`;
 
-  return filePath.replace(base, "").replace(`${collection}/`, "").replace(/\.(md|ya?ml)$/, "");
+  return filePath.replace(base, "").replace(`${collection}/`, "").replace(/\/index/g, "").replace(/\.(md|yml|yaml)$/g, "");;
 }
 
 /**
