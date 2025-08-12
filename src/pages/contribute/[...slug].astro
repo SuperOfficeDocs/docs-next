@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   const docEntries = await getCollection("contribute");
 
   const paths = docEntries.map((entry) => {
-    const slug = stripFilePathAndExtension(entry.filePath!, "contribution", true);
+    const slug = stripFilePathAndExtension(entry.filePath!, "contribution");
 
     return {
       params: { slug },

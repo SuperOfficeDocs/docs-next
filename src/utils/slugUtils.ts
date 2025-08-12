@@ -29,11 +29,8 @@ const netserverFolders = new Set([
  * Strips the content directory prefix, collection path, "index" and file extension from an entry.filePath.
  * For example: "external-content/superoffice-docs/docs/en/project/learn/index.md" -> "/project/learn"
  */
-export function stripFilePathAndExtension(filePath: string, collection: string, isExternal: boolean = false): string {
-  const base = isExternal
-  ? `${contentDir}/`
-  : `src/content/`;
-
+export function stripFilePathAndExtension(filePath: string, collection: string): string {
+  const base = `${contentDir}/`
   return filePath.replace(base, "").replace(`${collection}/`, "").replace(/\/index/g, "").replace(/\.(md|yml|yaml)$/g, "");;
 }
 
@@ -44,14 +41,14 @@ export function stripFilePathAndExtension(filePath: string, collection: string, 
  */
 export function trimFileExtension(filename: string): string {
   const extPattern = /\.[^.]+$/;
-  const knownExtPattern = /\.(mdx?|ya?ml|html)$/i;
+  const knownExtPattern = /\.(mdx?|ya?ml)$/i;
 
   if (!extPattern.test(filename)) {
     return filename;
   }
 
   if (!knownExtPattern.test(filename)) {
-    console.warn(`[trimFileExtension] Unknown or missing file extension in: "${filename}"`);
+    // console.warn(`[trimFileExtension] Unknown or missing file extension in: "${filename}"`);
     return filename;
   }
 
@@ -108,7 +105,7 @@ export function getContentSlug(
     : `${base}/${language}`;
 
   // strip prefix and extension
-  return stripFilePathAndExtension(filePath, prefix, true);
+  return stripFilePathAndExtension(filePath, prefix);
 }
 
 /**
@@ -121,7 +118,7 @@ export function getApiContentSlug(
   filePath: string,
 ): string {
   const basePath = `superoffice-docs/docs/en/api` as const;
-  const rawSlug = stripFilePathAndExtension(filePath, basePath, true);
+  const rawSlug = stripFilePathAndExtension(filePath, basePath);
 
   const segment = rawSlug.split('/')[0];
 
@@ -140,7 +137,7 @@ export function getApiReferenceSlug(
 ): string {
   const basePath = `superoffice-docs/docs/en/api/reference` as const;
 
-  return stripFilePathAndExtension(filePath, `${basePath}/${api}`, true);
+  return stripFilePathAndExtension(filePath, `${basePath}/${api}`);
 }
 
 /**
@@ -175,7 +172,36 @@ export function getRedirectFromSlug(filePath: string) {
     collection = filePath.split('/')[0];
   }
 
-  const slug = stripFilePathAndExtension(filePath!, collection, true);
-  //console.warn(`[getRedirectFromSlug] 🔹 filePath: "${filePath}", collection: "${collection}", slug: "${slug}"`);
+  const slug = stripFilePathAndExtension(filePath!, collection);
   return slug;
+}
+
+/**
+ * Checks if a given file path is an external link (starts with http://, https:// or www.)
+ * @param filePath - The path or URL to check
+ * @returns {boolean} True if the path is an external link, false otherwise
+ */
+function isExternalLink(filePath: string): boolean {
+  return /^(https?:\/\/|www\.)/i.test(filePath);
+}
+
+
+/**
+ * Resolves a relative file path based on the current path and target filepath.
+ * 
+ * @param currentPath - The current file path from which the relative path should be resolved
+ * @param filepath - The target file path that needs to be resolved relatively
+ * @returns A string representing the resolved relative file path
+ * 
+ * If the target filepath is an external link, returns the filepath unchanged.
+ * Otherwise, combines the last segment of currentPath (Category) with the trimmed filepath
+ * (removing file extensions and 'index' from the path).
+ */
+export function resolveRelativeFilePath(currentPath: string, filepath: string): string {
+  if (isExternalLink(filepath)) {
+    return filepath
+  }
+  else {
+    return `${currentPath.split("/").pop()}/${trimFileExtension(filepath).replace("/index", "")}`
+  }
 }

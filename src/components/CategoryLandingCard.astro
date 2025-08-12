@@ -1,15 +1,15 @@
 ---
 import type { contentCard } from "../types/CategoryPageTypes";
 import IconSelection from "./IconSelection.tsx";
-
+import {resolveRelativeFilePath} from "@utils/slugUtils"
 import "@styles/main.css";
 
-const { item, pageTitle } = Astro.props;
+const { item, currentPath } = Astro.props;
 
 interface Props {
   item: contentCard;
   id: number;
-  pageTitle: string | undefined;
+  currentPath: string;
 }
 ---
 
@@ -32,7 +32,7 @@ interface Props {
                   />
                 )}
               </div>
-              <a class="w-full hover:underline" href={subitem.url.slice(-3) == ".md" ? `${pageTitle}/${subitem.url.slice(0, -3)}` : subitem.url}>
+              <a class="w-full hover:underline" href={resolveRelativeFilePath(currentPath, subitem.url)}>
                 {subitem.text}
               </a>
             </div>
