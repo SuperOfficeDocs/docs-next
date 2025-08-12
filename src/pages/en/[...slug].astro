@@ -11,16 +11,7 @@ const language = "en" as const;
 export async function getStaticPaths() {
   const language = "en" as const;
   const learnSegmentKey = "learn";
-  const excluded = [
-    "automation",
-    "database",
-    "developer-portal",
-    "mobile",
-    "online",
-    "onsite",
-    "service",
-    "ui",
-  ]; // api is its own collection
+  const excluded = [""]; 
 
   // No redirects and not in excluded folders
   const docEntries = await getFilteredDocEntries(language, excluded);
