@@ -1,5 +1,5 @@
 export const githubBaseUrl = 'https://github.com/SuperOfficeDocs/';
-export const baseGithubUrl = `${githubBaseUrl}docs-next/blob/main/`;
+export const baseGithubUrl = `${githubBaseUrl}superoffice-docs/blob/main/`;
 export const newIssueUrl = `${githubBaseUrl}feedback/issues/new`;
 
 export const trim = (str = '', ch?: string) => {
