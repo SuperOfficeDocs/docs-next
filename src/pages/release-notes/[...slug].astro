@@ -16,7 +16,7 @@ export async function getStaticPaths() {
   }));
 
   return docEntries.map((entry) => {
-    const generatedSlug = stripFilePathAndExtension(entry.filePath!, `superoffice-docs/${collection}`, true);
+    const generatedSlug = stripFilePathAndExtension(entry.filePath!, `superoffice-docs/${collection}`);
 
     return {
       params: { slug: generatedSlug },
