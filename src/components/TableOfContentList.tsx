@@ -42,6 +42,7 @@ export default function TableOfContentList({
   useEffect(() => {
     if (isParentActive != -1) {
       setIsSelfActive(true)
+      toggleItem(isParentActive)
     }
   }, [isParentActive])
 
@@ -77,7 +78,7 @@ export default function TableOfContentList({
     // Use topicHref if available, otherwise fall back to href.
     const rawPath = item.topicHref || item.href;
     if (!rawPath) {
-      console.warn(`[generatePath] Missing href/topicHref for TOC item:`, item);
+      // console.warn(`[generatePath] Missing href/topicHref for TOC item:`, item);
       return "#";
     }
     const formattedURL = `${base}/${slug}/${trimFileExtension(rawPath)}`.replace("/index", "")
