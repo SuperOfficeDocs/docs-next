@@ -1,21 +1,15 @@
 ---
 import type { contentCard } from "../types/CategoryPageTypes";
-
+import {resolveRelativeFilePath} from "@utils/slugUtils";
 import "@styles/main.css";
 
-const { item } = Astro.props;
+const { item,currentPath } = Astro.props;
 
 interface Props {
   item: contentCard;
+  currentPath: string;
 }
 
-
-const formatLink = (link : string) : string => {
-  if(link.includes(".md")){
-    return `api/${link.replace(".md", "")}`
-  }
-  return link;
-}
 ---
 
 <div>
@@ -23,7 +17,7 @@ const formatLink = (link : string) : string => {
     class={`bg-white px-3 py-5 lg:m-0 duration-300 ease-in-out transition-shadow hover:shadow-[0_0px_8px_rgba(0,0,0,0.70)] min-h-full`}
   >
     <div class="grid grid-cols-1 gap-2 h-fit">
-      <a href={item.url && formatLink(item.url)} class="font-bold text-[17px]">{item.title}</a>
+      <a href={item.url && resolveRelativeFilePath(currentPath,item.url)} class="font-bold text-[17px]">{item.title}</a>
       {
         item.links?.map((subitem) => {
           return (

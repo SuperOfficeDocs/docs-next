@@ -6,6 +6,7 @@ import CategoryLandingCard from "@components/CategoryLandingCard.astro";
 import CategoryLandingAddtionalContentCard from "@components/CategoryLandingAdditionalContentCard.astro";
 import IconSelection from "@components/IconSelection.tsx";
 import PageHeader from "@components/PageHeader.astro";
+import {resolveRelativeFilePath} from "@utils/slugUtils";
 
 const currentPath = Astro.url.pathname;
 
@@ -53,7 +54,7 @@ type Props = {
           return (
             <div>
               <div class="h-[130px] border rounded-md border-gray-300 p-1 hover:border-black">
-                <a href={item.url.slice(-3) == ".md" ? `${currentPath.split("/").pop()}/${item.url.slice(0, -3)}` : item.url}>
+                <a href={resolveRelativeFilePath(currentPath,item.url)}>
                   <div class="flex flex-row border h-full border-gray-300 duration-300 ease-in-out transition-shadow hover:shadow-[0_0px_8px_rgba(0,0,0,0.50)] py-4">
                     <div class="w-12 h-full pt-4 ml-8">
                       {item.itemType && <IconSelection size={32} iconType={item.itemType} color="#0c5d58" />}
@@ -92,7 +93,7 @@ type Props = {
             
             <div class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-7 auto-rows-max ">
               {data.conceptualContent?.items.map((item, id) => {
-                return <CategoryLandingCard pageTitle={currentPath.split("/").pop()} item={item} id={id} />;
+                return <CategoryLandingCard currentPath={currentPath} item={item} id={id} />;
               })}
             </div>
           </div>
@@ -118,7 +119,7 @@ type Props = {
               {data.tools.items.map( (item) => {
                 return (
                    <div class="flex flex-row border font-semibold h-20 w-full items-center pl-10 border-gray-300 duration-300 ease-in-out transition-shadow hover:shadow-[0_0px_8px_rgba(0,0,0,0.50)] py-4">
-                    <a href={item.url.slice(-3) == ".md" ? `${data.title.toLowerCase()}/${item.url.slice(0, -3)}` : item.url}>{item.title}</a>
+                    <a href={resolveRelativeFilePath(currentPath,item.url)}>{item.title}</a>
                    </div>)
             })}
             </div>
@@ -147,6 +148,7 @@ type Props = {
                     return (
                       <CategoryLandingAddtionalContentCard
                         item={item}
+                        currentPath={currentPath}
                       />
                     );
                   })}
@@ -160,6 +162,6 @@ type Props = {
 
 
 
-
+    
   </div>
 </Base>

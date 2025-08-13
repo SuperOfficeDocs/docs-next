@@ -39,7 +39,7 @@ export default function TableOfContentList({
     // uid is only defined in toc files with YamlMime:TableOfContent
     if (item.uid != undefined) {
       const currentPathExceptLastTerm = currentPath.substring(0, currentPath.lastIndexOf("/"))
-      return `${ currentPathExceptLastTerm}/${item.uid}`;
+      return `${currentPathExceptLastTerm}/${item.uid}`;
     }
 
     // Use topicHref if available, otherwise fall back to href.
@@ -48,12 +48,15 @@ export default function TableOfContentList({
       console.warn(`[generatePath] Missing href/topicHref for TOC item:`, item);
       return "#";
     }
-    return `${base}/${slug}/${trimFileExtension(rawPath)}`;
+    const formattedURL = `${base}/${slug}/${trimFileExtension(rawPath)}`.replace("/index", "")
+    return formattedURL;
   };
 
   const generateSlug = (item: TocItem) => {
-    return item.topicHref ? `${slug}/${item.topicHref.slice(0, -9)}` : slug;
+    //remove index.md, index.yaml, index.yaml from url path
+    return item.topicHref ? `${slug}/${item.topicHref.replace(/\/index/g, "").replace(/\.(md|yml|yaml)$/g, "")}` : slug;
   };
+
 
   const handleSearchTermChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);

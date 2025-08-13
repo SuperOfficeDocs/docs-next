@@ -19,7 +19,6 @@ export async function getStaticPaths() {
     const generatedSlug = stripFilePathAndExtension(
         entry.filePath!,
         referencePath,
-        true,
       );
 
     return {
