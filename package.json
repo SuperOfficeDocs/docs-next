@@ -26,6 +26,7 @@
     "@iconify-json/mdi": "^1.1.68",
     "@iconify-json/tabler": "^1.1.119",
     "@phosphor-icons/react": "^2.1.7",
+    "@phosphor-icons/web": "^2.1.2",
     "@rollup/plugin-yaml": "^4.1.2",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
