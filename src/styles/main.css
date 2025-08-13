@@ -1,7 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
+@import "@phosphor-icons/web/regular";
 body {
   font-family: "Segoe UI", Tahoma, Helvetica, sans-serif;
   font-size: 16px;
