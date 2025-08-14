@@ -9,24 +9,98 @@ import { fromMarkdown } from 'mdast-util-from-markdown';
  */
 export default function remarkIncludeDirective() {
   return (tree, file) => {
-    // console.log(`[remarkIncludeDirective] Processing: ${tree}`);
 
-    visit(tree, 'paragraph', (node, index, parent) => {
-      processIncludeInParagraph(node, index, parent, file);
+    // Process all node types that can contain children with include directives
+    visit(tree, (node, index, parent) => {
+      // Check if this node can contain text children that might have includes
+      if (node.children && Array.isArray(node.children)) {
+        processIncludeInNode(node, index, parent, file);
+      }
+    });
+
+    // Process video directives in blockquotes and other nodes
+    visit(tree, (node, index, parent) => {
+      // Check blockquotes and paragraphs for video directives
+      if ((node.type === 'blockquote' || node.type === 'paragraph') && node.children) {
+        processVideoDirective(node, index, parent, file);
+      }
     });
   };
 }
 
 
 /**
- * Process include directives within paragraph nodes
- * Handles pattern: text("[!include") + link + text("]")
+ * Process video directives in blockquotes and paragraphs
+ * Handles pattern: > [!Video URL] or [!Video URL]
  */
-function processIncludeInParagraph(node, index, parent, file) {
+function processVideoDirective(node, index, parent, file) {
+  if (!node.children || node.children.length === 0) return;
+
+  let targetParagraph = null;
+
+  if (node.type === 'blockquote') {
+    targetParagraph = node.children.find(child => child.type === 'paragraph');
+  } else if (node.type === 'paragraph') {
+    targetParagraph = node;
+  }
+
+  if (!targetParagraph || !targetParagraph.children) return;
+
+  let textContent = '';
+  let hasVideoDirective = false;
+  let videoUrl = '';
+
+  // Collect all text content from the paragraph children
+  for (const child of targetParagraph.children) {
+    if (child.type === 'text') {
+      textContent += child.value;
+    } else if (child.type === 'link') {
+      textContent += child.url;
+    }
+  }
+
+  
+
+  // Check if this looks like a video directive: [!Video URL]
+  const videoMatch = textContent.match(/\[!Video\s+(https?:\/\/[^\]\s]+)\]/);
+  if (videoMatch) {
+    hasVideoDirective = true;
+    videoUrl = videoMatch[1];
+  }
+
+  if (!hasVideoDirective) return;
+  
+  try {
+    // Create the iframe HTML
+    const iframeHtml = `<div class="embeddedvideo"><iframe src="${videoUrl}" frameborder="0" allowfullscreen="true"></iframe></div>`;
+    
+    // Create an HTML node to replace the blockquote or paragraph
+    const htmlNode = {
+      type: 'html',
+      value: iframeHtml
+    };
+
+    // Replace the entire node with the iframe
+    if (parent && parent.children) {
+      parent.children.splice(index, 1, htmlNode);
+    }
+
+  } catch (err) {
+    console.warn(`[remarkIncludeDirective] Could not process video directive: ${videoUrl}`, err.message);
+  }
+}
+
+
+/**
+ * Process include directives within any node that has children
+ * Handles pattern: text("[!include") + link + text("]...") where the last text may contain additional content
+ */
+function processIncludeInNode(node, index, parent, file) {
   if (!node.children || node.children.length < 3) return;
 
-  // Look for the pattern: text("[!include") + link + text("]")
-  for (let i = 0; i < node.children.length - 2; i++) {
+  // Look for the pattern: text("[!include") + link + text("]...")
+  // Process from right to left to avoid index shifting issues
+  for (let i = node.children.length - 3; i >= 0; i--) {
     const [firstNode, linkNode, lastNode] = [
       node.children[i],
       node.children[i + 1], 
@@ -36,7 +110,7 @@ function processIncludeInParagraph(node, index, parent, file) {
     const isIncludePattern = (
       firstNode.type === 'text' && firstNode.value === '[!include' &&
       linkNode.type === 'link' &&
-      lastNode.type === 'text' && lastNode.value === ']'
+      lastNode.type === 'text' && lastNode.value.startsWith(']')
     );
 
     if (!isIncludePattern) continue;
@@ -47,18 +121,30 @@ function processIncludeInParagraph(node, index, parent, file) {
       const includeContent = loadAndProcessIncludeFile(includePath, file);
       const parsedContent = fromMarkdown(includeContent);
 
-      if (isEntireParagraph(node, i)) {
-        // Replace entire paragraph
+      // Handle the remaining text after ']'
+      const remainingText = lastNode.value.substring(1); // Remove the ']' character
+      
+      if (isEntireNodeContent(node, i) && remainingText.trim() === '') {
+        // Replace entire node content if include is the only content
         parent?.children.splice(index, 1, ...parsedContent.children);
+        return; 
       } else {
-        // Replace just the three nodes
-        node.children.splice(i, 3, ...parsedContent.children);
+        const replacementNodes = [...parsedContent.children];
+        
+        // If there's remaining text after ']', add it as a text node
+        if (remainingText) {
+          replacementNodes.push({
+            type: 'text',
+            value: remainingText
+          });
+        }
+        
+        // Replace the three nodes with the include content and any remaining text
+        node.children.splice(i, 3, ...replacementNodes);
       }
-      return; 
 
     } catch (err) {
       console.warn(`[remarkIncludeDirective] Could not include: ${includePath}`, err.message);
-      return;
     }
   }
 }
@@ -186,8 +272,8 @@ function isAbsoluteUrl(url) {
 }
 
 /**
- * Check if the include pattern is the entire paragraph
+ * Check if the include pattern is the entire node content
  */
-function isEntireParagraph(node, startIndex) {
+function isEntireNodeContent(node, startIndex) {
   return node.children.length === 3 && startIndex === 0;
 }
