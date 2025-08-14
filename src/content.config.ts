@@ -3,16 +3,18 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema, YamlManagedReferenceSchema } from "~/content.schema"
 
-// apiOnly variable is used in the split build to isolate docs/en/api folder content
-const apiOnly = process.env.API_ONLY === 'true';
+// apiOnly variable is used in the split build to isolate certain folders and files
+const apiOnly = true;
+
+
 
 const DOCS_BASE = "external-content/superoffice-docs/docs";
 const API_BASE = `${DOCS_BASE}/en/api`;
 
 const enDocs = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
-      "**/*.md",
+    pattern: false ? [] : [
+      "search-options/**/*.md",
       "!index.md",
       "!**/includes/**",
       "!api/**/*.md",   // In apiDocs
@@ -45,7 +47,7 @@ const apiDocs = defineCollection({
 
 const CRMScript = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [
+    pattern: false ? [
       "**/!(*toc).yml",
       "!**/includes/**",
     ] : [],
@@ -56,9 +58,10 @@ const CRMScript = defineCollection({
 
 const NSScriptingRef = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
+    pattern: false ? [] : [
       "**/*.md",
-      "!**/includes/**",],
+      "!**/includes/**",
+    ] ,
     base: `${DOCS_BASE}/en/automation/netserver-scripting/reference`,
   }),
   schema: DocsSchema,
@@ -79,7 +82,7 @@ const NSScriptingRef = defineCollection({
 
 const WebAPI = defineCollection({
   loader: glob({
-    pattern: apiOnly ? ["**/!(*toc).yml"] : [],
+    pattern: false ? ["**/!(*toc).yml"] : [],
     base: `${API_BASE}/reference/webapi`
   }),
 });
