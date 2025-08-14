@@ -9,7 +9,6 @@ import { fromMarkdown } from 'mdast-util-from-markdown';
  */
 export default function remarkIncludeDirective() {
   return (tree, file) => {
-    // console.log(`[remarkIncludeDirective] Processing: ${tree}`);
 
     // Process all node types that can contain children with include directives
     visit(tree, (node, index, parent) => {
@@ -18,7 +17,78 @@ export default function remarkIncludeDirective() {
         processIncludeInNode(node, index, parent, file);
       }
     });
+
+    // Process video directives in blockquotes and other nodes
+    visit(tree, (node, index, parent) => {
+      // Check blockquotes and paragraphs for video directives
+      if ((node.type === 'blockquote' || node.type === 'paragraph') && node.children) {
+        processVideoDirective(node, index, parent, file);
+      }
+    });
   };
+}
+
+
+/**
+ * Process video directives in blockquotes and paragraphs
+ * Handles pattern: > [!Video URL] or [!Video URL]
+ */
+function processVideoDirective(node, index, parent, file) {
+  if (!node.children || node.children.length === 0) return;
+
+  let targetParagraph = null;
+
+  if (node.type === 'blockquote') {
+    targetParagraph = node.children.find(child => child.type === 'paragraph');
+  } else if (node.type === 'paragraph') {
+    targetParagraph = node;
+  }
+
+  if (!targetParagraph || !targetParagraph.children) return;
+
+  let textContent = '';
+  let hasVideoDirective = false;
+  let videoUrl = '';
+
+  // Collect all text content from the paragraph children
+  for (const child of targetParagraph.children) {
+    if (child.type === 'text') {
+      textContent += child.value;
+    } else if (child.type === 'link') {
+      textContent += child.url;
+    }
+  }
+
+  
+
+  // Check if this looks like a video directive: [!Video URL]
+  const videoMatch = textContent.match(/\[!Video\s+(https?:\/\/[^\]\s]+)\]/);
+  if (videoMatch) {
+    hasVideoDirective = true;
+    videoUrl = videoMatch[1];
+    console.log("text content",textContent);
+  }
+
+  if (!hasVideoDirective) return;
+  
+  try {
+    // Create the iframe HTML
+    const iframeHtml = `<div class="embeddedvideo"><iframe src="${videoUrl}" frameborder="0" allowfullscreen="true"></iframe></div>`;
+    
+    // Create an HTML node to replace the blockquote or paragraph
+    const htmlNode = {
+      type: 'html',
+      value: iframeHtml
+    };
+
+    // Replace the entire node with the iframe
+    if (parent && parent.children) {
+      parent.children.splice(index, 1, htmlNode);
+    }
+
+  } catch (err) {
+    console.warn(`[remarkIncludeDirective] Could not process video directive: ${videoUrl}`, err.message);
+  }
 }
 
 
@@ -60,7 +130,6 @@ function processIncludeInNode(node, index, parent, file) {
         parent?.children.splice(index, 1, ...parsedContent.children);
         return; 
       } else {
-
         const replacementNodes = [...parsedContent.children];
         
         // If there's remaining text after ']', add it as a text node

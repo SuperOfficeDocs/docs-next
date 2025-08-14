@@ -2,6 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "@phosphor-icons/web/regular";
+@import "./VideoEmbeddingStyles.css";
 body {
   font-family: "Segoe UI", Tahoma, Helvetica, sans-serif;
   font-size: 16px;
