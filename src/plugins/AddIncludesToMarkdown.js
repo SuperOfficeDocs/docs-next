@@ -66,7 +66,6 @@ function processVideoDirective(node, index, parent, file) {
   if (videoMatch) {
     hasVideoDirective = true;
     videoUrl = videoMatch[1];
-    console.log("text content",textContent);
   }
 
   if (!hasVideoDirective) return;
