@@ -11,22 +11,27 @@ export default function remarkIncludeDirective() {
   return (tree, file) => {
     // console.log(`[remarkIncludeDirective] Processing: ${tree}`);
 
-    visit(tree, 'paragraph', (node, index, parent) => {
-      processIncludeInParagraph(node, index, parent, file);
+    // Process all node types that can contain children with include directives
+    visit(tree, (node, index, parent) => {
+      // Check if this node can contain text children that might have includes
+      if (node.children && Array.isArray(node.children)) {
+        processIncludeInNode(node, index, parent, file);
+      }
     });
   };
 }
 
 
 /**
- * Process include directives within paragraph nodes
- * Handles pattern: text("[!include") + link + text("]")
+ * Process include directives within any node that has children
+ * Handles pattern: text("[!include") + link + text("]...") where the last text may contain additional content
  */
-function processIncludeInParagraph(node, index, parent, file) {
+function processIncludeInNode(node, index, parent, file) {
   if (!node.children || node.children.length < 3) return;
 
-  // Look for the pattern: text("[!include") + link + text("]")
-  for (let i = 0; i < node.children.length - 2; i++) {
+  // Look for the pattern: text("[!include") + link + text("]...")
+  // Process from right to left to avoid index shifting issues
+  for (let i = node.children.length - 3; i >= 0; i--) {
     const [firstNode, linkNode, lastNode] = [
       node.children[i],
       node.children[i + 1], 
@@ -36,7 +41,7 @@ function processIncludeInParagraph(node, index, parent, file) {
     const isIncludePattern = (
       firstNode.type === 'text' && firstNode.value === '[!include' &&
       linkNode.type === 'link' &&
-      lastNode.type === 'text' && lastNode.value === ']'
+      lastNode.type === 'text' && lastNode.value.startsWith(']')
     );
 
     if (!isIncludePattern) continue;
@@ -47,18 +52,31 @@ function processIncludeInParagraph(node, index, parent, file) {
       const includeContent = loadAndProcessIncludeFile(includePath, file);
       const parsedContent = fromMarkdown(includeContent);
 
-      if (isEntireParagraph(node, i)) {
-        // Replace entire paragraph
+      // Handle the remaining text after ']'
+      const remainingText = lastNode.value.substring(1); // Remove the ']' character
+      
+      if (isEntireNodeContent(node, i) && remainingText.trim() === '') {
+        // Replace entire node content if include is the only content
         parent?.children.splice(index, 1, ...parsedContent.children);
+        return; 
       } else {
-        // Replace just the three nodes
-        node.children.splice(i, 3, ...parsedContent.children);
+
+        const replacementNodes = [...parsedContent.children];
+        
+        // If there's remaining text after ']', add it as a text node
+        if (remainingText) {
+          replacementNodes.push({
+            type: 'text',
+            value: remainingText
+          });
+        }
+        
+        // Replace the three nodes with the include content and any remaining text
+        node.children.splice(i, 3, ...replacementNodes);
       }
-      return; 
 
     } catch (err) {
       console.warn(`[remarkIncludeDirective] Could not include: ${includePath}`, err.message);
-      return;
     }
   }
 }
@@ -186,8 +204,8 @@ function isAbsoluteUrl(url) {
 }
 
 /**
- * Check if the include pattern is the entire paragraph
+ * Check if the include pattern is the entire node content
  */
-function isEntireParagraph(node, startIndex) {
+function isEntireNodeContent(node, startIndex) {
   return node.children.length === 3 && startIndex === 0;
 }
