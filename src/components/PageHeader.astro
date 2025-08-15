@@ -36,7 +36,7 @@ const filePathUrl = filePath.replace("external-content/superoffice-docs/","");
       class="lg:col-span-8 py-2 flex items-center justify-self-start text-superOfficeGreen"
     >
       <Breadcrumbs
-        customizeListElements={[{ index: 1, remove: true }]}
+        customizeListElements={[{index:0, remove:true},{ index: 1, remove: true }]}
       >
         <svg
           slot="separator"
@@ -66,9 +66,11 @@ const filePathUrl = filePath.replace("external-content/superoffice-docs/","");
         )
       }
       {
-        !(isLearnCategoryPage) && (<Share description={description} title={title} />
-      <Feedback docurl={filePathUrl} title={title} uid={uid} />
-      <Edit docurl={filePathUrl} />)
+        !(isLearnCategoryPage) && (
+          <Share description={description} title={title} />
+          <Feedback docurl={filePathUrl} title={title} uid={uid} />
+          <Edit docurl={filePathUrl} />
+        )
       }
     </div>
   </div>

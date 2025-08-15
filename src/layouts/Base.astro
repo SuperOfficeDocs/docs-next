@@ -28,11 +28,11 @@ const { metadata, lang = "en", scroll = true } = Astro.props;
     <ClientRouter />
   </head>
   <body class="h-screen flex flex-col overflow-hidden">
-    <div class="z-50"><Header {...headerData} /></div>
     <div
       class=`min-h-screen ${scroll && "overflow-y-auto"}`
       data-scroll-container
     >
+      <div class="z-50 sticky top-0"><Header {...headerData} /></div>
       <main class="flex-grow mb-[140px] md:mb-[120px]">
         <slot />
       </main>
