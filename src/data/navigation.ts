@@ -61,7 +61,7 @@ export const headerData = {
         },
         {
           text: 'Introduction to APIs',
-          href: '/en/api/overview/index',
+          href: '/en/api/overview',
         },
         {
           text: 'Automaton / CRMScript',
@@ -69,15 +69,15 @@ export const headerData = {
         },
         {
           text: 'Configurable screens (Sales)',
-          href: '/en/ui/screen-designer/learn/index',
+          href: '/en/ui/screen-designer/learn',
         },
         {
           text: 'Custom screens (Service)',
-          href: '/en/ui/blogic/custom-screens/index',
+          href: '/en/ui/blogic/custom-screens',
         },
         {
           text: 'Database overview',
-          href: '/en/database/getting-started/index',
+          href: '/en/database/getting-started',
         },
         {
           text: 'Developer Portal',
@@ -85,15 +85,15 @@ export const headerData = {
         },
         {
           text: 'Search APIs',
-          href: '/en/api/netserver/search/index',
+          href: '/en/api/netserver/search',
         },
         {
           text: 'Webhooks',
-          href: '/en/automation/webhook/index',
+          href: '/en/automation/webhook',
         },
         {
           text: 'Web Services',
-          href: '/en/api/netserver/web-services/index',
+          href: '/en/api/netserver/web-services',
         },
       ],
     },
@@ -124,7 +124,7 @@ export const heroItems = {
       title: "Release Notes",
       description: "Contains the history of product and API changes.",
       icon: "material-symbols-light:release-alert-outline",
-      url: "/release-notes/index"
+      url: "/release-notes"
     },
     {
       title: "SuperOffice APIs",
@@ -172,7 +172,7 @@ export const areasOfInterest = {
     { "text": "Sale", "href": "/en/sale" },
     { "text": "Security", "href": "/en/security" },
     { "text": "Video Meetings", "href": "/en/diary/video-meeting" },
-    { "text": "WebTools", "href": "/en/document/webtools/index" }
+    { "text": "WebTools", "href": "/en/document/webtools" }
   ]
 };
 
@@ -184,19 +184,19 @@ export const quickAccessShortcuts = {
       subLinks : [
         {
           title : "System requirements",
-          link : "https://docs.superoffice.com/en/onsite/requirements/"
+          link : `${base}/en/onsite/requirements`
         },
         {
           title : "Security concerns",
-          link : "https://docs.superoffice.com/en/onsite/security/"
+          link : `${base}/en/onsite/security`
         },
         {
           title : "Onsite topics",
-          link : "https://docs.superoffice.com/en/onsite/"
+          link : `${base}/en/onsite`
         },
         {
           title : "Online migration",
-          link : "https://docs.superoffice.com/en/online/migrate/"
+          link : `${base}/en/online/migrate`
         }
       ]
     },
@@ -205,19 +205,19 @@ export const quickAccessShortcuts = {
       subLinks : [
         {
           title : "CRM Server",
-          link : "https://docs.superoffice.com/en/onsite/install/server/"
+          link : `${base}/en/onsite/install/server`
         },
         {
           title : "Web applications",
-          link : "https://docs.superoffice.com/en/onsite/install/web-client/"
+          link : `${base}/en/onsite/install/web-client`
         },
         {
           title : "Web tools",
-          link : "https://docs.superoffice.com/en/document/webtools/index.html"
+          link : `${base}/en/document/webtools`
         },
         {
           title : "Mobile application",
-          link : "https://docs.superoffice.com/en/mobile/overview.html"
+          link : `${base}/en/mobile/overview`
         }
       ]
     },
@@ -226,23 +226,23 @@ export const quickAccessShortcuts = {
       subLinks : [
         {
           title : "NetServer Configuration",
-          link : "https://docs.superoffice.com/en/api/netserver/config/"
+          link : `${base}/en/api/netserver/config`
         },
         {
           title : "Document template variables",
-          link : "https://docs.superoffice.com/en/document/templates/variables/index.html"
+          link : `${base}/en/document/templates/variables`
         },
         {
           title : "Service reply templates",
-          link : "https://docs.superoffice.com/en/request/reply-templates/index.html"
+          link : `${base}/en/request/reply-templates`
         },
         {
           title : "Batch task service",
-          link : "https://docs.superoffice.com/en/onsite/batch-task-server.html"
+          link : `${base}/en/onsite/batch-task-server`
         },
         {
           title : "INI files",
-          link : "https://docs.superoffice.com/en/onsite/config/"
+          link : `${base}/en/onsite/config`
         }
       ]
     },
@@ -251,11 +251,11 @@ export const quickAccessShortcuts = {
       subLinks : [
         {
           title : "Register online developer account",
-          link : "https://docs.superoffice.com/en/onsite/requirements/"
+          link : `${base}/en/onsite/requirements`
         },
         {
           title : "Developer portal",
-          link : "https://docs.superoffice.com/en/onsite/security/"
+          link : `${base}/en/onsite/security`
         },
       ]
     },
