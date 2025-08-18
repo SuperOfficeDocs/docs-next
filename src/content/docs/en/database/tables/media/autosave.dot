@@ -1,6 +1,0 @@
-digraph autosave  {
-node [shape = box style="rounded, filled" fontname = "Helvetica" fontsize = "12" ]
-edge [fontname = "Helvetica" fontsize = "9"]
-
-autosave[fillcolor = "cadetblue1"]
-}
