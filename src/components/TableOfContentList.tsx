@@ -96,7 +96,7 @@ export default function TableOfContentList({
   };
 
   return (
-    <div className={`w-full overflow-auto ${isMainTable ? "md:mx-3 xl:mx-10 md:h-[78vh]" : "pl-4 md:pl-3"}`}>
+    <div className={`w-full overflow-auto  ${isMainTable ? "mx-3 xl:mx-10 lg:h-[78vh]" : "pl-4 md:pl-3"}`}>
 
       {/* Show/Hide ToC Button. Only visible on mobile view */}
       <div
