@@ -29,15 +29,17 @@ export async function getStaticPaths() {
 
 const { subcategory } = Astro.params;
 const fullPath = `${basePath}/${subcategory}`;
-const tocData = await getSegmentToc(
-  language,
-  subcategory.startsWith("learn") ? "learn" : subcategory
-);
+
+// gets first segment (ex:api from api/authentication) from subcategory variable
+const segment = subcategory.split("/")[0];
+
+const tocData = await getSegmentToc(language, segment);
 
 const entry = await getEntry("cats", fullPath);
 if (!entry) {
   throw new Error(`Subcategory not found: ${fullPath}`);
 }
+
 const categoryData = entry.data as SubCategoryDataType;
 ---
 
@@ -45,5 +47,5 @@ const categoryData = entry.data as SubCategoryDataType;
   lang={language}
   data={categoryData}
   ToCData={tocData}
-  baseSlug={`${language}/${subcategory}`}
+  baseSlug={`${language}/${segment}`}
 />
