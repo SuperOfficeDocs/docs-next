@@ -1,8 +1,0 @@
-digraph udpersonLarge  {
-node [shape = box style="rounded, filled" fontname = "Helvetica" fontsize = "12" ]
-edge [fontname = "Helvetica" fontsize = "9"]
-
-udpersonLarge[fillcolor = "cadetblue1"]
-person[fillcolor = "azure1"]
-person -> udpersonLarge [label = "userdef2_id"]
-}

@@ -1,6 +1,0 @@
-digraph item_config  {
-node [shape = box style="rounded, filled" fontname = "Helvetica" fontsize = "12" ]
-edge [fontname = "Helvetica" fontsize = "9"]
-
-item_config[fillcolor = "cadetblue1"]
-}

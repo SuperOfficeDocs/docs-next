@@ -1,2 +1,0 @@
-<!-- markdownlint-disable-file MD041 -->
-Darüber hinaus können Sie in Einstellungen und Verwaltung (über **Listen** > **GUI - Web-Bildschirm**) festlegen, dass weitere Bereichsregisterkarten in Form von Internetadressen hinzugefügt werden, die über Verknüpfungen aus SuperOffice CRM aufgerufen werden können. Sie rufen dann die URL-Adresse auf, indem Sie auf die Registerkarte klicken. Klicken Sie auf **In separatem Fenster öffnen**, um die Website in einem eigenen Browser-Fenster anzuzeigen.
