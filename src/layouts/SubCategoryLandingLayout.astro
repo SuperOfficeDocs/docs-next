@@ -18,20 +18,21 @@ const metadata = {
 
 type Props = {
   data: SubCategoryContentItem;
-  ToCData: TocData | null;
+  ToCData: TocData;
   lang: string;
-  baseSlug?: string;
+  baseSlug: string;
 };
+
 ---
 
 <Base metadata={metadata} lang={lang}>
   <article class="w-full pt-1 article">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
       <nav
-        class="bg-lightTealGray md:col-span-3 pt-6 md:pt-12 w-full max-w-md mx-auto rounded-lg flex flex-col items-center"
+        class="bg-lightTealGray md:col-span-3 pt-5 md:pt-10 w-full max-w-md mx-auto rounded-lg flex flex-col items-center"
       >
         <div
-          class="mb-10 flex items-center justify-self-start text-superOfficeGreen"
+          class="mb-6 flex items-center justify-self-start text-superOfficeGreen"
         >
           <Breadcrumbs
             ariaLabel="A structured list of pages"
@@ -52,16 +53,14 @@ type Props = {
             </svg>
           </Breadcrumbs>
         </div>
-        {
-          ToCData && (
-            <TableOfContentList
-              client:only="react"
-              inputItems={ToCData.items}
-              slug={baseSlug ?? lang}
-              isMainTable={true}
-            />
-          )
-        }
+        <div class="w-full max-w-lg mx-auto rounded-lg flex items-center">
+          <TableOfContentList
+          client:only="react"
+          inputItems={ToCData.items}
+          slug={baseSlug}
+          isMainTable={true}
+        />
+        </div>
       </nav>
 
       <div class="w-full md:col-span-9 p-8 max-w-none">
@@ -78,10 +77,7 @@ type Props = {
           {
             data.landingContent.map((card) => {
               return (
-                <SubCategoryCard
-                  subCategory={subCategorySlug}
-                  item={card}
-                />
+                <SubCategoryCard subCategory={subCategorySlug} item={card} />
               );
             })
           }
