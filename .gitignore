@@ -1,5 +1,10 @@
 # build output
 dist/
+
+.distA/
+.distB/
+
+
 # generated types
 .astro/
 
