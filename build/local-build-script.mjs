@@ -27,9 +27,13 @@ console.log("Merging distA and distB into dist...");
 cpSync(distA, distDir, { recursive: true });
 cpSync(distB, distDir, { recursive: true });
 
+// Cleanup tempory dir adter merging
+[distA, distB].forEach((dir) => {
+  if (existsSync(dir)) rmSync(dir, { recursive: true, force: true });
+});
+
 // Pagefind Indexing
 console.log("Indexing with Pagefind");
 execSync("npx pagefind --site dist", { stdio: "inherit" });
-
 
 console.log("Completed. Final merged build is in dist/");
