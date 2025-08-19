@@ -29,14 +29,14 @@ const {
   data: frontmatter,
   filePath,
   collection,
-  id: slug,
+  id,
 } = entry ?? htmlEntry;
 
 // Determine TOC path: use fixed segment for release notes, if a TOCBasePath is available, use it as TOCPath, otherwise build from language + category
 const getTOCPath = (): string => {
   if (collection === "release-notes") return "release-notes";
   else if (TOCBasePath != undefined) return TOCBasePath;
-  else return `${language}/${isLearn ? "learn" : slug.split("/")[0]}`;
+  else return `${language}/${isLearn ? "learn" : id.split("/")[0]}`;
 };
 
 const TOCPath = getTOCPath();
@@ -47,7 +47,7 @@ const { Content, headings } = entry
 ---
 
 <Base metadata={frontmatter} lang={language}>
-  <div class="z-40 sticky top-[57px]">
+  <div class="z-40 md:sticky md:top-[57px]">
     <PageHeader
       isLearnCategoryPage={false}
       filePath={filePath ?? ""}
