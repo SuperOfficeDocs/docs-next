@@ -41,7 +41,7 @@ const selectedKeys = ["Constructor", "Method", "Property"];
     {/* Inheritance */}
     {data.items[0].inheritance &&
       <div class="m-0">
-        <h2 class="font-medium text-sm border-b-[1px] pb-1 border-gray-300">Inheritance</h2>
+        <h2 class="font-medium text-sm border-b-[1px] mb-0 pb-1 border-gray-300">Inheritance</h2>
         <ul class="list-none text-orange-500 [&>*]:my-0 m-0 p-0">{data.items[0].inheritance.map( (inheritClass :string) => {
             return <li> ↳ {inheritClass.split(".").pop()} </li>
         })}</ul>
@@ -49,6 +49,18 @@ const selectedKeys = ["Constructor", "Method", "Property"];
         <ul class="list-none ml-2 text-orange-500 [&>*]:my-0 my-0">{data.items[0].derivedClasses &&  data.items[0].derivedClasses.map( (inheritClass :string) => {
             return <li class=""> ↳ {inheritClass.split(".").pop()} </li>
         })}</ul>
+      </div>
+    }
+
+    <!-- Inherited Members -->
+    {data.items[0].inheritedMembers &&
+      <div class="m-0">
+        <h2 class="font-bold text-sm border-b-[1px] pb-1 mb-0 border-gray-300">Inherited Members</h2>
+        <ul class="list-none [&>*]:my-0 m-0 p-0">
+          {data.items[0].inheritedMembers.map( (item :string) => {
+            return <li><a class="no-underline text-orange-500 font-normal" href={getDataFromReference(item).href}>{item.split(".").slice(1).join(".")} </a> </li>
+          })}
+        </ul>
       </div>
     }
         
@@ -68,7 +80,7 @@ const selectedKeys = ["Constructor", "Method", "Property"];
     <h2 class="text-xs"><span class="font-bold mr-1">Assembly:</span><span class="font-semibold">{data.items[0].assemblies}.dll</span></h2>
 
     { data.items[0].syntax && (
-      <h2 class="font-medium text-sm">Syntax</h2>
+      <h2 class="font-medium text-sm mt-4">Syntax</h2>
       <div class="prose"><Code code={data.items[0].syntax?.content} lang={"csharp"} theme="houston"/></div>
     )}
     
