@@ -34,7 +34,7 @@ export async function getTableOfContentsFromCollection(
   rootCollectionName: string
 ): Promise<TocData> {
 
-    
+
   // Store all (filtered) tocEntries in a map so we can quickly look them up by their ID later
   const tocMap = new Map<string, TocData>();
   for (const entry of tocEntries) {
@@ -82,13 +82,13 @@ export async function getTableOfContentsFromCollection(
  * @returns A promise resolving to the ToC data array for `/…/{segment}`.
  */
 export async function getSegmentToc(
-    language: string,
-    segment: string
+  language: string,
+  segment: string
 ) {
-    const tocScope = segment === 'api/authentication' ? 'api' : segment;
-    const base = `${root}/${language}/${tocScope}`;
-    const tocEntries = await getCollection('toc', (e) => e.id.startsWith(base));
-    return getTableOfContentsFromCollection(tocEntries, base);
+  const tocScope = segment;
+  const base = `${root}/${language}/${tocScope}`;
+  const tocEntries = await getCollection('toc', (e) => e.id.startsWith(base));
+  return getTableOfContentsFromCollection(tocEntries, base);
 }
 
 /**
@@ -99,9 +99,9 @@ export async function getSegmentToc(
  * @returns A promise resolving to the ToC data array for `/{language}/learn`.
  */
 export async function getLocalizedToc(language: string) {
-    const base = `${root}/${language}`;
-    const tocEntries = await getCollection('toc', (e) => e.id.startsWith(base));
-    return getTableOfContentsFromCollection(tocEntries, `${base}/learn`);
+  const base = `${root}/${language}`;
+  const tocEntries = await getCollection('toc', (e) => e.id.startsWith(base));
+  return getTableOfContentsFromCollection(tocEntries, `${base}/learn`);
 }
 
 /**
