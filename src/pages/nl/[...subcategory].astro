@@ -30,15 +30,17 @@ export async function getStaticPaths() {
   });
 }
 
-// Load the matching YAML for each slug:
 const { subcategory } = Astro.params;
 
-const filePath = `${collectionPath}/${subcategory}`;
+// gets first segment (ex:api from api/authentication) from subcategory variable
+const segment = subcategory.split("/")[0];
 
+const filePath = `${collectionPath}/${subcategory}`;
 const entry = await getEntry("cats", filePath);
 if (!entry) {
   throw new Error(`Subcategory not found: ${filePath}`);
 }
+
 const CategoryData = entry.data as SubCategoryDataType;
 ---
 
@@ -46,5 +48,6 @@ const CategoryData = entry.data as SubCategoryDataType;
   lang={language}
   data={CategoryData}
   ToCData={tocData}
-  baseSlug={filePath}
+  baseSlug={`${language}/${segment}`}
+  hasMultipleLanguages={true}
 />
