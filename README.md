@@ -8,6 +8,7 @@ Inside of your Astro project, you'll see the following folders and files:
 /
 ├── external-content
 ├── public/
+├── build/
 ├── src/
 │   └── content.config.ts
 │   └── content.schema.ts
@@ -78,26 +79,28 @@ Other ways to increase memory:
 
 ## Build the site
 
-1. `npm run build` (takes ca 6 minutes, depending on your hardware)
-
-1. Optionally, inspect the generated HTML in the *dist* folder.
-
-    * Redirect stubs from astro_redirect_from are in dist/docs-next.
-    * Search indexes from pagefind are in dist/pagefind.
-
-1. Preview the build: `npm run preview`
-
 ### Partial builds
 
-At the time of writing, the build is split in 2 and controlled with `process.env.API_ONLY`. Locally, you have to choose one or the other:
+At the time of writing, the build is split in 2 and controlled with `process.env.API_ONLY`.
 
+Locally, you can choose one or the other:
 * API only: crmscript and netserver-scripting references from automation (`$env:API_ONLY = "true"`)
 * Main: everything else (`$env:API_ONLY = "false"`) - this is the default!
 
-To see what's in each mode at any time, go to src/content.config.ts
-The GitHub deployment runs both builds and stitch the files together before re-running pagefind (search index). This is orchestrated in .github/workflows/deploy.yml
+To see what gets built in each split, check src/content.config.ts
 
-Todo: create a script that mimics the github workflow locally to create a full build.
+### Full build
+
+1. `npm run build:local`
+
+1. Preview the build: `npm run preview`
+
+Uses script build/local-build-script.mjs to build the site using 2 splits controlled with `process.env.API_ONLY`. 
+After building 2 splits seperately, output gets merged and pagefind indexing gets run on the final output.
+
+### Deployment build
+
+The GitHub deployment runs both builds and stitch the files together before re-running pagefind (search index). This is orchestrated in .github/workflows/deploy.yml
 
 ### Optionally check memory usage while building
 
@@ -121,18 +124,17 @@ See `package.json`.
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Command                   | Action                                                    |
+| :------------------------ | :-------------------------------------------------------- |
+| `npm install`             | Installs dependencies                                     |
+| `npm run dev`             | Starts local dev server at `localhost:4321`               |
+| `npm run build:default`   | Build production site to `./dist/`                        |
+| `npm run build`           | Build production site using increased memory              |             
+| `npm run build:local`     | Build production site using build/local-build-script.mjs` |
+| `npm run preview`         | Preview built site locally                                |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check`          |
+| `npm run astro -- --help` | Get help using the Astro CLI                              |
+| `npm run test:e2e`        | Run end to end tests                                      |
 
 ## External content
 
