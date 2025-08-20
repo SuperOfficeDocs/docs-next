@@ -5,7 +5,7 @@ import path from "path";
 import matter from "gray-matter";
 import type { TocData } from "~/types/TableOfContentTypes";
 import { getTocByPath } from "@utils/tocUtils";
-import MarkdownLayout from "@layouts/Markdown.astro";
+import MarkdownLayout from "@layouts/ContentLayout.astro";
 import { renderMarkdownWithHeadingIds } from "@utils/contentUtils";
 
 export async function getStaticPaths() {
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
   const baseContentPath = "external-content";
   const referencePath = path.join(
     baseContentPath,
-    "superoffice-docs/docs/en/api/reference",
+    "superoffice-docs/docs/en/api/reference"
   );
 
   // Function to create lazy loader for markdown content
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
       // Create a more complete entry object that matches content collection structure
       const relativePath = filePath.replace(
         "external-content/superoffice-docs/docs/",
-        "",
+        ""
       );
       const slug = relativePath.replace(/\.(md|mdx)$/, "");
       const { html, headings } = await renderMarkdownWithHeadingIds(content);
