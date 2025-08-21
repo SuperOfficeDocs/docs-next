@@ -72,10 +72,6 @@ export function resolveHref(url: string, baseSlug?: string): string {
 
   const trimmed = trimFileExtension(url).replace("/index", "");
 
-  if (baseSlug === "contribute") { // special case for this repo
-    return trimmed;
-  }
-
   if (baseSlug && url.startsWith(baseSlug + "/")) {
     return trimmed;
   }
