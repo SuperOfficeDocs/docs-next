@@ -8,7 +8,7 @@ import YamlLayoutPage from "@components/YamlLayoutPage.astro";
 const apiPath = `superoffice-docs/docs/en/api/reference/web`;
 const tocData = await getTocByPath(apiPath);
 
-// Generates static paths from webapi collection
+// Generates static paths from web collection
 export async function getStaticPaths() {
   const api = "web" as const;
   const apiEntries = await getCollection(api);
@@ -25,4 +25,4 @@ const { entry } = Astro.props;
 
 ---
 
-<YamlLayoutPage entry={entry} tocData={tocData} />
+<YamlLayoutPage entry={entry} tocData={tocData} collection="web" />

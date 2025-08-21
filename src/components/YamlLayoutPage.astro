@@ -8,15 +8,17 @@ import type { Item } from "~/types/YamlManagedReferencesTypes";
 import YamlNamespace from "@components/YamlNamespace.astro";
 import YamlClass from "@components/YamlClass.astro";
 import type { TocData } from "~/types/TableOfContentTypes";
-
 import ContentLayout from "@layouts/ContentLayout.astro";
+
+import type { CollectionKey } from "astro:content";
 
 interface Props {
   entry: CollectionEntry<"webapi" | "crmscript" | "web">;
   tocData: TocData;
+  collection : CollectionKey; 
 }
 
-const { entry, tocData } = Astro.props;
+const { entry, tocData, collection } = Astro.props;
 
 const pageTitle = entry.data.items[0].type + " " + entry.data.items[0].id;
 
@@ -58,7 +60,7 @@ if (documentType == "Namespace") {
   const promises = entry.data.items[0].children?.map(
     async (childName: string) => {
       const formattedItem = childName.replaceAll(".", "").toLowerCase();
-      const childrenItemEntry = await getEntry("webapi", formattedItem);
+      const childrenItemEntry = await getEntry(collection, formattedItem);
       if (childrenItemEntry) {
         const dataItem = childrenItemEntry?.data.items[0];
         const key = dataItem.type as keyof namespaceClassifiedDataProps;
