@@ -1,8 +1,9 @@
 ---
+import { render } from "astro:content";
 import { getCollection } from "astro:content";
 import { getSegmentToc } from "@utils/tocUtils";
 import { getApiContentSlug } from "@utils/slugUtils";
-import MarkdownLayout from "@layouts/Markdown.astro";
+import ContentLayout from "@layouts/ContentLayout.astro";
 
 const language = "en" as const;
 const segment = "api" as const;
@@ -24,10 +25,14 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
 ---
 
-<MarkdownLayout
+<ContentLayout
+  headings={headings}
   entry={entry}
   toc={tocData}
   TOCBasePath="en/api"
-/>
+>
+  {Content && <Content />}
+</ContentLayout>

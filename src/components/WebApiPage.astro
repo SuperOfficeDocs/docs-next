@@ -9,7 +9,7 @@ import WebApiNamespace from "@components/WebApiNamespace.astro";
 import WebApiClass from "@components/WebApiClass.astro";
 import type { TocData } from "~/types/TableOfContentTypes";
 
-import MarkdownLayout from "@layouts/Markdown.astro";
+import ContentLayout from "@layouts/ContentLayout.astro";
 
 interface Props {
     entry: CollectionEntry<"webapi">;
@@ -120,11 +120,12 @@ for (ItemType in headingList) {
 
 ---
 
-<MarkdownLayout
+<ContentLayout
     entry={entry}
     toc={tocData}
     isLearn={false}
     language="en"
+    headings={headings}
 >
     <div class="w-full overflow-x-hidden [&&]:not-prose">
         <h1 class="text-3xl md:text-4xl break-words mt-6 mb-6">{pageTitle}</h1>
@@ -141,4 +142,4 @@ for (ItemType in headingList) {
             )
         }
     </div>
-</MarkdownLayout>
+</ContentLayout>
