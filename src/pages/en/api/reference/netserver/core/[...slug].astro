@@ -5,15 +5,17 @@ import { getYamlReferenceSlug } from "@utils/slugUtils";
 import YamlLayoutPage from "@layouts/YamlLayoutPage.astro";
 
 
-const collectionPath = `superoffice-docs/docs/en/api/reference/webapi`;
+const collectionPath = `superoffice-docs/docs/en/api/reference/netserver/core`;
+
 const tocData = await getTocByPath(collectionPath);
 
-// Generates static paths from webapi collection
+// Generates static paths from netserver/core collection
 export async function getStaticPaths() {
-  const collection = "webapi" as const;
+  const collection = "netserver-core" as const;
   const yamlEntries = await getCollection(collection);
   return yamlEntries.map((entry) => {
-    const generatedSlug = getYamlReferenceSlug(entry.filePath!, collection);
+    const generatedSlug = getYamlReferenceSlug(entry.filePath!, "netserver/core");
+    console.log("entry", generatedSlug)
     return {
       params: { slug: `${generatedSlug}` },
       props: { entry },
@@ -23,6 +25,8 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 
+
+
 ---
 
-<YamlLayoutPage entry={entry} tocData={tocData} collection="webapi"/>
+<YamlLayoutPage entry={entry} tocData={tocData} collection="netserver-core" />

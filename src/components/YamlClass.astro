@@ -3,7 +3,7 @@ import { Code } from 'astro:components';
 import type { ManagedReferenceType, Reference } from "../types/YamlManagedReferencesTypes";
 import type {indexDictionaryProps} from "../types/YamlManagedReferencesLayoutTypes"
 import YamlItem from "@components/YamlItem.astro"
-import { conversionList } from "@components/YamlLayoutPage.astro";
+import { conversionList } from "@layouts/YamlLayoutPage.astro";
 type Props = {
     data: ManagedReferenceType;
 };
@@ -38,7 +38,7 @@ const selectedKeys = ["Constructor", "Method", "Property"];
     {/* Inheritance */}
     {data.items[0].inheritance &&
       <div class="m-0">
-        <h2 class="font-medium text-sm border-b-[1px] mb-0 pb-1 border-gray-300">Inheritance</h2>
+        <p class="font-medium text-sm border-b-[1px] mb-0 pb-1 border-gray-300">Inheritance</p>
         <ul class="list-none [&>*]:my-0 m-0 p-0">{data.items[0].inheritance.map( (inheritClass :string) => {
             return <div> ↳ <a class="no-underline text-orange-500 font-normal hover:underline" href={getDataFromReference(inheritClass).href}>{inheritClass.split(".").pop()} </a></div>
         })}</ul>
@@ -52,7 +52,7 @@ const selectedKeys = ["Constructor", "Method", "Property"];
     <!-- Inherited Members -->
     {data.items[0].inheritedMembers &&
       <div class="m-0">
-        <h2 class="font-bold text-sm border-b-[1px] pb-1 mb-0 border-gray-300">Inherited Members</h2>
+        <p class="font-medium text-sm border-b-[1px] pb-1 mb-0 border-gray-300">Inherited Members</p>
         <ul class="list-none [&>*]:my-0 m-0 p-0">
           {data.items[0].inheritedMembers.map( (item :string) => {
             return <li><a class="no-underline text-orange-500 font-normal hover:underline" href={getDataFromReference(item).href}>{item.split(".").slice(1).join(".")} </a> </li>
@@ -159,6 +159,18 @@ const selectedKeys = ["Constructor", "Method", "Property"];
           })
         }
         </div>
+      </div>
+    }
+
+    <!-- Extension Methods -->
+    {data.items[0].extensionMethods &&
+      <div class="m-0">
+        <h2 class="text-2xl mb-2">Extension Methods</h2>
+        <ul class="list-none [&>*]:my-0 m-0 p-0">
+          {data.items[0].extensionMethods.map( (item :string) => {
+            return <li><a class="no-underline text-orange-500 font-normal hover:underline" href={getDataFromReference(item).href}>{getDataFromReference(item).nameWithType} </a> </li>
+          })}
+        </ul>
       </div>
     }
 </div>

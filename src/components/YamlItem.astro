@@ -25,12 +25,12 @@ const itemTypeKey = {
 
 ---
 <div>
-    <p id={item.uid} class="font-bold text-lg">{item.name}</p>
-    <p set:html = {item.summary}></p>
+    <p id={item.uid} class="font-bold text-lg mb-2">{item.name}</p>
+    <p class="mt-0" set:html = {item.summary}></p>
     
     {
         item.syntax && (
-        <p class="text-sm font-semibold text-gray-400 m-0">Declaration</p>
+        <p class="text-sm font-semibold text-gray-400 mb-0">Declaration</p>
         <p class="prose m-0"><Code code={item.syntax.content} lang={"csharp"} theme="houston"/></p>
         )
     }

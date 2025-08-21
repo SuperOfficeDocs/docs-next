@@ -7,7 +7,7 @@ export interface Item {
   uid: string;
   commentId: string;
   id: string;
-  alias?:string[];
+  alias?: string[];
   parent?: string;
   children?: string[];
   langs: string[];
@@ -15,17 +15,18 @@ export interface Item {
   nameWithType: string;
   fullName: string;
   type: string;
-  inheritedMembers?:string[];
+  inheritedMembers?: string[];
+  extensionMethods?: string[];
   source?: {
-    repo?:String;
+    repo?: String;
     branch?: string;
-    revision? : String;
+    revision?: String;
     path?: string;
     startLine?: string;
-    endLine?:string;
+    endLine?: string;
     isExternal?: boolean;
   };
-  url?:string;
+  url?: string;
   assemblies: string[];
   namespace?: string;
   summary?: string;
@@ -35,7 +36,7 @@ export interface Item {
   inheritance?: string[];
   derivedClasses?: string[];
   implements?: string[];
-  overload?:string;
+  overload?: string;
   "modifiers.csharp"?: string[];
   "modifiers.vb"?: string[];
 }

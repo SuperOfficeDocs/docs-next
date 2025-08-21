@@ -13,9 +13,11 @@ import ContentLayout from "@layouts/ContentLayout.astro";
 import type { CollectionKey } from "astro:content";
 
 interface Props {
-  entry: CollectionEntry<"webapi" | "crmscript" | "web">;
+  entry: CollectionEntry<
+    "webapi" | "crmscript" | "web" | "netserver-core" | "netserver-services"
+  >;
   tocData: TocData;
-  collection : CollectionKey; 
+  collection: CollectionKey;
 }
 
 const { entry, tocData, collection } = Astro.props;
@@ -37,7 +39,6 @@ export const conversionList = {
 // Generate heading from yml data
 const headingList: headingsListProps = {};
 const namespaceData: namespaceClassifiedDataProps = {};
-
 
 /**
  * Appends headings into headingList according to relevent key
@@ -119,8 +120,6 @@ for (ItemType in headingList) {
     });
   }
 }
-
-
 ---
 
 <ContentLayout
