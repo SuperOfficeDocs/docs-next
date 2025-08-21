@@ -5,7 +5,7 @@ import path from "path";
 import matter from "gray-matter";
 import type { TocData } from "~/types/TableOfContentTypes";
 import { getTocByPath } from "@utils/tocUtils";
-import MarkdownLayout from "@layouts/ContentLayout.astro";
+import ContentLayout from "@layouts/ContentLayout.astro";
 import { renderMarkdownWithHeadingIds } from "@utils/contentUtils";
 
 export async function getStaticPaths() {
@@ -67,7 +67,7 @@ export async function getStaticPaths() {
     const pattern = [
       "superoffice-docs/docs/en/api/reference/restful/**/*.{md,mdx}",
       "superoffice-docs/docs/en/api/reference/{webapi,web,netserver}/**/*.{md,mdx}",
-      "!**/includes/**/*.{md,mdx}"
+      "!**/includes/**/*.{md,mdx}",
     ];
     const filePaths = await glob(pattern, {
       cwd: baseContentPath,
@@ -123,8 +123,11 @@ const entry = await loadEntry();
 const tocData = await loadTocData();
 ---
 
-<MarkdownLayout
+<ContentLayout
+  headings={entry.headings}
   htmlEntry={entry}
   toc={tocData}
   TOCBasePath={`en/api/reference/${apiType}`}
-/>
+>
+  <div class="prose max-w-none" set:html={entry.html} />
+</ContentLayout>

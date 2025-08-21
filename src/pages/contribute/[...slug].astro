@@ -1,10 +1,9 @@
 ---
+import { render } from "astro:content";
 import { getCollection } from "astro:content";
 import { stripFilePathAndExtension } from "@utils/slugUtils";
 import { getTocByPath } from "@utils/tocUtils";
-import MarkdownLayout from "@layouts/ContentLayout.astro";
-
-//const language = "en" as const;
+import ContentLayout from "@layouts/ContentLayout.astro";
 
 const tocData = await getTocByPath('contribution');
 
@@ -24,10 +23,14 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
 ---
 
-<MarkdownLayout
+<ContentLayout
+  headings={headings}
   entry={entry}
   toc={tocData}
   TOCBasePath="contribute"
-/>
+>
+  {Content && <Content />}
+</ContentLayout

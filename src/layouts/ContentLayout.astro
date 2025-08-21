@@ -1,6 +1,7 @@
 ---
-import { render, type CollectionEntry, type DataEntryMap } from "astro:content";
+import { type CollectionEntry, type DataEntryMap } from "astro:content";
 import type { TocData } from "~/types/TableOfContentTypes";
+import type { Heading } from "~/types/OnThisArticleTypes";
 import PageHeader from "@components/PageHeader.astro";
 import OnThisArticle from "@components/OnThisArticle";
 import TableOfContentList from "@components/TableOfContentList";
@@ -14,6 +15,7 @@ export interface Props {
   language?: string;
   TOCBasePath?: string;
   htmlEntry?: any;
+  headings: Heading[];
 }
 
 const {
@@ -23,27 +25,18 @@ const {
   language = "en",
   TOCBasePath,
   htmlEntry,
+  headings,
 } = Astro.props;
 
-const {
-  data: frontmatter,
-  filePath,
-  collection,
-  id,
-} = entry ?? htmlEntry;
+const { data: frontmatter, filePath, collection, id } = entry ?? htmlEntry;
 
 // Determine TOC path: use fixed segment for release notes, if a TOCBasePath is available, use it as TOCPath, otherwise build from language + category
 const getTOCPath = (): string => {
-  if (collection === "release-notes") return "release-notes";
-  else if (TOCBasePath != undefined) return TOCBasePath;
+  if (TOCBasePath != undefined) return TOCBasePath;
   else return `${language}/${isLearn ? "learn" : id.split("/")[0]}`;
 };
 
 const TOCPath = getTOCPath();
-
-const { Content, headings } = entry
-  ? await render(entry)
-  : { Content: null, headings: htmlEntry.headings };
 ---
 
 <Base metadata={frontmatter} lang={language}>
@@ -70,19 +63,12 @@ const { Content, headings } = entry
       </nav>
 
       <main
-        class=`md:col-span-7 p-8 max-w-none prose prose-headings:font-normal`
+        class=`md:col-span-7 p-8 max-w-none prose prose-headings:font-normal mb-[140px] md:mb-[120px]`
         data-pagefind-body
         data-language={language}
         data-pagefind-filter="language[data-language], audience[data-audience]"
         data-audience={frontmatter.audience}
       >
-        {
-          entry ? (
-            Content && <Content />
-          ) : (
-            <div class="prose max-w-none" set:html={htmlEntry.html} />
-          )
-        }
         <slot />
       </main>
     </div>

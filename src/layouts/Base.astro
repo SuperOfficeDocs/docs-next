@@ -34,7 +34,7 @@ const { metadata, lang = "en", scroll = true } = Astro.props;
       data-scroll-container
     >
       <div class="z-50 sticky top-0"><Header {...headerData} /></div>
-      <main class="flex-grow mb-[140px] md:mb-[120px]">
+      <main class="flex-grow">
         <slot />
       </main>
       <Footer client:load {...footerData} />

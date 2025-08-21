@@ -1,15 +1,16 @@
 ---
+import { render } from "astro:content";
 import { getDocEntries } from "@utils/contentUtils";
 import { getLocalizedToc } from "@utils/tocUtils";
 import { getContentSlug } from "@utils/slugUtils";
-import MarkdownLayout from "@layouts/ContentLayout.astro";
+import ContentLayout from "@layouts/ContentLayout.astro";
 
 const language = "no" as const;
 
 // Computed tocData once at module load (build-time) and reuse it for all pages
 const tocData = await getLocalizedToc(language);
 
-// Generate static paths from NO collection
+// Generate static paths from no collection
 export async function getStaticPaths() {
   const language = "no" as const;
 
@@ -25,11 +26,15 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
 ---
 
-<MarkdownLayout
+<ContentLayout
   entry={entry}
   toc={tocData}
   language={language}
   isLearn={true}
-/>
+  headings={headings}
+>
+  {Content && <Content />}
+</ContentLayout>
