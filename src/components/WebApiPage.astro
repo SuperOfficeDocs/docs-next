@@ -32,6 +32,23 @@ export const conversionList = {
     Enum: "Enums",
 };
 
+
+/**
+ * Appends headings into headingList according to relevent key
+ *
+ * @param key - key of the heading to be included (ex: Class, Constructor, Enum)
+ * @param dataItem - dataItem's extracted from the yml
+ */
+function appendIntoHeadingList(key: keyof headingsListProps, dataItem: Item) {
+    if (!(key in headingList)) {
+        headingList[key] = [];
+    }
+    headingList[key].push({
+        text: dataItem.id,
+        slug: dataItem.uid,
+    });
+}
+
 // Generate heading from yml data
 const headingList: headingsListProps = {};
 const namespaceData: namespaceClassifiedDataProps = {};
@@ -101,21 +118,6 @@ for (ItemType in headingList) {
     }
 }
 
-/**
- * Appends headings into headingList according to relevent key
- *
- * @param key - key of the heading to be included (ex: Class, Constructor, Enum)
- * @param dataItem - dataItem's extracted from the yml
- */
-function appendIntoHeadingList(key: keyof headingsListProps, dataItem: Item) {
-    if (!(key in headingList)) {
-        headingList[key] = [];
-    }
-    headingList[key].push({
-        text: dataItem.id,
-        slug: dataItem.uid,
-    });
-}
 ---
 
 <ContentLayout

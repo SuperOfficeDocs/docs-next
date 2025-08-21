@@ -32,6 +32,7 @@ export interface Item {
   syntax?: Syntax;
   example?: string[];
   inheritance?: string[];
+  inheritedMembers?:string[];
   derivedClasses?: string[];
   implements?: string[];
   overload?:string;
@@ -65,6 +66,7 @@ export interface Reference {
   nameWithType: string;
   fullName: string;
   definition?: string;
+  href?: string;
   "nameWithType.Vb"?: string;
   "fullName.Vb"?: string;
   "name.Vb"?: string;
