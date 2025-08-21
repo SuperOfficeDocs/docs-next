@@ -6,13 +6,14 @@ import TableOfContentList from "@components/TableOfContentList";
 import SubCategoryCard from "@components/SubCategoryCard.astro";
 import { Breadcrumbs } from "astro-breadcrumbs";
 import PageHeader from "@components/PageHeader.astro";
-
 import "astro-breadcrumbs/breadcrumbs.css";
+
 const { data, ToCData, lang, baseSlug, hasMultipleLanguages = false } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+// Splits the currentPath string by / into an array. filter(Boolean) removes empty strings ("") caused by leading or trailing slashes.
 const parts = currentPath.split("/").filter(Boolean);
-const last = parts.at(-1);
-const subCategorySlug = last === "index" ? parts.at(-2) : last;
+const subCategorySlug = parts.at(-1);
 
 const metadata = {
   title: data.title,
@@ -92,7 +93,7 @@ type Props = {
           {
             data.landingContent.map((card) => {
               return (
-                <SubCategoryCard subCategory={subCategorySlug} item={card} />
+                <SubCategoryCard subCategory={subCategorySlug ?? ""} item={card} />
               );
             })
           }
