@@ -1,6 +1,6 @@
 ---
 import type { namespaceClassifiedDataProps } from "../types/YamlManagedReferencesLayoutTypes";
-
+import { conversionList } from "@components/YamlLayoutPage.astro";
 type Props = {
   namespaceData: namespaceClassifiedDataProps;
 };
@@ -12,7 +12,10 @@ const { namespaceData } = Astro.props;
   {
     Object.entries(namespaceData).map(([typeName, items]) => (
       <div>
-        <h2 id="Classes" class="text-2xl mb-5">
+        <h2
+          id={conversionList[typeName as keyof typeof conversionList]}
+          class="text-2xl mb-5"
+        >
           {typeName}
         </h2>
         {items.map((item) => {
