@@ -64,23 +64,38 @@ const NSScriptingRef = defineCollection({
   schema: DocsSchema,
 });
 
-// const referenceDocs = defineCollection({
-//   loader: glob({
-//     pattern: apiOnly ? [
-//       "**/*.md",
-//       "!**/includes/**",
-//       "!soap",   // Exclude files (due to size)
-//       "!restful",   // Exclude files (due to size)
-//     ] : [],
-//     base: `${API_BASE}/reference`,
-//   }),
-//   schema: DocsSchema,
-// })
-
 const WebAPI = defineCollection({
   loader: glob({
     pattern: apiOnly ? ["**/!(*toc).yml"] : [],
     base: `${API_BASE}/reference/webapi`
+  }),
+});
+
+const Web = defineCollection({
+  loader: glob({
+    pattern: true ? [
+      "SuperOffice.Cache.*.yml",
+      "SuperOffice.Cache.yml"
+    ] : [],
+    base: `${API_BASE}/reference/web`
+  }),
+});
+
+const NetserverCore = defineCollection({
+  loader: glob({
+    pattern: true ? [
+      "Microsoft.Extensions.DependencyInjection.*.yml",
+    ] : [],
+    base: `${API_BASE}/reference/netserver/core`
+  }),
+});
+
+const NetserverServices = defineCollection({
+  loader: glob({
+    pattern: true ? [
+      "SuperOffice.CRM.ArchiveLists.*.yml",
+    ] : [],
+    base: `${API_BASE}/reference/netserver/services`
   }),
 });
 
@@ -206,8 +221,10 @@ export const collections = {
   "api-docs": apiDocs,
   "crmscript": CRMScript,
   "nsscripting": NSScriptingRef,
-  // "reference-docs" : referenceDocs,
+  "netserver-core": NetserverCore,
+  "netserver-services": NetserverServices,
   webapi: WebAPI,
+  web: Web,
   contribute: contribution,
   "release-notes": releaseNotes,
   cats: landingPages,
