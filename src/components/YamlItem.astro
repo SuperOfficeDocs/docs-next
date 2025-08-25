@@ -9,7 +9,7 @@ export interface Props {
 
 const { item, ref } = Astro.props;
 
-const getDataFromReference = (uid:string) : Reference => {
+const getDataFromReference = (uid:string) : Reference | undefined => {
   return ref.filter((item) => {
     return item.uid == uid
   })[0]
@@ -51,7 +51,7 @@ const itemTypeKey = {
             </tr>
             {item.syntax?.parameters?.map( (row, index)=>{
                 return <tr class={`[&_td]:border [&_td]:border-gray-300 ${index % 2 == 0 && "bg-stone-100"}`}>
-                    <td class=""><a class="text-orange-600 no-underline hover:underline font-normal" href={row.type}>{getDataFromReference(row.type).name}</a></td>
+                    <td class=""><a class="text-orange-600 no-underline hover:underline font-normal" href={row.type}>{getDataFromReference(row.type)?.name}</a></td>
                     <td class="italic">{row.id}</td>
                     <td>{row.description}</td>
                 </tr>
@@ -70,7 +70,7 @@ const itemTypeKey = {
             </tr>
             <tr class={`[&_td]:border [&_td]:border-gray-300 bg-stone-100 w-full`}>
                 <td class="w-80">
-                    <a class="break-all w-full text-orange-600 no-underline hover:underline font-normal" href={item.syntax.return.type}>{getDataFromReference(item.syntax.return.type).name}</a></td>
+                    <a class="break-all w-full text-orange-600 no-underline hover:underline font-normal" href={item.syntax.return.type}>{getDataFromReference(item.syntax.return.type)?.name}</a></td>
                 <td class="w-80">{item.syntax?.return?.description}</td>
             </tr>
         </table>
