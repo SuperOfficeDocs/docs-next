@@ -2,14 +2,11 @@
 import { getCollection } from "astro:content";
 import { getSegmentToc } from "@utils/tocUtils";
 import { stripFilePathAndExtension } from "~/utils/slugUtils";
-// import YamlManagedReference from "@layouts/YamlManagedReference.astro";
-// import YamlManagedReferenceContent from "@components/YamlManagedReferenceContent.astro";
 import YamlLayoutPage from "@layouts/YamlLayoutPage.astro";
 
 
 const language = "en" as const;
 const segment = "automation" as const;
-const baseUrl = `/${language}/automation/crmscript/reference`;
 
 // Same toc as for automation segment
 const tocData = await getSegmentToc(language, segment);
