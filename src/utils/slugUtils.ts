@@ -128,7 +128,7 @@ export function getApiContentSlug(
  * @param filePath - The raw `entry.filePath`, such as "superoffice-docs/docs/en/api/reference/webapi".
  * @returns A slug string such as "SuperOffice.License".
  */
-export function getApiReferenceSlug(
+export function getYamlReferenceSlug(
   filePath: string,
   api: string,
 ): string {

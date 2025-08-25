@@ -1,5 +1,5 @@
 ---
-import type { Item, Reference } from "../types/WebAPITypes";
+import type { Item, Reference } from "../types/YamlManagedReferencesTypes";
 import { Code } from 'astro:components';
 
 export interface Props {
@@ -9,7 +9,7 @@ export interface Props {
 
 const { item, ref } = Astro.props;
 
-const getDataFromReference = (uid:string) : Reference => {
+const getDataFromReference = (uid:string) : Reference | undefined => {
   return ref.filter((item) => {
     return item.uid == uid
   })[0]
@@ -25,15 +25,20 @@ const itemTypeKey = {
 
 ---
 <div>
-    <p id={item.uid} class="font-bold text-lg">{item.name}</p>
-    <p set:html = {item.summary}></p>
+    <p id={item.uid} class="font-bold text-lg mb-2">{item.name}</p>
+    <p class="mt-0" set:html = {item.summary}></p>
     
     {
         item.syntax && (
-        <p class="text-sm font-semibold text-gray-400 m-0">Declaration</p>
+        <p class="text-sm font-semibold text-gray-400 mb-0">Declaration</p>
         <p class="prose m-0"><Code code={item.syntax.content} lang={"csharp"} theme="houston"/></p>
         )
     }
+        {item.example && item.example.length > 0 && ( <div>
+        <p class="font-bold text-sm">Examples</p>
+        <p set:html = {item.example}></p>
+      </div>)}
+    
     
     {
         item.syntax?.parameters && item.syntax?.parameters.length > 0 && (
@@ -46,7 +51,7 @@ const itemTypeKey = {
             </tr>
             {item.syntax?.parameters?.map( (row, index)=>{
                 return <tr class={`[&_td]:border [&_td]:border-gray-300 ${index % 2 == 0 && "bg-stone-100"}`}>
-                    <td class=""><a class="text-orange-600 no-underline hover:underline font-normal" href={row.type}>{getDataFromReference(row.type).name}</a></td>
+                    <td class=""><a class="text-orange-600 no-underline hover:underline font-normal" href={row.type}>{getDataFromReference(row.type)?.name}</a></td>
                     <td class="italic">{row.id}</td>
                     <td>{row.description}</td>
                 </tr>
@@ -65,7 +70,7 @@ const itemTypeKey = {
             </tr>
             <tr class={`[&_td]:border [&_td]:border-gray-300 bg-stone-100 w-full`}>
                 <td class="w-80">
-                    <a class="break-all w-full text-orange-600 no-underline hover:underline font-normal" href={item.syntax.return.type}>{getDataFromReference(item.syntax.return.type).name}</a></td>
+                    <a class="break-all w-full text-orange-600 no-underline hover:underline font-normal" href={item.syntax.return.type}>{getDataFromReference(item.syntax.return.type)?.name}</a></td>
                 <td class="w-80">{item.syntax?.return?.description}</td>
             </tr>
         </table>
