@@ -136,6 +136,16 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro -- --help` | Get help using the Astro CLI                              |
 | `npm run test:e2e`        | Run end to end tests                                      |
 
+## Other Scripts
+
+### Detect duplicate frontmatter keys
+
+- The script build/detect-duplicate-frontmatter.js can be used to detect duplicate frontmatter keys in .md files
+- It Uses NodeJS and already available npm packages in the repo, such as 'yaml'. So no need to install additional npm packages.
+- To run the script, use command `node build/detect-duplicate-frontmatter.js.
+- It will create a txt file if it finds any duplicate frontmatter properties.
+- It is configured look for files in external-content/superoffice-docs/docs and it can be changed in line 12 of the script.
+
 ## External content
 
 The **external-content** folder serves as a grafting point for content residing outside the docs-next repo.
