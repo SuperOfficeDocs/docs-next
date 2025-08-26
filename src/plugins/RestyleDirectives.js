@@ -1,6 +1,5 @@
 import { visit } from 'unist-util-visit';
 
-
 const DIRECTIVES = {
   NOTE: {
     className: 'note-block',
@@ -40,7 +39,17 @@ export default function remarkRestyleDirective() {
       const directive = DIRECTIVES[directiveKey];
       if (!directive) return; 
 
-      textNode.value = textNode.value.replace(`[!${directiveKey}]`, '').trim();
+      // Remove the directive from the text and handle potential leading space
+      const remainingText = textNode.value.replace(`[!${directiveKey}]`, '').replace(/^\s+/, '');
+      
+      let contentChildren;
+      
+      if (remainingText) {
+        textNode.value = remainingText;
+        contentChildren = para.children;
+      } else {
+        contentChildren = para.children.slice(1);
+      }
 
       node.type = 'parent';
       node.data = {
@@ -76,7 +85,7 @@ export default function remarkRestyleDirective() {
             hName: 'div',
             hProperties: { className: 'directive-content' },
           },
-          children: para.children,
+          children: contentChildren,
         },
       ];
     });
