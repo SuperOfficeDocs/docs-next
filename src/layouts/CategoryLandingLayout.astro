@@ -25,6 +25,15 @@ type Props = {
   collection : string;
   lang:string;
 };
+
+const isPicture = (name : string) : boolean => {
+  return name.endsWith(".png")
+}
+
+const getRelativeImgPath = (path:string) :string => {
+  const imgUrlPath = "../../external-content/superoffice-docs/common/icons/";
+  return imgUrlPath + path.split("/").pop();
+;}
 ---
 
 <Base metadata={metadata} lang={lang}>
@@ -57,7 +66,7 @@ type Props = {
                 <a href={resolveRelativeFilePath(currentPath,item.url)}>
                   <div class="flex flex-row border h-full border-gray-300 duration-300 ease-in-out transition-shadow hover:shadow-[0_0px_8px_rgba(0,0,0,0.50)] py-4">
                     <div class="w-12 h-full pt-4 ml-8">
-                      {item.itemType && <IconSelection size={32} iconType={item.itemType} color="#0c5d58" />}
+                      {item.itemType && (isPicture(item.itemType) ? <img src={`${getRelativeImgPath(item.itemType)}`} alt={item.text}/> : <IconSelection size={32} iconType={item.itemType} color="#0c5d58" />)}
                     </div>
                     <div class="w-full px-3 flex flex-col justify-center">
                       <p class="uppercase mb-4 font-medium text-sm ">
