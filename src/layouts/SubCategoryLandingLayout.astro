@@ -13,7 +13,10 @@ const currentPath = Astro.url.pathname;
 
 // Splits the currentPath string by / into an array. filter(Boolean) removes empty strings ("") caused by leading or trailing slashes.
 const parts = currentPath.split("/").filter(Boolean);
-const subCategorySlug = parts.at(-1);
+const subcategory = parts.at(-1) ?? "";
+
+// Set subcategory to subCategorySlug unless subcategory is "customization" or "administration",
+const subCategorySlug = ["customization", "administration"].includes(subcategory) ? "" : subcategory;
 
 const metadata = {
   title: data.title,
@@ -93,7 +96,7 @@ type Props = {
           {
             data.landingContent.map((card) => {
               return (
-                <SubCategoryCard subCategory={subCategorySlug ?? ""} item={card} />
+                <SubCategoryCard subCategory={subCategorySlug} item={card} />
               );
             })
           }
