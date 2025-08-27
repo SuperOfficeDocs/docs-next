@@ -2,28 +2,6 @@ const supportedExtensions = [".md", ".mdx", ".yml", ".yaml"];
 const contentDir = "external-content"; // external content directory
 const contentRepo = "superoffice-docs"; // primary content repository
 
-/**
- * The set of folders that DocFX routed into "netserver".
- * Anything in here (or the empty root) should go to netserver.
- */
-const netserverFolders = new Set([
-  'archive-providers',
-  'bulk-operations',
-  'caching',
-  'config',
-  'custom-objects',
-  'entities',
-  'foreign-keys',
-  'lists',
-  'logging',
-  'mdo-providers',
-  'osql',
-  'plugins',
-  'rows',
-  'search',
-  'sql',
-  'web-services',
-]);
 
 /**
  * Strips the content directory prefix, collection path, "index" and file extension from an entry.filePath.
@@ -63,8 +41,8 @@ export function trimFileExtension(filename: string): string {
  * @returns Resolved URL with no file extension and correct prefix.
  */
 export function resolveHref(url: string, baseSlug?: string): string {
-  
-   // leave unchanged if it is a external link
+
+  // leave unchanged if it is a external link
   if (url.startsWith("http")) return url;
 
   const isSupported = supportedExtensions.some(ext => url.endsWith(ext));
@@ -109,18 +87,14 @@ export function getContentSlug(
  * Wrapper for getContentSlug that handles api folder routing.
 
  * @param filePath - The raw `entry.filePath`,  such as "superoffice-docs/docs/en/api/webservices/index.md".
- * @returns A slug string such as "api/netserver/webservices" or "api/overview/quickstart".
+ * @returns A slug string such as "api/overview/quickstart".
  */
 export function getApiContentSlug(
   filePath: string,
 ): string {
   const basePath = `superoffice-docs/docs/en/api` as const;
   const rawSlug = stripFilePathAndExtension(filePath, basePath);
-
-  const segment = rawSlug.split('/')[0];
-
-  // If the segment is in the netserverFolders, prepend "netserver/"
-  return netserverFolders.has(segment) ? `netserver/${rawSlug}` : rawSlug;
+  return rawSlug;
 }
 
 /**
