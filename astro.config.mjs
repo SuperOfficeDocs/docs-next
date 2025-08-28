@@ -117,7 +117,11 @@ export default defineConfig({
       redirectToDefaultLocale: false,
     },
     fallback: {
+      da: "en",
       de: "en",
+      nl: "en",
+      no: "en",
+      sv: "en",
     },
   },
 
