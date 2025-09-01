@@ -1,0 +1,157 @@
+<!-- ---
+export interface Heading {
+  depth: number;
+  text: string;
+  slug: string;
+}
+
+interface Props {
+  headings: Array<Heading>;
+}
+
+const headings = Astro.props.headings.filter(heading => heading.depth <= 4);
+
+function buildNestedList(headings: Array<Heading>) {
+  const nestedList = [];
+  const stack = [];
+
+  headings.forEach((heading) => {
+    const item = { ...heading, children: [] };
+
+    while (stack.length && stack[stack.length - 1].depth >= heading.depth) {
+      stack.pop();
+    }
+
+    if (stack.length === 0) {
+      nestedList.push(item);
+    } else {
+      stack[stack.length - 1].children.push(item);
+    }
+
+    stack.push(item);
+  });
+
+  return nestedList;
+}
+
+const nestedHeadings = buildNestedList(headings);
+---
+
+<nav class="page-toc sticky top-0" aria-label="On this page">
+  <h2 class="text-lg font-semibold pl-4 mb-2 uppercase">On this page</h2>
+  <ul class="text-sm list-none pl-4">
+    {nestedHeadings.map((heading) => (
+      <li class="relative mb-2 pl-1">
+        <a class="relative mb-2 hover:pl-2 hover:font-medium hover:border-l-4 hover:border-gray-300" href={"#" + heading.slug}>
+          {heading.text}
+        </a>
+        {heading.children.length > 0 && (
+          <ul class="pl-2 hidden">
+            {heading.children.map((child) => (
+              <li class="relative mb-2 pl-1">
+                <a class="relative mb-2 hover:font-medium hover:pl-2" href={"#" + child.slug}>
+                  {child.text}
+                </a>
+                {child.children.length > 0 && (
+                  <ul class="pl-2 hidden">
+                    {child.children.map((subChild) => (
+                      <li class="relative mb-2 pl-1">
+                        <a class="relative mb-2 hover:font-medium hover:pl-2" href={"#" + subChild.slug}>
+                          {subChild.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<script>
+  document.querySelectorAll('.page-toc li > a').forEach(anchor => {
+    const toggleVisibility = (event) => {
+      event.preventDefault();
+      const nextElement = anchor.nextElementSibling;
+      if (nextElement && nextElement.tagName === 'UL') {
+        // Close other open nodes at the same level
+        const siblingLists = anchor.parentElement.parentElement.querySelectorAll('ul');
+        siblingLists.forEach(list => {
+          if (list !== nextElement) {
+            list.classList.add('hidden');
+          }
+        });
+        nextElement.classList.toggle('hidden');
+      }
+    };
+
+    anchor.addEventListener('click', toggleVisibility);
+    anchor.addEventListener('mouseover', toggleVisibility);
+  });
+
+  document.querySelector('.page-toc').addEventListener('mouseover', () => {
+  document.querySelectorAll('.page-toc a').forEach(link => {
+    link.classList.remove('active');
+  });
+});
+
+  // Sync the list with scrolling
+  const observer = new IntersectionObserver(entries => {
+    let topmostEntry = null;
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (!topmostEntry || entry.boundingClientRect.top < topmostEntry.boundingClientRect.top) {
+          topmostEntry = entry;
+        }
+      }
+    });
+
+    if (topmostEntry) {
+      document.querySelectorAll('.page-toc a').forEach(link => {
+        link.classList.remove('active');
+      });
+      const id = topmostEntry.target.getAttribute('id');
+      const tocLink = document.querySelector(`.page-toc a[href="#${id}"]`);
+      tocLink.classList.add('active');
+      const nextElement = tocLink.nextElementSibling;
+      if (nextElement && nextElement.tagName === 'UL') {
+        nextElement.classList.remove('hidden');
+      }
+    }
+  }, { threshold: 0.1 });
+
+  // Observe all headings
+  document.querySelectorAll('h1, h2, h3, h4').forEach(heading => {
+    observer.observe(heading);
+  });
+</script>
+
+<style>
+  .page-toc a.active{
+    font-weight: bold;
+  }
+  .page-toc ul {
+    padding-left: 1rem;
+  }
+  .page-toc > ul > li > a.active::before{
+    content: "|";
+    margin-right: 0.5rem;
+    font-weight: normal;
+  }
+  .page-toc ul ul > li > a.active::before{
+    content: ">";
+    margin-right: 0.5rem;
+    font-weight: normal;
+  }
+  .page-toc ul ul > li > a:hover::before {
+  content: ">";
+  margin-right: 0.5rem;
+  font-weight: normal;
+  border-left: none;
+  color: #4A5568; /* Tailwind's gray-700 color */
+}
+</style> -->

@@ -1,15 +1,17 @@
-# build output
-dist/
+.vs
 
-.distA/
-.distB/
+# build output
+ClientApp/dist/
+
+ClientApp/.distA/
+ClientApp/.distB/
 
 
 # generated types
-.astro/
+ClientApp/.astro/
 
 # dependencies
-node_modules/
+ClientApp/node_modules/
 
 # logs
 npm-debug.log*
@@ -19,8 +21,8 @@ pnpm-debug.log*
 
 
 # environment variables
-.env
-.env.production
+ClientApp/.env
+ClientApp/.env.production
 
 # macOS-specific files
 .DS_Store
@@ -32,12 +34,12 @@ pnpm-debug.log*
 .vscode/settings.json
 
 # Playwright
-e2e-tests/test-results/
-e2e-tests/playwright-report/
-e2e-tests/blob-report/
-e2e-tests/playwright/.cache/
+ClientApp/e2e-tests/test-results/
+ClientApp/e2e-tests/playwright-report/
+ClientApp/e2e-tests/blob-report/
+ClientApp/e2e-tests/playwright/.cache/
 
 # External content (other GitHub repos)
 
-external-content/
-public/downloads/
+ClientApp/external-content/
+ClientApp/public/downloads/
