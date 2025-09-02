@@ -1,4 +1,5 @@
 .vs
+.vscode/
 
 # build output
 ClientApp/dist/
@@ -12,6 +13,13 @@ ClientApp/.astro/
 
 # dependencies
 ClientApp/node_modules/
+
+
+# .NET
+Server/bin/
+Server/obj/
+Server/wwwroot/
+
 
 # logs
 npm-debug.log*
