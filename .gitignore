@@ -2,6 +2,8 @@
 .vscode/
 
 # build output
+out
+
 ClientApp/dist/
 
 ClientApp/.distA/
