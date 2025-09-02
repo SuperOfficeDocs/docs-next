@@ -2,10 +2,12 @@
 name: Build & Deploy docs-next to Github Pages
 
 on:
-  # Runs on pull requests and manual invocations for targeted bran
+  # Runs only when a pull request targets deploy-to-github-pages
   pull_request:
+    branches:
+      - deploy-to-github-pages
 
-  # Allows you to run this workflow manually from the Actions tab
+  # Allows manual run
   workflow_dispatch:
     inputs:
       target_branch:
@@ -13,9 +15,11 @@ on:
         required: false
         default: ''
 
-  # Runs on pushes targeting the default branch
+  # Runs only on pushes to deploy-to-github-pages
   push:
-    branches: ["main"]
+    branches:
+      - deploy-to-github-pages
+
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
