@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy ASP.Net Core app to Azure Web App - docs-next
 
 on:
@@ -13,20 +10,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read 
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up .NET Core
+      # Set up .NET
+      - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.x'
+          dotnet-version: '9.x'
 
-      - name: Build with dotnet
+      # Set up Node.js (for Astro build)
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+          cache-dependency-path: 'ClientApp/package-lock.json'
+
+      # Build backend + frontend
+      - name: Restore and Build
         run: dotnet build --configuration Release
 
-      - name: dotnet publish
+      - name: Publish project (runs npm + copies frontend via MSBuild target)
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
@@ -39,15 +46,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: .net-app
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -61,5 +68,4 @@ jobs:
         with:
           app-name: 'docs-next'
           slot-name: 'Production'
-          package: .
-          
+          package: .net-app
