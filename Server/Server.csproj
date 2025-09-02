@@ -11,26 +11,26 @@
     <WebRoot>wwwroot\</WebRoot>
   </PropertyGroup>
 
-  <!-- Build the Astro app before building/publishing the server -->
-  <Target Name="BuildClientAppForPublish" BeforeTargets="Publish">
-    <Message Text="Building ClientApp (npm ci &amp;&amp; npm run build)..." Importance="high" />
-    <Exec WorkingDirectory="$(ClientAppDir)" Command="npm ci" />
-    <Exec WorkingDirectory="$(ClientAppDir)" Command="npm run build:local" />
-  </Target>
-
-
-  <!-- Copy Astro build output to wwwroot -->
-  <ItemGroup>
-    <ClientBuildFiles Include="$(ClientBuildDir)**\*" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="9.0.8" />
   </ItemGroup>
 
-  <Target Name="CopyClientToWwwroot" AfterTargets="Build">
+  <!-- Build the Astro app and copy to wwwroot before publish -->
+  <Target Name="BuildAndCopyClientApp" BeforeTargets="PrepareForPublish">
+    <Message Text="Building ClientApp (npm ci &amp;&amp; npm run build:local)..." Importance="high" />
+
+    <!-- Build frontend -->
+    <Exec WorkingDirectory="$(ClientAppDir)" Command="npm ci" />
+    <Exec WorkingDirectory="$(ClientAppDir)" Command="npm run build:local" />
+
+    <!-- Copy frontend build to wwwroot -->
+    <ItemGroup>
+      <ClientBuildFiles Include="$(ClientBuildDir)**\*" />
+    </ItemGroup>
     <RemoveDir Directories="$(WebRoot)" />
     <MakeDir Directories="$(WebRoot)" />
-    <Copy SourceFiles="@(ClientBuildFiles)" DestinationFiles="@(ClientBuildFiles->'$(WebRoot)%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(ClientBuildFiles)"
+          DestinationFiles="@(ClientBuildFiles->'$(WebRoot)%(RecursiveDir)%(Filename)%(Extension)')" />
   </Target>
 
 </Project>
