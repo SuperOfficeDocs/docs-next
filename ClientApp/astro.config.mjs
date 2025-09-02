@@ -130,6 +130,6 @@ export default defineConfig({
   },
   logLevel: process.env.CI ? 'error' : 'info',
   site: "https://superofficedocs.github.io",
-  base: "/docs-next",
+  // base: "/",
   trailingSlash: "never",
 });
