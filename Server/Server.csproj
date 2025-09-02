@@ -4,10 +4,33 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Paths -->
+    <ClientAppDir>$(MSBuildThisFileDirectory)..\ClientApp\</ClientAppDir>
+    <ClientBuildDir>$(ClientAppDir)dist\</ClientBuildDir>
+    <WebRoot>wwwroot\</WebRoot>
   </PropertyGroup>
 
+  <!-- Build the Astro app before building/publishing the server -->
+  <Target Name="BuildClientAppForPublish" BeforeTargets="Publish">
+    <Message Text="Building ClientApp (npm ci &amp;&amp; npm run build)..." Importance="high" />
+    <Exec WorkingDirectory="$(ClientAppDir)" Command="npm ci" />
+    <Exec WorkingDirectory="$(ClientAppDir)" Command="npm run build:local" />
+  </Target>
+
+
+  <!-- Copy Astro build output to wwwroot -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
+    <ClientBuildFiles Include="$(ClientBuildDir)**\*" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="9.0.8" />
+  </ItemGroup>
+
+  <Target Name="CopyClientToWwwroot" AfterTargets="Build">
+    <RemoveDir Directories="$(WebRoot)" />
+    <MakeDir Directories="$(WebRoot)" />
+    <Copy SourceFiles="@(ClientBuildFiles)" DestinationFiles="@(ClientBuildFiles->'$(WebRoot)%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
 
 </Project>
