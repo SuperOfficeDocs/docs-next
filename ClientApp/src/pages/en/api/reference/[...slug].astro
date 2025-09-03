@@ -85,9 +85,11 @@ export async function getStaticPaths() {
       // Convert relative path to absolute path for file reading
       const absoluteFilePath = path.resolve(baseContentPath, relativePath);
 
+      const normalizedPath = relativePath.replace(/\\/g, "/");
+      
       // Generate slug from the relative path, removing base and extension
       // Remove "superoffice-docs/docs/en/api/reference/" and file extension to get clean slug
-      const cleanPath = relativePath
+      const cleanPath = normalizedPath
         .replace("superoffice-docs/docs/en/api/reference", "")
         .replace(/\.(md|mdx)$/, "");
       const slug = cleanPath;
