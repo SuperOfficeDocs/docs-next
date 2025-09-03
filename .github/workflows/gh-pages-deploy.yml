@@ -1,15 +1,23 @@
 name: Build & Deploy docs-next to Github Pages
 
 on:
+  # Runs only when a pull request targets deploy-to-github-pages
   pull_request:
+    branches:
+      - deploy-to-github-pages
+
+  # Allows manual run
   workflow_dispatch:
     inputs:
       target_branch:
         description: 'Branch to run the workflow on'
         required: false
         default: ''
+
+  # Runs only on pushes to deploy-to-github-pages
   push:
-    branches: ["main"]
+    branches:
+      - deploy-to-github-pages
 
 permissions:
   contents: read
