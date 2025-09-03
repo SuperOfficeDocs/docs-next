@@ -12,7 +12,22 @@ jobs:
       contents: read 
 
     steps:
+      - name: Checkout docs-next
       - uses: actions/checkout@v4
+
+      - name: Checkout contribution repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          repository: SuperOfficeDocs/contribution
+          path: ClientApp/external-content/contribution
+
+      - name: Checkout SuperOfficeDocs repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          repository: SuperOfficeDocs/superoffice-docs
+          path: ClientApp/external-content/superoffice-docs
 
       # Set up .NET
       - name: Set up .NET
