@@ -1,5 +1,4 @@
 name: Build and deploy ASP.Net Core app to Azure Web App - docs-next
-
 on:
   push:
     branches:
@@ -13,13 +12,28 @@ jobs:
       contents: read 
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout docs-next
+        uses: actions/checkout@v4
+
+      - name: Checkout contribution repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          repository: SuperOfficeDocs/contribution
+          path: ClientApp/external-content/contribution
+
+      - name: Checkout SuperOfficeDocs repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          repository: SuperOfficeDocs/superoffice-docs
+          path: ClientApp/external-content/superoffice-docs
 
       # Set up .NET
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.x'
+          dotnet-version: '8.x'
 
       # Set up Node.js (for Astro build)
       - name: Set up Node.js
@@ -30,17 +44,19 @@ jobs:
           cache-dependency-path: 'ClientApp/package-lock.json'
 
       # Build backend + frontend
-      - name: Restore and Build
-        run: dotnet build --configuration Release
+      # - name: Restore and Build
+      #   working-directory: ./Server
+      #   run: dotnet build --configuration Release
 
       - name: Publish project (runs npm + copies frontend via MSBuild target)
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        working-directory: ./Server
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/out
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{env.DOTNET_ROOT}}/out
 
   deploy:
     runs-on: ubuntu-latest
@@ -67,5 +83,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'docs-next'
-          slot-name: 'Production'
-          package: .net-app
+          # slot-name: 'Production'
+          package: .
