@@ -52,13 +52,16 @@ jobs:
 
       - name: Publish project (runs npm + copies frontend via MSBuild target)
         working-directory: ./Server
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/out
+        run: dotnet publish -c Release -o ./publish /p:PublishTrimmed=true
 
-      - name: Upload artifact for deployment job
+      - name: Zip published output
+        run: zip -r publish.zip ./publish
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/out
+          name: dotnet-artifact
+          path: publish.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -68,22 +71,22 @@ jobs:
       contents: read
 
     steps:
-      - name: Download artifact from build job
+      - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: .net-app
+          name: dotnet-artifact
+          path: ./artifact
 
-      - name: Login to Azure
+      - name: Azure Login (OIDC)
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7D6201BE9CBA4102A67082079FA9D045 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E5F979726F2140149EE71D82B31CE225 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3F73E186A6F2462480840A28C77242B0 }}
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
+      - name: Deploy ZIP to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'docs-next'
-          # slot-name: 'Production'
-          package: .
+          package: ./artifact/publish.zip
+          verbose: true
