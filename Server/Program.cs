@@ -25,9 +25,21 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseDefaultFiles();
+    // Serve the static Astro files
+    app.UseDefaultFiles(); 
     app.UseStaticFiles();
-    app.MapFallbackToFile("/index.html");
+
+    app.Use(async (context, next) =>
+    {
+        await next();
+
+        if (context.Response.StatusCode == 404 &&
+            !context.Request.Path.StartsWithSegments("/api"))
+        {
+            context.Request.Path = "/index.html";
+            await next();
+        }
+    });
 }
 
 app.Run();
