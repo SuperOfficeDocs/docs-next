@@ -1,0 +1,65 @@
+---
+import { TwitterShareButton, LinkedInShareButton, FacebookShareButton, EmailShareButton } from "astro-social-share";
+
+const { description, title } = Astro.props;
+---
+
+<button
+  type="button"
+  id="shareButton"
+  class="bg-gray-100 rounded-md"
+  aria-haspopup="true"
+  aria-expanded="false"
+  aria-label="Expandable list of social share options.">
+  Share
+</button>
+
+<ul
+  id="shareMenu"
+  class="hidden absolute bg-white shadow-lg rounded-md w-48 flex-direction:row mt-40"
+  aria-labelledby="shareButton">
+  <li class="px-4 py-2 m-4 h-6 flex items-center hover:border hover:border-gray-300 rounded-md astro-social-share">
+    <TwitterShareButton title={title} description={description} />
+  </li>
+  <li class="px-4 py-2 flex items-center hover:border hover:border-gray-300 rounded-md astro-social-share">
+    <LinkedInShareButton title={title} description={description} />
+  </li>
+  <li class="px-4 py-2 flex items-center hover:border hover:border-gray-300 rounded-md astro-social-share">
+    <FacebookShareButton title={title} description={description} />
+  </li>
+  <li class="px-4 py-2 flex items-center hover:border hover:border-gray-300 rounded-md astro-social-share">
+    <EmailShareButton title={title} description={description} />
+  </li>
+</ul>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const shareButton = document.getElementById("shareButton");
+    const shareMenu = document.getElementById("shareMenu");
+
+    if (!shareButton || !shareMenu) {
+      return;
+    }
+
+    shareButton.addEventListener("click", () => {
+      shareMenu.classList.toggle("hidden");
+      shareMenu.classList.toggle("open");
+    });
+
+    // Close share menu if clicking outside
+    document.addEventListener("click", (event: Event) => {
+      const target = event.target as Node;
+
+      if (shareButton && shareMenu) {
+        if (target instanceof Node && !shareButton.contains(target) && !shareMenu.contains(target)) {
+          shareMenu.classList.add("hidden");
+        }
+      }
+    });
+
+    // Ensure that clicking inside the share menu doesn't close it
+    shareMenu?.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+  });
+</script>

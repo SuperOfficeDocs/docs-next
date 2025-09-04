@@ -1,0 +1,81 @@
+---
+import { type CollectionEntry, type DataEntryMap } from "astro:content";
+import type { TocData } from "~/types/TableOfContentTypes";
+import type { Heading } from "~/types/OnThisArticleTypes";
+import PageHeader from "@components/PageHeader.astro";
+import OnThisArticle from "@components/OnThisArticle";
+import TableOfContentList from "@components/TableOfContentList";
+import Base from "./Base.astro";
+
+export interface Props {
+  /** Accept an entry from *any* collection our site defines */
+  entry?: CollectionEntry<keyof DataEntryMap>;
+  toc: TocData;
+  isLearn?: boolean;
+  language?: string;
+  TOCBasePath?: string;
+  htmlEntry?: any;
+  headings: Heading[];
+}
+
+const {
+  entry,
+  toc,
+  isLearn = false,
+  language = "en",
+  TOCBasePath,
+  htmlEntry,
+  headings,
+} = Astro.props;
+
+const { data: frontmatter, filePath, collection, id } = entry ?? htmlEntry;
+
+// Determine TOC path: use fixed segment for release notes, if a TOCBasePath is available, use it as TOCPath, otherwise build from language + category
+const getTOCPath = (): string => {
+  if (TOCBasePath != undefined) return TOCBasePath;
+  else return `${language}/${isLearn ? "learn" : id.split("/")[0]}`;
+};
+
+const TOCPath = getTOCPath();
+---
+
+<Base metadata={frontmatter} lang={language}>
+  <div class="z-40 md:sticky md:top-[57px]">
+    <PageHeader
+      isLearnCategoryPage={false}
+      filePath={filePath ?? ""}
+      metadata={frontmatter}
+    />
+  </div>
+  <article class="w-full pt-1 article grid grid-cols-12">
+    <div
+      class="grid grid-cols-1 col-span-12 lg:col-span-10 lg:grid-cols-10 gap-0"
+    >
+      <nav
+        class="bg-lightTealGray md:col-span-3 py-6 lg:pt-12 w-full max-w-md mx-auto rounded-lg flex justify-center"
+      >
+        <TableOfContentList
+          client:only="react"
+          inputItems={toc?.items}
+          slug={TOCPath}
+          isMainTable={true}
+        />
+      </nav>
+
+      <main
+        class=`md:col-span-7 p-8 max-w-none prose prose-headings:font-normal mb-[140px] md:mb-[120px]`
+        data-pagefind-body
+        data-language={language}
+        data-pagefind-filter="language[data-language], audience[data-audience]"
+        data-audience={frontmatter.audience}
+      >
+        <slot />
+      </main>
+    </div>
+    <div
+      class="lg:col-span-2 z-10 w-40 xl:w-52 2xl:w-80 absolute top-24 right-4 lg:pt-16 xl:pt-12 lg:px-1 xl:px-6 hidden lg:block h-screen"
+    >
+      <OnThisArticle headings={headings} client:load />
+    </div>
+  </article>
+</Base>
