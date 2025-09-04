@@ -49,9 +49,9 @@ jobs:
         working-directory: ./Server
         run: dotnet publish -c Release -o ./publish
 
-      - name: Zip published output
-        working-directory: ./Server
-        run: zip -r ../publish.zip ./publish
+      - name: Create zip package
+        working-directory: ./Server/publish
+        run: zip -r ../publish.zip .
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -85,4 +85,3 @@ jobs:
         with:
           app-name: 'docs-next'
           package: ./artifact/publish.zip
-          verbose: true

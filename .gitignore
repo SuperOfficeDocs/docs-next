@@ -16,11 +16,15 @@ ClientApp/.astro/
 # dependencies
 ClientApp/node_modules/
 
+# Build Log
+ClientApp/build.log
+
 
 # .NET
 Server/bin/
 Server/obj/
 Server/wwwroot/
+Server/publish/
 
 
 # logs
