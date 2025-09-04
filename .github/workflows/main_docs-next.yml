@@ -45,19 +45,14 @@ jobs:
           cache: 'npm'
           cache-dependency-path: 'ClientApp/package-lock.json'
 
-      # Build backend + frontend
-      # - name: Restore and Build
-      #   working-directory: ./Server
-      #   run: dotnet build --configuration Release
-
       - name: Publish project (runs npm + copies frontend via MSBuild target)
         working-directory: ./Server
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/out
 
-      - name: Upload artifact for deployment job
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: .net-app
+          name: dotnet-artifact
           path: ${{env.DOTNET_ROOT}}/out
 
   deploy:
@@ -68,22 +63,27 @@ jobs:
       contents: read
 
     steps:
-      - name: Download artifact from build job
+      - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: .net-app
+          name: dotnet-artifact
+          path: ./publish
 
-      - name: Login to Azure
+      - name: Create deployment ZIP
+        run: |
+          cd publish
+          zip -r ../app.zip .
+          cd ..
+
+      - name: Azure Login (OIDC)
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7D6201BE9CBA4102A67082079FA9D045 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E5F979726F2140149EE71D82B31CE225 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3F73E186A6F2462480840A28C77242B0 }}
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
+      - name: Deploy ZIP to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'docs-next'
-          # slot-name: 'Production'
-          package: .
+          package: ./app.zip
