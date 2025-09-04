@@ -45,17 +45,13 @@ jobs:
           cache: 'npm'
           cache-dependency-path: 'ClientApp/package-lock.json'
 
-      # Build backend + frontend
-      # - name: Restore and Build
-      #   working-directory: ./Server
-      #   run: dotnet build --configuration Release
-
       - name: Publish project (runs npm + copies frontend via MSBuild target)
         working-directory: ./Server
-        run: dotnet publish -c Release -o ./publish /p:PublishTrimmed=true
+        run: dotnet publish -c Release -o ./publish
 
       - name: Zip published output
-        run: zip -r publish.zip ./publish
+        working-directory: ./Server
+        run: zip -r ../publish.zip ./publish
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
