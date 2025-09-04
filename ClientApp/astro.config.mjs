@@ -98,10 +98,10 @@ export default defineConfig({
     mdx(),
     // pagefind(),
     react(),
-    redirectFrom({
-      contentDir: './external-content',
-      getSlug: getRedirectFromSlug, // Function to get the slug for redirect_from
-    }),
+    // redirectFrom({
+    //   contentDir: './external-content',
+    //   getSlug: getRedirectFromSlug, // Function to get the slug for redirect_from
+    // }),
     robots(), sitemap(),
   ],
 
@@ -116,13 +116,13 @@ export default defineConfig({
       prefixDefaultLocale: true,
       redirectToDefaultLocale: false,
     },
-    fallback: {
-      da: "en",
-      de: "en",
-      nl: "en",
-      no: "en",
-      sv: "en",
-    },
+    // fallback: {
+    //   da: "en",
+    //   de: "en",
+    //   nl: "en",
+    //   no: "en",
+    //   sv: "en",
+    // },
   },
 
   build: {

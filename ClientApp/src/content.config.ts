@@ -4,7 +4,7 @@ import { glob } from "astro/loaders";
 import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema, YamlManagedReferenceSchema } from "~/content.schema"
 
 // apiOnly variable is used in the split build to isolate docs/en/api folder content
-const apiOnly = process.env.API_ONLY === 'true';
+const apiOnly = true;
 
 const DOCS_BASE = "external-content/superoffice-docs/docs";
 const API_BASE = `${DOCS_BASE}/en/api`;
@@ -45,7 +45,7 @@ const apiDocs = defineCollection({
 
 const CRMScript = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [
+    pattern: false ? [
       "**/!(*toc).yml",
       "!**/includes/**",
     ] : [],
@@ -66,14 +66,14 @@ const NSScriptingRef = defineCollection({
 
 const WebAPI = defineCollection({
   loader: glob({
-    pattern: apiOnly ? ["**/!(*toc).yml"] : [],
+    pattern: false ? ["**/!(*toc).yml"] : [],
     base: `${API_BASE}/reference/webapi`
   }),
 });
 
 const Web = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [
+    pattern: false ? [
       "SuperOffice.Cache.*.yml",
       "SuperOffice.Cache.yml"
     ] : [],
@@ -83,7 +83,7 @@ const Web = defineCollection({
 
 const NetserverCore = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [
+    pattern: false ? [
       "Microsoft.Extensions.DependencyInjection.*.yml",
     ] : [],
     base: `${API_BASE}/reference/netserver/core`
@@ -92,7 +92,7 @@ const NetserverCore = defineCollection({
 
 const NetserverServices = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [
+    pattern: false ? [
       "SuperOffice.CRM.ArchiveLists.*.yml",
     ] : [],
     base: `${API_BASE}/reference/netserver/services`
@@ -105,7 +105,7 @@ const NetserverServices = defineCollection({
 
 const daDocs = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
+    pattern: false ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
