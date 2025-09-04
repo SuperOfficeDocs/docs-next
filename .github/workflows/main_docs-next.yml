@@ -47,17 +47,13 @@ jobs:
 
       - name: Publish project (runs npm + copies frontend via MSBuild target)
         working-directory: ./Server
-        run: dotnet publish -c Release -o ./publish
-
-      - name: Create zip package
-        working-directory: ./Server/publish
-        run: zip -r ../publish.zip .
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/out
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: dotnet-artifact
-          path: Server/publish.zip
+          path: ${{env.DOTNET_ROOT}}/out
 
   deploy:
     runs-on: ubuntu-latest
@@ -71,7 +67,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dotnet-artifact
-          path: ./artifact
 
       - name: Azure Login (OIDC)
         uses: azure/login@v2
@@ -84,4 +79,4 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'docs-next'
-          package: ./artifact/publish.zip
+          package: .
