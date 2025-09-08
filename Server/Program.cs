@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Rewrite;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -25,9 +27,18 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    // Serve the static Astro files
-    app.UseDefaultFiles(); 
+    var rewriteOptions = new RewriteOptions()
+        // Redirect /something.html -> /something   (permanent redirect)
+        .AddRedirect(@"^(.*)\.html$", "$1", statusCode: 301)
+        // Rewrite /something -> /something.html   (internal rewrite, no redirect)
+        .AddRewrite(@"^([^.]+)$", "$1.html", skipRemainingRules: true);
+
+    app.UseRewriter(rewriteOptions);
+
+    // Serve static Astro files
+    app.UseDefaultFiles();
     app.UseStaticFiles();
+
 
     app.Use(async (context, next) =>
     {
