@@ -108,7 +108,7 @@ export function getYamlReferenceSlug(
 ): string {
   const basePath = `superoffice-docs/docs/en/api/reference` as const;
 
-  return stripFilePathAndExtension(filePath, `${basePath}/${api}`);
+  return stripFilePathAndExtension(filePath, `${basePath}`);
 }
 
 /**

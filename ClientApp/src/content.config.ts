@@ -74,8 +74,7 @@ const WebAPI = defineCollection({
 const Web = defineCollection({
   loader: glob({
     pattern: apiOnly ? [
-      "SuperOffice.Cache.*.yml",
-      "SuperOffice.Cache.yml"
+      "*.yml",
     ] : [],
     base: `${API_BASE}/reference/web`
   }),
@@ -84,7 +83,7 @@ const Web = defineCollection({
 const NetserverCore = defineCollection({
   loader: glob({
     pattern: apiOnly ? [
-      "Microsoft.Extensions.DependencyInjection.*.yml",
+      "*.yml",
     ] : [],
     base: `${API_BASE}/reference/netserver/core`
   }),
@@ -93,7 +92,7 @@ const NetserverCore = defineCollection({
 const NetserverServices = defineCollection({
   loader: glob({
     pattern: apiOnly ? [
-      "SuperOffice.CRM.ArchiveLists.*.yml",
+      "*.yml",
     ] : [],
     base: `${API_BASE}/reference/netserver/services`
   }),

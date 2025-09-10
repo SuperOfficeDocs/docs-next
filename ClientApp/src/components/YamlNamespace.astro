@@ -6,6 +6,9 @@ type Props = {
 };
 
 const { namespaceData } = Astro.props;
+import { transformXref } from "../utils/transformXref";
+
+
 ---
 
 <div>
@@ -16,7 +19,7 @@ const { namespaceData } = Astro.props;
           id={conversionList[typeName as keyof typeof conversionList]}
           class="text-2xl mb-5"
         >
-          {typeName}
+          {conversionList[typeName as keyof typeof conversionList]}
         </h2>
         {items.map((item) => {
           return (
@@ -28,7 +31,7 @@ const { namespaceData } = Astro.props;
                 {item.id}
               </a>
               {item.summary && (
-                <p class="mt-1 ml-4 !prose" set:html={item.summary} />
+                <p class="mt-1 ml-4 !prose" set:html={transformXref(item.summary)} />
               )}
             </>
           );
