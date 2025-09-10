@@ -81,7 +81,7 @@ export default function TableOfContentList({
       // console.warn(`[generatePath] Missing href/topicHref for TOC item:`, item);
       return "#";
     }
-    const formattedURL = `${base}/${slug}/${trimFileExtension(rawPath)}`.replace("/index", "")
+    const formattedURL = `${slug}/${trimFileExtension(rawPath)}`.replace("/index", "")
     const resolvedPath = new URL(formattedURL, "http://docs.superoffice.com").pathname;
     return resolvedPath;
   };
