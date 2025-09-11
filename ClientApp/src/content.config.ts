@@ -64,39 +64,39 @@ const NSScriptingRef = defineCollection({
   schema: DocsSchema,
 });
 
-const WebAPI = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? ["**/!(*toc).yml"] : [],
-    base: `${API_BASE}/reference/webapi`
-  }),
-});
+// const WebAPI = defineCollection({
+//   loader: glob({
+//     pattern: false ? ["**/!(*toc).yml"] : [],
+//     base: `${API_BASE}/reference/webapi`
+//   }),
+// });
 
-const Web = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? [
-      "*.yml",
-    ] : [],
-    base: `${API_BASE}/reference/web`
-  }),
-});
+// const Web = defineCollection({
+//   loader: glob({
+//     pattern: apiOnly ? [
+//       "*.yml",
+//     ] : [],
+//     base: `${API_BASE}/reference/web`
+//   }),
+// });
 
-const NetserverCore = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? [
-      "*.yml",
-    ] : [],
-    base: `${API_BASE}/reference/netserver/core`
-  }),
-});
+// const NetserverCore = defineCollection({
+//   loader: glob({
+//     pattern: apiOnly ? [
+//       "*.yml",
+//     ] : [],
+//     base: `${API_BASE}/reference/netserver/core`
+//   }),
+// });
 
-const NetserverServices = defineCollection({
-  loader: glob({
-    pattern: apiOnly ? [
-      "*.yml",
-    ] : [],
-    base: `${API_BASE}/reference/netserver/services`
-  }),
-});
+// const NetserverServices = defineCollection({
+//   loader: glob({
+//     pattern: apiOnly ? [
+//       "*.yml",
+//     ] : [],
+//     base: `${API_BASE}/reference/netserver/services`
+//   }),
+// });
 
 /**
  * TRANSLATIONS
@@ -193,7 +193,7 @@ const tocFiles = defineCollection({
     ],
     base: "./external-content",
   }),
-  schema: TocYamlSchema,
+  // schema: TocYamlSchema,
 });
 
 const landingPages = defineCollection({
@@ -220,10 +220,10 @@ export const collections = {
   "api-docs": apiDocs,
   "crmscript": CRMScript,
   "nsscripting": NSScriptingRef,
-  "netserver-core": NetserverCore,
-  "netserver-services": NetserverServices,
-  webapi: WebAPI,
-  web: Web,
+  // "netserver-core": NetserverCore,
+  // "netserver-services": NetserverServices,
+  // webapi: WebAPI,
+  // web: Web,
   contribute: contribution,
   "release-notes": releaseNotes,
   cats: landingPages,
