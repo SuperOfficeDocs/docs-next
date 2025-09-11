@@ -35,7 +35,13 @@ else
         // Rewrite /something -> /something.html   (internal rewrite, no redirect)
         .AddRewrite(@"^([^.]+)$", "$1.html", skipRemainingRules: true);
 
-    app.UseRewriter(rewriteOptions);
+    app.UseWhen(
+        context => !context.Request.Path.StartsWithSegments("/api"),
+        branch =>
+        {
+            branch.UseRewriter(rewriteOptions);
+        }
+    );
 
     app.UseDefaultFiles();
     app.UseStaticFiles();
@@ -46,17 +52,17 @@ else
     app.MapControllers();
 
     // SPA fallback for non-API paths
-    app.Use(async (context, next) =>
-    {
-        await next();
+    // app.Use(async (context, next) =>
+    // {
+    //     await next();
 
-        if (context.Response.StatusCode == 404 &&
-            !context.Request.Path.StartsWithSegments("/api"))
-        {
-            context.Request.Path = "/index.html";
-            await next();
-        }
-    });
+    //     if (context.Response.StatusCode == 404 &&
+    //         !context.Request.Path.StartsWithSegments("/api"))
+    //     {
+    //         context.Request.Path = "/index.html";
+    //         await next();
+    //     }
+    // });
 }
 
 app.Run();
