@@ -4,6 +4,7 @@ import type { ManagedReferenceType, Reference } from "../types/YamlManagedRefere
 import type {indexDictionaryProps} from "../types/YamlManagedReferencesLayoutTypes"
 import YamlItem from "@components/YamlItem.astro"
 import { conversionList } from "@layouts/YamlLayoutPage.astro";
+import { transformXref } from "../utils/transformXref";
 type Props = {
     data: ManagedReferenceType;
 };
@@ -33,17 +34,17 @@ const selectedKeys = ["Constructor", "Method", "Property"];
 
 <div class="w-full">
 
-    <p class="mt-0 pt-0" set:html = {data.items[0].summary}></p>
+    {data.items[0].summary && <p class="mt-0 pt-0" set:html = {transformXref(data.items[0].summary)}/>}
 
     {/* Inheritance */}
     {data.items[0].inheritance &&
       <div class="m-0">
         <p class="font-medium text-sm border-b-[1px] mb-0 pb-1 border-gray-300">Inheritance</p>
         <ul class="list-none [&>*]:my-0 m-0 p-0">{data.items[0].inheritance.map( (inheritClass :string) => {
-            return <div> ↳ <a class="no-underline text-orange-500 font-normal hover:underline" href={getDataFromReference(inheritClass).href}>{inheritClass.split(".").pop()} </a></div>
+            return <div> ↳ <a class="no-underline text-orange-700 font-normal hover:underline" href={getDataFromReference(inheritClass).href}>{inheritClass.split(".").pop()} </a></div>
         })}</ul>
         <p class="ml-4 my-0">↳ {data.items[0].id}</p>
-        <ul class="list-none ml-2 text-orange-500 [&>*]:my-0 my-0">{data.items[0].derivedClasses &&  data.items[0].derivedClasses.map( (inheritClass :string) => {
+        <ul class="list-none ml-2 text-orange-700 [&>*]:my-0 my-0">{data.items[0].derivedClasses &&  data.items[0].derivedClasses.map( (inheritClass :string) => {
             return <li class=""> ↳ {inheritClass.split(".").pop()} </li>
         })}</ul>
       </div>
@@ -55,7 +56,7 @@ const selectedKeys = ["Constructor", "Method", "Property"];
         <p class="font-medium text-sm border-b-[1px] pb-1 mb-0 border-gray-300">Inherited Members</p>
         <ul class="list-none [&>*]:my-0 m-0 p-0">
           {data.items[0].inheritedMembers.map( (item :string) => {
-            return <li><a class="no-underline text-orange-500 font-normal hover:underline" href={getDataFromReference(item).href}>{item.split(".").slice(1).join(".")} </a> </li>
+            return <li><a class="no-underline text-orange-700 font-normal hover:underline" href={getDataFromReference(item).href}>{item.split(".").slice(1).join(".")} </a> </li>
           })}
         </ul>
       </div>
@@ -66,14 +67,14 @@ const selectedKeys = ["Constructor", "Method", "Property"];
       data.items[0].implements && (
         <div class="">
           <h2 class="font-medium text-sm">Implements</h2>
-          <p class="text-orange-500">{data.items[0].implements?.map( (implementItem :string) => {
+          <p class="text-orange-700">{data.items[0].implements?.map( (implementItem :string) => {
           return implementItem.split(".").pop()})}
           </p>
         </div>
       )
     }
 
-    { data.items[0].namespace && <h2 class="text-xs"><span class="font-bold mr-1">Namespace:</span><a href={`${data.items[0].namespace}`} class="text-orange-600"> {data.items[0].namespace}</a></h2>}
+    { data.items[0].namespace && <h2 class="text-xs"><span class="font-bold mr-1">Namespace:</span><a href={`${data.items[0].namespace}`} class="text-orange-700 no-underline hover:underline"> {data.items[0].namespace}</a></h2>}
     { data.items[0].assemblies && <h2 class="text-xs"><span class="font-bold mr-1">Assembly:</span><span class="font-semibold">{data.items[0].assemblies}.dll</span></h2>}
 
     { data.items[0].syntax && (
@@ -151,7 +152,7 @@ const selectedKeys = ["Constructor", "Method", "Property"];
           {
           data.items[0].implements?.map( (itemUid) => {
             return (
-                  <a class="text-orange-600 no-underline hover:underline font-normal" 
+                  <a class="text-orange-700 no-underline hover:underline font-normal" 
                       href={itemUid}>{getDataFromReference(itemUid).name}
                   </a>
             )
@@ -168,7 +169,7 @@ const selectedKeys = ["Constructor", "Method", "Property"];
         <h2 class="text-2xl mb-2">Extension Methods</h2>
         <ul class="list-none [&>*]:my-0 m-0 p-0">
           {data.items[0].extensionMethods.map( (item :string) => {
-            return <li><a class="no-underline text-orange-500 font-normal hover:underline" href={getDataFromReference(item).href}>{getDataFromReference(item).nameWithType} </a> </li>
+            return <li><a class="no-underline text-orange-700 font-normal hover:underline" href={getDataFromReference(item).href}>{getDataFromReference(item).nameWithType} </a> </li>
           })}
         </ul>
       </div>

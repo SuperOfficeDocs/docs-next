@@ -25,13 +25,13 @@ import { transformXref } from "../utils/transformXref";
           return (
             <>
               <a
-                class="font-bold text-orange-700 text-lg no-underline hover:underline"
+                class="font-bold w-full block text-orange-700 text-lg no-underline hover:underline"
                 href={`${item.uid}`}
               >
                 {item.id}
               </a>
               {item.summary && (
-                <p class="mt-1 ml-4 !prose" set:html={transformXref(item.summary)} />
+                <p class="mt-1 md:ml-4 not-prose mb-5" set:html={transformXref(item.summary)} />
               )}
             </>
           );
