@@ -10,7 +10,7 @@ import type { TocData } from "~/types/TableOfContentTypes";
 
 export async function getStaticPaths() {
 
-  const apiOnly = true;
+  const apiOnly = process.env.API_ONLY === 'true';
 
   if (!apiOnly) {
     return [];
