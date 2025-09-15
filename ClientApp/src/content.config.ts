@@ -4,7 +4,7 @@ import { glob } from "astro/loaders";
 import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema, YamlManagedReferenceSchema } from "~/content.schema"
 
 // apiOnly variable is used in the split build to isolate docs/en/api folder content
-const apiOnly = true;
+const apiOnly = process.env.API_ONLY === 'true';
 
 const DOCS_BASE = "external-content/superoffice-docs/docs";
 const API_BASE = `${DOCS_BASE}/en/api`;
@@ -45,7 +45,7 @@ const apiDocs = defineCollection({
 
 const CRMScript = defineCollection({
   loader: glob({
-    pattern: false ? [
+    pattern: apiOnly ? [
       "**/!(*toc).yml",
       "!**/includes/**",
     ] : [],
