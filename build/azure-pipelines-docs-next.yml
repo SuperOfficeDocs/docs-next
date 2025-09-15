@@ -70,7 +70,7 @@ stages:
 
           # Publish the zip as a pipeline artifact
           - publish: $(Build.ArtifactStagingDirectory)/app.zip
-            artifact: docs-nect-artifact
+            artifact: docs-next-artifact
 
   - stage: Deploy
     displayName: "Deploy to Azure Web App"
@@ -88,7 +88,7 @@ stages:
               steps:
                 # Download artifact from Build stage
                 - download: current
-                  artifact: docs-nect-artifact
+                  artifact: docs-next-artifact
 
                 # Deploy the artifact to Azure App Service
                 - task: AzureWebApp@1
@@ -96,7 +96,7 @@ stages:
                   inputs:
                     azureSubscription: 'DocsNextServiceConnector'  # ARM service connection in DevOps
                     appName: 'docs-next'  # Azure App Service name
-                    package: '$(Pipeline.Workspace)/drop/app.zip'
+                    package: '$(Pipeline.Workspace)/docs-next-artifact/app.zip'
                     appType: 'webAppLinux'
 
 
