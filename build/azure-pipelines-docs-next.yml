@@ -31,7 +31,8 @@ stages:
         pool:
             name: Default # Uses Agent Pool named 'Default'
             demands:
-                - agent.os -equals Linux
+                # - agent.os -equals Linux
+                - Agent.ComputerName -equals tfs-build-23
         steps:
           # Checkout your main repo
           - checkout: self
