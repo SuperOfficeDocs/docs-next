@@ -64,7 +64,6 @@ stages:
             inputs:
               rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/out'
               includeRootFolder: false
-              archiveType: 'zip'
               archiveFile: '$(Build.ArtifactStagingDirectory)/app.zip'
               replaceExistingArchive: true
 
