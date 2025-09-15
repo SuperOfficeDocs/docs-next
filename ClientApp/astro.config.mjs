@@ -98,10 +98,10 @@ export default defineConfig({
     mdx(),
     // pagefind(),
     react(),
-    redirectFrom({
-      contentDir: './external-content',
-      getSlug: getRedirectFromSlug, // Function to get the slug for redirect_from
-    }),
+    // redirectFrom({
+    //   contentDir: './external-content',
+    //   getSlug: getRedirectFromSlug, // Function to get the slug for redirect_from
+    // }),
     robots(), sitemap(),
   ],
 
