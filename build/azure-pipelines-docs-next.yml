@@ -72,32 +72,32 @@ stages:
           - publish: $(Build.ArtifactStagingDirectory)/app.zip
             artifact: docs-nect-artifact
 
-  # - stage: Deploy
-  #   displayName: "Deploy to Azure Web App"
-  #   dependsOn: Build
-  #   condition: or(eq(variables['Build.SourceBranch'], 'refs/heads/main'),
-  #                 eq(variables['Build.Reason'], 'Manual'))
-  #   jobs:
-  #     - deployment: DeployJob
-  #       environment: 'production'
-  #       pool:
-  #         vmImage: 'ubuntu-latest'
-  #       strategy:
-  #         runOnce:
-  #           deploy:
-  #             steps:
-  #               # Download artifact from Build stage
-  #               - download: current
-  #                 artifact: docs-nect-artifact
+  - stage: Deploy
+    displayName: "Deploy to Azure Web App"
+    dependsOn: Build
+    condition: or(eq(variables['Build.SourceBranch'], 'refs/heads/main'),
+                  eq(variables['Build.Reason'], 'Manual'))
+    jobs:
+      - deployment: DeployJob
+        environment: 'production'
+        pool:
+          vmImage: 'ubuntu-latest'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                # Download artifact from Build stage
+                - download: current
+                  artifact: docs-nect-artifact
 
-  #               # Deploy the artifact to Azure App Service
-  #               - task: AzureWebApp@1
-  #                 displayName: "Deploy ZIP to Azure Web App"
-  #                 inputs:
-  #                   azureSubscription: '<your-service-connection-name>'  # ARM service connection in DevOps
-  #                   appName: 'docs-next'  # Azure App Service name
-  #                   package: '$(Pipeline.Workspace)/drop/app.zip'
-  #                   appType: 'webAppLinux'
+                # Deploy the artifact to Azure App Service
+                - task: AzureWebApp@1
+                  displayName: "Deploy ZIP to Azure Web App"
+                  inputs:
+                    azureSubscription: 'DocsNextServiceConnector'  # ARM service connection in DevOps
+                    appName: 'docs-next'  # Azure App Service name
+                    package: '$(Pipeline.Workspace)/drop/app.zip'
+                    appType: 'webAppLinux'
 
 
 
