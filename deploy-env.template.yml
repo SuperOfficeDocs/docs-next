@@ -22,8 +22,8 @@ stages:
         workspace:
           clean: all
         # variables:
-        #   - group: ${{ format('DocsNext Deployment {0}', parameters.environment) }}
-        # environment: ${{ format('docs-next-{0}', parameters.environment) }}
+        #   - group: ${{ format('Docs Deployment {0}', parameters.environment) }}
+        environment: ${{ format('docs-{0}', parameters.environment) }}
         strategy:
           runOnce:
             deploy:
@@ -47,7 +47,7 @@ stages:
                   displayName: "Run Deployment Script"
                   inputs:
                     azureSubscription: "${{ parameters.azureResourceManagerConnection }}"
-                    ScriptPath: "$(Build.SourcesDirectory)/Source/SuperOffice.DocsNext.BicepTemplate/Deploy-DocsNext.ps1"
+                    ScriptPath: "$(Build.SourcesDirectory)/Source/SuperOffice.DocsNext.BicepTemplate/Deploy-SuperOfficeDocs.ps1"
                     ScriptArguments: >
                       -Environment ${{ parameters.environment }}
                       -DotNetVersion $(DOTNET_VERSION)
@@ -61,25 +61,3 @@ stages:
                     appName: "$(DeployInfrastructure.WebAppName)"
                     package: "$(Pipeline.Workspace)/docs-next-artifact/app.zip"
                     appType: "webAppLinux"
-
-                # - task: AzureFunctionApp@2
-                #   # Re-try doesn't work if task fails due to timeout
-                #   # https://developercommunity.visualstudio.com/t/A-way-to-retry-a-build-pipeline-task-aft/10090126?q=retryCountOnTaskFailure+timeoutInMinutes
-                #   timeoutInMinutes: "10"
-                #   retryCountOnTaskFailure: 1
-                #   inputs:
-                #     azureSubscription: ${{ parameters.azureResourceManagerConnection }}
-                #     appType: functionAppLinux
-                #     runtimeStack: "DOTNET-ISOLATED|$(DOTNET_VERSION).0"
-                #     appName: $(FunctionAppName)
-                #     package: "$(Pipeline.Workspace)/Apps/SuperOffice.Metering.Functions.zip"
-
-                # - script: |
-                #     git config user.email "$(System.TeamProject).$(Build.Repository.Name)@socrm.mailinator.com"
-                #     git config user.name "$(System.TeamProject) $(Build.Repository.Name)"
-                #     git tag --force -a $(tagName) -m "Deployed to ${{ parameters.environment }}"
-                #     git push --force https://$SYSTEM_ACCESSTOKEN@dev.azure.com/superoffice/$(System.TeamProject)/_git/$(Build.Repository.Name) refs/tags/$(tagName):refs/tags/$(tagName)
-                #   env:
-                #     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-                #   displayName: "Tag sources"
-                #   condition: and(succeeded(), eq(${{ parameters.tagSources }}, true))

@@ -21,9 +21,9 @@ function Format-ValidationOutput {
 }
 
 $ResourceGroupLocation = 'Norway East'
-$ResourceGroupName = "rg-DocsNext-$($Environment)"
-$TemplateFile = 'DocsNext.bicep'
-$TemplateParametersFile = "DocsNext.$($Environment).parameters.json"
+$ResourceGroupName = "rg-SuperOfficeDocs-$($Environment)"
+$TemplateFile = 'SuperOfficeDocs.bicep'
+$TemplateParametersFile = "SuperOfficeDocs.$($Environment).parameters.json"
 
 
 $TemplateFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateFile))

@@ -1,14 +1,13 @@
 ﻿param location string = resourceGroup().location
 @allowed([
   'sod'
+  'stage'
   'prod'
 ])
 param environment string
 param appHostingPlan string = 'B1'
-param dotNetVersion int
-param applicationInsightsConnectionString string
-var webAppHostingPlanName = 'plan-docsnext-${environment}'
-var webAppName = 'app-docsnext-${environment}'
+var webAppHostingPlanName = 'plan-superfficedocs-${environment}'
+var webAppName = 'app-superfficedocs-${environment}'
 
 
 resource webAppHostingPlan 'Microsoft.Web/serverfarms@2024-11-01' = {
