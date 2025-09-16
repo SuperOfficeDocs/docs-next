@@ -40,8 +40,8 @@ stages:
 
           # Checkout external repos
           - script: |
-              git clone https://github.com/SuperOfficeDocs/contribution.git ClientApp/external-content/contribution
-              git clone https://github.com/SuperOfficeDocs/superoffice-docs.git ClientApp/external-content/superoffice-docs
+              git clone https://github.com/SuperOfficeDocs/contribution.git Source/SuperOffice.DocsNext/ClientApp/external-content/contribution
+              git clone https://github.com/SuperOfficeDocs/superoffice-docs.git Source/SuperOffice.DocsNext/ClientApp/external-content/superoffice-docs
             displayName: "Clone external GitHub repos"
 
           # Install .NET SDK
