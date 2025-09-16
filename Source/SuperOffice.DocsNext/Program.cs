@@ -22,7 +22,7 @@ if (app.Environment.IsDevelopment())
         {
             spaApp.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "../ClientApp";
+                spa.Options.SourcePath = "/ClientApp";
                 spa.UseProxyToSpaDevelopmentServer("http://localhost:4321");
             });
         });
