@@ -57,7 +57,7 @@ stages:
 
           # Build & publish the .NET project (includes front-end build if wired in MSBuild targets)
           - script: |
-              cd Server
+              cd Source/SuperOffice.DocsNext
               dotnet publish -c Release -o $(Build.ArtifactStagingDirectory)/out
             displayName: "Publish .NET & Astro project"
 
