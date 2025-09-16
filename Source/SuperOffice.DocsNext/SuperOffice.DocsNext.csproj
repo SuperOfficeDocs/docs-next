@@ -6,14 +6,19 @@
     <ImplicitUsings>enable</ImplicitUsings>
 
     <!-- Paths -->
-    <ClientAppDir>$(MSBuildThisFileDirectory)\ClientApp\</ClientAppDir>
-    <ClientBuildDir>$(ClientAppDir)dist\</ClientBuildDir>
-    <WebRoot>wwwroot\</WebRoot>
+    <ClientAppDir>$(MSBuildThisFileDirectory)ClientApp/</ClientAppDir>
+    <ClientBuildDir>$(ClientAppDir)dist/</ClientBuildDir>
+    <WebRoot>wwwroot/</WebRoot>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="8.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Exclude all .cs files inside ClientApp folder (and subfolders) -->
+    <Compile Remove="$(ClientAppDir)**\*.cs" />
   </ItemGroup>
 
   <!-- Build the Astro app and copy to wwwroot before publish -->

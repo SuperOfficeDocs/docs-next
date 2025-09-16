@@ -24,6 +24,7 @@ stages:
         # variables:
         #   - group: ${{ format('DocsNext Deployment {0}', parameters.environment) }}
         # environment: ${{ format('docs-next-{0}', parameters.environment) }}
+        environment: ${{ parameters.environment }}
         strategy:
           runOnce:
             deploy:

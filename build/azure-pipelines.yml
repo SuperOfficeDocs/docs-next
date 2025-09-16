@@ -45,8 +45,8 @@ stages:
 
           # Checkout external repos
           - script: |
-              git clone https://github.com/SuperOfficeDocs/contribution.git ClientApp/external-content/contribution
-              git clone https://github.com/SuperOfficeDocs/superoffice-docs.git ClientApp/external-content/superoffice-docs
+              git clone https://github.com/SuperOfficeDocs/contribution.git Source/SuperOffice.DocsNext/ClientApp/external-content/contribution
+              git clone https://github.com/SuperOfficeDocs/superoffice-docs.git Source/SuperOffice.DocsNext/ClientApp/external-content/superoffice-docs
             displayName: "Clone external GitHub repos"
 
           # Install .NET SDK
@@ -61,7 +61,7 @@ stages:
 
           # Build & publish the .NET project (includes front-end build if wired in MSBuild targets)
           - script: |
-              cd Server
+              cd Source/SuperOffice.DocsNext
               dotnet publish -c Release -o $(Build.ArtifactStagingDirectory)/out
             displayName: "Publish .NET & Astro project"
 
