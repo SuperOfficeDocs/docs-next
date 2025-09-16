@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Paths -->
+    <ClientAppDir>$(MSBuildThisFileDirectory)..\ClientApp\</ClientAppDir>
+    <ClientBuildDir>$(ClientAppDir)dist\</ClientBuildDir>
+    <WebRoot>wwwroot\</WebRoot>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="2.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="8.0.8" />
+  </ItemGroup>
+
+  <!-- Build the Astro app and copy to wwwroot before publish -->
+  <Target Name="BuildAndCopyClientApp" BeforeTargets="PrepareForPublish">
+    <Message Text="Building ClientApp (npm ci &amp;&amp; npm run build:local)..." Importance="high" />
+
+    <!-- Build frontend -->
+    <Exec WorkingDirectory="$(ClientAppDir)" Command="npm ci" />
+    <Exec WorkingDirectory="$(ClientAppDir)" Command="npm run build:local" />
+
+    <!-- Copy frontend build to wwwroot -->
+    <ItemGroup>
+      <ClientBuildFiles Include="$(ClientBuildDir)**\*" />
+    </ItemGroup>
+    <RemoveDir Directories="$(WebRoot)" />
+    <MakeDir Directories="$(WebRoot)" />
+    <Copy SourceFiles="@(ClientBuildFiles)" DestinationFiles="@(ClientBuildFiles->'$(WebRoot)%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+</Project>

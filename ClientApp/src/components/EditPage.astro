@@ -1,0 +1,12 @@
+---
+import { getEditHref } from "@utils/headerUtils";
+
+export interface Props {
+  docurl: string;
+}
+
+const { docurl } = Astro.props;
+const href = getEditHref(docurl);
+---
+
+<a href={href} target="_blank" class="hover:underline"> Edit </a>
