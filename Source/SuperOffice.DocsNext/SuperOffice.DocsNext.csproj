@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 
     <!-- Paths -->
-    <ClientAppDir>$(MSBuildThisFileDirectory)..\ClientApp\</ClientAppDir>
+    <ClientAppDir>$(MSBuildThisFileDirectory)\ClientApp\</ClientAppDir>
     <ClientBuildDir>$(ClientAppDir)dist\</ClientBuildDir>
     <WebRoot>wwwroot\</WebRoot>
   </PropertyGroup>
