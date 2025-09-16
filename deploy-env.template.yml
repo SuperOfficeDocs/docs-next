@@ -1,0 +1,63 @@
+parameters:
+  - name: environment
+    default: ""
+  - name: dependsOn
+    type: object
+    default: []
+  - name: azureResourceManagerConnection
+    default: ""
+  - name: isEnabled
+    default: "false"
+
+stages:
+  - stage: ${{ parameters.environment }}
+    dependsOn: ${{ parameters.dependsOn }}
+    variables:
+      - name: resourceGroupName
+        value: ${{ format('rg-DocsNext-{0}', parameters.environment) }}
+    condition: and(succeeded(), eq(${{ parameters.isEnabled }}, true))
+
+    jobs:
+      - deployment: DeployArmAndApps
+        workspace:
+          clean: all
+        # variables:
+        #   - group: ${{ format('Docs Deployment {0}', parameters.environment) }}
+        environment: ${{ format('docs-{0}', parameters.environment) }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - download: none # By default deploy jobs download all artifacts. Stop this to avoid downloading of published code coverage artifact
+
+                - task: DownloadPipelineArtifact@2
+                  inputs:
+                    artifact: "docs-next-artifact"
+                    path: "$(Pipeline.Workspace)/docs-next-artifact"
+
+                - task: UseDotNet@2
+                  inputs:
+                    version: "$(DOTNET_VERSION).0.x"
+
+                - task: NuGetAuthenticate@1
+
+                - task: AzurePowerShell@5
+                  name: DeployInfrastructure
+                  displayName: "Run Deployment Script"
+                  inputs:
+                    azureSubscription: "${{ parameters.azureResourceManagerConnection }}"
+                    ScriptPath: "$(Build.SourcesDirectory)/Source/SuperOffice.DocsNext.BicepTemplate/Deploy-SuperOfficeDocs.ps1"
+                    ScriptArguments: >
+                      -Environment ${{ parameters.environment }}
+                      -DotNetVersion $(DOTNET_VERSION)
+                    azurePowerShellVersion: latestVersion
+                    pwsh: true
+
+                - task: AzureWebApp@1
+                  displayName: "Deploy ZIP to Azure Web App"
+                  inputs:
+                    azureSubscription: "${{ parameters.azureResourceManagerConnection }}"
+                    appName: "$(DeployInfrastructure.WebAppName)"
+                    package: "$(Pipeline.Workspace)/docs-next-artifact/app.zip"
+                    appType: "webAppLinux"

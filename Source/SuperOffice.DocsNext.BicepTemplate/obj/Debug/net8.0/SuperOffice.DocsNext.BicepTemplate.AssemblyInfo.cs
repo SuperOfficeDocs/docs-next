@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SuperOffice.DocsNext.BicepTemplate")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ec12497dba6c2e5d4758cf51609c85c5d483f91")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a07236443af683afbd52bc8dc7503ff22ad4335e")]
 [assembly: System.Reflection.AssemblyProductAttribute("SuperOffice.DocsNext.BicepTemplate")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SuperOffice.DocsNext.BicepTemplate")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
