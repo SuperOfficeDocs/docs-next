@@ -7,8 +7,8 @@
 param environment string
 param dotNetVersion int
 param appHostingPlan string = 'B1'
-var webAppHostingPlanName = 'plan-superfficedocs-${environment}'
-var webAppName = 'app-superfficedocs-${environment}'
+var webAppHostingPlanName = 'plan-superoffice-docs-${environment}'
+var webAppName = 'app-superoffice-docs-${environment}'
 
 
 resource webAppHostingPlan 'Microsoft.Web/serverfarms@2024-11-01' = {

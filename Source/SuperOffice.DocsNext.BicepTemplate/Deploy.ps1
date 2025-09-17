@@ -1,6 +1,6 @@
 ﻿Param(
   [string] $Environment = 'sod',
-  [string] [Parameter(Mandatory = $true)]$DotNetVersion,
+  [int] [Parameter(Mandatory = $true)]$DotNetVersion,
   [switch] $ValidateOnly
 )
 
@@ -23,39 +23,32 @@ function Format-ValidationOutput {
 $ResourceGroupLocation = 'Norway East'
 $ResourceGroupName = "rg-SuperOfficeDocs-$($Environment)"
 $TemplateFile = 'SuperOfficeDocs.bicep'
-# $TemplateParametersFile = "SuperOfficeDocs.$($Environment).parameters.json"
 
 
 $TemplateFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateFile))
-# $TemplateParametersFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateParametersFile))
 
 # Create the resource group only when it doesn't already exist
 if ($null -eq (Get-AzResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation -Verbose -ErrorAction SilentlyContinue)) {
   New-AzResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation -Verbose -Force -ErrorAction Stop
 }
 
-# Convert DotNetVersion to integer for Bicep template
-$DotNetVersionInt = [int]$DotNetVersion
-
-# if ($ValidateOnly) {
-#   $ErrorMessages = Format-ValidationOutput (Test-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
-#       -TemplateFile $TemplateFile `
-#       -TemplateParameterFile $TemplateParametersFile `
-#       @OptionalParameters)
-#   if ($ErrorMessages) {
-#     Write-Output '', 'Validation returned the following errors:', @($ErrorMessages), '', 'Template is invalid.'
-#     [Environment]::Exit(1)
-#   }
-#   Write-Output '', 'Template is valid.'
-#   Exit 0
-# }
+if ($ValidateOnly) {
+  $ErrorMessages = Format-ValidationOutput (Test-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
+      -TemplateFile $TemplateFile `
+      @OptionalParameters)
+  if ($ErrorMessages) {
+    Write-Output '', 'Validation returned the following errors:', @($ErrorMessages), '', 'Template is invalid.'
+    [Environment]::Exit(1)
+  }
+  Write-Output '', 'Template is valid.'
+  Exit 0
+}
 
 $outputs = New-AzResourceGroupDeployment -Name ((Get-ChildItem $TemplateFile).BaseName + '-' + ((Get-Date).ToUniversalTime()).ToString('MMdd-HHmm')) `
   -ResourceGroupName $ResourceGroupName `
   -TemplateFile $TemplateFile `
   -environment $Environment `
- # -TemplateParameterFile $TemplateParametersFile `
-  -dotNetVersion $DotNetVersionInt `
+  -dotNetVersion $DotNetVersion `
   -Force -Verbose `
   -ErrorVariable ErrorMessages
 if ($ErrorMessages) {
