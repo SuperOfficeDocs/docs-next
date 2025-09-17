@@ -1,11 +1,7 @@
+# This workflow is discontinued due to limitations in github build agents (1GB space limit)
+
 name: Build and deploy ASP.Net Core app to Azure Web App - docs-next
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
