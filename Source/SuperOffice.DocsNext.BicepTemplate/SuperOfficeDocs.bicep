@@ -5,6 +5,7 @@
   'prod'
 ])
 param environment string
+param dotNetVersion int
 param appHostingPlan string = 'B1'
 var webAppHostingPlanName = 'plan-superfficedocs-${environment}'
 var webAppName = 'app-superfficedocs-${environment}'
@@ -36,6 +37,9 @@ resource webApp 'Microsoft.Web/sites@2024-11-01' = {
   properties: {
     serverFarmId: webAppHostingPlan.id
     httpsOnly: true
+    siteConfig: {
+      linuxFxVersion: 'DOTNETCORE|${dotNetVersion}.0'
+    }
   }
   identity: {
     type: 'SystemAssigned'
