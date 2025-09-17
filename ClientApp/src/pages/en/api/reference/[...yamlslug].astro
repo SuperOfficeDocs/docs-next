@@ -26,6 +26,21 @@ export async function getStaticPaths() {
     "netserver/services",
   ];
 
+  /**
+   * Creates a lazy loader function for YAML content.
+   * 
+   * @param {string} filePath - The path to the YAML file to be loaded
+   * @param {string} collection - The collection name associated with the YAML content
+   * @returns {Function} An async function that when called:
+   *   - Reads the YAML file from the provided path
+   *   - Parses the YAML content
+   *   - Returns an object containing:
+   *     - data: The parsed YAML data
+   *     - filePath: The original file path
+   *     - id: Generated reference slug based on file path and collection
+   *     - collection: The provided collection name
+   * 
+   */
   // Lazy loader for YAML entry
   function loadYamlContent(filePath: string, collection: string) {
     return async () => {
@@ -40,7 +55,16 @@ export async function getStaticPaths() {
     };
   }
 
-  // Lazy loader for TOC
+  /**
+   * Creates a lazy loader function for Table of Contents (TOC) data.
+   * 
+   * @param {string} apiPath - The API path used to fetch the TOC data
+   * @returns {Function} An async function that:
+   *   - Attempts to fetch TOC data using getTocByPath
+   *   - Returns the TOC data if successful
+   *   - Returns an empty TOC structure ({items: []}) if fetch fails
+   * 
+   */
   function loadTocData(apiPath: string) {
     return async () => {
       try {
@@ -52,6 +76,14 @@ export async function getStaticPaths() {
     };
   }
 
+  /**
+   * Determines the API type based on the provided path.
+   * 
+   * @param {string} path - The file path to analyze
+   * @returns {string} - Returns either the full path if it starts with "netserver",
+   *                     or the first segment of the path (split by "/")
+   * 
+   */
   function getApiType(path:string):string{
     if(path.startsWith("netserver")){
       return path
@@ -119,4 +151,4 @@ const entry = await loadEntry();
 const tocData = await loadTocData();
 ---
 
-<YamlLayoutPage entry={entry} tocData={tocData} collection={collection} />
+<YamlLayoutPage entry={entry} tocData={tocData} collection={collection} contentPath=`superoffice-docs/docs/en/api/reference/${collection}` />

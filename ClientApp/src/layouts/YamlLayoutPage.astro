@@ -16,9 +16,10 @@ interface Props {
   entry: any;
   tocData: TocData;
   collection: string;
+  contentPath: string;
 }
 
-const { entry, tocData, collection } = Astro.props;
+const { entry, tocData, collection, contentPath } = Astro.props;
 
 const pageTitle = entry.data.items[0].type + " " + entry.data.items[0].id;
 
@@ -47,9 +48,18 @@ function appendIntoHeadingList(key: keyof headingsListProps, dataItem: Item) {
     headingList[key] = [];
   }
   headingList[key].push({
-    text: dataItem.id,
+    text: getDataItemID(dataItem),
     slug: dataItem.uid,
   });
+}
+
+/**
+ * Extracts the ID from a data item by returning either its 'id' property or the last segment of its 'uid' property.
+ * @param {any} dataItem - The data item object containing either an 'id' or 'uid' property
+ * @returns {string} The ID value from the data item
+ */
+function getDataItemID(dataItem: any): string {
+  return dataItem.id ?? dataItem.uid?.split(".").pop();
 }
 
 const documentType = entry.data.items[0].type;
@@ -61,8 +71,7 @@ if (documentType === "Namespace") {
       const baseContentPath = "external-content";
       const childFilePath = path.join(
         baseContentPath,
-        "superoffice-docs/docs/en/api/reference",
-        collection,
+        contentPath,
         `${childName}.yml`
       );
 
@@ -77,7 +86,7 @@ if (documentType === "Namespace") {
         }
         namespaceData[key].push({
           uid: dataItem.uid,
-          id: dataItem.id,
+          id: getDataItemID(dataItem),
           summary: dataItem.summary,
         });
 
