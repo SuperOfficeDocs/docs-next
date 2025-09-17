@@ -1,7 +1,7 @@
 ﻿Param(
   [string] $Environment = 'sod',
-  [int] [Parameter(Mandatory = $true)]$DotNetVersion,
-  # [switch] $ValidateOnly
+  [string] [Parameter(Mandatory = $true)]$DotNetVersion,
+  [switch] $ValidateOnly
 )
 
 Write-Output '', 'Start Deploy-DocsNext'
@@ -23,16 +23,19 @@ function Format-ValidationOutput {
 $ResourceGroupLocation = 'Norway East'
 $ResourceGroupName = "rg-SuperOfficeDocs-$($Environment)"
 $TemplateFile = 'SuperOfficeDocs.bicep'
-$TemplateParametersFile = "SuperOfficeDocs.$($Environment).parameters.json"
+# $TemplateParametersFile = "SuperOfficeDocs.$($Environment).parameters.json"
 
 
 $TemplateFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateFile))
-$TemplateParametersFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateParametersFile))
+# $TemplateParametersFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateParametersFile))
 
 # Create the resource group only when it doesn't already exist
 if ($null -eq (Get-AzResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation -Verbose -ErrorAction SilentlyContinue)) {
   New-AzResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation -Verbose -Force -ErrorAction Stop
 }
+
+# Convert DotNetVersion to integer for Bicep template
+$DotNetVersionInt = [int]$DotNetVersion
 
 # if ($ValidateOnly) {
 #   $ErrorMessages = Format-ValidationOutput (Test-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
@@ -51,8 +54,8 @@ $outputs = New-AzResourceGroupDeployment -Name ((Get-ChildItem $TemplateFile).Ba
   -ResourceGroupName $ResourceGroupName `
   -TemplateFile $TemplateFile `
   -environment $Environment `
-  -TemplateParameterFile $TemplateParametersFile `
-  -dotNetVersion $DotNetVersion `
+ # -TemplateParameterFile $TemplateParametersFile `
+  -dotNetVersion $DotNetVersionInt `
   -Force -Verbose `
   -ErrorVariable ErrorMessages
 if ($ErrorMessages) {
