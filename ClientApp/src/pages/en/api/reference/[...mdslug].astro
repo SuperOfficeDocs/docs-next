@@ -26,11 +26,12 @@ export async function getStaticPaths() {
     return async () => {
       const rawContent = await readFile(filePath, "utf8");
       const { data, content } = matter(rawContent);
-      // Create a more complete entry object that matches content collection structure
+
       const relativePath = filePath.replace(
         "external-content/superoffice-docs/docs/",
         ""
       );
+      
       const slug = relativePath.replace(/\.(md|mdx)$/, "");
       const { html, headings } = await renderMarkdownWithHeadingIds(content);
 
@@ -103,7 +104,7 @@ export async function getStaticPaths() {
       }
 
       return {
-        params: { slug: slug },
+        params: { mdslug: slug },
         props: {
           loadEntry: loadMarkdownContent(absoluteFilePath),
           loadTocData: tocLoaderCache.get(apiType)!,

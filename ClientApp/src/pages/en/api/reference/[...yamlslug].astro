@@ -1,0 +1,154 @@
+---
+import { readFile } from "fs/promises";
+import { glob } from "glob";
+import path from "path";
+import yaml from "js-yaml";
+import { getTocByPath } from "@utils/tocUtils";
+import { getYamlReferenceSlug } from "@utils/slugUtils";
+import YamlLayoutPage from "@layouts/YamlLayoutPage.astro";
+import type { TocData } from "~/types/TableOfContentTypes";
+
+export async function getStaticPaths() {
+
+  const apiOnly = process.env.API_ONLY === 'true';
+
+  if (!apiOnly) {
+    return [];
+  }
+
+
+  const baseContentPath = "external-content";
+
+  const apiCollections = [
+    "webapi",
+    "web",
+    "netserver/core",
+    "netserver/services",
+  ];
+
+  /**
+   * Creates a lazy loader function for YAML content.
+   * 
+   * @param {string} filePath - The path to the YAML file to be loaded
+   * @param {string} collection - The collection name associated with the YAML content
+   * @returns {Function} An async function that when called:
+   *   - Reads the YAML file from the provided path
+   *   - Parses the YAML content
+   *   - Returns an object containing:
+   *     - data: The parsed YAML data
+   *     - filePath: The original file path
+   *     - id: Generated reference slug based on file path and collection
+   *     - collection: The provided collection name
+   * 
+   */
+  // Lazy loader for YAML entry
+  function loadYamlContent(filePath: string, collection: string) {
+    return async () => {
+      const rawContent = await readFile(filePath, "utf8");
+      const parsedYAMLData = yaml.load(rawContent);
+      return {
+        data: parsedYAMLData,
+        filePath,
+        id: getYamlReferenceSlug(filePath, collection),
+        collection,
+      };
+    };
+  }
+
+  /**
+   * Creates a lazy loader function for Table of Contents (TOC) data.
+   * 
+   * @param {string} apiPath - The API path used to fetch the TOC data
+   * @returns {Function} An async function that:
+   *   - Attempts to fetch TOC data using getTocByPath
+   *   - Returns the TOC data if successful
+   *   - Returns an empty TOC structure ({items: []}) if fetch fails
+   * 
+   */
+  function loadTocData(apiPath: string) {
+    return async () => {
+      try {
+        return await getTocByPath(apiPath);
+      } catch (error) {
+        console.warn(`Failed to load TOC for ${apiPath}`, error);
+        return { items: [] } as TocData;
+      }
+    };
+  }
+
+  /**
+   * Determines the API type based on the provided path.
+   * 
+   * @param {string} path - The file path to analyze
+   * @returns {string} - Returns either the full path if it starts with "netserver",
+   *                     or the first segment of the path (split by "/")
+   * 
+   */
+  function getApiType(path:string):string{
+    if(path.startsWith("netserver")){
+      return path
+    }
+    else{
+      return path.split("/")[0]
+    }
+  }
+
+  try {
+    const patterns = apiCollections.map(
+      (c) => `superoffice-docs/docs/en/api/reference/${c}/*.{yaml,yml}`
+    );
+
+    const filePaths = await glob(patterns, {
+      cwd: baseContentPath,
+      absolute: false,
+    });
+
+    if (filePaths.length === 0) {
+      console.error("No YAML files found under reference path!");
+      return [];
+    }
+
+    const tocLoaderCache = new Map<string, () => Promise<TocData>>();
+
+    const paths = filePaths.map((relativePath) => {
+      const absoluteFilePath = path.resolve(baseContentPath, relativePath);
+      const normalizedPath = relativePath.replace(/\\/g, "/");
+      const match = normalizedPath.match(
+        /superoffice-docs\/docs\/en\/api\/reference\/([^/]+(?:\/[^/]+)?)/
+      );
+
+      const apiType = getApiType(match ? match[1] : "unknown");
+      const cleanPath = normalizedPath
+        .replace("superoffice-docs/docs/en/api/reference", "")
+        .replace(/\.(yml|yaml)$/, "");
+      const slug = cleanPath;
+      const tocCollectionPath = `superoffice-docs/docs/en/api/reference/${apiType}`;
+
+      if (!tocLoaderCache.has(apiType)) {
+        tocLoaderCache.set(apiType, loadTocData(tocCollectionPath));
+      }
+
+      return {
+        params: { yamlslug: slug },
+        props: {
+          loadEntry: loadYamlContent(absoluteFilePath, apiType),
+          loadTocData: tocLoaderCache.get(apiType)!,
+          collection: apiType,
+        },
+      };
+    });
+
+    return paths;
+  } catch (error) {
+    console.error("Error in getStaticPaths for YAML:", error);
+    return [];
+  }
+}
+
+const { loadEntry, loadTocData, collection } = Astro.props;
+
+const entry = await loadEntry();
+const tocData = await loadTocData();
+---
+
+<YamlLayoutPage entry={entry} tocData={tocData} collection={collection} contentPath=`superoffice-docs/docs/en/api/reference/${collection}` />

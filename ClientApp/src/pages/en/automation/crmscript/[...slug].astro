@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { getSegmentToc } from "@utils/tocUtils";
 import { stripFilePathAndExtension } from "~/utils/slugUtils";
 import YamlLayoutPage from "@layouts/YamlLayoutPage.astro";
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
   const referencePath = "superoffice-docs/docs/en/automation/crmscript" as const;
 
   const docEntries = await getCollection(collection);
-  return docEntries.map((entry) => {
+  return docEntries.map((entry: CollectionEntry<"crmscript">) => {
     const generatedSlug = stripFilePathAndExtension(
         entry.filePath!,
         referencePath,
@@ -32,4 +32,4 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 ---
 
-<YamlLayoutPage entry={entry} tocData={tocData} collection="crmscript"/>
+<YamlLayoutPage entry={entry} tocData={tocData} collection="crmscript" contentPath="superoffice-docs/docs/en/automation/crmscript/reference"/>

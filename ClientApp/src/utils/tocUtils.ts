@@ -52,7 +52,7 @@ export async function getTableOfContentsFromCollection(
   // Recursively resolve nested toc.yml references
   function resolveItems(items: any[], currentDir = rootCollectionName): any[] {
     for (const item of items) {
-      const href = item.href;
+      const href = item?.href;
       if (href && isNestedTocFile(href)) {
         const resolved = path.posix.normalize(path.posix.join(currentDir, href));
         const subId = normalizePath(resolved);
