@@ -81,7 +81,7 @@ stages:
     parameters:
       environment: "sod"
       dependsOn: ["Build"]
-      azureResourceManagerConnection: "DocsNextServiceConnector"
+      azureResourceManagerConnection: "online-docs-dev"
       isEnabled: "or(
                     eq(variables['Build.SourceBranch'], 'refs/heads/main'),
                     eq(variables['Build.Reason'], 'Manual')
@@ -91,12 +91,12 @@ stages:
     parameters:
       environment: "stage"
       dependsOn: ["Build"]
-      azureResourceManagerConnection: "AS Stage"
+      azureResourceManagerConnection: "online-docs-stage"
       isEnabled: "eq(variables['Build.SourceBranch'], 'refs/heads/release')"
 
   - template: deploy-env.template.yml
     parameters:
       environment: "prod"
       dependsOn: ['Build','stage']
-      azureResourceManagerConnection: "AS Stage"
+      azureResourceManagerConnection: "online-docs-prod"
       isEnabled: "eq(variables['Build.SourceBranch'], 'refs/heads/release')"
