@@ -23,7 +23,8 @@ Source/SuperOffice.DocsNext/ClientApp/build.log
 # .NET
 Source/SuperOffice.DocsNext/bin/
 Source/SuperOffice.DocsNext/obj/
-Source/SuperOffice.DocsNext/obj/
+Source/SuperOffice.DocsNext.BicepTemplate/obj/
+Source/SuperOffice.DocsNext.BicepTemplate/bin/
 Source/SuperOffice.DocsNext/wwwroot/
 Source/SuperOffice.DocsNext/publish/
 
