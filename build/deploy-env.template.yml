@@ -48,7 +48,7 @@ stages:
                   displayName: "Run Deployment Script"
                   inputs:
                     azureSubscription: "${{ parameters.azureResourceManagerConnection }}"
-                    ScriptPath: "$(Build.SourcesDirectory)/Source/SuperOffice.DocsNext.BicepTemplate/Deploy-DocsNext.ps1"
+                    ScriptPath: "$(Build.SourcesDirectory)/Source/SuperOffice.DocsNext.BicepTemplate/Deploy-SuperOfficeDocs.ps1"
                     ScriptArguments: >
                       -Environment ${{ parameters.environment }}
                       -DotNetVersion $(DOTNET_VERSION)
