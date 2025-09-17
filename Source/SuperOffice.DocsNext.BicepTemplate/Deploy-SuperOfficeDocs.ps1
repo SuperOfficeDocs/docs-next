@@ -1,7 +1,7 @@
 ﻿Param(
   [string] $Environment = 'sod',
   [int] [Parameter(Mandatory = $true)]$DotNetVersion,
-  [switch] $ValidateOnly
+  # [switch] $ValidateOnly
 )
 
 Write-Output '', 'Start Deploy-DocsNext'
@@ -34,18 +34,18 @@ if ($null -eq (Get-AzResourceGroup -Name $ResourceGroupName -Location $ResourceG
   New-AzResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation -Verbose -Force -ErrorAction Stop
 }
 
-if ($ValidateOnly) {
-  $ErrorMessages = Format-ValidationOutput (Test-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
-      -TemplateFile $TemplateFile `
-      -TemplateParameterFile $TemplateParametersFile `
-      @OptionalParameters)
-  if ($ErrorMessages) {
-    Write-Output '', 'Validation returned the following errors:', @($ErrorMessages), '', 'Template is invalid.'
-    [Environment]::Exit(1)
-  }
-  Write-Output '', 'Template is valid.'
-  Exit 0
-}
+# if ($ValidateOnly) {
+#   $ErrorMessages = Format-ValidationOutput (Test-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
+#       -TemplateFile $TemplateFile `
+#       -TemplateParameterFile $TemplateParametersFile `
+#       @OptionalParameters)
+#   if ($ErrorMessages) {
+#     Write-Output '', 'Validation returned the following errors:', @($ErrorMessages), '', 'Template is invalid.'
+#     [Environment]::Exit(1)
+#   }
+#   Write-Output '', 'Template is valid.'
+#   Exit 0
+# }
 
 $outputs = New-AzResourceGroupDeployment -Name ((Get-ChildItem $TemplateFile).BaseName + '-' + ((Get-Date).ToUniversalTime()).ToString('MMdd-HHmm')) `
   -ResourceGroupName $ResourceGroupName `
