@@ -17,8 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Exclude all .cs files inside ClientApp folder (and subfolders) -->
-    <Compile Remove="$(ClientAppDir)**\*.cs" />
+    <!-- Exclude everything under ClientApp from the .NET build -->
+    <Compile Remove="$(ClientAppDir)**/*" />
+    <Content Remove="$(ClientAppDir)**/*" />
+    <None Remove="$(ClientAppDir)**/*" />
   </ItemGroup>
 
   <!-- Build the Astro app and copy to wwwroot before publish -->
