@@ -23,11 +23,11 @@ function Format-ValidationOutput {
 $ResourceGroupLocation = 'Norway East'
 $ResourceGroupName = "rg-SuperOfficeDocs-$($Environment)"
 $TemplateFile = 'SuperOfficeDocs.bicep'
-$TemplateParametersFile = "SuperOfficeDocs.$($Environment).parameters.json"
+# $TemplateParametersFile = "SuperOfficeDocs.$($Environment).parameters.json"
 
 
 $TemplateFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateFile))
-$TemplateParametersFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateParametersFile))
+# $TemplateParametersFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateParametersFile))
 
 # Create the resource group only when it doesn't already exist
 if ($null -eq (Get-AzResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation -Verbose -ErrorAction SilentlyContinue)) {
@@ -51,7 +51,7 @@ $outputs = New-AzResourceGroupDeployment -Name ((Get-ChildItem $TemplateFile).Ba
   -ResourceGroupName $ResourceGroupName `
   -TemplateFile $TemplateFile `
   -environment $Environment `
-  -TemplateParameterFile $TemplateParametersFile `
+ # -TemplateParameterFile $TemplateParametersFile `
   -dotNetVersion $DotNetVersion `
   -Force -Verbose `
   -ErrorVariable ErrorMessages
