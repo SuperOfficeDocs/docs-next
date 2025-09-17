@@ -51,9 +51,9 @@ const OnThisArticle: React.FC<TocProps> = ({ headings, showSubHeading = true }) 
     isActive(mainSlug) || subSlugs.includes(activeSlug ?? "");
 
   return (
-    <nav className="toc overflow-y-auto overflow-x-hidden max-h-full">
+    <nav className="toc overflow-x-hidden h-fit">
       <p className="font-bold text-xs uppercase">In This Article</p>
-      <ul className="space-y-1.5 mt-2 text-gray-600">
+      <ul className="space-y-1.5 overflow-y-auto overflow-x-hidden whitespace-normal break-all max-h-[85%] mt-2 text-gray-600">
         {groupedHeadings().map(({ main, subs }) => {
           const subSlugs = subs.map((s) => s.slug);
           const expand = shouldHighlightMain(main.slug, subSlugs);
