@@ -1,7 +1,7 @@
 ﻿Param(
   [string] $Environment = 'sod',
   [int] [Parameter(Mandatory = $true)]$DotNetVersion,
-  # [switch] $ValidateOnly
+  [switch] $ValidateOnly
 )
 
 Write-Output '', 'Start Deploy-DocsNext'
