@@ -82,7 +82,10 @@ stages:
       environment: "sod"
       dependsOn: ["Build"]
       azureResourceManagerConnection: "DocsNextServiceConnector"
-      isEnabled: "or(eq(variables['Build.SourceBranch'], 'refs/heads/main'), and(eq(variables['Build.Reason'], 'Manual')))"
+      isEnabled: "or(
+                    eq(variables['Build.SourceBranch'], 'refs/heads/main'),
+                    eq(variables['Build.Reason'], 'Manual')
+                  )"
 
   - template: deploy-env.template.yml
     parameters:
