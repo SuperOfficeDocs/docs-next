@@ -3,8 +3,6 @@ import type { ChangeEvent } from "react";
 import type { TocItem } from "~/types/TableOfContentTypes";
 import { trimFileExtension } from "~/utils/slugUtils";
 
-const base = import.meta.env.BASE_URL;
-
 type TableOfContentListProps = {
   inputItems: TocItem[];
   slug: string;
@@ -54,20 +52,45 @@ export default function TableOfContentList({
     setCurrentPath(window.location.pathname)
   });
 
+  /**
+   * Handles state changes in the parent component.
+   * @param selfIndex - The index of the element that triggered the state change
+   */
   const onStateChangeInParent = (selfIndex: number) => {
     setIsParentActive(selfIndex)
   }
 
+  /**
+   * Determines if a table of contents item is currently active.
+   * 
+   * @param item - The table of contents item to check
+   * @param index - The index of the item in the table of contents
+   * @returns True if the item's path matches the current path or if the item is an active parent
+   */
   const isActive = (item: TocItem, index: number): boolean => {
     return generatePath(item) == currentPath || index == isParentActive
   }
 
+  /**
+   * Toggles the open/closed state of an item in the table of contents.
+   * 
+   * @param index - The index of the item to toggle
+   * @returns void
+   * 
+   */
   const toggleItem = (index: number) => {
     setOpenIndexes((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
 
+  /**
+   * Generates a URL path for a table of contents item.
+   * 
+   * @param item - The table of contents item to generate a path for
+   * @returns A string representing the generated URL path
+   * 
+   */
   const generatePath = (item: TocItem): string => {
     // uid is only defined in toc files with YamlMime:TableOfContent
     if (item.uid != undefined) {
@@ -86,9 +109,13 @@ export default function TableOfContentList({
     return resolvedPath;
   };
 
+  /**
+   * Generates a URL slug for a table of contents item by combining the base slug with the item's topic href.
+   * @param item - The table of contents item containing topic href information
+   * @returns A string representing the complete URL slug. If the item has no topic href, returns the base slug
+   */
   const generateSlug = (item: TocItem) => {
-    //remove index.md, index.yaml, index.yaml from url path
-    return item.topicHref ? `${slug}/${item.topicHref.replace(/\/index/g, "").replace(/\.(md|yml|yaml)$/g, "")}` : slug;
+    return (item.href?.endsWith('toc.yml') || item.href?.endsWith('toc.yaml')) ? `${slug}/${item.href.replace(/\/toc/g, "").replace(/\.(md|yml|yaml)$/g, "")}` : slug;
   };
 
   const handleSearchTermChange = (e: ChangeEvent<HTMLInputElement>) => {
