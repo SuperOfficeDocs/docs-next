@@ -1,5 +1,5 @@
 ﻿Param(
-  [string] $Environment = 'sod',
+  [string] $Environment = 'dev',
   [int] [Parameter(Mandatory = $true)]$DotNetVersion,
   [switch] $ValidateOnly
 )

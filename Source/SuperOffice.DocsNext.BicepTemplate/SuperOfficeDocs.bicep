@@ -1,6 +1,6 @@
 ﻿param location string = resourceGroup().location
 @allowed([
-  'sod'
+  'dev'
   'stage'
   'prod'
 ])

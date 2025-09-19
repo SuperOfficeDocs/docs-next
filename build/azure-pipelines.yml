@@ -18,14 +18,6 @@ resources:
     - repository: self
       type: git
       ref: main
-    # - repository: contributionRepo
-    #   type: github
-    #   name: SuperOfficeDocs/contribution
-    #   ref: main   # always pull main, adjust if needed
-    # - repository: superofficeDocsRepo
-    #   type: github
-    #   name: SuperOfficeDocs/superoffice-docs
-    #   ref: main
 
 stages:
   - stage: Build
@@ -35,7 +27,7 @@ stages:
         timeoutInMinutes: "120"
         displayName: "Build .NET + Astro frontend"
         pool:
-          name: Default # Uses Agent Pool named 'Default'
+          name: Default
           demands:
             # - agent.os -equals Linux
             - Agent.ComputerName -equals tfs-build-23
@@ -79,7 +71,7 @@ stages:
 
   - template: deploy-env.template.yml
     parameters:
-      environment: "sod"
+      environment: "dev"
       dependsOn: ["Build"]
       azureResourceManagerConnection: "online-docs-dev"
       isEnabled: "or(
