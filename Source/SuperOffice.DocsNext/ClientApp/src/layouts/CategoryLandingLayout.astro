@@ -31,9 +31,41 @@ const isPicture = (name : string) : boolean => {
 }
 
 const getRelativeImgPath = (path:string) :string => {
-  const imgUrlPath = "../../external-content/superoffice-docs/common/icons/";
+  const imgUrlPath = "../assets/common/icons/";
   return imgUrlPath + path.split("/").pop();
 ;}
+
+/**
+ * Imports all image files (png, jpg, svg) from the icons directory with eager loading.
+ * 
+ * @constant {Record<string, ImageMetadata>} imagesEager
+ * @property {string} src - The source path of the image
+ * @property {number} width - The width of the image in pixels
+ * @property {number} height - The height of the image in pixels
+ * @property {string} format - The file format of the image
+ * 
+ * Uses Vite's import.meta.glob for static asset handling with eager loading enabled
+ * to immediately execute the imports during the build time rather than dynamically.
+ */
+const imagesEager = import.meta.glob(
+  '/src/assets/common/icons/*.{png,jpg,svg}',
+  { eager: true, import: 'default' }
+) as Record<string, { src: string; width: number; height: number; format: string }>;
+
+/**
+ * Creates a mapping of image filenames to their corresponding URLs.
+ * 
+ * @param {Object} imagesEager - Object containing full file paths and URLs of images
+ * @returns {Object} A new object where keys are filenames (without path) and values are URLs
+ * 
+ * Example:
+ * Input: { '/path/to/image.jpg': 'http://example.com/image.jpg' }
+ * Output: { 'image.jpg': 'http://example.com/image.jpg' }
+ */
+// 2) Build map filename -> url
+const imgMap = Object.fromEntries(
+  Object.entries(imagesEager).map(([fullPath, url]) => [fullPath.split('/').pop()!, url])
+);
 ---
 
 <Base metadata={metadata} lang={lang}>
@@ -60,13 +92,15 @@ const getRelativeImgPath = (path:string) :string => {
     >
       {
         data.highlightedContent.items.map((item) => {
+          const fileName = item.itemType?.split('/').pop();
+          const src = fileName ? imgMap[fileName].src : undefined;
           return (
             <div>
               <div class="h-[130px] border rounded-md border-gray-300 p-1 hover:border-black">
                 <a href={resolveRelativeFilePath(currentPath,item.url)}>
                   <div class="flex flex-row border h-full border-gray-300 duration-300 ease-in-out transition-shadow hover:shadow-[0_0px_8px_rgba(0,0,0,0.50)] py-4">
                     <div class="w-12 h-full pt-4 ml-8">
-                      {item.itemType && (isPicture(item.itemType) ? <img src={`${getRelativeImgPath(item.itemType)}`} alt={item.text}/> : <IconSelection size={32} iconType={item.itemType} color="#0c5d58" />)}
+                      {item.itemType && (isPicture(item.itemType) ? <img src={src} alt={item.text}/> : <IconSelection size={32} iconType={item.itemType} color="#0c5d58" />)}
                     </div>
                     <div class="w-full px-3 flex flex-col justify-center">
                       <p class="uppercase mb-4 font-medium text-sm ">
