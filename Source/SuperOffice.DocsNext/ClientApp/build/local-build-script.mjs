@@ -1,3 +1,35 @@
+/**
+ * Local build script for split builds
+ * 
+ * This script performs a two-phase build process and merges the results:
+ * 1. Builds with API_ONLY=true
+ * 2. Builds with API_ONLY=false
+ * 3. Merges both builds
+ * 4. Indexes the result with Pagefind
+ * 
+ * @description
+ * To use this script for split builds:
+ * 1. Set up your content collections to handle API_ONLY environment variable
+ * 2. Configure other files to respond to API_ONLY flag appropriately
+ * 3. Run this script instead of regular astro build
+ * 
+ * @example
+ * // In your content collections:
+ * const items = API_ONLY === 'true' 
+ *   ? apiOnlyContent
+ *   : fullContent;
+ * 
+ * @note
+ * - Cleans up temporary build directories (.distA and .distB)
+ * - Final output will be in dist/ directory
+ * - Automatically runs Pagefind indexing on final build
+ * 
+ * @warning
+ * Currently not actively used in the codebase.
+ * Ensure proper setup before running split builds.
+ */
+
+
 import { execSync } from "child_process";
 import { cpSync, rmSync, existsSync } from "fs";
 import path from "path";

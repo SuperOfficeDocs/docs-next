@@ -1,5 +1,17 @@
-// detect-duplicate-frontmatter.js
-// Usage: node detect-duplicate-frontmatter.js
+/**
+ * Duplicate Frontmatter Detection Tool
+ * 
+ * This script analyzes Markdown files for duplicate frontmatter properties
+ * and generates a report of any duplicates found.
+ * 
+ * Usage:
+ *   node detect-duplicate-frontmatter.js
+ * 
+ * Prerequisites:
+ *   - Node.js installed
+ *   - Run from the script's directory
+ * 
+ */
 
 import fs from "fs";
 import path from "path";
