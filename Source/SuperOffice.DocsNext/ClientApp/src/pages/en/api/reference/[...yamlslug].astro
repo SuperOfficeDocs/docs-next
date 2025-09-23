@@ -3,7 +3,7 @@ import { readFile } from "fs/promises";
 import { glob } from "glob";
 import path from "path";
 import yaml from "js-yaml";
-import { getTocByPath } from "@utils/tocUtils";
+import { loadAPITocData } from "@utils/tocUtils";
 import { getYamlReferenceSlug } from "@utils/slugUtils";
 import YamlLayoutPage from "@layouts/YamlLayoutPage.astro";
 import type { TocData } from "~/types/TableOfContentTypes";
@@ -37,18 +37,6 @@ export async function getStaticPaths() {
         id: getYamlReferenceSlug(filePath, collection),
         collection,
       };
-    };
-  }
-
-  // Lazy loader for TOC
-  function loadTocData(apiPath: string) {
-    return async () => {
-      try {
-        return await getTocByPath(apiPath);
-      } catch (error) {
-        console.warn(`Failed to load TOC for ${apiPath}`, error);
-        return { items: [] } as TocData;
-      }
     };
   }
 
@@ -86,14 +74,14 @@ export async function getStaticPaths() {
       );
 
       const apiType = getApiType(match ? match[1] : "unknown");
-      const cleanPath = normalizedPath
+      const slug = normalizedPath
         .replace("superoffice-docs/docs/en/api/reference", "")
         .replace(/\.(yml|yaml)$/, "");
-      const slug = cleanPath;
+
       const tocCollectionPath = `superoffice-docs/docs/en/api/reference/${apiType}`;
 
       if (!tocLoaderCache.has(apiType)) {
-        tocLoaderCache.set(apiType, loadTocData(tocCollectionPath));
+        tocLoaderCache.set(apiType, loadAPITocData(tocCollectionPath));
       }
 
       return {
