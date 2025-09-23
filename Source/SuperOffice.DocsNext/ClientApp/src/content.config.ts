@@ -3,15 +3,15 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema, YamlManagedReferenceSchema } from "~/content.schema"
 
-// apiOnly variable is used in the split build to isolate docs/en/api folder content
-const apiOnly = process.env.API_ONLY === 'true';
+// partialBuild variable is used to partially build the content for development purposes.
+const partialBuild = process.env.PARTIAL_BUILD === 'true';
 
 const DOCS_BASE = "external-content/superoffice-docs/docs";
 const API_BASE = `${DOCS_BASE}/en/api`;
 
 const enDocs = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
+    pattern: partialBuild ? [] : [
       "**/*.md",
       "!index.md",
       "!**/includes/**",
@@ -25,7 +25,7 @@ const enDocs = defineCollection({
 
 const apiDocs = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
+    pattern: partialBuild ? [] : [
       "**/*.md",
       "!**/includes/**",
       "!tutorials/minimal-csharp-app",   //Temporary excluded due to corrupted images
@@ -45,10 +45,10 @@ const apiDocs = defineCollection({
 
 const CRMScript = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [
+    pattern: partialBuild ? [] : [
       "**/!(*toc).yml",
       "!**/includes/**",
-    ] : [],
+    ],
     base: `${DOCS_BASE}/en/automation/crmscript/reference`,
   }),
   schema: YamlManagedReferenceSchema,
@@ -56,7 +56,7 @@ const CRMScript = defineCollection({
 
 const NSScriptingRef = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
+    pattern: partialBuild ? [] : [
       "**/*.md",
       "!**/includes/**",],
     base: `${DOCS_BASE}/en/automation/netserver-scripting/reference`,
@@ -64,47 +64,13 @@ const NSScriptingRef = defineCollection({
   schema: DocsSchema,
 });
 
-// const WebAPI = defineCollection({
-//   loader: glob({
-//     pattern: false ? ["**/!(*toc).yml"] : [],
-//     base: `${API_BASE}/reference/webapi`
-//   }),
-// });
-
-// const Web = defineCollection({
-//   loader: glob({
-//     pattern: apiOnly ? [
-//       "*.yml",
-//     ] : [],
-//     base: `${API_BASE}/reference/web`
-//   }),
-// });
-
-// const NetserverCore = defineCollection({
-//   loader: glob({
-//     pattern: apiOnly ? [
-//       "*.yml",
-//     ] : [],
-//     base: `${API_BASE}/reference/netserver/core`
-//   }),
-// });
-
-// const NetserverServices = defineCollection({
-//   loader: glob({
-//     pattern: apiOnly ? [
-//       "*.yml",
-//     ] : [],
-//     base: `${API_BASE}/reference/netserver/services`
-//   }),
-// });
-
 /**
  * TRANSLATIONS
  */
 
 const daDocs = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
+    pattern: partialBuild ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -115,7 +81,7 @@ const daDocs = defineCollection({
 
 const deDocs = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
+    pattern: partialBuild ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -126,7 +92,7 @@ const deDocs = defineCollection({
 
 const nlDocs = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
+    pattern: partialBuild ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -137,7 +103,7 @@ const nlDocs = defineCollection({
 
 const noDocs = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
+    pattern: partialBuild ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -148,7 +114,7 @@ const noDocs = defineCollection({
 
 const svDocs = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
+    pattern: partialBuild ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -163,7 +129,7 @@ const svDocs = defineCollection({
 
 const contribution = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
+    pattern: partialBuild ? [] : [
       "**/*.md",
       "!**/includes/**",
       "!CODE_OF_CONDUCT.md",
@@ -175,7 +141,7 @@ const contribution = defineCollection({
 
 const releaseNotes = defineCollection({
   loader: glob({
-    pattern: apiOnly ? [] : [
+    pattern: partialBuild ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -220,10 +186,6 @@ export const collections = {
   "api-docs": apiDocs,
   "crmscript": CRMScript,
   "nsscripting": NSScriptingRef,
-  // "netserver-core": NetserverCore,
-  // "netserver-services": NetserverServices,
-  // webapi: WebAPI,
-  // web: Web,
   contribute: contribution,
   "release-notes": releaseNotes,
   cats: landingPages,
