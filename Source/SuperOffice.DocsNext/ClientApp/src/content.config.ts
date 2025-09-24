@@ -23,6 +23,17 @@ const enDocs = defineCollection({
   schema: DocsSchema,
 });
 
+const integrationDocs = defineCollection({
+  loader: glob({
+    pattern: partialBuild ? [] : [
+      "**/*.md",
+      "!**/includes/**",
+    ],
+    base: "external-content/superoffice-docs/integrations"
+  }),
+  schema: DocsSchema,
+});
+
 const apiDocs = defineCollection({
   loader: glob({
     pattern: partialBuild ? [] : [
@@ -155,6 +166,7 @@ const tocFiles = defineCollection({
     pattern: [
       "contribution/**/toc.yml",
       "superoffice-docs/docs/**/toc.yml",
+      "superoffice-docs/integrations/**/toc.yml",
       "superoffice-docs/release-notes/**/toc.yml",
     ],
     base: "./external-content",
@@ -166,6 +178,7 @@ const landingPages = defineCollection({
   loader: glob({
     pattern: [
       "contribution/**/*.yml",
+      "superoffice-docs/integrations/*.yml",
       "superoffice-docs/docs/**/*.yml",
       "!**/toc.yml",
       "!**/reference/**",   // Because CRMScript.Event.Trigger.yml isn't a valid landing page
@@ -186,6 +199,7 @@ export const collections = {
   "api-docs": apiDocs,
   "crmscript": CRMScript,
   "nsscripting": NSScriptingRef,
+  "integration-docs": integrationDocs,
   contribute: contribution,
   "release-notes": releaseNotes,
   cats: landingPages,

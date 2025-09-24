@@ -1,6 +1,3 @@
-const base = import.meta.env.BASE_URL;
-
-
 export const headerData = {
   links: [
     {
@@ -8,41 +5,8 @@ export const headerData = {
       href: "en/learn"
     },
     {
-      text: 'Areas',
-      links: [
-        {
-          text: 'Company',
-          href: 'en/company',
-        },
-        {
-          text: 'Contact',
-          href: 'en/contact',
-        },
-        {
-          text: 'Diary',
-          href: 'en/diary',
-        },
-        {
-          text: 'Document',
-          href: 'en/document',
-        },
-        {
-          text: 'Email',
-          href: 'en/email',
-        },
-        {
-          text: 'Project',
-          href: 'en/project',
-        },
-        {
-          text: 'Request',
-          href: 'en/request',
-        },
-        {
-          text: 'Sale',
-          href: 'en/sale',
-        },
-      ],
+      text: 'Integrations',
+      href: "integrations"
     },
     {
       text: 'CRM Online',
