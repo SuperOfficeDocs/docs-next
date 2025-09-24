@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "dev:partial": "powershell -Command \"$env:PARTIAL_BUILD='true'; astro dev\"",
     "start": "astro dev",
     "build": "astro check && astro build",
     "build:partial": "powershell -Command \"$env:PARTIAL_BUILD='true'; astro check; astro build\"",

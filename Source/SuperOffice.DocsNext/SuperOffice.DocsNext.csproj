@@ -25,11 +25,11 @@
 
   <!-- Build the Astro app and copy to wwwroot before publish -->
   <Target Name="BuildAndCopyClientApp" BeforeTargets="PrepareForPublish">
-    <Message Text="Building ClientApp (npm ci &amp;&amp; npm run build:local)..." Importance="high" />
+    <Message Text="Building ClientApp (npm ci &amp;&amp; npm run build)..." Importance="high" />
 
     <!-- Build frontend -->
     <Exec WorkingDirectory="$(ClientAppDir)" Command="npm ci" />
-    <Exec WorkingDirectory="$(ClientAppDir)" Command="npm run build:local" />
+    <Exec WorkingDirectory="$(ClientAppDir)" Command="npm run build" />
 
     <!-- Copy frontend build to wwwroot -->
     <ItemGroup>
