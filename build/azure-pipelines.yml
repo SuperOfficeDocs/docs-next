@@ -1,0 +1,94 @@
+trigger:
+  branches:
+    include:
+      - main
+      - release
+
+pr:
+  branches:
+    include:
+      - main
+
+variables:
+- name: DOTNET_VERSION
+  value: '8'
+
+resources:
+  repositories:
+    - repository: self
+      type: git
+      ref: main
+
+stages:
+  - stage: Build
+    displayName: "Build and Package"
+    jobs:
+      - job: Build
+        timeoutInMinutes: "120"
+        displayName: "Build .NET + Astro frontend"
+        pool:
+          name: Default
+          demands:
+            # - agent.os -equals Linux
+            - Agent.ComputerName -equals tfs-build-23
+        steps:
+          # Checkout your main repo
+          - checkout: self
+
+          # Checkout external repos
+          - script: |
+              git clone https://github.com/SuperOfficeDocs/contribution.git Source/SuperOffice.DocsNext/ClientApp/external-content/contribution
+              git clone https://github.com/SuperOfficeDocs/superoffice-docs.git Source/SuperOffice.DocsNext/ClientApp/external-content/superoffice-docs
+            displayName: "Clone external GitHub repos"
+
+          # Install .NET SDK
+          - task: UseDotNet@2
+            inputs:
+              version: '$(DOTNET_VERSION).0.x'
+
+          # Install Node.js
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "22.x"
+
+          # Build & publish the .NET project (includes front-end build if wired in MSBuild targets)
+          - script: |
+              cd Source/SuperOffice.DocsNext
+              dotnet publish -c Release -o $(Build.ArtifactStagingDirectory)/out
+            displayName: "Publish .NET & Astro project"
+
+          # Zip the published output
+          - task: ArchiveFiles@2
+            inputs:
+              rootFolderOrFile: "$(Build.ArtifactStagingDirectory)/out"
+              includeRootFolder: false
+              archiveFile: "$(Build.ArtifactStagingDirectory)/app.zip"
+              replaceExistingArchive: true
+
+          # Publish the zip as a pipeline artifact
+          - publish: $(Build.ArtifactStagingDirectory)/app.zip
+            artifact: docs-next-artifact
+
+  - template: deploy-env.template.yml
+    parameters:
+      environment: "dev"
+      dependsOn: ["Build"]
+      azureResourceManagerConnection: "online-docs-dev"
+      isEnabled: "or(
+                    eq(variables['Build.SourceBranch'], 'refs/heads/main'),
+                    eq(variables['Build.Reason'], 'Manual')
+                  )"
+
+  - template: deploy-env.template.yml
+    parameters:
+      environment: "stage"
+      dependsOn: ["Build"]
+      azureResourceManagerConnection: "online-docs-stage"
+      isEnabled: "eq(variables['Build.SourceBranch'], 'refs/heads/release')"
+
+  - template: deploy-env.template.yml
+    parameters:
+      environment: "prod"
+      dependsOn: ['Build','stage']
+      azureResourceManagerConnection: "online-docs-prod"
+      isEnabled: "eq(variables['Build.SourceBranch'], 'refs/heads/release')"

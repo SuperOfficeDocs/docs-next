@@ -4,27 +4,29 @@
 # build output
 out
 
-ClientApp/dist/
+Source/SuperOffice.DocsNext/ClientApp/dist/
 
-ClientApp/.distA/
-ClientApp/.distB/
+Source/SuperOffice.DocsNext/ClientApp/.distA/
+Source/SuperOffice.DocsNext/ClientApp/.distB/
 
 
 # generated types
-ClientApp/.astro/
+Source/SuperOffice.DocsNext/ClientApp/.astro/
 
 # dependencies
-ClientApp/node_modules/
+Source/SuperOffice.DocsNext/ClientApp/node_modules/
 
 # Build Log
-ClientApp/build.log
+Source/SuperOffice.DocsNext/ClientApp/build.log
 
 
 # .NET
-Server/bin/
-Server/obj/
-Server/wwwroot/
-Server/publish/
+Source/SuperOffice.DocsNext/bin/
+Source/SuperOffice.DocsNext/obj/
+Source/SuperOffice.DocsNext.BicepTemplate/obj/
+Source/SuperOffice.DocsNext.BicepTemplate/bin/
+Source/SuperOffice.DocsNext/wwwroot/
+Source/SuperOffice.DocsNext/publish/
 
 
 # logs
@@ -35,8 +37,8 @@ pnpm-debug.log*
 
 
 # environment variables
-ClientApp/.env
-ClientApp/.env.production
+Source/SuperOffice.DocsNext/ClientApp/.env
+Source/SuperOffice.DocsNext/ClientApp/.env.production
 
 # macOS-specific files
 .DS_Store
@@ -48,12 +50,12 @@ ClientApp/.env.production
 .vscode/settings.json
 
 # Playwright
-ClientApp/e2e-tests/test-results/
-ClientApp/e2e-tests/playwright-report/
-ClientApp/e2e-tests/blob-report/
-ClientApp/e2e-tests/playwright/.cache/
+Source/SuperOffice.DocsNext/ClientApp/e2e-tests/test-results/
+Source/SuperOffice.DocsNext/ClientApp/e2e-tests/playwright-report/
+Source/SuperOffice.DocsNext/ClientApp/e2e-tests/blob-report/
+Source/SuperOffice.DocsNext/ClientApp/e2e-tests/playwright/.cache/
 
 # External content (other GitHub repos)
 
-ClientApp/external-content/
-ClientApp/public/downloads/
+Source/SuperOffice.DocsNext/ClientApp/external-content/
+Source/SuperOffice.DocsNext/ClientApp/public/downloads/

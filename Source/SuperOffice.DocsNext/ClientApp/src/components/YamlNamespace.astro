@@ -1,0 +1,42 @@
+---
+import type { namespaceClassifiedDataProps } from "../types/YamlManagedReferencesLayoutTypes";
+import { conversionList } from "@layouts/YamlLayoutPage.astro";
+type Props = {
+  namespaceData: namespaceClassifiedDataProps;
+};
+
+const { namespaceData } = Astro.props;
+import { transformXref } from "../utils/transformXref";
+
+
+---
+
+<div>
+  {
+    Object.entries(namespaceData).map(([typeName, items]) => (
+      <div>
+        <h2
+          id={conversionList[typeName as keyof typeof conversionList]}
+          class="text-2xl mb-5"
+        >
+          {conversionList[typeName as keyof typeof conversionList]}
+        </h2>
+        {items.map((item) => {
+          return (
+            <>
+              <a
+                class="font-bold w-full block text-orange-700 text-lg no-underline hover:underline"
+                href={`${item.uid}`}
+              >
+                {item.id}
+              </a>
+              {item.summary && (
+                <p class="mt-1 md:ml-4 not-prose mb-5" set:html={transformXref(item.summary)} />
+              )}
+            </>
+          );
+        })}
+      </div>
+    ))
+  }
+</div>
