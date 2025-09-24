@@ -5,6 +5,7 @@
  * and generates a report of any duplicates found.
  * 
  * Usage:
+ *   go to ClientApp/build directory
  *   node detect-duplicate-frontmatter.js
  * 
  * Prerequisites:
@@ -21,7 +22,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const contentDir = path.resolve("external-content/superoffice-docs/docs");
+const contentDir = path.resolve("../external-content/superoffice-docs");
 const outputFile = path.resolve(__dirname, "duplicate-frontmatter.txt");
 const extensions = new Set([".md"]); // add ".mdx" if needed
 
@@ -72,7 +73,6 @@ function findTopLevelDuplicateKeys(yamlText) {
 const files = fs.existsSync(contentDir) ? walk(contentDir) : [];
 /** @type {{file:string, duplicates:string[]}[]} */
 const problemFiles = [];
-
 for (const file of files) {
   const raw = fs.readFileSync(file, "utf8");
   const fm = extractFrontmatter(raw);

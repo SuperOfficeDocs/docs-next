@@ -26,21 +26,35 @@ This repository contains two main projects:
 #### Backend
 
 ```bash
-cd Server
+cd Source/SuperOffice.DocsNext
 dotnet restore
 ```
 
 Frontend
 ```bash
-cd ClientApp
+cd Source/SuperOffice.DocsNext/ClientApp
 npm install
 ```
 
-### 3. Run Development Servers
+### 3. Clone external repos
+
+You can either 
+1. Manually clone or copy files of `SuperOfficeDocs/superoffice-docs` and `SuperOfficeDocs/contribution` repos into `ClientApp/src/external-content`
+
+2. Use following script to clone or update the required external GitHub repositories into the `ClientApp/src/external-content/` directory. 
+If a repository folder already exists, script will fetch and reset it to the latest commit on the `main` branch.
+
+    ```bash
+    cd Source/SuperOffice.DocsNext/ClientApp/build
+    node setup-external-repos.js
+    ```
+
+
+### 4. Run Development Servers
 
 #### Backend (with API and proxy to frontend)
 
-From docs-next/Server:
+From docs-next/Source/SuperOffice.DocsNext:
 ```bash
 dotnet run
 ```
@@ -49,7 +63,7 @@ By default API runs at: http://localhost:5215/api. Any non-API request is proxie
 
 #### Frontend (Astro dev server)
 
-From docs-next/ClientApp:
+From docs-next/Source/SuperOffice.DocsNext/ClientApp:
 
 ```bash
 npm run dev
@@ -61,7 +75,15 @@ By default Frontend dev server runs at: http://localhost:4321. The backend proxi
 
 Any other path → served by Astro dev server.
 
-### 4. Run Production Build
+##### Reduce content during development (dev:partial)
+
+To manage the content during development, npm command to run dev server with reduced content was introduced. This is useful when you only need to run the development server without the content from superoffice-docs. It uses a pre-defined enviornment variable (PARTIAL_BUILD) to disable content collections from rendering.
+
+```bash
+npm run dev:partial
+```
+
+### 5. Run Production Build
 
 1. Build Backend (includes frontend)
 
@@ -80,6 +102,14 @@ dotnet docs-next.dll
 
 API: https://localhost:5001/api/...
 Frontend: served from wwwroot
+
+#### Partial frontend build (build:partial)
+
+To reduce build time when testing a build, npm command to do partial builds was introduced. This is useful when you only need to build the frontend without the content from superoffice-docs. It uses a pre-defined enviornment variable (PARTIAL_BUILD) to disable content collections from building.
+
+```bash
+npm run build:partial
+```
 
 ### Notes
 In development, run both servers:
