@@ -4,14 +4,11 @@ import icon from "astro-icon";
 import remarkDirective from "remark-directive";
 import codeImport from "remark-code-import";
 import mdx from "@astrojs/mdx";
-// import preact from "@astrojs/preact";
 import robots from "astro-robots";
 import sitemap from "@astrojs/sitemap";
 import pagefind from "astro-pagefind";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
-//import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-// import rehypeSanitize from "rehype-sanitize";
 import remarkIncludeDirective from "./src/plugins/AddIncludesToMarkdown.js";
 import remarkRestyleDirective from "./src/plugins/RestyleDirectives.js";
 import react from "@astrojs/react";
@@ -19,13 +16,10 @@ import yaml from '@rollup/plugin-yaml';
 import redirectFrom from "astro-redirect-from";
 import { getRedirectFromSlug } from './src/utils/slugUtils.ts';
 
-const apiOnly = process.env.API_ONLY === 'true';
 
 export default defineConfig({
-  // Conditionally exclude static landing page
   pages: [
-    'src/pages/**/*',
-    ...(apiOnly ? ['!src/pages/contribute/index.astro'] : []),
+    'src/pages/**/*'
   ],
 
   markdown: {
@@ -39,7 +33,6 @@ export default defineConfig({
         },
       ],
     ],
-    // rehypeSanitize, rehypeSlug
     shikiConfig: {
       theme: "houston",
       wrap: true,
@@ -96,13 +89,14 @@ export default defineConfig({
       },
     }),
     mdx(),
-    // pagefind(),
+    pagefind(),
     react(),
     // redirectFrom({
     //   contentDir: './external-content',
     //   getSlug: getRedirectFromSlug, // Function to get the slug for redirect_from
     // }),
-    robots(), sitemap(),
+    robots(),
+    sitemap(),
   ],
 
   image: {

@@ -117,3 +117,24 @@ export async function getTocByPath(path: string) {
   );
   return getTableOfContentsFromCollection(tocEntries, path);
 }
+
+
+/**
+ * Creates an async function that loads table of contents (TOC) data from a specified API path.
+ * 
+ * @param apiPath - The API path to fetch TOC data from
+ * @returns An async function that when called:
+ *          - Returns the TOC data if successful
+ *          - Returns an empty TOC data structure ({items: []}) if the fetch fails
+ * @throws Catches and logs any errors during TOC data fetching
+ */
+ export function loadAPITocData(apiPath: string) {
+    return async () => {
+      try {
+        return await getTocByPath(apiPath);
+      } catch (error) {
+        console.warn(`Failed to load TOC for ${apiPath}`, error);
+        return { items: [] } as TocData;
+      }
+    };
+  }
