@@ -8,9 +8,37 @@ const contentRepo = "superoffice-docs"; // primary content repository
  * For example: "external-content/superoffice-docs/docs/en/project/learn/index.md" -> "/project/learn"
  */
 export function stripFilePathAndExtension(filePath: string, collection: string): string {
-  const base = `${contentDir}/`
-  return filePath.replace(base, "").replace(`${collection}/`, "").replace(/\/index/g, "").replace(/\.(md|yml|yaml)$/g, "");;
+  // Assumes `contentDir` is a global string like "external-content"
+  const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  // normalize backslashes -> forward slashes
+  let p = filePath.replace(/\\/g, "/");
+
+  // normalize base and collection (remove leading/trailing slashes)
+  const baseDir = contentDir.replace(/\\/g, "/").replace(/^\/+|\/+$/g, "");
+  const col = collection.replace(/\\/g, "/").replace(/^\/+|\/+$/g, "");
+
+  // remove leading baseDir/
+  if (baseDir) {
+    p = p.replace(new RegExp(`^${escapeRegExp(baseDir)}\/+`), "");
+  }
+
+  // remove leading collection/
+  if (col) {
+    p = p.replace(new RegExp(`^${escapeRegExp(col)}\/+`), "");
+  }
+
+  // remove trailing /index.ext (subfolder index) OR leading index.ext (collection root)
+  p = p.replace(/\/index\.(md|ya?ml)$/i, "");
+  p = p.replace(/^index\.(md|ya?ml)$/i, "");
+
+  // if still has an extension, strip it
+  p = p.replace(/\.(md|ya?ml)$/i, "");
+
+  // ensure leading slash; if empty -> root "/"
+  return p ? `/${p}` : "/";
 }
+
 
 /**
  * Removes a known file extension (.md, .mdx, .yml, .yaml, .html) from a path.
