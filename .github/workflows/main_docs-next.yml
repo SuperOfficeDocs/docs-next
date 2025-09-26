@@ -1,11 +1,5 @@
 name: Build and deploy ASP.Net Core app to Azure Web App - docs-next
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
