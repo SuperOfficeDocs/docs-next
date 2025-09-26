@@ -1,0 +1,19 @@
+---
+import { getEntry } from "astro:content";
+import { render } from "astro:content";
+const aboutEntry = await getEntry("contribute", "about");
+const tocData = await getTocByPath('contribution');
+import { getTocByPath } from "@utils/tocUtils";
+import ContentLayout from "@layouts/ContentLayout.astro";
+
+const { Content, headings } = aboutEntry ? await render(aboutEntry) : { Content: undefined, headings: [] };
+---
+
+<ContentLayout
+  headings={headings}
+  entry={aboutEntry}
+  toc={tocData}
+  TOCBasePath="contribute"
+>
+  {Content && <Content />}
+</ContentLayout
