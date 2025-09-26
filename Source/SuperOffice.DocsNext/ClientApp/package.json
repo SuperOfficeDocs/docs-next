@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "dev:partial": "powershell -Command \"$env:PARTIAL_BUILD='true'; astro dev\"",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=16384 astro check && astro build",
     "build:partial": "powershell -Command \"$env:PARTIAL_BUILD='true'; astro check; astro build\"",
     "preview": "astro preview",
     "astro": "astro",
