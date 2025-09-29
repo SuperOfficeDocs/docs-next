@@ -51,6 +51,11 @@ stages:
             inputs:
               versionSpec: "22.x"
 
+          - script: |
+              export NODE_OPTIONS="--max-old-space-size=12288"
+               node -p "v8.getHeapStatistics().heap_size_limit / 1024 / 1024"
+            displayName: "Check Node heap limit with NODE_OPTIONS"
+
           # Build & publish the .NET project (includes front-end build if wired in MSBuild targets)
           - script: |
               cd Source/SuperOffice.DocsNext
