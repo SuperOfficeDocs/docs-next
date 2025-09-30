@@ -38,6 +38,7 @@
     "astro-redirect-from": "^1.4.0-beta.0",
     "astro-robots": "^2.0.1",
     "astro-social-share": "^2.0.2",
+    "axios": "^1.12.2",
     "dayjs": "^1.11.12",
     "github-slugger": "^2.0.0",
     "js-yaml": "^4.1.0",
