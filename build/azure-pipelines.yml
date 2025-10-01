@@ -29,8 +29,9 @@ stages:
         pool:
           name: Default
           demands:
-            # - agent.os -equals Linux
             - Agent.ComputerName -equals TFS-VMUX-33
+            - agent.os -equals Linux
+            - user -equals devopsbuild@Superoffice.no
         steps:
           # Checkout your main repo
           - checkout: self
