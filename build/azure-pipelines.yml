@@ -29,7 +29,6 @@ stages:
         pool:
           name: Default
           demands:
-            - Agent.ComputerName -equals TFS-VMUX-33
             - agent.os -equals Linux
             - user -equals devopsbuild@Superoffice.no
         steps:
