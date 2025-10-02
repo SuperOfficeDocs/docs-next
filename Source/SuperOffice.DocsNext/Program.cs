@@ -1,13 +1,82 @@
+﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.SpaServices;
+using Microsoft.Extensions.Options;
+using SuperOffice.DocsNext.Configuration;
+using SuperOffice.DocsNext.Services;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// Configuration
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables()
+    .AddCommandLine(args);
+
+
+// Controllers
 builder.Services.AddControllers();
+
+
+// Options pattern + validation
+builder.Services.Configure<AzureSearchOptions>(builder.Configuration.GetSection(AzureSearchOptions.SectionName));
+builder.Services.AddSingleton<IValidateOptions<AzureSearchOptions>, AzureSearchOptionsValidator>();
+
+
+
+// Dependency injection services
+builder.Services.AddSingleton<IAzureSearchService, AzureSearchService>();
+
+
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DocsOrigin", policy =>
+    {
+        policy.WithOrigins("https://docs.superoffice.com", "http://localhost:8080")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+
+// Logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 
 var app = builder.Build();
 
+
+// Middleware pipeline
+
+// Centralized exception handling
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        context.Response.ContentType = "application/json";
+
+        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+        var error = exceptionHandlerPathFeature?.Error;
+
+        var problemDetails = new
+        {
+            title = "An unexpected error occurred.",
+            status = 500,
+            detail = error?.Message,
+        };
+
+        await context.Response.WriteAsJsonAsync(problemDetails);
+    });
+});
+
 app.UseHttpsRedirection();
+app.UseCors("DocsOrigin");
 
 if (app.Environment.IsDevelopment())
 {
@@ -30,9 +99,9 @@ if (app.Environment.IsDevelopment())
 else
 {
     var rewriteOptions = new RewriteOptions()
-        // Redirect /something.html -> /something   (permanent redirect)
+        // Redirect /something.html -> /something (permanent redirect)
         .AddRedirect(@"^(.*)\.html$", "$1", statusCode: 301)
-        // Rewrite /something -> /something.html   (internal rewrite, no redirect)
+        // Rewrite /something -> /something.html (internal rewrite)
         .AddRewrite(@"^([^.]+)$", "$1.html", skipRemainingRules: true);
 
     app.UseWhen(
