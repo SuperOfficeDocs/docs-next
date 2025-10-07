@@ -9,11 +9,14 @@ import YamlLayoutPage from "@layouts/YamlLayoutPage.astro";
 import type { TocData } from "~/types/TableOfContentTypes";
 
 export async function getStaticPaths() {
- const partialBuild = process.env.PARTIAL_BUILD === 'true';
 
-  if (partialBuild) {
+  const apiOnly = process.env.API_ONLY === 'true';
+
+  if (!apiOnly) {
     return [];
   }
+
+
   const baseContentPath = "external-content";
 
   const apiCollections = [

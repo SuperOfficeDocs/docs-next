@@ -23,10 +23,6 @@
  * - Cleans up temporary build directories (.distA and .distB)
  * - Final output will be in dist/ directory
  * - Automatically runs Pagefind indexing on final build
- * 
- * @warning
- * Currently not actively used in the codebase.
- * Ensure proper setup before running split builds.
  */
 
 

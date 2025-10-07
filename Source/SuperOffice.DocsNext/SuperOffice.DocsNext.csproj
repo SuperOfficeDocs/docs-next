@@ -29,7 +29,7 @@
 
     <!-- Build frontend -->
     <Exec WorkingDirectory="$(ClientAppDir)" Command="npm ci" />
-    <Exec WorkingDirectory="$(ClientAppDir)" Command="npm run build" />
+    <Exec WorkingDirectory="$(ClientAppDir)" Command="npm run build:local" />
 
     <!-- Copy frontend build to wwwroot -->
     <ItemGroup>

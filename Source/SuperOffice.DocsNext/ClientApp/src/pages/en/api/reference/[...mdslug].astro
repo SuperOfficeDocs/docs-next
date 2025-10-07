@@ -9,9 +9,9 @@ import ContentLayout from "@layouts/ContentLayout.astro";
 import { renderMarkdownWithHeadingIds } from "@utils/contentUtils";
 
 export async function getStaticPaths() {
-  const partialBuild = process.env.PARTIAL_BUILD === 'true';
+  const apiOnly = process.env.API_ONLY === 'true';
 
-  if (partialBuild) {
+  if (!apiOnly) {
     return [];
   }
 

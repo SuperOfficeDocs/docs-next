@@ -6,8 +6,9 @@
     "dev": "astro dev",
     "dev:partial": "powershell -Command \"$env:PARTIAL_BUILD='true'; astro dev\"",
     "start": "astro dev",
-    "build": "cross-env NODE_OPTIONS=--max-old-space-size=16384 astro check && astro build",
-    "build:partial": "powershell -Command \"$env:PARTIAL_BUILD='true'; astro check; astro build\"",
+    "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=12288\" astro check && astro build",
+    "build:default": "astro check && astro build",
+    "build:local": "node build/local-build-script.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "test:e2e": "npm run test --workspace=e2e-tests"

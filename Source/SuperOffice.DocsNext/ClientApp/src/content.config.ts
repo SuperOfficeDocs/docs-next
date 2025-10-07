@@ -3,15 +3,15 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { DocsSchema, SimplifiedYamlSchema, TocYamlSchema, YamlManagedReferenceSchema } from "~/content.schema"
 
-// partialBuild variable is used to partially build the content for development purposes.
-const partialBuild = process.env.PARTIAL_BUILD === 'true';
+// apiOnly variable is used in the split build to isolate docs/en/api folder content
+const apiOnly = process.env.API_ONLY === 'true';
 
 const DOCS_BASE = "external-content/superoffice-docs/docs";
 const API_BASE = `${DOCS_BASE}/en/api`;
 
 const enDocs = defineCollection({
   loader: glob({
-    pattern: partialBuild ? [] : [
+    pattern: apiOnly ? [] : [
       "**/*.md",
       "!index.md",
       "!**/includes/**",
@@ -25,7 +25,7 @@ const enDocs = defineCollection({
 
 const integrationDocs = defineCollection({
   loader: glob({
-    pattern: partialBuild ? [] : [
+    pattern: !apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -36,7 +36,7 @@ const integrationDocs = defineCollection({
 
 const apiDocs = defineCollection({
   loader: glob({
-    pattern: partialBuild ? [] : [
+    pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
       "!tutorials/minimal-csharp-app",   //Temporary excluded due to corrupted images
@@ -56,7 +56,7 @@ const apiDocs = defineCollection({
 
 const CRMScript = defineCollection({
   loader: glob({
-    pattern: partialBuild ? [] : [
+    pattern: !apiOnly ? [] : [
       "**/!(*toc).yml",
       "!**/includes/**",
     ],
@@ -67,7 +67,7 @@ const CRMScript = defineCollection({
 
 const NSScriptingRef = defineCollection({
   loader: glob({
-    pattern: partialBuild ? [] : [
+    pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",],
     base: `${DOCS_BASE}/en/automation/netserver-scripting/reference`,
@@ -81,7 +81,7 @@ const NSScriptingRef = defineCollection({
 
 const daDocs = defineCollection({
   loader: glob({
-    pattern: partialBuild ? [] : [
+    pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -92,7 +92,7 @@ const daDocs = defineCollection({
 
 const deDocs = defineCollection({
   loader: glob({
-    pattern: partialBuild ? [] : [
+    pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -103,7 +103,7 @@ const deDocs = defineCollection({
 
 const nlDocs = defineCollection({
   loader: glob({
-    pattern: partialBuild ? [] : [
+    pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -114,7 +114,7 @@ const nlDocs = defineCollection({
 
 const noDocs = defineCollection({
   loader: glob({
-    pattern: partialBuild ? [] : [
+    pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -125,7 +125,7 @@ const noDocs = defineCollection({
 
 const svDocs = defineCollection({
   loader: glob({
-    pattern: partialBuild ? [] : [
+    pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],
@@ -140,7 +140,7 @@ const svDocs = defineCollection({
 
 const contribution = defineCollection({
   loader: glob({
-    pattern: partialBuild ? [] : [
+    pattern: apiOnly ? ["about/index.md",] : [
       "**/*.md",
       "!**/includes/**",
       "!CODE_OF_CONDUCT.md",
@@ -152,7 +152,7 @@ const contribution = defineCollection({
 
 const releaseNotes = defineCollection({
   loader: glob({
-    pattern: partialBuild ? [] : [
+    pattern: apiOnly ? [] : [
       "**/*.md",
       "!**/includes/**",
     ],

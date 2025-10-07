@@ -16,10 +16,13 @@ import yaml from '@rollup/plugin-yaml';
 import redirectFrom from "astro-redirect-from";
 import { getRedirectFromSlug } from './src/utils/slugUtils.ts';
 
+const apiOnly = process.env.API_ONLY === 'true';
 
 export default defineConfig({
+  // Conditionally exclude static landing page
   pages: [
-    'src/pages/**/*'
+    'src/pages/**/*',
+    ...(apiOnly ? ['!src/pages/contribute/index.astro'] : []),
   ],
 
   markdown: {
@@ -33,6 +36,7 @@ export default defineConfig({
         },
       ],
     ],
+    // rehypeSanitize, rehypeSlug
     shikiConfig: {
       theme: "houston",
       wrap: true,
@@ -95,8 +99,7 @@ export default defineConfig({
     //   contentDir: './external-content',
     //   getSlug: getRedirectFromSlug, // Function to get the slug for redirect_from
     // }),
-    robots(),
-    sitemap(),
+    robots(), sitemap(),
   ],
 
   image: {
