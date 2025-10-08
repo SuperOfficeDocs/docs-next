@@ -1,10 +1,17 @@
 ﻿Param(
   [string] $Environment = 'dev',
   [int] [Parameter(Mandatory = $true)]$DotNetVersion,
-  [switch] $ValidateOnly
+  [switch] $ValidateOnly,
+  [string] $SecretsJson
+
 )
 
 Write-Output '', 'Start Deploy-DocsNext'
+
+$secrets = @{}
+if ($SecretsJson) {
+  $secrets = $SecretsJson | ConvertFrom-Json
+}
 
 try {
   [Microsoft.Azure.Common.Authentication.AzureSession]::ClientFactory.AddUserAgent("VSAzureTools-$UI$($host.name)".replace(' ', '_'), '3.0.0')
@@ -34,8 +41,7 @@ if ($null -eq (Get-AzResourceGroup -Name $ResourceGroupName -Location $ResourceG
 
 if ($ValidateOnly) {
   $ErrorMessages = Format-ValidationOutput (Test-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
-      -TemplateFile $TemplateFile `
-      @OptionalParameters)
+      -TemplateFile $TemplateFile `)
   if ($ErrorMessages) {
     Write-Output '', 'Validation returned the following errors:', @($ErrorMessages), '', 'Template is invalid.'
     [Environment]::Exit(1)
@@ -57,5 +63,17 @@ if ($ErrorMessages) {
 }
 
 $WebAppName = $outputs.Outputs['webAppName'].value
+$KeyVaultName = $outputs.Outputs['keyVaultName'].value
+
+if ($secrets.Count -gt 0 -and $KeyVaultName) {
+  foreach ($secret in $secrets.PSObject.Properties) {
+    Write-Output "Adding secret '$($secret.Name)' to Key Vault '$KeyVaultName'"
+    Set-AzKeyVaultSecret -VaultName $KeyVaultName -Name $secret.Name -SecretValue (ConvertTo-SecureString $secret.Value -AsPlainText -Force) | Out-Null
+  }
+  Write-Output "Secrets added to Key Vault"
+}
+else {
+  Write-Output "No secrets provided or Key Vault not found in outputs"
+}
 
 Write-Host "##vso[task.setvariable variable=WebAppName;isOutput=true]$WebAppName"

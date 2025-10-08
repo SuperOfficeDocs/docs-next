@@ -21,15 +21,15 @@ stages:
       - deployment: DeployArmAndApps
         workspace:
           clean: all
-        # variables:
-        #   - group: ${{ format('Docs Deployment {0}', parameters.environment) }}
+        variables:
+          - group: ${{ format('docs-{0}', parameters.environment) }}
         environment: ${{ format('docs-{0}', parameters.environment) }}
         strategy:
           runOnce:
             deploy:
               steps:
                 - checkout: self
-                - download: none # By default deploy jobs download all artifacts. Stop this to avoid downloading of published code coverage artifact
+                - download: none
 
                 - task: DownloadPipelineArtifact@2
                   inputs:
@@ -51,6 +51,9 @@ stages:
                     ScriptArguments: >
                       -Environment ${{ parameters.environment }}
                       -DotNetVersion $(DOTNET_VERSION)
+                      -SecretsJson '{
+                                  "searchApiKey": "$(searchApiKey)",
+                                }'
                     azurePowerShellVersion: latestVersion
                     pwsh: true
 
