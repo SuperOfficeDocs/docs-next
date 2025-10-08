@@ -5,6 +5,8 @@ using Microsoft.Extensions.Options;
 using SuperOffice.DocsNext.Configuration;
 using SuperOffice.DocsNext.Services;
 using System.Net;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,14 @@ builder.Configuration
     .AddEnvironmentVariables()
     .AddCommandLine(args);
 
+var keyVaultUriString = builder.Configuration["KeyVaultUri"];
+if (string.IsNullOrEmpty(keyVaultUriString))
+{
+    throw new InvalidOperationException("KeyVaultUri is not configured in the application settings.");
+}
+
+var keyVaultUri = new Uri(keyVaultUriString);
+builder.Configuration.AddAzureKeyVault(keyVaultUri, new DefaultAzureCredential());
 
 // Controllers
 builder.Services.AddControllers();
