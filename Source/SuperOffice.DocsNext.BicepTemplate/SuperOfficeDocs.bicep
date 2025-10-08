@@ -7,9 +7,10 @@
 param environment string
 param dotNetVersion int
 param appHostingPlan string = 'B1'
+
 var webAppHostingPlanName = 'plan-superoffice-docs-${environment}'
 var webAppName = 'app-superoffice-docs-${environment}'
-
+var keyVaultName = 'kv-docs-${environment}'
 
 resource webAppHostingPlan 'Microsoft.Web/serverfarms@2024-11-01' = {
   name: webAppHostingPlanName
@@ -55,4 +56,31 @@ resource webAppSettings 'Microsoft.Web/sites/config@2024-11-01' = {
   }
 }
 
+resource keyVault 'Microsoft.KeyVault/vaults@2023-02-01' = {
+  name: keyVaultName
+  location: location
+  tags: {
+    displayName: 'KeyVault'
+  }
+  properties: {
+    tenantId: subscription().tenantId
+    enableRbacAuthorization: true
+    sku: {
+      name: 'standard'
+      family: 'A'
+    }
+    networkAcls: {
+      defaultAction: 'Allow'
+      bypass: 'AzureServices'
+    }
+  }
+}
+
+
+
+
+
+
+
 output webAppName string = webAppName
+output keyVaultName string = keyVaultName
