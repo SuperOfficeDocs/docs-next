@@ -117,4 +117,3 @@ resource keyVaultAccessPoliciesForApps 'Microsoft.KeyVault/vaults/accessPolicies
 
 
 output webAppName string = webAppName
-output keyVaultName string = keyVaultName
