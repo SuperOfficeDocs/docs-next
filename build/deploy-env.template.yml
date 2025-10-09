@@ -51,9 +51,7 @@ stages:
                     ScriptArguments: >
                       -Environment ${{ parameters.environment }}
                       -DotNetVersion $(DOTNET_VERSION)
-                      -SecretsJson '{
-                                  "searchApiKey": "$(searchApiKey)",
-                                }'
+                      -SearchApiKey $(SearchApiKey)
                     azurePowerShellVersion: latestVersion
                     pwsh: true
 

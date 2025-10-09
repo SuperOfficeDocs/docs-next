@@ -1,0 +1,9 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "docsDeveloperSid": {
+      "value": "ff3daf19-c7d8-4c6c-af7b-fcaac6101c05"
+    }
+  }
+}
