@@ -9,7 +9,7 @@ param dotNetVersion int
 param appHostingPlan string = 'B1'
 @secure()
 param searchApiKey string
-param docsDeveloperSid string
+param docsUserGroupSid string
 
 var webAppHostingPlanName = 'plan-superoffice-docs-${environment}'
 var webAppName = 'app-superoffice-docs-${environment}'
@@ -21,7 +21,7 @@ var keyVaultSecrets = [
   }
 ]
 var adGroupsWithKeyVaultAccessArray = [
-  docsDeveloperSid
+  docsUserGroupSid
 ]
 
 resource webAppHostingPlan 'Microsoft.Web/serverfarms@2024-11-01' = {
