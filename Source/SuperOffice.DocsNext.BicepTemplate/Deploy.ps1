@@ -60,17 +60,5 @@ if ($ErrorMessages) {
 }
 
 $WebAppName = $outputs.Outputs['webAppName'].value
-$KeyVaultName = $outputs.Outputs['keyVaultName'].value
-
-if ($secrets.Count -gt 0 -and $KeyVaultName) {
-  foreach ($secret in $secrets.PSObject.Properties) {
-    Write-Output "Adding secret '$($secret.Name)' to Key Vault '$KeyVaultName'"
-    Set-AzKeyVaultSecret -VaultName $KeyVaultName -Name $secret.Name -SecretValue (ConvertTo-SecureString $secret.Value -AsPlainText -Force) | Out-Null
-  }
-  Write-Output "Secrets added to Key Vault"
-}
-else {
-  Write-Output "No secrets provided or Key Vault not found in outputs"
-}
 
 Write-Host "##vso[task.setvariable variable=WebAppName;isOutput=true]$WebAppName"
