@@ -123,7 +123,7 @@ export default defineConfig({
     format: "preserve",
   },
   logLevel: process.env.CI ? 'error' : 'info',
-  site: "https://superofficedocs.github.io",
+  site: "https://app-superoffice-docs-dev.azurewebsites.net/",
   // base: "/",
   trailingSlash: "never",
 });
