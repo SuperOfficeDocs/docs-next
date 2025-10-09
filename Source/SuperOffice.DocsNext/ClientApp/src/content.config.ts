@@ -140,7 +140,7 @@ const svDocs = defineCollection({
 
 const contribution = defineCollection({
   loader: glob({
-    pattern: partialBuild ? [] : [
+    pattern: partialBuild ? ["about/index.md"] : [
       "**/*.md",
       "!**/includes/**",
       "!CODE_OF_CONDUCT.md",
