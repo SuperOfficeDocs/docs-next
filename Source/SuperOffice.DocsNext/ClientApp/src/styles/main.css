@@ -4,7 +4,6 @@
 @import "@phosphor-icons/web/regular";
 @import "./VideoEmbeddingStyles.css";
 @import "./IncludeDirectiveStyles.css";
-@import "./pagefind/customPagefindStyles.css";
 
 body {
   font-family: "Segoe UI", Tahoma, Helvetica, sans-serif;

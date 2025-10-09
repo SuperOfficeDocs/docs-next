@@ -158,12 +158,6 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install Pagefind
-        run: npx pagefind --version
-
-      - name: Index pages using Pagefind
-        run: npx pagefind --site final-dist
-
       - name: Check if the PR originates from source repo
         id: check_pr_source
         run: |

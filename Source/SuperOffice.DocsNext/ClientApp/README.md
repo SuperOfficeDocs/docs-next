@@ -96,11 +96,11 @@ To see what gets built in each split, check src/content.config.ts
 1. Preview the build: `npm run preview`
 
 Uses script build/local-build-script.mjs to build the site using 2 splits controlled with `process.env.API_ONLY`. 
-After building 2 splits seperately, output gets merged and pagefind indexing gets run on the final output.
+After building 2 splits seperately, output gets merged.
 
 ### Deployment build
 
-The GitHub deployment runs both builds and stitch the files together before re-running pagefind (search index). This is orchestrated in .github/workflows/deploy.yml
+The GitHub deployment runs both builds and stitch the files together. This is orchestrated in .github/workflows/deploy.yml
 
 ### Optionally check memory usage while building
 
