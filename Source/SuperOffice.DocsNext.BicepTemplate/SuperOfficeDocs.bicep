@@ -7,10 +7,22 @@
 param environment string
 param dotNetVersion int
 param appHostingPlan string = 'B1'
+@secure()
+param searchApiKey string
+param docsDeveloperSid string
 
 var webAppHostingPlanName = 'plan-superoffice-docs-${environment}'
 var webAppName = 'app-superoffice-docs-${environment}'
 var keyVaultName = 'kv-docs-${environment}'
+var keyVaultSecrets = [
+  {
+    name: 'AzureSearch--ApiKey'
+    value: searchApiKey
+  }
+]
+var adGroupsWithKeyVaultAccessArray = [
+  docsDeveloperSid
+]
 
 resource webAppHostingPlan 'Microsoft.Web/serverfarms@2024-11-01' = {
   name: webAppHostingPlanName
@@ -53,33 +65,55 @@ resource webAppSettings 'Microsoft.Web/sites/config@2024-11-01' = {
   properties: {
     WEBSITES_PORT: '8080'
     WEBSITE_RUN_FROM_PACKAGE: '1'
+    keyVaultName: keyVaultName
   }
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2023-02-01' = {
+var getListSecretsPermissions = {
+  secrets: [
+    'get'
+    'list'
+  ]
+}
+
+resource keyVault 'Microsoft.KeyVault/vaults@2024-11-01' = {
   name: keyVaultName
   location: location
-  tags: {
-    displayName: 'KeyVault'
-  }
   properties: {
     tenantId: subscription().tenantId
-    enableRbacAuthorization: true
     sku: {
       name: 'standard'
       family: 'A'
     }
-    networkAcls: {
-      defaultAction: 'Allow'
-      bypass: 'AzureServices'
-    }
+    accessPolicies: [for item in adGroupsWithKeyVaultAccessArray: {
+      tenantId: subscription().tenantId
+      objectId: item
+      permissions: getListSecretsPermissions
+    }]
   }
 }
 
+resource keyVaultSecretResources 'Microsoft.KeyVault/vaults/secrets@2024-11-01' = [for keyVaultSecret in keyVaultSecrets: {
+  parent: keyVault
+  name: keyVaultSecret.name
+  properties: {
+    value: keyVaultSecret.value
+  }
+}]
 
-
-
-
+resource keyVaultAccessPoliciesForApps 'Microsoft.KeyVault/vaults/accessPolicies@2024-11-01' = {
+  parent: keyVault
+  name: 'add'
+  properties: {
+    accessPolicies: [
+      {
+        objectId: webApp.identity.principalId
+        permissions: getListSecretsPermissions
+        tenantId: subscription().tenantId
+      }
+    ]
+  }
+}
 
 
 output webAppName string = webAppName

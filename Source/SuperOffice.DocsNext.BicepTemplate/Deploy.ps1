@@ -1,17 +1,11 @@
 ﻿Param(
   [string] $Environment = 'dev',
   [int] [Parameter(Mandatory = $true)]$DotNetVersion,
-  [switch] $ValidateOnly,
-  [string] $SecretsJson
-
+  [string] $SearchApiKey,
+  [switch] $ValidateOnly
 )
 
 Write-Output '', 'Start Deploy-DocsNext'
-
-$secrets = @{}
-if ($SecretsJson) {
-  $secrets = $SecretsJson | ConvertFrom-Json
-}
 
 try {
   [Microsoft.Azure.Common.Authentication.AzureSession]::ClientFactory.AddUserAgent("VSAzureTools-$UI$($host.name)".replace(' ', '_'), '3.0.0')
@@ -30,6 +24,7 @@ function Format-ValidationOutput {
 $ResourceGroupLocation = 'Norway East'
 $ResourceGroupName = "rg-SuperOfficeDocs-$($Environment)"
 $TemplateFile = 'SuperOfficeDocs.bicep'
+$TemplateParametersFile = "Docs.$($Environment).parameters.json"
 
 
 $TemplateFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateFile))
@@ -54,7 +49,9 @@ $outputs = New-AzResourceGroupDeployment -Name ((Get-ChildItem $TemplateFile).Ba
   -ResourceGroupName $ResourceGroupName `
   -TemplateFile $TemplateFile `
   -environment $Environment `
+  -TemplateParameterFile $TemplateParametersFile `
   -dotNetVersion $DotNetVersion `
+  -searchApiKey $SearchApiKey `
   -Force -Verbose `
   -ErrorVariable ErrorMessages
 if ($ErrorMessages) {
