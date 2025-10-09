@@ -6,7 +6,6 @@ import codeImport from "remark-code-import";
 import mdx from "@astrojs/mdx";
 import robots from "astro-robots";
 import sitemap from "@astrojs/sitemap";
-import pagefind from "astro-pagefind";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkIncludeDirective from "./src/plugins/AddIncludesToMarkdown.js";
@@ -89,7 +88,6 @@ export default defineConfig({
       },
     }),
     mdx(),
-    pagefind(),
     react(),
     // redirectFrom({
     //   contentDir: './external-content',
