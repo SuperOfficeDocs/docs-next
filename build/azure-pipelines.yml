@@ -39,7 +39,7 @@ stages:
           name: Default
           demands:
             # - agent.os -equals Linux
-            - Agent.ComputerName -equals TFS-VMUX-35
+            - Agent.ComputerName -equals tfs-build-23
 
         steps:
           # Checkout your main repo
