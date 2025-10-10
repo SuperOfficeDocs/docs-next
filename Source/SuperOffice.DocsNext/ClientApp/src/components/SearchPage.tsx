@@ -178,13 +178,23 @@ export default function SearchComp() {
     setFilterState(filterStateTemp)
   }
 
-  const doSearch = async (pageNo: number = 1, customQuery?: string) => {
+  const doSearch = async (changePageNumber: boolean = false, customQuery?: string) => {
     try {
       setLoading(true)
       setAutoComplete([]);
       setError("");
 
       const searchQuery = customQuery ?? query
+
+      var pageNum;
+      if (changePageNumber) {
+        pageNum = pageNo;
+      }
+      else {
+        pageNum = 1
+        setPageNo(1)
+      }
+
 
       if (searchQuery.length == 0) {
         setResults({})
@@ -205,7 +215,7 @@ export default function SearchComp() {
           params: {
             q: searchQuery,
             languages: currentFilterList,
-            page: pageNo
+            page: pageNum
           },
         });
         setResults(searchResponse.data as resultsType);
@@ -237,7 +247,7 @@ export default function SearchComp() {
     if (e.key === "Enter") {
       e.preventDefault();
       if (highlightedIndex >= 0 && autoComplete && autoComplete.length > 0) {
-        doSearch(1, autoComplete[highlightedIndex]);
+        doSearch(false, autoComplete[highlightedIndex]);
       } else {
         doSearch();
       }
@@ -259,6 +269,22 @@ export default function SearchComp() {
     }
   };
 
+
+  const updateUrl = (filters: filterType) => {
+    const params = new URLSearchParams();
+
+    if (query) params.set("q", query);
+
+    Object.entries(filters).forEach(([group, values]) => {
+      if (values.length > 0) {
+        params.set(group, values.map(v => encodeURIComponent(v.toLowerCase())).join(","));
+      }
+    });
+
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, "", newUrl);
+  };
+
   useEffect(() => {
     setError("")
     if (!query) {
@@ -276,13 +302,15 @@ export default function SearchComp() {
   }, [])
 
   useEffect(() => {
+    const activeFilters = getActiveFilters();
+    updateUrl(activeFilters);
     setPreferredLanguage()
     doSearch();
   }, [filterState]);
 
 
   useEffect(() => {
-    doSearch(pageNo)
+    doSearch(true)
   }, [pageNo])
 
 
@@ -322,7 +350,7 @@ export default function SearchComp() {
                 .map((item, index) => (
                   <li
                     key={index}
-                    onClick={() => doSearch(1, item)}
+                    onClick={() => doSearch(false, item)}
                     className={`px-3 py-2 cursor-pointer text-black ${index === highlightedIndex
                       ? "bg-gray-200"
                       : "hover:bg-gray-100"
@@ -338,13 +366,13 @@ export default function SearchComp() {
 
       {/* Search Body*/}
 
-      <div className="flex flex-col items-center h-full md:h-[480px] 2xl:h-[600px] p-2 md:flex-row md:mt-2 md:pl-6 md:pt-4 mx-4 lg:mx-20">
+      <div className="flex flex-col items-center h-full md:h-[480px] 2xl:h-[600px] p-2 md:flex-row md:mt-2 md:pl-6 md:pt-4 mx-2 lg:mx-20">
 
         {/* Filters Menu */}
         <div className={`bg-lightTealGray py-2 px-4 md:py-4 w-full md:w-[25%] h-fit rounded-lg mb-3`}>
           <div className={`flex flex-row justify-between ${filtersExpanded && "border-b-[1px] pb-3"} border-black`}>
             <p className="font-bold">Filters</p>
-            <button className=" block lg:hidden" onClick={() => setFiltersExpanded(!filtersExpanded)}>{filtersExpanded ? <CaretUp /> : <CaretDown />}</button>
+            <button className="block" onClick={() => setFiltersExpanded(!filtersExpanded)}>{filtersExpanded ? <CaretUp /> : <CaretDown />}</button>
           </div>
           {filtersExpanded && <>
             {/* filter list */}
@@ -431,7 +459,7 @@ export default function SearchComp() {
                             text={result.content.length > 200 ? result.content.slice(0, 200) + "..." : result.content}
                             query={searchedQuery}
                           /></p>
-                          <div className="flex flex-row justify-between"><a href={trimFileExtension(result.url)} className="text-superOfficeGreen text-sm">{result.url}</a><p className="bg-lightTealGray rounded-xl text-sm px-2">{getLanguageDisplayName(result.language)}</p></div>
+                          <div className="flex flex-row justify-between"><a href={trimFileExtension(result.url)} className="text-superOfficeGreen text-sm">{result.url}</a><p className="bg-lightTealGray rounded-xl text-sm px-1 md:px-2">{getLanguageDisplayName(result.language)}</p></div>
                         </li>
                       ))}
                     </ul>
