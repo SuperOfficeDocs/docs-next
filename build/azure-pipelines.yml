@@ -38,7 +38,8 @@ stages:
         pool:
           name: Default
           demands:
-            - agent.os -equals Linux
+            # - agent.os -equals Linux
+            - Agent.ComputerName -equals TFS-VMUX-35
 
         steps:
           # Checkout your main repo
