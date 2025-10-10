@@ -13,7 +13,7 @@ param docsUserGroupSid string
 
 var webAppHostingPlanName = 'plan-superoffice-docs-${environment}'
 var webAppName = 'app-superoffice-docs-${environment}'
-var keyVaultName = 'kv-docs-${environment}'
+var keyVaultName = 'kv-so-docs-${environment}'
 var keyVaultSecrets = [
   {
     name: 'AzureSearch--ApiKey'
