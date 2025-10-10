@@ -33,10 +33,10 @@ $TemplateFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScrip
 if ($null -eq (Get-AzResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation -Verbose -ErrorAction SilentlyContinue)) {
   New-AzResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation -Verbose -Force -ErrorAction Stop
 }
-
 if ($ValidateOnly) {
-  $ErrorMessages = Format-ValidationOutput (Test-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
-      -TemplateFile $TemplateFile `)
+  $ErrorMessages = Format-ValidationOutput (Test-AzResourceGroupDeployment `
+      -ResourceGroupName $ResourceGroupName `
+      -TemplateFile $TemplateFile)
   if ($ErrorMessages) {
     Write-Output '', 'Validation returned the following errors:', @($ErrorMessages), '', 'Template is invalid.'
     [Environment]::Exit(1)
