@@ -455,7 +455,7 @@ export default function SearchComp() {
                 {/* Results list */}
                 {(!loading && searchedQuery && (results.documents?.length > 0 ?
                   <>
-                    <ul className="h-[400px] lg:h-[600px] px-4 overflow-y-auto overflow-x-hidden">
+                    <ul className="h-[400px] 2xl:h-[600px] px-4 overflow-y-auto overflow-x-hidden">
                       <div className="flex text-center justify-center flex-col py-6">
                         {query && (
                           <>
