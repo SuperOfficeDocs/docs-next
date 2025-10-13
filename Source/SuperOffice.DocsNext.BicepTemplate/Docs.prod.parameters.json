@@ -1,0 +1,9 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "docsUserGroupSid": {
+      "value": "23df39f0-0080-444b-aa86-9ad27c3cb83a"
+    }
+  }
+}

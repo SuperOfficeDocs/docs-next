@@ -9,9 +9,18 @@ pr:
     include:
       - main
 
+parameters:
+  - name: PARTIAL_BUILD
+    displayName: "Partial Build Mode"
+    type: string
+    default: 'false'
+    values:
+      - 'true'
+      - 'false'
+
 variables:
-- name: DOTNET_VERSION
-  value: '8'
+  - name: DOTNET_VERSION
+    value: '8'
 
 resources:
   repositories:
@@ -31,6 +40,7 @@ stages:
           demands:
             # - agent.os -equals Linux
             - Agent.ComputerName -equals tfs-build-23
+
         steps:
           # Checkout your main repo
           - checkout: self
@@ -51,11 +61,14 @@ stages:
             inputs:
               versionSpec: "22.x"
 
-          # Build & publish the .NET project (includes front-end build if wired in MSBuild targets)
+          # Build & publish the .NET project (includes Astro build)
           - script: |
               cd Source/SuperOffice.DocsNext
+              echo "PARTIAL_BUILD is set to: $PARTIAL_BUILD"
               dotnet publish -c Release -o $(Build.ArtifactStagingDirectory)/out
             displayName: "Publish .NET & Astro project"
+            env:
+              PARTIAL_BUILD: ${{ parameters.PARTIAL_BUILD }} 
 
           # Zip the published output
           - task: ArchiveFiles@2

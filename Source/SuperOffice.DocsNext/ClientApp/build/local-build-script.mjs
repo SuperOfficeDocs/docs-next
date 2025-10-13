@@ -5,7 +5,6 @@
  * 1. Builds with API_ONLY=true
  * 2. Builds with API_ONLY=false
  * 3. Merges both builds
- * 4. Indexes the result with Pagefind
  * 
  * @description
  * To use this script for split builds:
@@ -22,7 +21,6 @@
  * @note
  * - Cleans up temporary build directories (.distA and .distB)
  * - Final output will be in dist/ directory
- * - Automatically runs Pagefind indexing on final build
  * 
  * @warning
  * Currently not actively used in the codebase.
@@ -41,7 +39,6 @@ const clientRoot = path.resolve(__dirname, "..");
 
 // Paths to local binaries
 const astroBin = path.join(clientRoot, "node_modules", ".bin", "astro");
-const pagefindBin = path.join(clientRoot, "node_modules", ".bin", "pagefind");
 
 // Paths
 const distDir = path.resolve("dist");
@@ -78,9 +75,5 @@ cpSync(distB, distDir, { recursive: true });
 [distA, distB].forEach((dir) => {
   if (existsSync(dir)) rmSync(dir, { recursive: true, force: true });
 });
-
-// Pagefind Indexing
-console.log("Indexing with Pagefind");
-execSync(`"${pagefindBin}" --site dist`, { stdio: "inherit" });
 
 console.log("Completed. Final merged build is in dist/");

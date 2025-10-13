@@ -6,4 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <!-- Include *.bicep *.json and *.ps1 into the package -->
+  <ItemGroup>
+      <None Update="*.bicep" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+      <None Update="*.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+      <None Update="*.ps1" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,7 @@
 ﻿Param(
   [string] $Environment = 'dev',
   [int] [Parameter(Mandatory = $true)]$DotNetVersion,
+  [string] $SearchApiKey,
   [switch] $ValidateOnly
 )
 
@@ -23,9 +24,11 @@ function Format-ValidationOutput {
 $ResourceGroupLocation = 'Norway East'
 $ResourceGroupName = "rg-SuperOfficeDocs-$($Environment)"
 $TemplateFile = 'SuperOfficeDocs.bicep'
-
+$TemplateParametersFile = "Docs.$($Environment).parameters.json"
+$SecureSearchApiKey = ConvertTo-SecureString -String $SearchApiKey -AsPlainText -Force
 
 $TemplateFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateFile))
+$TemplateParametersFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateParametersFile))
 
 # Create the resource group only when it doesn't already exist
 if ($null -eq (Get-AzResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation -Verbose -ErrorAction SilentlyContinue)) {
@@ -33,9 +36,13 @@ if ($null -eq (Get-AzResourceGroup -Name $ResourceGroupName -Location $ResourceG
 }
 
 if ($ValidateOnly) {
-  $ErrorMessages = Format-ValidationOutput (Test-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName `
+  $ErrorMessages = Format-ValidationOutput (Test-AzResourceGroupDeployment `
+      -ResourceGroupName $ResourceGroupName `
       -TemplateFile $TemplateFile `
-      @OptionalParameters)
+      -TemplateParameterFile $TemplateParametersFile `
+      -environment $Environment `
+      -dotNetVersion $DotNetVersion `
+      -searchApiKey $SecureSearchApiKey)
   if ($ErrorMessages) {
     Write-Output '', 'Validation returned the following errors:', @($ErrorMessages), '', 'Template is invalid.'
     [Environment]::Exit(1)
@@ -48,7 +55,9 @@ $outputs = New-AzResourceGroupDeployment -Name ((Get-ChildItem $TemplateFile).Ba
   -ResourceGroupName $ResourceGroupName `
   -TemplateFile $TemplateFile `
   -environment $Environment `
+  -TemplateParameterFile $TemplateParametersFile `
   -dotNetVersion $DotNetVersion `
+  -searchApiKey $SecureSearchApiKey `
   -Force -Verbose `
   -ErrorVariable ErrorMessages
 if ($ErrorMessages) {
