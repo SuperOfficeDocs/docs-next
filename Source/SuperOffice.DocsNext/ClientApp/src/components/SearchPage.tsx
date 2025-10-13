@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { ColorCheckbox } from "./CheckBox";
 import { trimFileExtension } from "@utils/slugUtils"
 import axios from 'axios';
@@ -74,6 +74,7 @@ export default function SearchComp() {
   const [autoComplete, setAutoComplete] = useState<string[]>();
   const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
   const [filtersExpanded, setFiltersExpanded] = useState<boolean>(true);
+  const searchBoxRef = useRef<HTMLDivElement>(null);
 
 
 
@@ -302,6 +303,19 @@ export default function SearchComp() {
   }, [])
 
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchBoxRef.current && !searchBoxRef.current.contains(event.target as Node)) {
+        setAutoComplete([]);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
     const activeFilters = getActiveFilters();
     updateUrl(activeFilters);
     setPreferredLanguage()
@@ -320,7 +334,7 @@ export default function SearchComp() {
       {/* Search Hero */}
       <div className="w-full px-6 py-3 md:px-28 lg:px-72 lg:py-6 bg-gradient-to-r from-[#31b494] to-[#0a5e58] text-white lg:h-20 flex justify-center items-center">
         {/* Search box wrapper */}
-        <div className="relative flex w-full max-w-[600px]">
+        <div ref={searchBoxRef} className="relative flex w-full max-w-[600px]">
           <input
             id="searchInput"
             placeholder="Enter search terms..."
