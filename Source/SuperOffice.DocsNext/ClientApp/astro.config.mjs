@@ -118,10 +118,10 @@ export default defineConfig({
   },
 
   build: {
-    format: "preserve",
+    format: "file",
   },
   logLevel: process.env.CI ? 'error' : 'info',
   site: "https://app-superoffice-docs-dev.azurewebsites.net/",
   // base: "/",
-  trailingSlash: "never",
+  // trailingSlash: "never",
 });
