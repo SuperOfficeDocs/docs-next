@@ -107,8 +107,10 @@ else
     var rewriteOptions = new RewriteOptions()
         // Redirect /something.html -> /something (permanent redirect)
         .AddRedirect(@"^(.*)\.html$", "$1", statusCode: 301)
+        .AddRewrite(@"^$", "index.html", skipRemainingRules: true)
         // Rewrite /something -> /something.html (internal rewrite)
-        .AddRewrite(@"^([^.]+)$", "$1.html", skipRemainingRules: true);
+        // But avoids rewriting known static file types
+        .AddRewrite(@"^(?!.*\.(?:js|css|png|jpg|jpeg|gif|svg|ico|json|txt|xml|map)$)(.*)$", "$1.html", skipRemainingRules: true);
 
     app.UseWhen(
         context => !context.Request.Path.StartsWithSegments("/api"),
