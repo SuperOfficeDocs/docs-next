@@ -173,6 +173,6 @@ export function resolveRelativeFilePath(currentPath: string, filepath: string): 
     return filepath
   }
   else {
-    return `${currentPath.split("/").pop()}/${trimFileExtension(filepath).replace("/index", "")}`
+    return `${currentPath.split("/").pop()?.replace(/\.html$/, "")}/${trimFileExtension(filepath).replace(/\/index$/, "")}`
   }
 }
