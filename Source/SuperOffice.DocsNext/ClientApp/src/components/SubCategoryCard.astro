@@ -1,15 +1,15 @@
 ---
 import type { LandingContentCard } from "../types/SubCategoryPageTypes";
 import IconSelection from "./IconSelection";
-import { resolveHref } from "~/utils/slugUtils";
+import {resolveRelativeFilePath} from "@utils/slugUtils";
 
 import "@styles/main.css";
 
-const { item, subCategory } = Astro.props;
+const { item } = Astro.props;
+const currentPath = Astro.url.pathname;
 
 interface Props {
   item: LandingContentCard;
-  subCategory: string;
 }
 ---
 
@@ -40,7 +40,7 @@ interface Props {
                 return (
                   <a
                     class="text-superOfficeGreen"
-                    href={resolveHref(linkItem.url, subCategory)}
+                    href={resolveRelativeFilePath(currentPath, linkItem.url)}
                   >
                     {linkItem.text}
                   </a>

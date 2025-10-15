@@ -13,7 +13,7 @@ export function stripFilePathAndExtension(filePath: string, collection: string):
 }
 
 /**
- * Removes a known file extension (.md, .mdx, .yml, .yaml, .html) from a path.
+ * Removes a known file extension (.md, .mdx, .yml, .yaml) from a path.
  * Logs a warning if an unknown or unsupported extension is detected.
  * If there's no extension at all, just return as-is.
  */
@@ -26,35 +26,10 @@ export function trimFileExtension(filename: string): string {
   }
 
   if (!knownExtPattern.test(filename)) {
-    // console.warn(`[trimFileExtension] Unknown or missing file extension in: "${filename}"`);
     return filename;
   }
 
   return filename.replace(knownExtPattern, "");
-}
-
-/**
- * Resolves a Markdown file link to a proper path.
- *
- * @param url - The original link from our data, for example 'learn/foo.md' or '../bar.md'.
- * @param baseSlug - Optional prefix to prepend, such as 'document' or 'onsite'.
- * @returns Resolved URL with no file extension and correct prefix.
- */
-export function resolveHref(url: string, baseSlug?: string): string {
-
-  // leave unchanged if it is a external link
-  if (url.startsWith("http")) return url;
-
-  const isSupported = supportedExtensions.some(ext => url.endsWith(ext));
-  if (!isSupported) return url;
-
-  const trimmed = trimFileExtension(url).replace("/index", "");
-
-  if (baseSlug && url.startsWith(baseSlug + "/")) {
-    return trimmed;
-  }
-
-  return baseSlug ? `${baseSlug}/${trimmed}` : trimmed;
 }
 
 /**
@@ -169,10 +144,16 @@ function isExternalLink(filePath: string): boolean {
  * (removing file extensions and 'index' from the path).
  */
 export function resolveRelativeFilePath(currentPath: string, filepath: string): string {
+  const isSupported = supportedExtensions.some(ext => filepath.endsWith(ext));
+
   if (isExternalLink(filepath)) {
+    return filepath;
+  }
+
+  if (!isSupported) {
     return filepath
   }
-  else {
-    return `${currentPath.split("/").pop()?.replace(/\.html$/, "")}/${trimFileExtension(filepath).replace(/\/index$/, "")}`
-  }
+
+  return `${currentPath.split("/").pop()?.replace(/\.html$/, "")}/${trimFileExtension(filepath).replace(/\/index$/, "")}`
+
 }
