@@ -119,8 +119,8 @@ export const heroItems = {
 
 export const areasOfInterest = {
   "links": [
-    { "text": "Admin", "href": "en/admin/overview" },
-    { "text": "Artificial Intelligence", "href": "en/ai" },
+    { "text": "Admin", "href": "en/admin" },
+    { "text": "Artificial Intelligence", "href": "en/ai/learn" },
     { "text": "Automation", "href": "en/automation" },
     { "text": "Company", "href": "en/company" },
     { "text": "Contact", "href": "en/contact" },
@@ -129,14 +129,14 @@ export const areasOfInterest = {
     { "text": "Database Mirroring", "href": "en/online/mirroring/overview" },
     { "text": "Diary", "href": "en/diary" },
     { "text": "Document", "href": "en/document" },
-    { "text": "Globalization", "href": "en/globalization-and-localization" },
+    { "text": "Globalization", "href": "en/api/localization" },
     { "text": "Mobile", "href": "en/mobile" },
     { "text": "Project", "href": "en/project" },
     { "text": "Request Management", "href": "en/request" },
     { "text": "Sale", "href": "en/sale" },
     { "text": "Security", "href": "en/security" },
-    { "text": "Video Meetings", "href": "en/diary/video-meeting" },
-    { "text": "WebTools", "href": "en/document/webtools" }
+    { "text": "Video Meetings", "href": "integrations/video-meetings" },
+    { "text": "WebTools", "href": "integrations/webtools" }
   ]
 };
 
@@ -177,7 +177,7 @@ export const quickAccessShortcuts = {
         },
         {
           title : "Web tools",
-          link : `en/document/webtools`
+          link : `integrations/webtools`
         },
         {
           title : "Mobile application",
@@ -190,7 +190,7 @@ export const quickAccessShortcuts = {
       subLinks : [
         {
           title : "NetServer Configuration",
-          link : `en/api/netserver/config`
+          link : `en/api/config`
         },
         {
           title : "Document template variables",
@@ -198,7 +198,7 @@ export const quickAccessShortcuts = {
         },
         {
           title : "Service reply templates",
-          link : `en/request/reply-templates`
+          link : `en/knowledge-base/learn/reply-templates`
         },
         {
           title : "Batch task service",
@@ -215,11 +215,11 @@ export const quickAccessShortcuts = {
       subLinks : [
         {
           title : "Register online developer account",
-          link : `en/onsite/requirements`
+          link : `en/developer-portal/getting-started/get-access-to-sod`
         },
         {
           title : "Developer portal",
-          link : `en/onsite/security`
+          link : `https://dev.superoffice.com/`
         },
       ]
     },
@@ -236,5 +236,34 @@ export const footerData = {
     { text: 'About', href: `/about` },
     { text: 'Contribute', href:`/contribute/overview`},
     { text: 'Back to top', href:'#'}
+  ],
+};
+
+export const audienceTypes = {
+  audience: [
+    {
+      "title": "SuperUser",
+      "description": "A person who has system administrative privilege's and special functional and data access rights for managing how SuperOffice behaves. The friend you need to tweak the system!",
+      "href": `en/customization`,
+      "color": "bg-seaFoamGreen"
+    },
+    {
+      "title": "Administrator",
+      "description": "A person who is primarily responsible for the setup, configuration, maintenance of operation of SuperOffice in an organization. The guy you call when shit hits the fan!",
+      "href": `en/onsite`,
+      "color": "bg-mistBlue"
+    },
+    {
+      "title": "Consultant",
+      "description": "A person who works with companies to improve their use of SuperOffice to achieve business goals and an expert in all technical aspects of SuperOffice. Hired to provide advice, solve problems and increase efficiency.",
+      "href": `en/automation`,
+      "color": "bg-lightTealGray"
+    },
+    {
+      "title": "Developer",
+      "description": "A software engineer responsible for the implementation of requirements for an application or integration, or provides advice (consultancy) as to how the an integration should be implemented using current industry trends.",
+      "href": `en/api`,
+      "color": "bg-deepTeal"
+    }
   ],
 };
