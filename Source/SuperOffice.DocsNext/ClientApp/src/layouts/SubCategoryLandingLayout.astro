@@ -9,14 +9,6 @@ import PageHeader from "@components/PageHeader.astro";
 import "astro-breadcrumbs/breadcrumbs.css";
 
 const { data, ToCData, lang, baseSlug, hasMultipleLanguages = false } = Astro.props;
-const currentPath = Astro.url.pathname;
-
-// Splits the currentPath string by / into an array. filter(Boolean) removes empty strings ("") caused by leading or trailing slashes.
-const parts = currentPath.split("/").filter(Boolean);
-const subcategory = parts.at(-1) ?? "";
-
-// Set subcategory to subCategorySlug unless subcategory is "customization" or "administration",
-const subCategorySlug = ["customization", "administration"].includes(subcategory) ? "" : subcategory;
 
 const metadata = {
   title: data.title,
@@ -96,7 +88,7 @@ type Props = {
           {
             data.landingContent.map((card) => {
               return (
-                <SubCategoryCard subCategory={subCategorySlug} item={card} />
+                <SubCategoryCard item={card} />
               );
             })
           }
