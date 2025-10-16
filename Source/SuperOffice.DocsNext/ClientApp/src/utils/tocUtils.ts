@@ -64,6 +64,9 @@ export async function getTableOfContentsFromCollection(
           }
         }
       }
+      if (item?.items && item.items.length > 0 ) {
+        resolveItems(item?.items)
+      }
     }
     return items;
   }
@@ -128,13 +131,13 @@ export async function getTocByPath(path: string) {
  *          - Returns an empty TOC data structure ({items: []}) if the fetch fails
  * @throws Catches and logs any errors during TOC data fetching
  */
- export function loadAPITocData(apiPath: string) {
-    return async () => {
-      try {
-        return await getTocByPath(apiPath);
-      } catch (error) {
-        console.warn(`Failed to load TOC for ${apiPath}`, error);
-        return { items: [] } as TocData;
-      }
-    };
-  }
+export function loadAPITocData(apiPath: string) {
+  return async () => {
+    try {
+      return await getTocByPath(apiPath);
+    } catch (error) {
+      console.warn(`Failed to load TOC for ${apiPath}`, error);
+      return { items: [] } as TocData;
+    }
+  };
+}
