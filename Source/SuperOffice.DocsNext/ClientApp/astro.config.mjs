@@ -10,6 +10,7 @@ import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkIncludeDirective from "./src/plugins/AddIncludesToMarkdown.js";
 import remarkRestyleDirective from "./src/plugins/RestyleDirectives.js";
+import remarkFixRelativeLinks from "./src/plugins/FixMarkdownLinks.js"
 import react from "@astrojs/react";
 import yaml from '@rollup/plugin-yaml';
 import redirectFrom from "astro-redirect-from";
@@ -22,7 +23,8 @@ export default defineConfig({
   ],
 
   markdown: {
-    remarkPlugins: [remarkDirective, codeImport, remarkIncludeDirective, remarkRestyleDirective],
+    remarkPlugins: [remarkDirective, codeImport, remarkIncludeDirective, remarkRestyleDirective, remarkFixRelativeLinks
+    ],
     rehypePlugins: [
       rehypeHeadingIds,
       [
@@ -123,5 +125,5 @@ export default defineConfig({
   logLevel: process.env.CI ? 'error' : 'info',
   site: "https://app-superoffice-docs-dev.azurewebsites.net/",
   // base: "/",
-  // trailingSlash: "never",
+  // trailingSlash: "ignore",
 });
