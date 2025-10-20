@@ -110,7 +110,7 @@ else
         .AddRewrite(@"^$", "index.html", skipRemainingRules: true)
         // Rewrite /something -> /something.html (internal rewrite)
         // But avoids rewriting known static file types
-        .AddRewrite(@"^(?!.*\.(?:js|css|png|jpg|jpeg|gif|svg|ico|json|txt|xml|map)$)(.*)$", "$1.html", skipRemainingRules: true);
+        .AddRewrite(@"^(?!_astro)(?!.*\.(?:js|css|png|jpg|jpeg|gif|svg|ico|json|txt|xml|map|woff|woff2|webp)$)(.*)$", "$1.html", skipRemainingRules: true);
 
     app.UseWhen(
         context => !context.Request.Path.StartsWithSegments("/api"),
