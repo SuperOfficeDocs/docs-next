@@ -98,7 +98,7 @@ export function getYamlReferenceSlug(
  */
 export function getCategorySlug(id: string, basePath: string): string {
   let rawSlug = id === basePath ? "" : id.replace(`${basePath}/`, "");
-  
+
   return rawSlug ? trimFileExtension(rawSlug) : "index";
 }
 
@@ -154,6 +154,6 @@ export function resolveRelativeFilePath(currentPath: string, filepath: string): 
     return filepath
   }
 
-  return `${currentPath.split("/").pop()?.replace(/\.html$/, "")}/${trimFileExtension(filepath).replace(/\/index$/, "/")}`
+  return `${currentPath.split("/").filter(Boolean).pop()?.replace(/\.html$/, "")}/${trimFileExtension(filepath).replace(/\/index$/, "/")}`
 
 }
