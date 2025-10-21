@@ -50,7 +50,23 @@ If a repository folder already exists, script will fetch and reset it to the lat
     ```
 
 
-### 4. Run Development Servers
+### 4. Setup Azure CLI and KeyVault name
+
+Before running the application, ensure the following configuration is properly set:
+
+1. Update appsettings.json:
+
+    - Locate the keyVaultName attribute in your appsettings.json.
+    - Replace its value with the correct Azure Key Vault name (for example: "docs-keyVault").
+    - This allows the application to securely retrieve secrets (such as connection strings or API keys) from Azure Key Vault instead of storing them locally.
+
+2. Set up Azure CLI:
+
+    - Install and sign in to Azure CLI using `az login`
+    - Ensure you have access to the correct subscription and Key Vault.
+
+
+### 5. Run Development Servers
 
 #### Backend (with API and proxy to frontend)
 
@@ -83,7 +99,7 @@ To manage the content during development, npm command to run dev server with red
 npm run dev:partial
 ```
 
-### 5. Run Production Build
+### 6. Run Production Build
 
 1. Build Backend (includes frontend)
 
