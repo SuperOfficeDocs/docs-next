@@ -9,7 +9,7 @@ const contentRepo = "superoffice-docs"; // primary content repository
  */
 export function stripFilePathAndExtension(filePath: string, collection: string): string {
   const base = `${contentDir}/`
-  return filePath.replace(base, "").replace(`${collection}/`, "").replace(/\/index/g, "").replace(/\.(md|yml|yaml)$/g, "");;
+  return filePath.replace(base, "").replace(`${collection}/`, "").replace(/\/index/g, "/").replace(/\.(md|yml|yaml)$/g, "");;
 }
 
 /**
@@ -154,6 +154,6 @@ export function resolveRelativeFilePath(currentPath: string, filepath: string): 
     return filepath
   }
 
-  return `${currentPath.split("/").pop()?.replace(/\.html$/, "")}/${trimFileExtension(filepath).replace(/\/index$/, "")}`
+  return `${currentPath.split("/").filter(Boolean).pop()?.replace(/\.html$/, "")}/${trimFileExtension(filepath).replace(/\/index$/, "/")}`
 
 }

@@ -46,9 +46,10 @@ export default function remarkRestyleDirective() {
       
       if (remainingText) {
         textNode.value = remainingText;
-        contentChildren = para.children;
+        contentChildren = node.children;
       } else {
-        contentChildren = para.children.slice(1);
+        // Remove first paragraph if it only contained the directive
+        contentChildren = node.children.slice(1);
       }
 
       node.type = 'parent';
